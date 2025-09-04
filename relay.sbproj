@@ -1,0 +1,46 @@
+{
+  "Title": "Relay",
+  "Type": "game",
+  "Org": "mountain",
+  "Ident": "relay",
+  "Schema": 1,
+  "IncludeSourceFiles": false,
+  "Resources": null,
+  "PackageReferences": [],
+  "EditorReferences": null,
+  "Mounts": null,
+  "IsStandaloneOnly": false,
+  "Metadata": {
+    "MaxPlayers": 64,
+    "MinPlayers": 1,
+    "TickRate": 50,
+    "GameNetworkType": "Multiplayer",
+    "MapSelect": "Unrestricted",
+    "MapList": [
+      "facepunch.flatgrass"
+    ],
+    "RankType": "None",
+    "PerMapRanking": false,
+    "LeaderboardType": "None",
+    "CsProjName": "Mountain",
+    "StartupScene": "scenes/testing.scene",
+    "Compiler": {
+      "RootNamespace": "Mountain",
+      "DefineConstants": "SANDBOX;ADDON;DEBUG",
+      "NoWarn": "1701;1702;1591;",
+      "WarningsAsErrors": "true",
+      "TreatWarningsAsErrors": false,
+      "Nullables": true,
+      "ReleaseMode": "Debug",
+      "AssemblyReferences": [],
+      "IgnoreFolders": [
+        "editor",
+        "unittest"
+      ],
+      "DistinctAssemblyReferences": []
+    },
+    "MapStartupScene": "scenes/testing.scene",
+    "LaunchMode": "Normal",
+    "DedicatedServerStartupScene": "scenes/testing.scene"
+  }
+}
