@@ -1157,7 +1157,7 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "SpawnForce": 1000,
-          "UseSpawnChance": true,
+          "UseSpawnChance": false,
           "UseSpawnForce": false
         }
       ],
@@ -1191,7 +1191,7 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "SpawnForce": 1000,
-          "UseSpawnChance": true,
+          "UseSpawnChance": false,
           "UseSpawnForce": false
         }
       ],
@@ -1225,7 +1225,7 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "SpawnForce": 1000,
-          "UseSpawnChance": true,
+          "UseSpawnChance": false,
           "UseSpawnForce": false
         }
       ],
@@ -1259,7 +1259,7 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "SpawnForce": 1000,
-          "UseSpawnChance": true,
+          "UseSpawnChance": false,
           "UseSpawnForce": false
         }
       ],

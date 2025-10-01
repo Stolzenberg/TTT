@@ -17,12 +17,7 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
     public GameObject BloodEffect { get; set; }
 
     void IGameEventHandler<DamageTakenEvent>.OnGameEvent(DamageTakenEvent eventArgs)
-    {
-        if (IsImmortal)
-        {
-            return;
-        }
-        
+    { 
         var damageInfo = eventArgs.DamageInfo;
 
         var attacker = eventArgs.DamageInfo.Attacker.GetPlayerFromComponent();

@@ -33,8 +33,6 @@ public sealed partial class Player : IScenePhysicsEvents
     /// </summary>
     [Sync( SyncFlags.FromHost )] public bool IsFrozen { get; set; }
     
-    [Sync( SyncFlags.FromHost )] public bool IsImmortal { get; set; }
-    
     private Rigidbody? body;
 
     void IScenePhysicsEvents.PrePhysicsStep()

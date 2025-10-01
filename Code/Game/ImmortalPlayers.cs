@@ -9,7 +9,7 @@ public sealed class ImmortalPlayers : Component, IGameEventHandler<EnterStateEve
     {
         foreach (var player in Game.ActiveScene.AllPlayers())
         {
-            player.IsImmortal = true;
+            player.Health.IsGodMode = true;
         }
     }
 
@@ -17,12 +17,12 @@ public sealed class ImmortalPlayers : Component, IGameEventHandler<EnterStateEve
     {
         foreach (var player in Game.ActiveScene.AllPlayers())
         {
-            player.IsImmortal = false;
+            player.Health.IsGodMode = false;
         }
     }
 
     void IGameEventHandler<PlayerSpawnedEvent>.OnGameEvent(PlayerSpawnedEvent eventArgs)
     {
-        eventArgs.Player.IsImmortal = true;
+        eventArgs.Player.Health.IsGodMode = true;
     }
 }

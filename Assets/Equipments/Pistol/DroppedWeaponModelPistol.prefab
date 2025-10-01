@@ -15,6 +15,17 @@
     "OwnerTransfer": 1,
     "Components": [
       {
+        "__type": "Mountain.DroppedEquipment",
+        "__guid": "b4b0e953-5e8e-448b-ac8f-8d00b13d14db",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
         "__type": "Mountain.EquipmentWorldModel",
         "__guid": "dff38c14-c262-4256-bf93-5152b6d5ab13",
         "__enabled": true,
@@ -90,6 +101,41 @@
         "Static": false,
         "Surface": null,
         "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "Sandbox.SphereCollider",
+        "__guid": "8ee42bbc-e31c-4b70-bbe5-118e190f056f",
+        "__enabled": true,
+        "Center": "0,0,0",
+        "Elasticity": null,
+        "Friction": null,
+        "IsTrigger": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OnObjectTriggerEnter": null,
+        "OnObjectTriggerExit": null,
+        "OnTriggerEnter": null,
+        "OnTriggerExit": null,
+        "Radius": 64,
+        "RollingResistance": null,
+        "Static": false,
+        "Surface": null,
+        "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "Mountain.DestroyBetweenRounds",
+        "__guid": "0c3ee057-401a-48ba-ae19-1676b7779e47",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       }
     ],
     "Children": [
