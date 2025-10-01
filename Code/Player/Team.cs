@@ -21,16 +21,16 @@ public record TeamAssignedEvent(Client Client, Team Team) : IGameEvent;
 
 public static class TeamExtensions
 {
-    private static readonly Dictionary<Team, Color> teamColors = new()
+    private static readonly Dictionary<Team, Color> TeamColors = new()
     {
-        { Team.Innocent, new Color32(5, 146, 235) },
-        { Team.Murder, new Color32(233, 190, 92) },
+        { Team.Innocent, new Color32(39, 174, 96) },
+        { Team.Murder, new Color32(192, 57, 43) },
         { Team.Unassigned, new Color32(255, 255, 255) },
     };
 
     public static Color GetColor(this Team team)
     {
-        return teamColors[team];
+        return TeamColors[team];
     }
 
     public static Team GetOpponents(this Team team)

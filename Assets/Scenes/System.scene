@@ -53,6 +53,7 @@
           "__type": "Mountain.GameMode",
           "__guid": "3b8a0b9b-7efd-406c-83da-ebc2a3b04752",
           "__enabled": true,
+          "BotCount": 3,
           "DebuggingEnabled": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -67,8 +68,8 @@
           "__enabled": true,
           "CurrentState": {
             "_type": "component",
-            "component_id": "bd38db7e-dc51-46d3-abfc-7265a86233ee",
-            "go": "0483756f-af2f-4ee1-9a27-c3d34276e96c",
+            "component_id": "c616598b-ed98-4cdd-bceb-affc700bf61e",
+            "go": "0614a9bd-ad1b-4574-8d24-9ee2496b3c2c",
             "component_type": "GameState"
           },
           "OnComponentDestroy": null,
@@ -127,54 +128,6 @@
       ],
       "Children": [
         {
-          "__guid": "0483756f-af2f-4ee1-9a27-c3d34276e96c",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "Waiting",
-          "Position": "0,0,0",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 1,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.GameState",
-              "__guid": "bd38db7e-dc51-46d3-abfc-7265a86233ee",
-              "__enabled": true,
-              "DefaultDuration": 5,
-              "DefaultNextState": {
-                "_type": "component",
-                "component_id": "c616598b-ed98-4cdd-bceb-affc700bf61e",
-                "go": "0614a9bd-ad1b-4574-8d24-9ee2496b3c2c",
-                "component_type": "GameState"
-              },
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            },
-            {
-              "__type": "Mountain.WaitForPlayers",
-              "__guid": "1982ec30-29e1-4eab-9b5b-a498ffdb56d9",
-              "__enabled": true,
-              "MinPlayerCount": 2,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            }
-          ],
-          "Children": []
-        },
-        {
           "__guid": "0614a9bd-ad1b-4574-8d24-9ee2496b3c2c",
           "__version": 1,
           "Flags": 0,
@@ -212,17 +165,6 @@
               "__guid": "5652cbf7-5661-4571-a691-e81401d95d74",
               "__enabled": true,
               "ForceNew": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            },
-            {
-              "__type": "Mountain.FreezePlayers",
-              "__guid": "eddd7c6d-7683-4eb2-8abc-1164217f2032",
-              "__enabled": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -298,6 +240,17 @@
                 "go": "c2976947-a4cf-41ef-9520-7ab942c6443b",
                 "component_type": "GameState"
               },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.AssignPlayerTeam",
+              "__guid": "7eee8646-756a-43e1-9e87-77ab8d1f4505",
+              "__enabled": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,

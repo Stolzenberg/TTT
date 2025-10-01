@@ -90,7 +90,6 @@ public sealed class NetworkManager : SingletonComponent<NetworkManager>, Compone
         clientObj.Network.SetOrphanedMode(NetworkOrphaned.ClearOwner);
 
         var client = clientObj.GetComponent<Client>();
-        client.AssignTeam(Team.Innocent);
 
         return client.IsValid() ? client : null;
     }

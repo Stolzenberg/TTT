@@ -34,9 +34,6 @@ public partial class Client : Component, ITeam
     /// </summary>
     public bool IsLocalPlayer => !IsProxy && !IsBot && Connection == Connection.Local;
 
-    /// <summary>
-    ///     Unique colour or team color of this player
-    /// </summary>
     public Color PlayerColor => Team.GetColor();
 
     [Sync(SyncFlags.FromHost)]

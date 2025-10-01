@@ -176,6 +176,7 @@
           "__guid": "e2932b63-b8a0-420c-a67e-0b938aab5aac",
           "__enabled": true,
           "__version": 1,
+          "Filter": "Bilinear",
           "Gamma": 2.2,
           "Mode": "Additive",
           "OnComponentDestroy": null,
@@ -198,7 +199,8 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "Scale": 0.2
+          "Scale": 0.2,
+          "TexelSize": 1
         },
         {
           "__type": "Mountain.ScreenShaker",
@@ -1011,8 +1013,8 @@
       "__guid": "671e7ecd-3785-4096-9440-0bb03d62f99c",
       "__version": 1,
       "Flags": 0,
-      "Name": "SpawnA (1)",
-      "Position": "0.0001068115,-224,-0.00000001490116",
+      "Name": "Spawn (1)",
+      "Position": "0.0001068115,-200,-0.00000001490116",
       "Rotation": "0,0,0.7071067,0.7071068",
       "Scale": "1,1,1",
       "Tags": "mid-spawn",
@@ -1032,7 +1034,7 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "Team": "Innocent"
+          "Team": "Unassigned"
         }
       ],
       "Children": []
@@ -1041,9 +1043,9 @@
       "__guid": "d90f13ec-30f0-413d-97f7-9beb8f600eff",
       "__version": 1,
       "Flags": 0,
-      "Name": "SpawnB (1)",
-      "Position": "0.0001831055,192,0",
-      "Rotation": "0,0,0.7071067,0.7071068",
+      "Name": "Spawn (2)",
+      "Position": "0.0001831055,200,0",
+      "Rotation": "0,-0,-0.7071068,0.7071068",
       "Scale": "1,1,1",
       "Tags": "mid-spawn",
       "Enabled": true,
@@ -1062,7 +1064,67 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "Team": "Murder"
+          "Team": "Unassigned"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "b78b4cf1-a6f7-44f2-8710-11cc57aaab58",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Spawn (3)",
+      "Position": "200.0002,-0.000007629395,-0.00000000745058",
+      "Rotation": "0,0,-0.9999999,0.00000005960464",
+      "Scale": "1,1,1",
+      "Tags": "mid-spawn",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Mountain.TeamSpawnPoint",
+          "__guid": "20715025-b6d7-4a59-baaa-61e9b714fd0f",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Team": "Unassigned"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "09370a89-4a08-446a-acf7-c55a4aa42397",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Spawn (4)",
+      "Position": "-199.9998,0.000007629395,-0.00000000745058",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "mid-spawn",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Mountain.TeamSpawnPoint",
+          "__guid": "aa89d389-bb76-462c-8072-d158f3a8fb78",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Team": "Unassigned"
         }
       ],
       "Children": []

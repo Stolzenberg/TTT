@@ -1,0 +1,19 @@
+﻿@namespace Mountain
+@using System
+@inherits PanelComponent
+
+<root>
+    <div class="lower-left-box">
+        <div class="card" style="background-color: @Client.Local.PlayerColor.WithAlpha(0.2f).ToString();">
+            <div class="text">#@Client.Local.Team.ToString().ToUpper()</div>
+        </div>
+    </div>
+</root>
+
+@code
+{
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(Client.Local.Team, Client.Local.PlayerColor);
+    }
+}

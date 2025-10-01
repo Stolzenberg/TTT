@@ -4,8 +4,11 @@ namespace Mountain;
 
 public sealed class GameMode : SingletonComponent<GameMode>
 {
-    [Property, Category("Debugging"), FeatureEnabled("Debugging")]
+    [Property, Feature("Debugging"), FeatureEnabled("Debugging")]
     public bool DebuggingEnabled { get; set; }
+    
+    [Property, Feature("Debugging"), Description("How many bots to add when debugging is enabled")]
+    public int BotCount { get; set; } = 0;
     
     public GameStateMachine StateMachine => stateMachine ??= GetComponentInChildren<GameStateMachine>();
     private readonly Dictionary<Type, Component> componentCache = new();
@@ -58,16 +61,10 @@ public sealed class GameMode : SingletonComponent<GameMode>
     {
         if (DebuggingEnabled)
         {
-            Get<BotManager>()?.AddBot();
-        }
-    }
-    
-    protected override void OnUpdate()
-    {
-        if (DebuggingEnabled)
-        {
-            DebugOverlay.ScreenText( new( 500, 50 ), $"Rounds: {Get<RoundCounter>()?.Round}");
-            DebugOverlay.ScreenText( new( 500, 70 ), $"My Team: {Get<TeamScoring>()?.MyTeamScore}, Opposing Team: {Get<TeamScoring>()?.OpposingTeamScore} ");
+            for (var i = 0; i < BotCount; i++)
+            {
+                Get<BotManager>()?.AddBot();
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ public sealed class TeamSpawnPoint : Component
     protected override void DrawGizmos()
     {
         Gizmo.Hitbox.Model(Model);
-        Gizmo.Draw.Color = Team.GetColor().WithAlpha(Gizmo.IsHovered || Gizmo.IsSelected ? 0.7f : 0.5f);
+        Gizmo.Draw.Color = Team.GetColor();
 
         var so = Gizmo.Draw.Model(Model);
 
