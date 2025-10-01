@@ -1,0 +1,38 @@
+﻿DeathPanel{
+  .card {
+    background-color: #0008;
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .death-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .victim-info {
+    color: #ff6666;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;  
+  }
+  
+  .role-info{
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .killer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: white;
+    font-size: 16px;
+  }
+}

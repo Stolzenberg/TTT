@@ -3,7 +3,7 @@
 @namespace Mountain
 
 <root>
-    @if (Client.Local.DisplayName != Name || Testing)
+    @if (Client.Local.DisplayName != Name)
     {
         <div class="card">
             <div class="name">@Name</div>
@@ -12,10 +12,6 @@
 </root>
 
 @code{
-
-    [Property]
-    public bool Testing { get; set; } = false;
-    
     [Property]
     public string Name { get; set; } = string.Empty;
 

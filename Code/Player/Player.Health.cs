@@ -13,6 +13,7 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
 
     [Property, Feature("Health"), Group("Effects")]
     public SoundEvent BloodImpactSound { get; set; }
+    
     [Property, Feature("Health"), Group("Effects")]
     public GameObject BloodEffect { get; set; }
 
@@ -62,5 +63,6 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
     {
         CreateRagdoll(true);
         NameTag.Destroy();
+        DeathPanel.Show(damageInfo);
     }
 }

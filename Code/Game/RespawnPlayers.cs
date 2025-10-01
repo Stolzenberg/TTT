@@ -11,6 +11,7 @@ public sealed class RespawnPlayers : Component, IGameEventHandler<EnterStateEven
     {
         foreach (var player in Game.ActiveScene.AllClients())
         {
+            player.AssignTeam(Team.Unassigned);
             player.ServerRespawn(ForceNew);
         }
     }

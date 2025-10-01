@@ -88,8 +88,6 @@ public sealed partial class Equipment
     {
         if (Owner.IsValid() && Owner.Client.IsLocalPlayer)
         {
-            Log.Info($"Calling CreateViewModel {Owner.Client.DisplayName}");
-            
             CreateViewModel(!HasCreatedViewModel);
         }
 

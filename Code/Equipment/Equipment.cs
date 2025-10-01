@@ -59,8 +59,6 @@ public sealed partial class Equipment : Component
 
     protected override void OnStart()
     {
-        Log.Info($"Equipment OnStart {this.Owner.Client.DisplayName}");
-        
         wasDeployed = IsDeployed;
         hasStarted = true;
 

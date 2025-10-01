@@ -146,6 +146,12 @@
           "go": "5136a60c-9581-40b0-bf67-76a73bc7f462",
           "component_type": "CapsuleCollider"
         },
+        "DeathPanel": {
+          "_type": "component",
+          "component_id": "66036f5e-2c00-46af-a1f1-4e5982a0f4d8",
+          "go": "c4fc0d60-9c12-4394-a61a-8b6a925b5777",
+          "component_type": "DeathPanel"
+        },
         "defaultFovChangeSpeed": 25,
         "head": {
           "_type": "gameobject",
@@ -368,8 +374,63 @@
             "OnComponentEnabled": null,
             "OnComponentFixedUpdate": null,
             "OnComponentStart": null,
+            "OnComponentUpdate": null
+          }
+        ],
+        "Children": []
+      },
+      {
+        "__guid": "c4fc0d60-9c12-4394-a61a-8b6a925b5777",
+        "__version": 1,
+        "Flags": 0,
+        "Name": "DeathPanel",
+        "Position": "0,0,32",
+        "Rotation": "0,0,0,1",
+        "Scale": "1,1,1",
+        "Tags": "",
+        "Enabled": false,
+        "NetworkMode": 0,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
+        "Components": [
+          {
+            "__type": "Sandbox.WorldPanel",
+            "__guid": "db7f83f8-8b22-4c6c-9b6d-fcf0e8e73d9e",
+            "__enabled": true,
+            "HorizontalAlign": "Center",
+            "InteractionRange": 1000,
+            "LookAtCamera": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
             "OnComponentUpdate": null,
-            "Testing": false
+            "PanelSize": "1024,512",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderScale": 1,
+            "VerticalAlign": "Center"
+          },
+          {
+            "__type": "Mountain.DeathPanel",
+            "__guid": "66036f5e-2c00-46af-a1f1-4e5982a0f4d8",
+            "__enabled": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "Pelvis": {
+              "_type": "gameobject",
+              "go": "a2a6dd5a-6d94-4a9f-8a10-4af2aa90c10d"
+            }
           }
         ],
         "Children": []

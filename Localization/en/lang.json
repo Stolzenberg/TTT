@@ -4,5 +4,12 @@
     "MURDER": "Murder",
     "PREPARING": "Preparing",
     "ROUNDENDING": "Ending",
-    "PLAYING": "Playing"
+    "PLAYING": "Playing",
+    "WAS_KILLED": "was killed",
+    "WEAPON": "Weapon",
+    "DAMAGE": "Damage",
+    "DISTANCE": "Distance",
+    "HIT": "Hit",
+    "CAUSE": "Cause",
+    "PISTOL": "Pistol"
 }
