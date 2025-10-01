@@ -39,6 +39,7 @@ public sealed partial class Player
 
         Camera = Scene.Camera;
         Camera.FieldOfView = Preferences.FieldOfView;
+        Log.Info(Camera.FieldOfView);
     }
 
     private void UpdateEyeAngles()

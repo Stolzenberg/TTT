@@ -1,0 +1,368 @@
+{
+  "__guid": "dacf0692-8663-4e4e-a2f8-cd9af3e2edb8",
+  "GameObjects": [
+    {
+      "__guid": "b5b95c34-6704-4187-8305-e3964ecbb54b",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "NetworkManager",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Mountain.NetworkManager",
+          "__guid": "e0dca158-d8c3-4072-a4e0-031abaf48bcb",
+          "__enabled": true,
+          "ClientPrefab": {
+            "_type": "gameobject",
+            "prefab": "player/client.prefab"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "a0dad4aa-a36b-4bfc-a641-1ce148119bc0",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Gamemode",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkInterpolation": false,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Mountain.GameMode",
+          "__guid": "3b8a0b9b-7efd-406c-83da-ebc2a3b04752",
+          "__enabled": true,
+          "DebuggingEnabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "Mountain.GameStateMachine",
+          "__guid": "793c8f85-f10f-43e0-a29b-fe42b17a27e3",
+          "__enabled": true,
+          "CurrentState": {
+            "_type": "component",
+            "component_id": "bd38db7e-dc51-46d3-abfc-7265a86233ee",
+            "go": "0483756f-af2f-4ee1-9a27-c3d34276e96c",
+            "component_type": "GameState"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "Mountain.TeamSpawnAssigner",
+          "__guid": "0dfc1516-3ef1-4e31-8ee8-773723b2043f",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SpawnRules": [],
+          "SpawnTags": ""
+        },
+        {
+          "__type": "Mountain.BotManager",
+          "__guid": "75abebd7-0951-4a1b-8c00-aec8a74feeab",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "Mountain.RoundCounter",
+          "__guid": "91ebd161-1644-4549-b3bf-ac1b26b971b9",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "Mountain.TeamScoring",
+          "__guid": "96877cd7-245f-4bc1-b352-1c6b666fc186",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "0483756f-af2f-4ee1-9a27-c3d34276e96c",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Waiting",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Mountain.GameState",
+              "__guid": "bd38db7e-dc51-46d3-abfc-7265a86233ee",
+              "__enabled": true,
+              "DefaultDuration": 5,
+              "DefaultNextState": {
+                "_type": "component",
+                "component_id": "c616598b-ed98-4cdd-bceb-affc700bf61e",
+                "go": "0614a9bd-ad1b-4574-8d24-9ee2496b3c2c",
+                "component_type": "GameState"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.WaitForPlayers",
+              "__guid": "1982ec30-29e1-4eab-9b5b-a498ffdb56d9",
+              "__enabled": true,
+              "MinPlayerCount": 2,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "0614a9bd-ad1b-4574-8d24-9ee2496b3c2c",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Preparing",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Mountain.GameState",
+              "__guid": "c616598b-ed98-4cdd-bceb-affc700bf61e",
+              "__enabled": true,
+              "DefaultDuration": 1,
+              "DefaultNextState": {
+                "_type": "component",
+                "component_id": "8e02fa91-f544-42e4-aada-116939586da3",
+                "go": "8c761886-9c7e-4ea2-8d98-b54a5315f4c5",
+                "component_type": "GameState"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.RespawnPlayers",
+              "__guid": "5652cbf7-5661-4571-a691-e81401d95d74",
+              "__enabled": true,
+              "ForceNew": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.FreezePlayers",
+              "__guid": "eddd7c6d-7683-4eb2-8abc-1164217f2032",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.IncrementRoundCounter",
+              "__guid": "76a5cba9-2978-451b-9fa8-541774121dc9",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.BetweenRoundCleanup",
+              "__guid": "1d3cee31-c4d8-4d5b-b7b0-734832349b85",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "8c761886-9c7e-4ea2-8d98-b54a5315f4c5",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Playing",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Mountain.GameState",
+              "__guid": "8e02fa91-f544-42e4-aada-116939586da3",
+              "__enabled": true,
+              "DefaultDuration": 300,
+              "DefaultNextState": {
+                "_type": "component",
+                "component_id": "b58cfa4d-1275-447a-bcad-62d211350a4f",
+                "go": "c2976947-a4cf-41ef-9520-7ab942c6443b",
+                "component_type": "GameState"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.RoundWinCondition",
+              "__guid": "e85f0b13-edb6-4237-8bd1-f61100d67913",
+              "__enabled": true,
+              "NextState": {
+                "_type": "component",
+                "component_id": "b58cfa4d-1275-447a-bcad-62d211350a4f",
+                "go": "c2976947-a4cf-41ef-9520-7ab942c6443b",
+                "component_type": "GameState"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "c2976947-a4cf-41ef-9520-7ab942c6443b",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "RoundEnding",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Mountain.GameState",
+              "__guid": "b58cfa4d-1275-447a-bcad-62d211350a4f",
+              "__enabled": true,
+              "DefaultDuration": 3,
+              "DefaultNextState": null,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "NetworkInterpolation": true,
+    "TimeScale": 1,
+    "WantsSystemScene": true,
+    "Metadata": {},
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "ResourceVersion": 3,
+  "Title": null,
+  "Description": null,
+  "__references": [],
+  "__version": 3
+}

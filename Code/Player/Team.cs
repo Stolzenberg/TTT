@@ -11,8 +11,8 @@ public enum Team
 {
     Unassigned = 0,
 
-    A,
-    B,
+    Innocent,
+    Murder,
 }
 
 public record TeamChangedEvent(Team Before, Team After) : IGameEvent;
@@ -23,8 +23,8 @@ public static class TeamExtensions
 {
     private static readonly Dictionary<Team, Color> teamColors = new()
     {
-        { Team.A, new Color32(5, 146, 235) },
-        { Team.B, new Color32(233, 190, 92) },
+        { Team.Innocent, new Color32(5, 146, 235) },
+        { Team.Murder, new Color32(233, 190, 92) },
         { Team.Unassigned, new Color32(255, 255, 255) },
     };
 
@@ -37,8 +37,8 @@ public static class TeamExtensions
     {
         return team switch
         {
-            Team.A => Team.B,
-            Team.B => Team.A,
+            Team.Innocent => Team.Murder,
+            Team.Murder => Team.Innocent,
             _ => Team.Unassigned,
         };
     }

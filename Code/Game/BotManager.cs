@@ -30,7 +30,7 @@ public sealed class BotManager : SingletonComponent<BotManager>
 
         var client = clientObj.GetComponent<Client>();
         client.BotId = CurrentBotId;
-        client.Team = Team.B;
+        client.AssignTeam(Team.Murder);
         
         NetworkManager.Instance.OnPlayerJoined(client, Connection.Host);
 

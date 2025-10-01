@@ -90,16 +90,8 @@ public sealed class NetworkManager : SingletonComponent<NetworkManager>, Compone
         clientObj.Network.SetOrphanedMode(NetworkOrphaned.ClearOwner);
 
         var client = clientObj.GetComponent<Client>();
+        client.AssignTeam(Team.Innocent);
 
         return client.IsValid() ? client : null;
-    }
-    
-    
-    class Request
-    {
-        public string ClientId { get; set; }
-        public string ClientSecret { get; set; }
-        public string Audience { get; set; } = "https://stolzenberg.eu.auth0.com/api/v2/";
-        public string GrantType { get; set; } = "client_credentials";
     }
 }
