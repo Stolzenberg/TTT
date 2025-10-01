@@ -32,7 +32,9 @@ public sealed partial class Player : IScenePhysicsEvents
     /// If true, we're not allowed to move.
     /// </summary>
     [Sync( SyncFlags.FromHost )] public bool IsFrozen { get; set; }
-
+    
+    [Sync( SyncFlags.FromHost )] public bool IsImmortal { get; set; }
+    
     private Rigidbody? body;
 
     void IScenePhysicsEvents.PrePhysicsStep()

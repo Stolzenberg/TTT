@@ -20,6 +20,11 @@ public partial class EquipmentResource : GameResource
     /// </summary>
     public GameObject ViewModelPrefab { get; set; }
 
+    /// <summary>
+    ///     The prefab to create when making a dropped model for this equipment.
+    /// </summary>
+    public GameObject DroppedWorldModelPrefab { get; set; }
+
     [Hide]
     public string NameKey => $"{Type.ToString().ToUpper()}_NAME";
 

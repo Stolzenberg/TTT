@@ -12,6 +12,7 @@ public sealed class TeamSpawnPoint : Component
 	/// </summary>
 	[Property]
     public Team Team { get; set; }
+    
     private static readonly Model Model = Model.Load("models/editor/spawnpoint.vmdl");
 
     protected override void DrawGizmos()

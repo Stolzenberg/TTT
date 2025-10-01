@@ -36,9 +36,6 @@ public sealed partial class Player
         
         OwnerTeleport(SpawnPosition, SpawnRotation);
         
-        var item = EquipmentCatalog.GetDefinition(EquipmentType.Pistol);
-        ServerGive(item);
-        
         Scene.Dispatch(new PlayerSpawnedEvent(this));
     }
 

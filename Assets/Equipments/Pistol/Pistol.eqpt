@@ -12,6 +12,10 @@
     "_type": "gameobject",
     "prefab": "equipments/pistol/viewmodelpistol.prefab"
   },
+  "DroppedWorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/pistol/droppedweaponmodelpistol.prefab"
+  },
   "NameKey": "PISTOL_NAME",
   "DescriptionKey": "PISTOL_DESCRIPTION",
   "__references": [],

@@ -58,8 +58,6 @@ public partial class Client : Component, ITeam
 
         SteamId = Connection.SteamId;
         SteamName = Connection.DisplayName;
-
-        ServerRespawn();
     }
 
     [Rpc.Owner]

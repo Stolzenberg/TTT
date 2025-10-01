@@ -31,7 +31,7 @@ Hud .time-text {
 }
 Hud .time-text.time-urgent {
   color: #ff4444;
-  animation: pulse-urgent 1s ease-in-out infinite;
+  animation: pulse-urgent 0.5s ease-in-out infinite;
 }
 Hud .card {
   padding: 8px 16px;

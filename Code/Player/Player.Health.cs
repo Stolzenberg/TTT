@@ -18,6 +18,11 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
 
     void IGameEventHandler<DamageTakenEvent>.OnGameEvent(DamageTakenEvent eventArgs)
     {
+        if (IsImmortal)
+        {
+            return;
+        }
+        
         var damageInfo = eventArgs.DamageInfo;
 
         var attacker = eventArgs.DamageInfo.Attacker.GetPlayerFromComponent();

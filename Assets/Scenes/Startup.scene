@@ -1148,12 +1148,17 @@
           "__type": "Mountain.EquipmentSpawnPoint",
           "__guid": "10cfb4f0-7878-401a-9b08-bef89dae1efb",
           "__enabled": true,
+          "ChancePercentage": 0.5,
+          "Equipment": "equipments/pistol/pistol.eqpt",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "OnComponentUpdate": null,
+          "SpawnForce": 1000,
+          "UseSpawnChance": true,
+          "UseSpawnForce": false
         }
       ],
       "Children": []
@@ -1177,12 +1182,17 @@
           "__type": "Mountain.EquipmentSpawnPoint",
           "__guid": "31323359-6c0a-47cd-a6f8-c3870a2e8b3e",
           "__enabled": true,
+          "ChancePercentage": 0.5,
+          "Equipment": "equipments/pistol/pistol.eqpt",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "OnComponentUpdate": null,
+          "SpawnForce": 1000,
+          "UseSpawnChance": true,
+          "UseSpawnForce": false
         }
       ],
       "Children": []
@@ -1206,12 +1216,17 @@
           "__type": "Mountain.EquipmentSpawnPoint",
           "__guid": "789a0f41-351c-4bef-853c-0ccdc535f140",
           "__enabled": true,
+          "ChancePercentage": 0.5,
+          "Equipment": "equipments/pistol/pistol.eqpt",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "OnComponentUpdate": null,
+          "SpawnForce": 1000,
+          "UseSpawnChance": true,
+          "UseSpawnForce": false
         }
       ],
       "Children": []
@@ -1235,12 +1250,17 @@
           "__type": "Mountain.EquipmentSpawnPoint",
           "__guid": "29c85498-3db5-415c-bfd9-35c3ce4c7888",
           "__enabled": true,
+          "ChancePercentage": 0.5,
+          "Equipment": "equipments/pistol/pistol.eqpt",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "OnComponentUpdate": null,
+          "SpawnForce": 1000,
+          "UseSpawnChance": true,
+          "UseSpawnForce": false
         }
       ],
       "Children": []
