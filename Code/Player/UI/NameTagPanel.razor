@@ -3,7 +3,7 @@
 @namespace Mountain
 
 <root>
-    @if (IsProxy || Testing)
+    @if (Client.Local.DisplayName != Name || Testing)
     {
         <div class="card">
             <div class="name">@Name</div>
@@ -15,6 +15,7 @@
 
     [Property]
     public bool Testing { get; set; } = false;
+    
     [Property]
     public string Name { get; set; } = string.Empty;
 

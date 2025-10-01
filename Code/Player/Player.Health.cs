@@ -61,5 +61,6 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
     public void OnKill(DamageInfo damageInfo)
     {
         CreateRagdoll(true);
+        NameTag.Destroy();
     }
 }

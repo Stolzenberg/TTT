@@ -12,16 +12,15 @@
   .card {
     flex-direction: column;
     background-color: #0008;
-    border-radius: 5px;
+    backdrop-filter: blur(20px);
+    border-radius: 8px;
     overflow: hidden;
     padding: 10px 20px;
     justify-content: center;
     align-items: center;
-    gap: 20px;
 
     .name {
       font-size: 38px;
-      font-family: Poppins;
       color: #fff;
     }
   }
