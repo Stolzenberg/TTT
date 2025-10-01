@@ -45,6 +45,8 @@ public sealed class GameState : Component
 	[Property, HideIf(nameof(DefaultNextState), null)]
     public float DefaultDuration { get; set; }
     private GameStateMachine? stateMachine;
+    
+    public float RemainingDuration => DefaultDuration - Time.Now + (GameMode.Instance.StateMachine.NextStateTime - DefaultDuration);
 
     /// <summary>
     ///     Queue up a transition to the given state. This will occur at the end of

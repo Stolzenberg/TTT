@@ -1,4 +1,6 @@
-﻿namespace Mountain;
+﻿using System;
+
+namespace Mountain;
 
 public enum RespawnState
 {
@@ -29,12 +31,9 @@ public partial class Client
 
     public void ServerRespawn(bool forceNew = true)
     {
-        var spawnPoint = Game.ActiveScene.Get<TeamSpawnAssigner>() is { } spawnAssigner
-            ? spawnAssigner.GetSpawnPoint(this)
-            : Game.ActiveScene.GetRandomSpawnPoint(Team);
-
+        var spawnPoint = GameMode.Instance.Get<TeamSpawnAssigner>().GetSpawnPoint(this);
         Log.Info(
-            $"Spawning player.. ( {GameObject.Name} ({DisplayName}, {Team}), {spawnPoint.Position}, [{string.Join(", ", spawnPoint.Tags)}] )");
+            $"Spawning player.. ( {GameObject.Name} ({DisplayName}, {Team}), {spawnPoint.WorldPosition}, [{string.Join(", ", spawnPoint.Tags)}] )");
 
         if (forceNew || !Player.IsValid() || Player.Health.State == LifeState.Dead)
         {
@@ -60,15 +59,15 @@ public partial class Client
         TimeSinceRespawnStateChanged = 0f;
     }
 
-    private void ServerSpawn(SpawnPointInfo spawnPoint)
+    private void ServerSpawn(TeamSpawnPoint spawnPoint)
     {
-        var prefab = PlayerPrefab.Clone(spawnPoint.Transform);
+        var prefab = PlayerPrefab.Clone(spawnPoint.WorldTransform);
         prefab.Name = $"Player ({DisplayName})";
        
         var player = prefab.GetComponent<Player>();
 
         player.NameTag.Name = DisplayName;
-        player.WorldRotation = spawnPoint.Rotation;
+        player.WorldRotation = spawnPoint.WorldRotation;
         player.Client = this;
         
         player.SetSpawnPoint(spawnPoint);

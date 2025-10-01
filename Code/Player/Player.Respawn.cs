@@ -36,13 +36,16 @@ public sealed partial class Player
         
         OwnerTeleport(SpawnPosition, SpawnRotation);
         
+        var item = EquipmentCatalog.GetDefinition(EquipmentType.Pistol);
+        ServerGive(item);
+        
         Scene.Dispatch(new PlayerSpawnedEvent(this));
     }
 
-    public void SetSpawnPoint(SpawnPointInfo spawnPoint)
+    public void SetSpawnPoint(TeamSpawnPoint spawnPoint)
     {
-        SpawnPosition = spawnPoint.Position;
-        SpawnRotation = spawnPoint.Rotation;
+        SpawnPosition = spawnPoint.WorldPosition;
+        SpawnRotation = spawnPoint.WorldRotation;
 
         SpawnPointTags.Clear();
 

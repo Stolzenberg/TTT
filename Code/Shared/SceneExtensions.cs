@@ -36,20 +36,17 @@ public static class SceneExtensions
         return AllClients(scene).All(x => x.IsReady);
     }
 
-    public static SpawnPointInfo GetRandomSpawnPoint(this Scene scene, Team team, params string[] tags)
+    public static TeamSpawnPoint GetRandomSpawnPoint(this Scene scene, Team team, params string[] tags)
     {
-        return Random.Shared.FromArray(GetSpawnPoints(scene, team, tags).ToArray(), new(Transform.Zero, []));
+        return Random.Shared.FromArray(GetSpawnPoints(scene, team, tags).ToArray());
     }
 
     /// <summary>
     ///     Get all spawn point transforms for the given team.
     /// </summary>
-    public static IEnumerable<SpawnPointInfo> GetSpawnPoints(this Scene scene, Team team, params string[] tags)
+    public static IEnumerable<TeamSpawnPoint> GetSpawnPoints(this Scene scene, Team team, params string[] tags)
     {
         return scene.GetAllComponents<TeamSpawnPoint>().Where(x => x.Team == team)
-            .Where(x => tags.Length == 0 || tags.Any(x.Tags.Contains))
-            .Select(x => new SpawnPointInfo(x.Transform.World, x.GameObject.Tags.ToArray())).Concat(Game.ActiveScene
-                .GetAllComponents<SpawnPoint>()
-                .Select(x => new SpawnPointInfo(x.Transform.World, x.GameObject.Tags.ToArray())));
+            .Where(x => tags.Length == 0 || tags.Any(x.Tags.Contains));
     }
 }

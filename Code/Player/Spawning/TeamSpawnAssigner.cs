@@ -25,7 +25,7 @@ public sealed class TeamSpawnAssigner : Component
     [Property, InlineEditor]
     public List<SpawnRule> SpawnRules { get; } = new();
 
-    public SpawnPointInfo GetSpawnPoint(Client player)
+    public TeamSpawnPoint GetSpawnPoint(Client player)
     {
         var team = player.Team;
         var spawns = Game.ActiveScene.GetSpawnPoints(team, SpawnTags.ToArray()).Shuffle();
@@ -64,7 +64,7 @@ public sealed class TeamSpawnAssigner : Component
 
         foreach (var spawn in spawns)
         {
-            if (playerPositions.All(x => (x.WorldPosition - spawn.Position).LengthSquared > 32f * 32f))
+            if (playerPositions.All(x => (x.WorldPosition - spawn.WorldPosition).LengthSquared > 32f * 32f))
             {
                 return spawn;
             }

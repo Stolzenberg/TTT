@@ -11,7 +11,7 @@ public record EquipmentHolsteredEvent(Equipment Equipment) : IGameEvent;
 public sealed partial class Equipment : Component
 {
     [Property, Group("Resources")]
-    public ItemResource Resource { get; set; }
+    public EquipmentResource Resource { get; set; }
 
     [RequireComponent]
     public TagBinder TagBinder { get; init; }
@@ -59,6 +59,8 @@ public sealed partial class Equipment : Component
 
     protected override void OnStart()
     {
+        Log.Info($"Equipment OnStart {this.Owner.Client.DisplayName}");
+        
         wasDeployed = IsDeployed;
         hasStarted = true;
 

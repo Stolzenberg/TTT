@@ -180,7 +180,10 @@
         },
         "pitchClamp": 85,
         "reachLength": 20,
-        "RightHandSocket": null,
+        "RightHandSocket": {
+          "_type": "gameobject",
+          "go": "6a44128e-12e5-43ed-a44f-3d6a2e354137"
+        },
         "rotationAngleLimit": 5,
         "rotationSpeed": 1.5,
         "rotationSpeedModifier": 10,

@@ -1,6 +1,6 @@
 ﻿namespace Mountain;
 
-public enum ItemType
+public enum EquipmentType
 {
     Pistol,
 }

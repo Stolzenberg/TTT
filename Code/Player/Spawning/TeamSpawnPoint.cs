@@ -1,4 +1,6 @@
-﻿namespace Mountain;
+﻿using Sandbox.Events;
+
+namespace Mountain;
 
 /// <summary>
 ///     A team spawn point.

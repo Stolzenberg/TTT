@@ -18,9 +18,7 @@ public sealed class WaitForPlayers : Component, IGameEventHandler<EnterStateEven
 
     [Sync(SyncFlags.FromHost)]
     public bool IsPostponed { get; set; }
-
-    public float Remaining => State.DefaultDuration - Time.Now + GameMode.Instance.StateMachine.NextStateTime;
-
+    
     void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
     {
         IsPostponed = false;

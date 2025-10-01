@@ -1,0 +1,19 @@
+{
+  "Type": "Pistol",
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/pistol/pistol.prefab"
+  },
+  "WorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/pistol/weaponmodelpistol.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/pistol/viewmodelpistol.prefab"
+  },
+  "NameKey": "PISTOL_NAME",
+  "DescriptionKey": "PISTOL_DESCRIPTION",
+  "__references": [],
+  "__version": 0
+}

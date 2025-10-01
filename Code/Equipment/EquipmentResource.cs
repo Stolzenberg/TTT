@@ -1,26 +1,23 @@
 ﻿namespace Mountain;
 
-[GameResource("Item Definition", "item", "A Item Definition.", Category = "Item", Icon = "category")]
-public class ItemResource : GameResource
+[AssetType( Name = "Equipment Resource", Extension = "eqpt", Category = "Equipment" )]
+public partial class EquipmentResource : GameResource
 {
-    public ItemType Type { get; set; }
+    public EquipmentType Type { get; set; }
 
     /// <summary>
     ///     The prefab to create and attach to the player when spawning it in.
     /// </summary>
-    [Category("Prefabs")]
     public GameObject MainPrefab { get; set; }
 
     /// <summary>
     ///     A world model that we'll put on the player's arms in third person.
     /// </summary>
-    [Category("Prefabs")]
     public GameObject WorldModelPrefab { get; set; }
 
     /// <summary>
     ///     The prefab to create when making a viewmodel for this equipment.
     /// </summary>
-    [Category("Prefabs")]
     public GameObject ViewModelPrefab { get; set; }
 
     [Hide]
@@ -28,6 +25,11 @@ public class ItemResource : GameResource
 
     [Hide]
     public string DescriptionKey => $"{Type.ToString().ToUpper()}_DESCRIPTION";
+
+    protected override Bitmap CreateAssetTypeIcon( int width, int height )
+    {
+        return CreateSimpleAssetTypeIcon("receipt", width, height, "#fdea60", "black");
+    }
 
     public override string ToString()
     {

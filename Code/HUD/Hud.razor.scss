@@ -10,6 +10,34 @@
     left: 16px;
   }
   
+  .lower-center-box {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .state-text {
+    font-size: 32px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: bold;
+  }
+  
+  .time-text {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: bold;
+    
+    &.time-urgent {
+        color: #ff4444;
+        animation: pulse-urgent 1s ease-in-out infinite;
+    }
+  }
+  
   .card {
     padding: 8px 16px;
     border-radius: 8px;
@@ -19,4 +47,19 @@
     font-size: 42px;
     backdrop-filter: blur(20px);
   }
+}
+
+@keyframes pulse-urgent {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }

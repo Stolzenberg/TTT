@@ -19,11 +19,11 @@ public sealed class GameMode : SingletonComponent<GameMode>
     /// <summary>
     ///     Gets the given component from within the game mode's object hierarchy, or null if not found / enabled.
     /// </summary>
-    public T? Get<T>(bool required = false) where T : class
+    public T Get<T>() where T : class
     {
         if (!StateMachine.IsValid())
         {
-            return null;
+            throw new InvalidOperationException("GameMode's StateMachine is not valid!");
         }
 
         if (prevState != StateMachine.CurrentState)
@@ -38,23 +38,18 @@ public sealed class GameMode : SingletonComponent<GameMode>
             component = GetComponentInChildren<T>() as Component;
             if (component is null)
             {
-                if (required)
-                {
-                    throw new($"Expected a {typeof(T).Name} to be active in the {nameof(GameMode)}!");
-                }
-
-                return null;
+                throw new($"No {typeof(T).Name} found in the {nameof(GameMode)}.");
             }
             
             componentCache[typeof(T)] = component;
         }
 
-        if (required && component is not T)
+        if (component is not T value)
         {
             throw new($"Expected a {typeof(T).Name} to be active in the {nameof(GameMode)}!");
         }
 
-        return component as T;
+        return value;
     }
 
     protected override void OnStart()

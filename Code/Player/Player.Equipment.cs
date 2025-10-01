@@ -29,25 +29,25 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
         }
     }
 
-    public bool Has(ItemResource resource)
+    public bool Has(EquipmentResource resource)
     {
         return Equipments.Any(equipment => equipment.Enabled && equipment.Resource == resource);
     }
 
     [Rpc.Host]
-    public void ServerGive(ItemResource item, bool makeActive = true)
+    public void ServerGive(EquipmentResource equipment, bool makeActive = true)
     {
-        if (Has(item))
+        if (Has(equipment))
         {
-            throw new ArgumentException($"Equipment resource {item} already exists in the player's inventory.");
+            throw new ArgumentException($"Equipment resource {equipment} already exists in the player's inventory.");
         }
 
-        if (!item.MainPrefab.IsValid())
+        if (!equipment.MainPrefab.IsValid())
         {
-            throw new ArgumentException($"Equipment resource {item} does not have a valid main prefab.");
+            throw new ArgumentException($"Equipment resource {equipment} does not have a valid main prefab.");
         }
 
-        var gameObject = item.MainPrefab.Clone(new CloneConfig
+        var gameObject = equipment.MainPrefab.Clone(new CloneConfig
         {
             Transform = new(),
             Parent = GameObject,
@@ -56,6 +56,8 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
         var component = gameObject.GetComponentInChildren<Equipment>(true);
         component.Owner = this;
         gameObject.NetworkSpawn(Network.Owner);
+        
+        Log.Info($"{this} was given equipment {equipment}.");
 
         if (makeActive)
         {
@@ -72,18 +74,6 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
 
         TimeSinceEquipmentDeployed = 0;
         
-        ClearCurrentEquipment();
-        equipment.Deploy();
-    }
-
-    [Rpc.Owner]
-    private void SetCurrentEquipment(Equipment equipment)
-    {
-        if (equipment == ActiveEquipment)
-        {
-            return;
-        }
-
         ClearCurrentEquipment();
         equipment.Deploy();
     }

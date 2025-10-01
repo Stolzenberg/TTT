@@ -40,6 +40,7 @@ public sealed partial class Equipment
         {
             // We want to use Scene.Camera directly here to avoid issues with the player not created, or client local not being set yet.
             var viewModelGameObject = Resource.ViewModelPrefab.Clone(Scene.Camera.GameObject, Vector3.Zero, Rotation.Identity, Vector3.One);
+            
             viewModelGameObject.BreakFromPrefab();
 
             var viewModelComponent = viewModelGameObject.GetComponent<EquipmentViewModel>();

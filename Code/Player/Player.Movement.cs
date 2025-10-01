@@ -108,7 +108,7 @@ public sealed partial class Player : IScenePhysicsEvents
         var massCenter = IsOnGround ? WishVelocity.Length.Clamp(0, BodyHeight * 0.5f) : BodyHeight * 0.5f;
         Body.MassCenterOverride = new(0, 0, massCenter);
         Body.OverrideMassCenter = true;
-
+        
         Mode?.UpdateRigidBody(Body);
     }
 }

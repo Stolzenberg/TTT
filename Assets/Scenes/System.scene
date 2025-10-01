@@ -146,7 +146,7 @@
               "__type": "Mountain.GameState",
               "__guid": "c616598b-ed98-4cdd-bceb-affc700bf61e",
               "__enabled": true,
-              "DefaultDuration": 1,
+              "DefaultDuration": 10,
               "DefaultNextState": {
                 "_type": "component",
                 "component_id": "8e02fa91-f544-42e4-aada-116939586da3",
@@ -175,17 +175,6 @@
             {
               "__type": "Mountain.IncrementRoundCounter",
               "__guid": "76a5cba9-2978-451b-9fa8-541774121dc9",
-              "__enabled": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            },
-            {
-              "__type": "Mountain.BetweenRoundCleanup",
-              "__guid": "1d3cee31-c4d8-4d5b-b7b0-734832349b85",
               "__enabled": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -280,8 +269,60 @@
               "__type": "Mountain.GameState",
               "__guid": "b58cfa4d-1275-447a-bcad-62d211350a4f",
               "__enabled": true,
-              "DefaultDuration": 3,
-              "DefaultNextState": null,
+              "DefaultDuration": 10,
+              "DefaultNextState": {
+                "_type": "component",
+                "component_id": "791fc82d-ef94-438b-8c66-1283e413f3a7",
+                "go": "8ad9cc86-562e-4791-9684-01feb1a8c101",
+                "component_type": "GameState"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "8ad9cc86-562e-4791-9684-01feb1a8c101",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Cleanup",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Mountain.GameState",
+              "__guid": "791fc82d-ef94-438b-8c66-1283e413f3a7",
+              "__enabled": true,
+              "DefaultDuration": 0,
+              "DefaultNextState": {
+                "_type": "component",
+                "component_id": "c616598b-ed98-4cdd-bceb-affc700bf61e",
+                "go": "0614a9bd-ad1b-4574-8d24-9ee2496b3c2c",
+                "component_type": "GameState"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.BetweenRoundCleanup",
+              "__guid": "7cdea310-a7c0-4445-aa6d-5c9dc248f7dc",
+              "__enabled": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
