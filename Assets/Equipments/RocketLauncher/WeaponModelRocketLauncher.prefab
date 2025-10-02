@@ -61,7 +61,7 @@
             "__guid": "469d1cea-fa9d-4b75-beb4-d9cda2321766",
             "__enabled": true,
             "AnimationGraph": null,
-            "BodyGroups": 39,
+            "BodyGroups": 18446744073709551615,
             "BoneMergeTarget": null,
             "CreateAttachments": false,
             "CreateBoneObjects": false,
@@ -69,7 +69,7 @@
             "MaterialGroup": null,
             "MaterialOverride": null,
             "Materials": null,
-            "Model": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
+            "Model": "models/weapons/sbox_rpg_recoillessrifle/w_recoillessrifle.vmdl",
             "Morphs": {},
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -165,7 +165,7 @@
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
   "__references": [
-    "facepunch.w_usp#77979"
+    "facepunch.wrecoillessrifle#113432"
   ],
   "__version": 2
 }

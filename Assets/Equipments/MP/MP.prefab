@@ -27,7 +27,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Resource": "equipments/pistol/pistol.eqpt"
+        "Resource": "equipments/mp/mp.eqpt"
       },
       {
         "__type": "Mountain.TagBinder",
@@ -72,7 +72,7 @@
         "BulletSpread": 0,
         "BurstAmount": 2,
         "BurstEndDelay": 0.2,
-        "CurrentFireMode": "Semi",
+        "CurrentFireMode": "Burst",
         "DryFireSound": "equipments/sounds/gundryfire.sound",
         "DryShootDelay": 0.15,
         "EjectionPrefab": {
@@ -100,7 +100,8 @@
         "RequiresHasAmmo": true,
         "ShootSound": "equipments/pistol/pistolshoot.sound",
         "SupportedFireModes": [
-          "Semi"
+          "Burst",
+          "Automatic"
         ]
       },
       {

@@ -45,7 +45,7 @@
         "__guid": "f484ae40-93d3-48cd-bf0c-f53090e17141",
         "__enabled": true,
         "Ammo": null,
-        "BaseDamage": 100,
+        "BaseDamage": 1000,
         "BaseDamageFalloff": [
           {
             "x": 0,
@@ -67,7 +67,7 @@
         "BulletSpread": 0,
         "BurstAmount": 2,
         "BurstEndDelay": 0.2,
-        "CurrentFireMode": "Automatic",
+        "CurrentFireMode": "Semi",
         "DryFireSound": null,
         "DryShootDelay": 0.15,
         "EjectionPrefab": null,
@@ -76,7 +76,7 @@
         "InputActions": [
           "Attack1"
         ],
-        "MaxRange": 64,
+        "MaxRange": 128,
         "MuzzleFlashPrefab": null,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -89,8 +89,7 @@
         "RequiresHasAmmo": false,
         "ShootSound": null,
         "SupportedFireModes": [
-          "Automatic",
-          "Burst"
+          "Semi"
         ]
       },
       {
