@@ -1,0 +1,97 @@
+﻿@import "../../Shared/Shared.scss";
+
+WinPanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
+    
+  .win-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 16px 32px;
+    max-width: 800px;
+    width: 90%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+  }
+
+  .win-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin: auto;
+  }
+
+  .scoreboard {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scoreboard-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .players-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 300px;
+  }
+
+  .player-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    font-size: 16px;
+  }
+
+  .player-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .player-name {
+    font-weight: bold;
+    color: white;
+  }
+
+  .player-team {
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .player-status {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .status-alive {
+    color: #2ecc71;
+  }
+
+  .status-dead {
+    color: #e74c3c;
+  }
+
+  .next-round-timer {
+    margin-top: 30px;
+    font-size: 18px;
+    color: #bdc3c7;
+  }
+}

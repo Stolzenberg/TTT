@@ -146,7 +146,7 @@
               "__type": "Mountain.GameState",
               "__guid": "c616598b-ed98-4cdd-bceb-affc700bf61e",
               "__enabled": true,
-              "DefaultDuration": 3,
+              "DefaultDuration": 0,
               "DefaultNextState": {
                 "_type": "component",
                 "component_id": "8e02fa91-f544-42e4-aada-116939586da3",
@@ -216,7 +216,7 @@
               "__type": "Mountain.GameState",
               "__guid": "8e02fa91-f544-42e4-aada-116939586da3",
               "__enabled": true,
-              "DefaultDuration": 10,
+              "DefaultDuration": 30,
               "DefaultNextState": {
                 "_type": "component",
                 "component_id": "55830c3d-cccb-4b3c-aae4-6abbbdd93229",
@@ -268,10 +268,10 @@
           "Children": []
         },
         {
-          "__guid": "9ac02c72-4aae-4395-8d51-ecd7600e04c9",
+          "__guid": "4c8da8fb-6961-489b-808b-645978b4d415",
           "__version": 1,
           "Flags": 0,
-          "Name": "InnocentWin",
+          "Name": "Winning",
           "Position": "0,0,0",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
@@ -284,15 +284,10 @@
           "Components": [
             {
               "__type": "Mountain.GameState",
-              "__guid": "55830c3d-cccb-4b3c-aae4-6abbbdd93229",
+              "__guid": "0406e404-ceb0-4d0f-ba8c-256a2edbc932",
               "__enabled": true,
-              "DefaultDuration": 10,
-              "DefaultNextState": {
-                "_type": "component",
-                "component_id": "791fc82d-ef94-438b-8c66-1283e413f3a7",
-                "go": "8ad9cc86-562e-4791-9684-01feb1a8c101",
-                "component_type": "GameState"
-              },
+              "DefaultDuration": 0,
+              "DefaultNextState": null,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -302,44 +297,8 @@
             },
             {
               "__type": "Mountain.ImmortalPlayers",
-              "__guid": "bf89642c-2951-405d-8623-7995d4d55a3c",
+              "__guid": "8bff037f-ebe5-405a-8d73-3099a524b323",
               "__enabled": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "70c957bc-0b33-47b3-bf14-dfce1adbc915",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "MurderWin",
-          "Position": "0,0,0",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 1,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.GameState",
-              "__guid": "9b34a8e0-fb3c-48b4-be07-7e5ed7a26b5d",
-              "__enabled": true,
-              "DefaultDuration": 10,
-              "DefaultNextState": {
-                "_type": "component",
-                "component_id": "791fc82d-ef94-438b-8c66-1283e413f3a7",
-                "go": "8ad9cc86-562e-4791-9684-01feb1a8c101",
-                "component_type": "GameState"
-              },
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -348,9 +307,38 @@
               "OnComponentUpdate": null
             },
             {
-              "__type": "Mountain.ImmortalPlayers",
-              "__guid": "524244f8-8bd9-4fec-b305-23a38cda926a",
+              "__type": "Sandbox.ScreenPanel",
+              "__guid": "1ccfc989-718b-441d-b2ca-4254fa134bf3",
               "__enabled": true,
+              "AutoScreenScale": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Opacity": 1,
+              "Scale": 1,
+              "ScaleStrategy": "ConsistentHeight",
+              "TargetCamera": null,
+              "ZIndex": 10000
+            },
+            {
+              "__type": "Mountain.WinPanel",
+              "__guid": "5f705809-9986-4277-a0ad-42d6e5840f14",
+              "__enabled": true,
+              "InnocentWinState": {
+                "_type": "component",
+                "component_id": "55830c3d-cccb-4b3c-aae4-6abbbdd93229",
+                "go": "9ac02c72-4aae-4395-8d51-ecd7600e04c9",
+                "component_type": "GameState"
+              },
+              "MurderWinState": {
+                "_type": "component",
+                "component_id": "9b34a8e0-fb3c-48b4-be07-7e5ed7a26b5d",
+                "go": "70c957bc-0b33-47b3-bf14-dfce1adbc915",
+                "component_type": "GameState"
+              },
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -359,7 +347,80 @@
               "OnComponentUpdate": null
             }
           ],
-          "Children": []
+          "Children": [
+            {
+              "__guid": "9ac02c72-4aae-4395-8d51-ecd7600e04c9",
+              "__version": 1,
+              "Flags": 0,
+              "Name": "InnocentWin",
+              "Position": "0,0,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Enabled": true,
+              "NetworkMode": 1,
+              "NetworkInterpolation": true,
+              "NetworkOrphaned": 0,
+              "OwnerTransfer": 1,
+              "Components": [
+                {
+                  "__type": "Mountain.GameState",
+                  "__guid": "55830c3d-cccb-4b3c-aae4-6abbbdd93229",
+                  "__enabled": true,
+                  "DefaultDuration": 10,
+                  "DefaultNextState": {
+                    "_type": "component",
+                    "component_id": "791fc82d-ef94-438b-8c66-1283e413f3a7",
+                    "go": "8ad9cc86-562e-4791-9684-01feb1a8c101",
+                    "component_type": "GameState"
+                  },
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
+                }
+              ],
+              "Children": []
+            },
+            {
+              "__guid": "70c957bc-0b33-47b3-bf14-dfce1adbc915",
+              "__version": 1,
+              "Flags": 0,
+              "Name": "MurderWin",
+              "Position": "0,0,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Enabled": true,
+              "NetworkMode": 1,
+              "NetworkInterpolation": true,
+              "NetworkOrphaned": 0,
+              "OwnerTransfer": 1,
+              "Components": [
+                {
+                  "__type": "Mountain.GameState",
+                  "__guid": "9b34a8e0-fb3c-48b4-be07-7e5ed7a26b5d",
+                  "__enabled": true,
+                  "DefaultDuration": 10,
+                  "DefaultNextState": {
+                    "_type": "component",
+                    "component_id": "791fc82d-ef94-438b-8c66-1283e413f3a7",
+                    "go": "8ad9cc86-562e-4791-9684-01feb1a8c101",
+                    "component_type": "GameState"
+                  },
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
+                }
+              ],
+              "Children": []
+            }
+          ]
         },
         {
           "__guid": "8ad9cc86-562e-4791-9684-01feb1a8c101",

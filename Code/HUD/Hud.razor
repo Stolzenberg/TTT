@@ -24,6 +24,10 @@
 
     private string GetFormattedState()
     {
+        if (GameMode.Instance.StateMachine.CurrentState != null && 
+            !new[] { "Playing, Preparing" }.Contains(GameMode.Instance.StateMachine.CurrentState.GameObject.Name))
+            return "";
+        
         var state = GameMode.Instance.StateMachine.CurrentState;
         if (state == null)
             return "#WAITING_FOR_PLAYERS";
@@ -33,6 +37,10 @@
     
     private string GetFormattedTime()
     {
+        if (GameMode.Instance.StateMachine.CurrentState != null && 
+            !GameMode.Instance.StateMachine.CurrentState.GameObject.Name.Contains("Playing"))
+            return "";
+        
         var remainingDuration = GameMode.Instance.StateMachine.CurrentState?.RemainingDuration;
         if (remainingDuration == null)
             return "00:00";

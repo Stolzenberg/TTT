@@ -1,0 +1,100 @@
+﻿@using System
+@using System.Linq
+@inherits PanelComponent
+@namespace Mountain
+
+<root>
+    <div class="win-container rounded">
+        <div class="win-title" style="color: @GetWinningTeamColor()">
+            @GetWinMessage()
+        </div>
+            
+        <div class="scoreboard">
+            <div class="scoreboard-title">#PLAYERS</div>
+            <div class="players-list">
+                @foreach (var client in GetAllPlayers().OrderBy(c => c.Team).ThenBy(c => c.DisplayName))
+                {
+                    <div class="player-row">
+                        <div class="player-info">
+                            <div class="player-name">@client.DisplayName</div>
+                            <div class="player-team" style="background-color: @client.Team.GetColor(); color: white;">
+                                @client.Team.ToString()
+                            </div>
+                        </div>
+                        <div class="player-status @(IsPlayerAlive(client) ? "status-alive" : "status-dead")">
+                            @(IsPlayerAlive(client) ? "ALIVE" : "DEAD")
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+            
+        @if (GetRemainingTime() > 0)
+        {
+            <div class="next-round-timer">
+                Next round in @GetRemainingTime().ToString("F0") seconds
+            </div>
+        }
+    </div>
+</root>
+
+@code{
+    [Property]
+    public GameState InnocentWinState { get; set; }
+    
+    [Property]
+    public GameState MurderWinState { get; set; }
+
+    private Team winningTeam;
+
+    protected override void OnEnabled()
+    {
+        if (GameMode.Instance.StateMachine.CurrentState == InnocentWinState)
+        {
+            winningTeam = Team.Innocent;
+        }
+        else if (GameMode.Instance.StateMachine.CurrentState == MurderWinState)
+        {
+            winningTeam = Team.Murder;
+        }
+    }
+    
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(winningTeam, GetRemainingTime());
+    }
+    
+    private string GetWinMessage()
+    {
+        return winningTeam switch
+        {
+            Team.Innocent => "INNOCENT_WIN_TITLE",
+            Team.Murder => "MURDER_WIN_TITLE",
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
+    
+    private string GetWinningTeamColor()
+    {
+        return winningTeam.GetColor().ToString();
+    }
+    
+    private static IEnumerable<Client> GetAllPlayers()
+    {
+        return Game.ActiveScene.AllClients().Where(c => c.IsValid && !string.IsNullOrEmpty(c.DisplayName));
+    }
+    
+    private static bool IsPlayerAlive(Client client)
+    {
+        var player = client.Player;
+        if (player == null) return false;
+        
+        return player.Components.TryGet<HealthComponent>(out var health) && health.State == LifeState.Alive;
+    }
+    
+    private static float GetRemainingTime()
+    {
+        var currentState = GameMode.Instance.StateMachine.CurrentState;
+        return currentState?.RemainingDuration ?? 0f;
+    }
+}
