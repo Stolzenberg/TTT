@@ -6,6 +6,11 @@ public sealed partial class Equipment
 
     private void CreateWorldModel()
     {
+        if (Resource.WorldModelPrefab == null)
+        {
+            return;
+        }
+
         DestroyWorldModel();
 
         var parentBone = Owner.RightHandSocket;

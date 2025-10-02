@@ -1,0 +1,23 @@
+{
+  "Slot": "Primary",
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/rocketlauncher/rocketlauncher.prefab"
+  },
+  "WorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/rocketlauncher/weaponmodelrocketlauncher.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/rocketlauncher/viewmodelrocketlauncher.prefab"
+  },
+  "DroppedWorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/rocketlauncher/droppedweaponmodelrocketlauncher.prefab"
+  },
+  "NameKey": "ROCKETLAUNCHER_NAME",
+  "DescriptionKey": "ROCKETLAUNCHER_DESCRIPTION",
+  "__references": [],
+  "__version": 0
+}

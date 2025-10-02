@@ -89,9 +89,15 @@ public sealed partial class Player
 
     private void SwitchToSlot(EquipmentSlot slot)
     {
-        Switch(Equipments.First(pair => pair.Key == slot));
+        var equipment = Equipments.FirstOrDefault(pair => pair.Key == slot);
+        if (!equipment.Value.IsValid())
+        {
+            return;
+        }
+
+        Switch(equipment);
     }
-    
+
     private void Switch(KeyValuePair<EquipmentSlot, Equipment> equipment)
     {
         if (!equipment.Value.IsValid())
@@ -101,6 +107,11 @@ public sealed partial class Player
 
         if (ActiveEquipment.IsValid())
         {
+            if (ActiveEquipment.Resource.Slot == equipment.Key)
+            {
+                return;
+            }
+
             if (ActiveEquipment.IsDeployed)
             {
                 ActiveEquipment.Holster();

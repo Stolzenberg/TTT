@@ -35,6 +35,11 @@ public sealed partial class Player
         TimeSinceLastRespawn = 0f;
         
         OwnerTeleport(SpawnPosition, SpawnRotation);
+
+        foreach (var equipment in DefaultEquipments)
+        {
+            ServerGive(equipment);
+        }
         
         Scene.Dispatch(new PlayerSpawnedEvent(this));
     }

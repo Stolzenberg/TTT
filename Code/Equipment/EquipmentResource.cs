@@ -13,7 +13,7 @@ public partial class EquipmentResource : GameResource
     /// <summary>
     ///     A world model that we'll put on the player's arms in third person.
     /// </summary>
-    public GameObject WorldModelPrefab { get; set; }
+    public GameObject? WorldModelPrefab { get; set; }
 
     /// <summary>
     ///     The prefab to create when making a viewmodel for this equipment.

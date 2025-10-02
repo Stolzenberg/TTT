@@ -70,7 +70,7 @@
         "__guid": "9e372bf5-9fc9-4397-b687-03eb80e53984",
         "__version": 1,
         "Flags": 0,
-        "Name": "ViewModel",
+        "Name": "Renderer",
         "Position": "2,0,0.25",
         "Rotation": "0,0,0,1",
         "Scale": "1,1,1",

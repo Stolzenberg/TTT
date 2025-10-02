@@ -1,0 +1,17 @@
+{
+  "Slot": "Fists",
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/fist/fist.prefab"
+  },
+  "WorldModelPrefab": null,
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/fist/viewmodelfist.prefab"
+  },
+  "DroppedWorldModelPrefab": null,
+  "NameKey": "FIST_NAME",
+  "DescriptionKey": "FIST_DESCRIPTION",
+  "__references": [],
+  "__version": 0
+}

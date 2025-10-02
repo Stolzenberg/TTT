@@ -10,6 +10,9 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
 
     [Property, Feature("Equipment")]
     public GameObject RightHandSocket { get; init; } = null!;
+    
+    [Property, Feature("Equipment")]
+    public EquipmentResource[] DefaultEquipments { get; private set; } = [];
 
     [Sync(SyncFlags.FromHost)]
     public Equipment? ActiveEquipment { get; private set; }

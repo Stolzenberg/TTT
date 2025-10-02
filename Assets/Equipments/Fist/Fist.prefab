@@ -1,0 +1,124 @@
+{
+  "RootObject": {
+    "__guid": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+    "__version": 1,
+    "Flags": 0,
+    "Name": "fist",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkInterpolation": true,
+    "NetworkOrphaned": 0,
+    "OwnerTransfer": 1,
+    "Components": [
+      {
+        "__type": "Mountain.Equipment",
+        "__guid": "cf138b11-d410-43e0-829e-41747957c7fc",
+        "__enabled": true,
+        "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
+        "Handedness": "Both",
+        "HoldType": "Punch",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Resource": "equipments/fist/fist.eqpt"
+      },
+      {
+        "__type": "Mountain.TagBinder",
+        "__guid": "a9e8b525-dea7-4c3a-9b60-aa24a6fd54db",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "Mountain.Shootable",
+        "__guid": "e22c97d6-f75d-4e30-9e35-fda63ca881ad",
+        "__enabled": true,
+        "Ammo": null,
+        "BaseDamage": 5,
+        "BaseDamageFalloff": [
+          {
+            "x": 0,
+            "y": 1,
+            "in": 0,
+            "out": 0,
+            "mode": "Mirrored"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "in": 0,
+            "out": 0,
+            "mode": "Mirrored"
+          }
+        ],
+        "BulletCount": 1,
+        "BulletSize": 1,
+        "BulletSpread": 0,
+        "BurstAmount": 3,
+        "BurstEndDelay": 0.2,
+        "CurrentFireMode": "Automatic",
+        "DryFireSound": null,
+        "DryShootDelay": 0.15,
+        "EjectionPrefab": null,
+        "FireModeSwitchDelay": 0.3,
+        "FireRate": 150,
+        "InputActions": [
+          "Attack1"
+        ],
+        "MaxRange": 64,
+        "MuzzleFlashPrefab": null,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "PenetrationThickness": 32,
+        "RequiresAllInputActions": false,
+        "RequiresHasAmmo": false,
+        "ShootSound": null,
+        "SupportedFireModes": [
+          "Semi"
+        ]
+      }
+    ],
+    "Children": [],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    },
+    "__variables": []
+  },
+  "ResourceVersion": 2,
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "__references": [],
+  "__version": 2
+}

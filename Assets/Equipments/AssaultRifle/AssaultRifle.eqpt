@@ -1,0 +1,23 @@
+{
+  "Slot": "Primary",
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/assaultrifle/assaultrifle.prefab"
+  },
+  "WorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/assaultrifle/weaponmodelassaultrifle.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/assaultrifle/viewmodelassaultrifle.prefab"
+  },
+  "DroppedWorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/assaultrifle/droppedweaponmodelassaultrifle.prefab"
+  },
+  "NameKey": "ASSAULTRIFLE_NAME",
+  "DescriptionKey": "ASSAULTRIFLE_DESCRIPTION",
+  "__references": [],
+  "__version": 0
+}

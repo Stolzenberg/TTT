@@ -26,6 +26,31 @@
         "OnComponentUpdate": null
       },
       {
+        "__type": "Mountain.EquipmentWorldModel",
+        "__guid": "dff38c14-c262-4256-bf93-5152b6d5ab13",
+        "__enabled": true,
+        "EjectionPort": {
+          "_type": "gameobject",
+          "go": "a6bd3266-dc6b-4f28-8041-1e6a04c00ce3"
+        },
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "469d1cea-fa9d-4b75-beb4-d9cda2321766",
+          "go": "3a584dde-2291-449a-8963-7c79bf414d94",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Muzzle": {
+          "_type": "gameobject",
+          "go": "7c17e4a6-8145-4f20-869c-8782b361d9f8"
+        },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
         "__type": "Sandbox.Rigidbody",
         "__guid": "f4d5ae29-14c1-4043-abfb-e9e90c193bec",
         "__enabled": true,

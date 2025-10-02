@@ -1,0 +1,23 @@
+{
+  "Slot": "Melee",
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/crowbar/crowbar.prefab"
+  },
+  "WorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/crowbar/weaponmodelcrowbar.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/crowbar/viewmodelcrowbar.prefab"
+  },
+  "DroppedWorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/crowbar/droppedweaponmodelcrowbar.prefab"
+  },
+  "NameKey": "CROWBAR_NAME",
+  "DescriptionKey": "CROWBAR_DESCRIPTION",
+  "__references": [],
+  "__version": 0
+}

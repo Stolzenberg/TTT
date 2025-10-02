@@ -5,7 +5,7 @@ public sealed partial class Equipment
     public EquipmentViewModel ViewModel
     {
         get => viewModel;
-        set
+        private set
         {
             viewModel = value;
 

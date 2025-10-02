@@ -12,11 +12,11 @@
                     <h3>#WAS_KILLED</h3>
                     <h3></h3>
                 </div>
-                
+
                 <div class="role-info" style="color: @GetVictimTeam().GetColor().ToString();">
                     <h3>@GetVictimTeam()</h3>
                 </div>
-                
+
                 <div class="killer-info">
                     @if (GetAttacker() != null)
                     {
@@ -27,12 +27,12 @@
                                 <h3>#@GetWeaponName()</h3>
                             </div>
                         }
-                        
+
                         <div class="damage">
                             <h3>#DAMAGE:</h3>
                             <h3>@(DamageInfo?.Damage.ToString("F0") ?? "0")</h3>
                         </div>
-                        
+
                         @if (GetDistanceToAttacker() > 0)
                         {
                             <div class="distance">
@@ -40,7 +40,7 @@
                                 <h3>@GetDistanceToAttacker().ToString("F0")m</h3>
                             </div>
                         }
-                        
+
                         @if (!string.IsNullOrEmpty(GetHitLocation()))
                         {
                             <div class="hitbox">
@@ -55,7 +55,7 @@
                             <h3>#CAUSE:</h3>
                             <h3>@GetDeathCause()</h3>
                         </div>
-                        
+
                         <div class="damage">
                             <h3>#DAMAGE:</h3>
                             <h3>@(DamageInfo?.Damage.ToString("F0") ?? "0")</h3>
@@ -68,12 +68,12 @@
 </root>
 
 @code{
-        
+
     [Property]
     public GameObject Pelvis { get; set; }
-    
+
     public DamageInfo? DamageInfo { get; set; }
-    
+
     public bool IsVisible => DamageInfo != null && Client.Local.Player?.WorldPosition.Distance(Pelvis.WorldPosition) < 100;
 
     protected override int BuildHash()
@@ -96,23 +96,23 @@
     {
         if (DamageInfo == null) return "Unknown Player";
         var victim = DamageInfo.Victim?.GetPlayerFromComponent();
-        
+
         return victim?.Client?.DisplayName ?? "Unknown Player";
     }
-    
+
     private Team GetVictimTeam()
     {
         if (DamageInfo == null) return Team.Unassigned;
         var victim = DamageInfo.Victim?.GetPlayerFromComponent();
-        
+
         return victim!.Client.Team;
     }
-    
+
     private Player? GetAttacker()
     {
         return DamageInfo?.Attacker.GetPlayerFromComponent();
     }
-    
+
     private string GetWeaponName()
     {
         if (DamageInfo == null || !DamageInfo.Inflictor.IsValid())
@@ -124,61 +124,68 @@
         {
             return (equipment.Resource.ResourceName ?? equipment.Resource.ToString()).ToUpper();
         }
-        
+
         // Fallback to GameObject name or type
         var gameObjectName = DamageInfo.Inflictor.ToString();
         if (!string.IsNullOrEmpty(gameObjectName) && gameObjectName != "Object")
         {
             return gameObjectName.ToUpper();
         }
-        
+
         return string.Empty;
     }
-    
+
     private float GetDistanceToAttacker()
     {
         if (DamageInfo == null) return 0f;
-        
+
         var attacker = GetAttacker();
         var victim = DamageInfo.Victim?.GetPlayerFromComponent();
-        
+
         if (attacker != null && victim != null)
         {
             return attacker.WorldPosition.Distance(victim.WorldPosition);
         }
-        
+
         return 0f;
     }
-    
+
     private string GetHitLocation()
     {
         if (DamageInfo == null) return string.Empty;
         
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.Head))
             return "HEAD";
+
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.UpperBody))
             return "UPPER_BODY";
+
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.LowerBody))
             return "LOWER_BODY";
+
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.Leg))
             return "LEG";
+
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.Arm))
             return "ARM";
-            
+
         return string.Empty;
     }
-    
+
     private string GetDeathCause()
     {
         if (DamageInfo == null) return "Unknown";
-        
+
         if (DamageInfo.WasFallDamage)
             return "Fall Damage";
+
         if (DamageInfo.WasExplosion)
             return "Explosion";
+
         if (DamageInfo.WasMelee)
             return "Melee Attack";
-            
+
         return "Environmental";
     }
+
 }

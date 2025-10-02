@@ -11,6 +11,10 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
         this.equipment = equipment;
     }
     
+    // TODO: Implement static method to create dropped equipment in the world
+    
+    // TODO: Perist data from an equipment inside a dropped equipment like ammo count, attachments, etc.
+    
     public void OnTriggerEnter(Collider other)
     {
         var player = other.GameObject.GetComponent<Player>();

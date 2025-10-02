@@ -336,26 +336,18 @@ public sealed class Shootable : EquipmentInputAction
     [Rpc.Broadcast]
     private void ShootEffects()
     {
-        if (!Visual.ModelRenderer.IsValid())
+        if (MuzzleFlashPrefab.IsValid())
         {
-            return;
-        }
-
-        // Create a muzzle flash from a GameObject / prefab
-        if (!MuzzleFlashPrefab.IsValid())
-        {
-            return;
-        }
-
-        if (Visual.Muzzle.IsValid())
-        {
-            var muzzleFlashObj = MuzzleFlashPrefab.Clone(new CloneConfig
+            if (Visual.Muzzle.IsValid())
             {
-                Parent = Visual.Muzzle,
-                Transform = new(),
-                StartEnabled = true,
-                Name = $"Muzzle flash: {Equipment.GameObject}",
-            });
+                var muzzleFlashObj = MuzzleFlashPrefab.Clone(new CloneConfig
+                {
+                    Parent = Visual.Muzzle,
+                    Transform = new(),
+                    StartEnabled = true,
+                    Name = $"Muzzle flash: {Equipment.GameObject}",
+                });
+            }
         }
 
         if (EjectionPrefab.IsValid())

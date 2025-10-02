@@ -8,7 +8,7 @@
             <div class="text">#@Client.Local.Team.ToString().ToUpper()</div>
         </div>
     </div>
-    
+
     <div class="lower-center-box">
         <div class="state-text @GetTimeTextClass()">@GetFormattedState()</div>
         <div class="time-text @GetTimeTextClass()">@GetFormattedTime()</div>
@@ -25,17 +25,19 @@
     private string GetFormattedState()
     {
         var state = GameMode.Instance.StateMachine.CurrentState;
+
         return "#" + state?.GameObject.Name.ToUpper().Replace("_", " ");
     }
-    
+
     private string GetFormattedTime()
     {
         var remainingDuration = GameMode.Instance.StateMachine.CurrentState?.RemainingDuration;
+
         if (remainingDuration == null)
             return "00:00";
 
         var totalSeconds = (int)Math.Ceiling(remainingDuration.Value);
-        
+
         if (totalSeconds < 60)
         {
             return totalSeconds.ToString("00");
@@ -43,21 +45,22 @@
 
         var minutes = totalSeconds / 60;
         var seconds = totalSeconds % 60;
+
         return $"{minutes:00}:{seconds:00}";
     }
 
     private string GetTimeTextClass()
     {
-        if (GameMode.Instance.StateMachine.CurrentState != null && 
-            !GameMode.Instance.StateMachine.CurrentState.GameObject.Name.Contains("Playing"))
+        if (GameMode.Instance.StateMachine.CurrentState != null && !GameMode.Instance.StateMachine.CurrentState.GameObject.Name.Contains("Playing"))
             return "";
-        
+
         var remainingDuration = GameMode.Instance.StateMachine.CurrentState?.RemainingDuration;
+
         if (remainingDuration == null)
             return "";
 
         var totalSeconds = (int)Math.Ceiling(remainingDuration.Value);
-        
+
         return totalSeconds < 20 ? "time-urgent" : "";
     }
 }

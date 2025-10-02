@@ -152,6 +152,9 @@
           "go": "c4fc0d60-9c12-4394-a61a-8b6a925b5777",
           "component_type": "DeathPanel"
         },
+        "DefaultEquipments": [
+          "equipments/fist/fist.eqpt"
+        ],
         "defaultFovChangeSpeed": 25,
         "head": {
           "_type": "gameobject",

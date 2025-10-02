@@ -31,7 +31,7 @@
         "__enabled": true,
         "EjectionPort": {
           "_type": "gameobject",
-          "go": "a1f0b343-90d7-4b27-8708-2e54558b0eb1"
+          "go": "ffbfde38-d216-4696-a78c-05f42c33c247"
         },
         "ironSightsFireScale": 0.2,
         "ModelRenderer": {
@@ -42,7 +42,7 @@
         },
         "Muzzle": {
           "_type": "gameobject",
-          "go": "d374bb99-5b8d-49de-a553-2a69a9a5cbed"
+          "go": "f9c07f43-6779-4295-abd9-855b5e7e5c16"
         },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -70,8 +70,8 @@
         "__guid": "9e372bf5-9fc9-4397-b687-03eb80e53984",
         "__version": 1,
         "Flags": 0,
-        "Name": "ViewModel",
-        "Position": "2,0,0",
+        "Name": "Renderer",
+        "Position": "0,0,0",
         "Rotation": "0,0,0,1",
         "Scale": "1,1,1",
         "Tags": "",
@@ -1622,109 +1622,6 @@
                 "Components": [],
                 "Children": [
                   {
-                    "__guid": "c05ad058-b162-4579-8e74-ceb7dc8d2e57",
-                    "__version": 1,
-                    "Flags": 0,
-                    "Name": "silencer",
-                    "Position": "6.013762,-0.0000001724518,1.795536",
-                    "Rotation": "0,0,0,1",
-                    "Scale": "1,1,1",
-                    "Tags": "",
-                    "Enabled": true,
-                    "NetworkMode": 2,
-                    "NetworkInterpolation": true,
-                    "NetworkOrphaned": 0,
-                    "OwnerTransfer": 1,
-                    "Components": [],
-                    "Children": [
-                      {
-                        "__guid": "d374bb99-5b8d-49de-a553-2a69a9a5cbed",
-                        "__version": 1,
-                        "Flags": 0,
-                        "Name": "Muzzle",
-                        "Position": "0.1599965,-0.0000007163948,0.008946901",
-                        "Rotation": "-0.00000005968263,-0.0008726794,-0.00000008935491,0.9999996",
-                        "Scale": "1,1,1",
-                        "Tags": "",
-                        "Enabled": true,
-                        "NetworkMode": 2,
-                        "NetworkInterpolation": true,
-                        "NetworkOrphaned": 0,
-                        "OwnerTransfer": 1,
-                        "Components": [],
-                        "Children": []
-                      }
-                    ]
-                  },
-                  {
-                    "__guid": "a5041ab1-f310-4c4f-8dbf-e9e6fd81c1b1",
-                    "__version": 1,
-                    "Flags": 0,
-                    "Name": "slide",
-                    "Position": "1.32287,0.000000210464,1.630533",
-                    "Rotation": "0,0,0,1",
-                    "Scale": "1,1,1",
-                    "Tags": "",
-                    "Enabled": true,
-                    "NetworkMode": 2,
-                    "NetworkInterpolation": true,
-                    "NetworkOrphaned": 0,
-                    "OwnerTransfer": 1,
-                    "Components": [],
-                    "Children": []
-                  },
-                  {
-                    "__guid": "a1f0b343-90d7-4b27-8708-2e54558b0eb1",
-                    "__version": 1,
-                    "Flags": 0,
-                    "Name": "slide_catch",
-                    "Position": "2.356294,0.5472429,0.8523614",
-                    "Rotation": "0.00000000000002842171,0.0000001509957,1,-0.0000001509958",
-                    "Scale": "1,1,1",
-                    "Tags": "",
-                    "Enabled": true,
-                    "NetworkMode": 2,
-                    "NetworkInterpolation": true,
-                    "NetworkOrphaned": 0,
-                    "OwnerTransfer": 1,
-                    "Components": [],
-                    "Children": []
-                  },
-                  {
-                    "__guid": "8f167533-f3e9-4ddc-8b78-495b199bb6eb",
-                    "__version": 1,
-                    "Flags": 0,
-                    "Name": "hammer",
-                    "Position": "-0.9212563,0.0000003305027,0.9763753",
-                    "Rotation": "0.4226182,0.00000007405067,0.9063078,0.00000007256151",
-                    "Scale": "1,1,1",
-                    "Tags": "",
-                    "Enabled": true,
-                    "NetworkMode": 2,
-                    "NetworkInterpolation": true,
-                    "NetworkOrphaned": 0,
-                    "OwnerTransfer": 1,
-                    "Components": [],
-                    "Children": []
-                  },
-                  {
-                    "__guid": "19a1bca2-137d-4c00-a584-46e3c247eebb",
-                    "__version": 1,
-                    "Flags": 0,
-                    "Name": "safety",
-                    "Position": "-0.9448798,0.5472435,0.9035423",
-                    "Rotation": "0,0,0,1",
-                    "Scale": "1,1,1",
-                    "Tags": "",
-                    "Enabled": true,
-                    "NetworkMode": 2,
-                    "NetworkInterpolation": true,
-                    "NetworkOrphaned": 0,
-                    "OwnerTransfer": 1,
-                    "Components": [],
-                    "Children": []
-                  },
-                  {
                     "__guid": "ca2c5d13-2db2-4549-94a2-eba866cde1eb",
                     "__version": 1,
                     "Flags": 4,
@@ -1829,7 +1726,7 @@
                     ]
                   },
                   {
-                    "__guid": "4266c9b4-2ca9-4ec4-ae23-a3470c1cdcff",
+                    "__guid": "7d700e75-3c11-4b32-b9ee-7e7149d35a10",
                     "__version": 1,
                     "Flags": 4,
                     "Name": "forearm",
@@ -1846,7 +1743,7 @@
                     "Children": []
                   },
                   {
-                    "__guid": "814e7cbd-032f-4110-acf1-c20c6e1a97d2",
+                    "__guid": "ff4ed4e5-378d-4007-83f6-b5ae9237e10b",
                     "__version": 1,
                     "Flags": 4,
                     "Name": "cocking_lever",
@@ -1863,7 +1760,7 @@
                     "Children": []
                   },
                   {
-                    "__guid": "9892c875-caa5-4daf-9734-8d5fd781eb68",
+                    "__guid": "ffbfde38-d216-4696-a78c-05f42c33c247",
                     "__version": 1,
                     "Flags": 4,
                     "Name": "bolt",
@@ -1880,7 +1777,7 @@
                     "Children": []
                   },
                   {
-                    "__guid": "3d545fe6-3225-4309-8339-97c3a2790297",
+                    "__guid": "886ec8ea-bb94-4dd8-a110-3a89d0021c13",
                     "__version": 1,
                     "Flags": 4,
                     "Name": "reload_lever",
@@ -1897,7 +1794,7 @@
                     "Children": []
                   },
                   {
-                    "__guid": "1b9f5b07-6271-4dbf-b8a8-eee9e4c5297c",
+                    "__guid": "f5c68391-a745-4d15-b86b-6d185f61d947",
                     "__version": 1,
                     "Flags": 4,
                     "Name": "reload_latch",
@@ -1914,7 +1811,7 @@
                     "Children": []
                   },
                   {
-                    "__guid": "974b7854-e49b-46f8-afbd-e93ab7156cca",
+                    "__guid": "17570b9b-abf7-47e5-bfb7-ce189d38b775",
                     "__version": 1,
                     "Flags": 4,
                     "Name": "mode_selector",
@@ -1931,7 +1828,7 @@
                     "Children": []
                   },
                   {
-                    "__guid": "5b260772-e746-4332-ba77-a862e8791874",
+                    "__guid": "9fe0cdc7-f82e-4e4a-8d9a-ed0629c6dad4",
                     "__version": 1,
                     "Flags": 4,
                     "Name": "stock",
@@ -1948,7 +1845,7 @@
                     "Children": []
                   },
                   {
-                    "__guid": "06a734eb-87a2-4bf6-8fef-f44cbe4b8e92",
+                    "__guid": "f9c07f43-6779-4295-abd9-855b5e7e5c16",
                     "__version": 1,
                     "Flags": 4,
                     "Name": "muzzle",
@@ -3098,23 +2995,6 @@
             "OwnerTransfer": 1,
             "Components": [],
             "Children": []
-          },
-          {
-            "__guid": "bd51a39f-f686-466e-88b7-9beef46175a1",
-            "__version": 1,
-            "Flags": 0,
-            "Name": "hold_R",
-            "Position": "-1.45742,0,5.464317",
-            "Rotation": "0,0,0,1",
-            "Scale": "1,1,1",
-            "Tags": "",
-            "Enabled": true,
-            "NetworkMode": 2,
-            "NetworkInterpolation": true,
-            "NetworkOrphaned": 0,
-            "OwnerTransfer": 1,
-            "Components": [],
-            "Children": []
           }
         ]
       }
@@ -3145,7 +3025,7 @@
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
   "__references": [
-    "facepunch.v_mp5#116233"
+    "facepunch.v_mp5#122028"
   ],
   "__version": 2
 }

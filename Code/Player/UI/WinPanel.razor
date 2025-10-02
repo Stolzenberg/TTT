@@ -8,7 +8,7 @@
         <div class="win-title" style="color: @GetWinningTeamColor()">
             @GetWinMessage()
         </div>
-            
+
         <div class="scoreboard">
             <div class="scoreboard-title">#PLAYERS</div>
             <div class="players-list">
@@ -28,7 +28,7 @@
                 }
             </div>
         </div>
-            
+
         @if (GetRemainingTime() > 0)
         {
             <div class="next-round-timer">
@@ -58,12 +58,12 @@
             winningTeam = Team.Murder;
         }
     }
-    
+
     protected override int BuildHash()
     {
         return HashCode.Combine(winningTeam, GetRemainingTime());
     }
-    
+
     private string GetWinMessage()
     {
         return winningTeam switch
@@ -73,28 +73,31 @@
             _ => throw new ArgumentOutOfRangeException()
         };
     }
-    
+
     private string GetWinningTeamColor()
     {
         return winningTeam.GetColor().ToString();
     }
-    
+
     private static IEnumerable<Client> GetAllPlayers()
     {
         return Game.ActiveScene.AllClients().Where(c => c.IsValid && !string.IsNullOrEmpty(c.DisplayName));
     }
-    
+
     private static bool IsPlayerAlive(Client client)
     {
         var player = client.Player;
+
         if (player == null) return false;
-        
+
         return player.Components.TryGet<HealthComponent>(out var health) && health.State == LifeState.Alive;
     }
-    
+
     private static float GetRemainingTime()
     {
         var currentState = GameMode.Instance.StateMachine.CurrentState;
+
         return currentState?.RemainingDuration ?? 0f;
     }
+
 }

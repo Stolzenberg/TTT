@@ -1,0 +1,23 @@
+{
+  "Slot": "Melee",
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/knife/knife.prefab"
+  },
+  "WorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/knife/weaponmodelknife.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/knife/viewmodelknife.prefab"
+  },
+  "DroppedWorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/knife/droppedweaponmodelknife.prefab"
+  },
+  "NameKey": "KNIFE_NAME",
+  "DescriptionKey": "KNIFE_DESCRIPTION",
+  "__references": [],
+  "__version": 0
+}

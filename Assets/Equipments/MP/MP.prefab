@@ -20,14 +20,14 @@
         "__enabled": true,
         "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
         "Handedness": "Both",
-        "HoldType": "Rifle",
+        "HoldType": "Pistol",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Resource": "equipments/mp/mp.eqpt"
+        "Resource": "equipments/pistol/pistol.eqpt"
       },
       {
         "__type": "Mountain.TagBinder",
@@ -72,7 +72,7 @@
         "BulletSpread": 0,
         "BurstAmount": 2,
         "BurstEndDelay": 0.2,
-        "CurrentFireMode": "Automatic",
+        "CurrentFireMode": "Semi",
         "DryFireSound": "equipments/sounds/gundryfire.sound",
         "DryShootDelay": 0.15,
         "EjectionPrefab": {
@@ -80,7 +80,7 @@
           "prefab": "items/9mmcasing.prefab"
         },
         "FireModeSwitchDelay": 0.3,
-        "FireRate": 1000,
+        "FireRate": 800,
         "InputActions": [
           "Attack1"
         ],
@@ -100,8 +100,7 @@
         "RequiresHasAmmo": true,
         "ShootSound": "equipments/pistol/pistolshoot.sound",
         "SupportedFireModes": [
-          "Automatic",
-          "Burst"
+          "Semi"
         ]
       },
       {
@@ -180,9 +179,9 @@
         "__type": "Mountain.EquipmentAmmo",
         "__guid": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
         "__enabled": true,
-        "Ammo": 30,
+        "Ammo": 25,
         "HasAmmo": true,
-        "MaxAmmo": 30,
+        "MaxAmmo": 25,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,

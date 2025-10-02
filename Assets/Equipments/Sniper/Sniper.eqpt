@@ -1,0 +1,23 @@
+{
+  "Slot": "Primary",
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/sniper/sniper.prefab"
+  },
+  "WorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/sniper/weaponmodelsniper.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/sniper/viewmodelsniper.prefab"
+  },
+  "DroppedWorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/sniper/droppedweaponmodelsniper.prefab"
+  },
+  "NameKey": "SNIPER_NAME",
+  "DescriptionKey": "SNIPER_DESCRIPTION",
+  "__references": [],
+  "__version": 0
+}
