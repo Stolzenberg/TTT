@@ -70,11 +70,8 @@ public sealed class EquipmentSpawnPoint : Component, IGameEventHandler<BetweenRo
         gameObject.WorldRotation = gameObject.WorldRotation.RotateAroundAxis(Vector3.Forward, 90f);
         
         var droppedEquipment = gameObject.GetComponent<DroppedEquipment>();
-        if (droppedEquipment is not null)
-        {
-            droppedEquipment.Setup(Equipment);
-        }
-        
+        droppedEquipment?.Setup(Equipment);
+
         if (UseSpawnForce)
         {
             var rb = gameObject.GetComponent<Rigidbody>();

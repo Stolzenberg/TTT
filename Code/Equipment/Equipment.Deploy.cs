@@ -30,7 +30,7 @@ public sealed partial class Equipment
         // We must first holster all other equipment items.
         if (Owner.IsValid())
         {
-            var equipment = Owner.Equipments.ToList();
+            var equipment = Owner.Equipments.Values.ToList();
 
             foreach (var item in equipment)
             {

@@ -36,5 +36,7 @@ public sealed partial class Player : Component
         UpdateEyeAngles();
         UpdateCameraPosition();
         UpdateFov();
+        UpdateEquipmentChange();
+        UpdateEquipmentDrop();
     }
 }

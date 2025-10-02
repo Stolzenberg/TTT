@@ -5,7 +5,8 @@ namespace Mountain;
 
 public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, IGameEventHandler<EquipmentHolsteredEvent>
 {
-    public IEnumerable<Equipment> Equipments => GetComponentsInChildren<Equipment>();
+    public Dictionary<EquipmentSlot, Equipment> Equipments => GetComponentsInChildren<Equipment>()
+        .ToDictionary(e => e.Resource.Slot);
 
     [Property, Feature("Equipment")]
     public GameObject RightHandSocket { get; init; } = null!;
@@ -31,7 +32,30 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
 
     public bool Has(EquipmentResource resource)
     {
-        return Equipments.Any(equipment => equipment.Enabled && equipment.Resource == resource);
+        return Equipments.Any(pair => pair.Value.Enabled && pair.Value.Resource == resource || pair.Key == resource.Slot);
+    }
+    
+    [Rpc.Host]
+    private void ServerRemoveEquipment(Equipment equipment)
+    {
+        if (equipment == ActiveEquipment)
+        {
+            var otherEquipment = Equipments.Where(pair => pair.Value != equipment);
+            var orderedBySlot = otherEquipment.OrderBy(pair => pair.Key);
+            var targetWeapon = orderedBySlot.FirstOrDefault();
+
+            if (targetWeapon.Value.IsValid())
+            {
+                Switch(targetWeapon);
+            }
+            else
+            {
+                ClearCurrentEquipment();
+                ActiveEquipment = null;
+            }
+        }
+
+        equipment.GameObject.Destroy();
     }
 
     [Rpc.Host]
@@ -41,7 +65,7 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
         {
             throw new ArgumentException($"Equipment resource {equipment} already exists in the player's inventory.");
         }
-
+    
         if (!equipment.MainPrefab.IsValid())
         {
             throw new ArgumentException($"Equipment resource {equipment} does not have a valid main prefab.");

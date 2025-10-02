@@ -194,6 +194,7 @@
         "rotationSpeed": 1.5,
         "rotationSpeedModifier": 10,
         "Source": "LocalUser",
+        "ThrowEquipmentForce": 2500,
         "velocityModifier": 0
       },
       {

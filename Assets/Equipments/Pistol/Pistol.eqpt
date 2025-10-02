@@ -1,5 +1,6 @@
 {
   "Type": "Pistol",
+  "Slot": "Secondary",
   "MainPrefab": {
     "_type": "gameobject",
     "prefab": "equipments/pistol/pistol.prefab"

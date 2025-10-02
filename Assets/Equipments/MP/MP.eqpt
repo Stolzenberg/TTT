@@ -1,0 +1,23 @@
+{
+  "Slot": "Primary",
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/mp/mp.prefab"
+  },
+  "WorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/mp/weaponmodelmp.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/mp/viewmodelmp.prefab"
+  },
+  "DroppedWorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/mp/droppedweaponmodelmp.prefab"
+  },
+  "NameKey": "MP_NAME",
+  "DescriptionKey": "MP_DESCRIPTION",
+  "__references": [],
+  "__version": 0
+}

@@ -1,0 +1,235 @@
+{
+  "RootObject": {
+    "__guid": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+    "__version": 1,
+    "Flags": 0,
+    "Name": "mp",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkInterpolation": true,
+    "NetworkOrphaned": 0,
+    "OwnerTransfer": 1,
+    "Components": [
+      {
+        "__type": "Mountain.Equipment",
+        "__guid": "cf138b11-d410-43e0-829e-41747957c7fc",
+        "__enabled": true,
+        "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
+        "Handedness": "Both",
+        "HoldType": "Rifle",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Resource": "equipments/mp/mp.eqpt"
+      },
+      {
+        "__type": "Mountain.TagBinder",
+        "__guid": "a9e8b525-dea7-4c3a-9b60-aa24a6fd54db",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "Mountain.Shootable",
+        "__guid": "f484ae40-93d3-48cd-bf0c-f53090e17141",
+        "__enabled": true,
+        "Ammo": {
+          "_type": "component",
+          "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
+          "go": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+          "component_type": "EquipmentAmmo"
+        },
+        "BaseDamage": 15,
+        "BaseDamageFalloff": [
+          {
+            "x": 0,
+            "y": 1,
+            "in": 0,
+            "out": 0,
+            "mode": "Mirrored"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "in": 0,
+            "out": 0,
+            "mode": "Mirrored"
+          }
+        ],
+        "BulletCount": 1,
+        "BulletSize": 1,
+        "BulletSpread": 0,
+        "BurstAmount": 2,
+        "BurstEndDelay": 0.2,
+        "CurrentFireMode": "Automatic",
+        "DryFireSound": "equipments/sounds/gundryfire.sound",
+        "DryShootDelay": 0.15,
+        "EjectionPrefab": {
+          "_type": "gameobject",
+          "prefab": "items/9mmcasing.prefab"
+        },
+        "FireModeSwitchDelay": 0.3,
+        "FireRate": 1000,
+        "InputActions": [
+          "Attack1"
+        ],
+        "MaxRange": 1024000,
+        "MuzzleFlashPrefab": {
+          "_type": "gameobject",
+          "prefab": "items/pistolmuzzleflash.prefab"
+        },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "PenetrationThickness": 6,
+        "RequiresAllInputActions": false,
+        "RequiresHasAmmo": true,
+        "ShootSound": "equipments/pistol/pistolshoot.sound",
+        "SupportedFireModes": [
+          "Automatic",
+          "Burst"
+        ]
+      },
+      {
+        "__type": "Mountain.Aimable",
+        "__guid": "3e9aa8c3-c306-4411-8dfd-0e56d48946ce",
+        "__enabled": true,
+        "AimFieldOfView": 10,
+        "AimSpeed": 15,
+        "InputActions": [
+          "Attack2"
+        ],
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "RequiresAllInputActions": false
+      },
+      {
+        "__type": "Mountain.Reloadable",
+        "__guid": "1cacf3d9-3fb4-44a4-b9ef-84ad8654850c",
+        "__enabled": true,
+        "AmmoComponent": {
+          "_type": "component",
+          "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
+          "go": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+          "component_type": "EquipmentAmmo"
+        },
+        "EmptyReloadSounds": {
+          "0": "equipments/sounds/reload/pistolreload.sound",
+          "0.5": "equipments/sounds/reload/pistolreloadfow.sound",
+          "1": "equipments/sounds/reload/pistolreloadload.sound"
+        },
+        "EmptyReloadTime": 2,
+        "InputActions": [
+          "Reload"
+        ],
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "ReloadTime": 1.5,
+        "RequiresAllInputActions": false,
+        "SingleReload": false,
+        "TimedReloadSounds": {
+          "0": "equipments/sounds/reload/pistolreload.sound",
+          "1": "equipments/sounds/reload/pistolreloadout.sound"
+        }
+      },
+      {
+        "__type": "Mountain.Recoil",
+        "__guid": "39326447-5734-4156-84e8-a686c7d81245",
+        "__enabled": true,
+        "HorizontalSpread": "-0.1 0.1",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "RecoilPattern": {
+          "Points": [],
+          "LoopStart": 0,
+          "LoopEnd": 0,
+          "IsLooping": false
+        },
+        "ResetTime": 0.01,
+        "Scale": "2,5",
+        "UseRecoilPattern": false,
+        "VerticalSpread": "0 2"
+      },
+      {
+        "__type": "Mountain.EquipmentAmmo",
+        "__guid": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
+        "__enabled": true,
+        "Ammo": 30,
+        "HasAmmo": true,
+        "MaxAmmo": 30,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "Mountain.ScreenShakeOnShot",
+        "__guid": "fefc1b61-3a3d-4e8f-a10f-3d611353f1a9",
+        "__enabled": true,
+        "Length": 0.1,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Size": 0.1
+      }
+    ],
+    "Children": [],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    },
+    "__variables": []
+  },
+  "ResourceVersion": 2,
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "__references": [],
+  "__version": 2
+}

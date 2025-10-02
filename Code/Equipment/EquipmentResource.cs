@@ -3,7 +3,7 @@
 [AssetType( Name = "Equipment Resource", Extension = "eqpt", Category = "Equipment" )]
 public partial class EquipmentResource : GameResource
 {
-    public EquipmentType Type { get; set; }
+    public EquipmentSlot Slot { get; set; } = EquipmentSlot.Undefined;
 
     /// <summary>
     ///     The prefab to create and attach to the player when spawning it in.
@@ -26,10 +26,10 @@ public partial class EquipmentResource : GameResource
     public GameObject DroppedWorldModelPrefab { get; set; }
 
     [Hide]
-    public string NameKey => $"{Type.ToString().ToUpper()}_NAME";
+    public string NameKey => $"{ResourceName.ToUpper()}_NAME";
 
     [Hide]
-    public string DescriptionKey => $"{Type.ToString().ToUpper()}_DESCRIPTION";
+    public string DescriptionKey => $"{ResourceName.ToUpper()}_DESCRIPTION";
 
     protected override Bitmap CreateAssetTypeIcon( int width, int height )
     {
@@ -38,6 +38,6 @@ public partial class EquipmentResource : GameResource
 
     public override string ToString()
     {
-        return $"{Type}, NameKey: {NameKey}, DescriptionKey: {DescriptionKey}";
+        return $"{ResourceName}, NameKey: {NameKey}, DescriptionKey: {DescriptionKey}";
     }
 }
