@@ -52,7 +52,7 @@
     private string GetTimeTextClass()
     {
         if (GameMode.Instance.StateMachine.CurrentState != null && 
-            GameMode.Instance.StateMachine.CurrentState.GameObject.Name.Contains("Preparing"))
+            !GameMode.Instance.StateMachine.CurrentState.GameObject.Name.Contains("Playing"))
             return "";
         
         var remainingDuration = GameMode.Instance.StateMachine.CurrentState?.RemainingDuration;

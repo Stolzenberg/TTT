@@ -6,7 +6,10 @@ public sealed class RoundWinCondition : Component, IGameEventHandler<EnterStateE
     IGameEventHandler<UpdateStateEvent>
 {
     [Property]
-    public GameState NextState { get; set; }
+    public GameState InnocentWin { get; set; }
+    
+    [Property]
+    public GameState MurderWin { get; set; }
 
     void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
     {
@@ -38,14 +41,21 @@ public sealed class RoundWinCondition : Component, IGameEventHandler<EnterStateE
             var winningTeam = teamsWithAlivePlayers.First();
 
             // Increment score for the winning team
-            GameMode.Instance.Get<TeamScoring>()?.IncrementScore(winningTeam);
-            GameMode.Instance.StateMachine.Transition(NextState);
+            GameMode.Instance.Get<TeamScoring>().IncrementScore(winningTeam);
+
+            if (winningTeam == Team.Innocent)
+            {
+                GameMode.Instance.StateMachine.Transition(InnocentWin);
+            }
+            else if (winningTeam == Team.Murder)
+            {
+                GameMode.Instance.StateMachine.Transition(MurderWin);
+            }
         }
-        // If no teams have alive players (everyone is dead), this could be a draw scenario
+        // All dead, innocent wins
         else if (teamsWithAlivePlayers.Count == 0)
         {
-            // Handle draw or transition to next round
-            GameMode.Instance.StateMachine.Transition(NextState);
+            GameMode.Instance.StateMachine.Transition(InnocentWin);
         }
     }
 

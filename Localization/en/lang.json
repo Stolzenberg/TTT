@@ -5,6 +5,8 @@
     "PREPARING": "Preparing",
     "ROUNDENDING": "Ending",
     "PLAYING": "Playing",
+    "INNOCENTWIN": "Innocents Win",
+    "MURDERWIN": "Murderers Win",
     "WAS_KILLED": "was killed",
     "WEAPON": "Weapon",
     "DAMAGE": "Damage",

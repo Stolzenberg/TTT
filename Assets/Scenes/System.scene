@@ -216,11 +216,11 @@
               "__type": "Mountain.GameState",
               "__guid": "8e02fa91-f544-42e4-aada-116939586da3",
               "__enabled": true,
-              "DefaultDuration": 300,
+              "DefaultDuration": 10,
               "DefaultNextState": {
                 "_type": "component",
-                "component_id": "b58cfa4d-1275-447a-bcad-62d211350a4f",
-                "go": "c2976947-a4cf-41ef-9520-7ab942c6443b",
+                "component_id": "55830c3d-cccb-4b3c-aae4-6abbbdd93229",
+                "go": "9ac02c72-4aae-4395-8d51-ecd7600e04c9",
                 "component_type": "GameState"
               },
               "OnComponentDestroy": null,
@@ -234,10 +234,16 @@
               "__type": "Mountain.RoundWinCondition",
               "__guid": "e85f0b13-edb6-4237-8bd1-f61100d67913",
               "__enabled": true,
-              "NextState": {
+              "InnocentWin": {
                 "_type": "component",
-                "component_id": "b58cfa4d-1275-447a-bcad-62d211350a4f",
-                "go": "c2976947-a4cf-41ef-9520-7ab942c6443b",
+                "component_id": "55830c3d-cccb-4b3c-aae4-6abbbdd93229",
+                "go": "9ac02c72-4aae-4395-8d51-ecd7600e04c9",
+                "component_type": "GameState"
+              },
+              "MurderWin": {
+                "_type": "component",
+                "component_id": "9b34a8e0-fb3c-48b4-be07-7e5ed7a26b5d",
+                "go": "70c957bc-0b33-47b3-bf14-dfce1adbc915",
                 "component_type": "GameState"
               },
               "OnComponentDestroy": null,
@@ -262,10 +268,10 @@
           "Children": []
         },
         {
-          "__guid": "c2976947-a4cf-41ef-9520-7ab942c6443b",
+          "__guid": "9ac02c72-4aae-4395-8d51-ecd7600e04c9",
           "__version": 1,
           "Flags": 0,
-          "Name": "RoundEnding",
+          "Name": "InnocentWin",
           "Position": "0,0,0",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
@@ -278,7 +284,7 @@
           "Components": [
             {
               "__type": "Mountain.GameState",
-              "__guid": "b58cfa4d-1275-447a-bcad-62d211350a4f",
+              "__guid": "55830c3d-cccb-4b3c-aae4-6abbbdd93229",
               "__enabled": true,
               "DefaultDuration": 10,
               "DefaultNextState": {
@@ -287,6 +293,64 @@
                 "go": "8ad9cc86-562e-4791-9684-01feb1a8c101",
                 "component_type": "GameState"
               },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.ImmortalPlayers",
+              "__guid": "bf89642c-2951-405d-8623-7995d4d55a3c",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "70c957bc-0b33-47b3-bf14-dfce1adbc915",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "MurderWin",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Mountain.GameState",
+              "__guid": "9b34a8e0-fb3c-48b4-be07-7e5ed7a26b5d",
+              "__enabled": true,
+              "DefaultDuration": 10,
+              "DefaultNextState": {
+                "_type": "component",
+                "component_id": "791fc82d-ef94-438b-8c66-1283e413f3a7",
+                "go": "8ad9cc86-562e-4791-9684-01feb1a8c101",
+                "component_type": "GameState"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.ImmortalPlayers",
+              "__guid": "524244f8-8bd9-4fec-b305-23a38cda926a",
+              "__enabled": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,

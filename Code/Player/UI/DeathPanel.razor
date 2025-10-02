@@ -155,15 +155,15 @@
         if (DamageInfo == null) return string.Empty;
         
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.Head))
-            return "Head";
+            return "HEAD";
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.UpperBody))
-            return "Upper Body";
+            return "UPPER_BODY";
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.LowerBody))
-            return "Lower Body";
+            return "LOWER_BODY";
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.Leg))
-            return "Leg";
+            return "LEG";
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.Arm))
-            return "Arm";
+            return "ARM";
             
         return string.Empty;
     }
