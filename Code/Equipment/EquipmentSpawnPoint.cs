@@ -53,29 +53,11 @@ public sealed class EquipmentSpawnPoint : Component, IGameEventHandler<BetweenRo
             return;
         }
         
-        if (!Equipment.DroppedWorldModelPrefab.IsValid())
-        {
-            Log.Warning($"Equipment spawn point {this} has an invalid equipment resource {Equipment}.");
-            return;
-        }
-
-        var gameObject = Equipment.DroppedWorldModelPrefab.Clone(new CloneConfig
-        {
-            Transform = Transform.World,
-            Parent = GameObject,
-        });
-        
-        gameObject.NetworkSpawn();
-        gameObject.WorldPosition = WorldPosition + Vector3.Up * 10f;
-        gameObject.WorldRotation = gameObject.WorldRotation.RotateAroundAxis(Vector3.Forward, 90f);
-        
-        var droppedEquipment = gameObject.GetComponent<DroppedEquipment>();
-        droppedEquipment?.Setup(Equipment);
+        var droppedEquipment = DroppedEquipment.Create(Equipment, WorldPosition + Vector3.Up * 10f, new Rotation(new(0, 90, 0), 0));
 
         if (UseSpawnForce)
         {
-            var rb = gameObject.GetComponent<Rigidbody>();
-            rb?.ApplyImpulse(Vector3.Up * SpawnForce + Vector3.Random * SpawnForce);
+            droppedEquipment.Rigidbody.ApplyImpulse(Vector3.Up * SpawnForce + Vector3.Random * SpawnForce);
         }
         
         Log.Info($"Spawned equipment {Equipment} at {this}.");

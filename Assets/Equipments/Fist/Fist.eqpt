@@ -1,5 +1,4 @@
 {
-  "Slot": "Fists",
   "MainPrefab": {
     "_type": "gameobject",
     "prefab": "equipments/fist/fist.prefab"
@@ -7,11 +6,17 @@
   "WorldModelPrefab": null,
   "ViewModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/fist/viewmodelfist.prefab"
+    "prefab": "equipments/viewmodel.prefab"
   },
-  "DroppedWorldModelPrefab": null,
+  "Slot": "Fists",
+  "WorldModel": null,
+  "ViewModel": "models/first_person/v_first_person_arms_human.vmdl",
+  "MuzzleBoneName": null,
+  "EjectionPortBoneName": null,
   "NameKey": "FIST_NAME",
   "DescriptionKey": "FIST_DESCRIPTION",
-  "__references": [],
+  "__references": [
+    "facepunch.v_first_person_arms_human#122024"
+  ],
   "__version": 0
 }

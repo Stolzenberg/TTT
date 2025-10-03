@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "__guid": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+    "__guid": "599ec1e7-1991-472a-bcb7-7f1a0ba842eb",
     "__version": 1,
     "Flags": 0,
     "Name": "mp",
@@ -20,7 +20,7 @@
         "__enabled": true,
         "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
         "Handedness": "Both",
-        "HoldType": "Pistol",
+        "HoldType": "Rifle",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -47,7 +47,7 @@
         "Ammo": {
           "_type": "component",
           "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+          "go": "599ec1e7-1991-472a-bcb7-7f1a0ba842eb",
           "component_type": "EquipmentAmmo"
         },
         "BaseDamage": 15,
@@ -72,7 +72,7 @@
         "BulletSpread": 0,
         "BurstAmount": 2,
         "BurstEndDelay": 0.2,
-        "CurrentFireMode": "Burst",
+        "CurrentFireMode": "Automatic",
         "DryFireSound": "equipments/sounds/gundryfire.sound",
         "DryShootDelay": 0.15,
         "EjectionPrefab": {
@@ -100,8 +100,8 @@
         "RequiresHasAmmo": true,
         "ShootSound": "equipments/pistol/pistolshoot.sound",
         "SupportedFireModes": [
-          "Burst",
-          "Automatic"
+          "Automatic",
+          "Burst"
         ]
       },
       {
@@ -128,7 +128,7 @@
         "AmmoComponent": {
           "_type": "component",
           "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+          "go": "599ec1e7-1991-472a-bcb7-7f1a0ba842eb",
           "component_type": "EquipmentAmmo"
         },
         "EmptyReloadSounds": {
@@ -180,9 +180,9 @@
         "__type": "Mountain.EquipmentAmmo",
         "__guid": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
         "__enabled": true,
-        "Ammo": 25,
+        "Ammo": 30,
         "HasAmmo": true,
-        "MaxAmmo": 25,
+        "MaxAmmo": 30,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,

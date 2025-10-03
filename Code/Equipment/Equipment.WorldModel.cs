@@ -14,13 +14,17 @@ public sealed partial class Equipment
         DestroyWorldModel();
 
         var parentBone = Owner.RightHandSocket;
-        var worldModelObj = Resource.WorldModelPrefab.Clone(new CloneConfig
+        var gameObject = Resource.WorldModelPrefab.Clone(new CloneConfig
             { Parent = parentBone, StartEnabled = false, Transform = global::Transform.Zero });
+        gameObject.BreakFromPrefab();
 
-        worldModelObj.Flags |= GameObjectFlags.NotSaved | GameObjectFlags.NotNetworked;
-        worldModelObj.Enabled = true;
+        gameObject.Flags |= GameObjectFlags.NotSaved | GameObjectFlags.NotNetworked;
+        gameObject.Enabled = true;
 
-        WorldModel = worldModelObj.GetComponent<EquipmentWorldModel>();
+        WorldModel = gameObject.GetComponent<EquipmentWorldModel>();
+        WorldModel.ModelRenderer.Model = Resource.WorldModel;
+        ViewModel.Muzzle = ViewModel.ModelRenderer.GetBoneObject(Resource.MuzzleBoneName);
+        ViewModel.EjectionPort = ViewModel.ModelRenderer.GetBoneObject(Resource.EjectionPortBoneName);
     }
 
     private void DestroyWorldModel()

@@ -1,23 +1,26 @@
 {
-  "Slot": "Primary",
   "MainPrefab": {
     "_type": "gameobject",
     "prefab": "equipments/mp/mp.prefab"
   },
   "WorldModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/mp/weaponmodelmp.prefab"
+    "prefab": "equipments/worldmodel.prefab"
   },
   "ViewModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/mp/viewmodelmp.prefab"
+    "prefab": "equipments/viewmodel.prefab"
   },
-  "DroppedWorldModelPrefab": {
-    "_type": "gameobject",
-    "prefab": "equipments/mp/droppedweaponmodelmp.prefab"
-  },
+  "Slot": "Primary",
+  "WorldModel": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
+  "ViewModel": "models/weapons/sbox_smg_mp5/v_mp5.vmdl",
+  "MuzzleBoneName": "muzzle",
+  "EjectionPortBoneName": null,
   "NameKey": "MP_NAME",
   "DescriptionKey": "MP_DESCRIPTION",
-  "__references": [],
+  "__references": [
+    "facepunch.v_mp5#122028",
+    "facepunch.w_mp5#33703"
+  ],
   "__version": 0
 }

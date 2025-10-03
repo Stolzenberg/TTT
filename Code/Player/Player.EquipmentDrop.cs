@@ -18,24 +18,15 @@ public sealed partial class Player
         {
             return;
         }
-        
+
+        var equipment = ActiveEquipment;
         var resource = ActiveEquipment.Resource;
+        
         ServerRemoveEquipment(ActiveEquipment);
 
-        var gameObject = resource.DroppedWorldModelPrefab.Clone(new CloneConfig
-        {
-            Transform = Scene.WorldTransform,
-            Parent = Scene,
-        });
-        
-        gameObject.NetworkSpawn();
+        var droppedEquipment = DroppedEquipment.Create(resource,
+            Camera.WorldPosition + Camera.WorldRotation.Forward * 32f, Rotation.Identity, equipment);
 
-        var droppedEquipment = gameObject.GetComponent<DroppedEquipment>();
-        droppedEquipment?.Setup(resource);
-
-        gameObject.WorldPosition = Camera.WorldPosition + Camera.WorldRotation.Forward * 100f;
-
-        var rb = gameObject.GetComponent<Rigidbody>();
-        rb?.ApplyImpulse(Camera.WorldRotation.Forward * ThrowEquipmentForce);
+        droppedEquipment.Rigidbody.ApplyImpulse(Camera.WorldRotation.Forward * ThrowEquipmentForce);
     }
 }

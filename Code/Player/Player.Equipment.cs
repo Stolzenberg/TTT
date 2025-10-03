@@ -20,11 +20,13 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
     [Sync(SyncFlags.FromHost)]
     public TimeSince TimeSinceEquipmentDeployed { get; private set; }
 
+    // Gets called form child of player (the equipment) when deployed
     void IGameEventHandler<EquipmentDeployedEvent>.OnGameEvent(EquipmentDeployedEvent eventArgs)
     {
         ActiveEquipment = eventArgs.Equipment;
     }
 
+    // Gets called form child of player (the equipment) when holstered  
     void IGameEventHandler<EquipmentHolsteredEvent>.OnGameEvent(EquipmentHolsteredEvent eventArgs)
     {
         if (eventArgs.Equipment == ActiveEquipment)

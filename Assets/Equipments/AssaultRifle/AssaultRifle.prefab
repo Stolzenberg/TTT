@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "__guid": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+    "__guid": "d65de3ef-70de-4793-8740-08325d8f41d5",
     "__version": 1,
     "Flags": 0,
     "Name": "assaultrifle",
@@ -47,7 +47,7 @@
         "Ammo": {
           "_type": "component",
           "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+          "go": "d65de3ef-70de-4793-8740-08325d8f41d5",
           "component_type": "EquipmentAmmo"
         },
         "BaseDamage": 15,
@@ -128,7 +128,7 @@
         "AmmoComponent": {
           "_type": "component",
           "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+          "go": "d65de3ef-70de-4793-8740-08325d8f41d5",
           "component_type": "EquipmentAmmo"
         },
         "EmptyReloadSounds": {

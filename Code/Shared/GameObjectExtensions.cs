@@ -2,11 +2,18 @@ namespace Mountain;
 
 public static class GameObjectExtensions
 {
-	public static void ServerTakeDamage(this GameObject go, DamageInfo damageInfo)
+    public static void ServerTakeDamage(this GameObject go, DamageInfo damageInfo)
     {
         foreach (var damageable in go.Root.GetComponents<HealthComponent>())
         {
             damageable.ServerTakeDamage(damageInfo);
         }
+    }
+
+    public static void CopyPropertiesTo(this Component source, Component destination)
+    {
+        var json = source.Serialize().AsObject();
+        json.Remove("__guid");
+        destination.DeserializeImmediately(json);
     }
 }
