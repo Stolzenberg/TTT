@@ -20,7 +20,7 @@
         "__enabled": true,
         "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
         "Handedness": "Right",
-        "HoldType": "HoldItem",
+        "HoldType": "Punch",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -76,7 +76,7 @@
         "InputActions": [
           "Attack1"
         ],
-        "MaxRange": 128,
+        "MaxRange": 64,
         "MuzzleFlashPrefab": null,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,

@@ -19,7 +19,7 @@
         "__guid": "cf138b11-d410-43e0-829e-41747957c7fc",
         "__enabled": true,
         "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
-        "Handedness": "Both",
+        "Handedness": "Right",
         "HoldType": "Punch",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,

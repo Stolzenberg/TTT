@@ -47,7 +47,7 @@
         "Ammo": {
           "_type": "component",
           "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+          "go": "4520fe0e-677b-49a5-a652-a871f1b5373a",
           "component_type": "EquipmentAmmo"
         },
         "BaseDamage": 25,
@@ -87,7 +87,7 @@
         "MaxRange": 1024000,
         "MuzzleFlashPrefab": {
           "_type": "gameobject",
-          "prefab": "items/pistolmuzzleflash.prefab"
+          "prefab": "equipments/muzzleflash.prefab"
         },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -127,7 +127,7 @@
         "AmmoComponent": {
           "_type": "component",
           "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+          "go": "4520fe0e-677b-49a5-a652-a871f1b5373a",
           "component_type": "EquipmentAmmo"
         },
         "EmptyReloadSounds": {

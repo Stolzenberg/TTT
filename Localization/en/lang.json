@@ -2,6 +2,8 @@
     "UNASSIGNED": "Unassigned",
     "INNOCENT": "Innocent",
     "MURDER": "Murder",
+    "INNOCENT_WIN_TITLE": "Innocents Win",
+    "MURDER_WIN_TITLE": "Murderers Win",
     "PREPARING": "Preparing",
     "ROUNDENDING": "Ending",
     "PLAYING": "Playing",

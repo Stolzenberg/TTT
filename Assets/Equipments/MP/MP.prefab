@@ -87,7 +87,7 @@
         "MaxRange": 1024000,
         "MuzzleFlashPrefab": {
           "_type": "gameobject",
-          "prefab": "items/pistolmuzzleflash.prefab"
+          "prefab": "equipments/muzzleflash.prefab"
         },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,

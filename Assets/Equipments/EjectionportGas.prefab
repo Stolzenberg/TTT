@@ -288,7 +288,7 @@
                     "LoopMode": "Loop",
                     "Frames": [
                       {
-                        "Texture": "materials/particles/smoke/render/smokeloop_i_1.vtex"
+                        "Texture": null
                       }
                     ]
                   }

@@ -2,9 +2,12 @@
 
 namespace Mountain;
 
-public sealed class DroppedEquipment : Component, Component.ICollisionListener
+public sealed class DroppedEquipment : Component, Component.ITriggerListener
 {
-    public static DroppedEquipment Create(EquipmentResource resource, Vector3 positon, Rotation rotation,
+    private const float PickupCooldown = 1.0f; // 1 second cooldown
+    private TimeSince timeSinceDropped;
+
+    public static DroppedEquipment Create(EquipmentResource resource, Vector3 position, Rotation rotation,
         Equipment? equipment = null)
     {
         if (!Networking.IsHost)
@@ -14,7 +17,7 @@ public sealed class DroppedEquipment : Component, Component.ICollisionListener
         
         var gameObject = new GameObject
         {
-            WorldPosition = positon,
+            WorldPosition = position,
             WorldRotation = rotation,
             Name = resource.ResourceName,
         };
@@ -26,9 +29,14 @@ public sealed class DroppedEquipment : Component, Component.ICollisionListener
 
         var droppedWeapon = gameObject.Components.Create<DroppedEquipment>();
         droppedWeapon.Resource = resource;
+        droppedWeapon.timeSinceDropped = 0; 
 
         var renderer = gameObject.Components.Create<SkinnedModelRenderer>();
         renderer.Model = worldModel;
+
+        var trigger = gameObject.Components.Create<SphereCollider>();
+        trigger.IsTrigger = true;
+        trigger.Radius = 32f;
 
         var min = bounds.Mins;
         var max = bounds.Maxs;
@@ -50,20 +58,26 @@ public sealed class DroppedEquipment : Component, Component.ICollisionListener
         }
 
         gameObject.NetworkSpawn();
+        
         return droppedWeapon;
     }
 
-    public Rigidbody Rigidbody { get; set; }
-    public EquipmentResource Resource { get; set; }
+    public Rigidbody Rigidbody { get; set; } = null!;
+    public EquipmentResource Resource { get; set; } = null!;
 
-    public void OnCollisionStart(Collision collision)
+    public void OnTriggerEnter(GameObject other)
     {
-        var player = collision.Other.GameObject.GetComponent<Player>();
+        var player = other.GetComponent<Player>();
         if (player == null)
         {
             return;
         }
 
+        if (timeSinceDropped < PickupCooldown)
+        {
+            return;
+        }
+        
         if (player.Has(Resource))
         {
             Log.Info($"Player {player.Client.DisplayName} tried to pick up {Resource.ResourceName} but already has one.");

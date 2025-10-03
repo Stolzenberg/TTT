@@ -14,8 +14,8 @@
   "Slot": "Primary",
   "WorldModel": "models/weapons/sbox_assault_m4a1/w_m4a1.vmdl",
   "ViewModel": "models/weapons/sbox_assault_m4a1/v_m4a1.vmdl",
-  "MuzzleBoneName": null,
-  "EjectionPortBoneName": null,
+  "MuzzleBoneName": "muzzle",
+  "EjectionPortBoneName": "bolt_flap",
   "NameKey": "ASSAULTRIFLE_NAME",
   "DescriptionKey": "ASSAULTRIFLE_DESCRIPTION",
   "__references": [

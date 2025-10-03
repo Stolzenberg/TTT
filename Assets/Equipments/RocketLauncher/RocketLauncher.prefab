@@ -47,7 +47,7 @@
         "Ammo": {
           "_type": "component",
           "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+          "go": "57f0e113-a304-4329-9d00-ff32aed82237",
           "component_type": "EquipmentAmmo"
         },
         "BaseDamage": 100,
@@ -68,7 +68,7 @@
           }
         ],
         "BulletCount": 1,
-        "BulletSize": 1,
+        "BulletSize": 3,
         "BulletSpread": 0,
         "BurstAmount": 2,
         "BurstEndDelay": 0.2,
@@ -127,7 +127,7 @@
         "AmmoComponent": {
           "_type": "component",
           "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+          "go": "57f0e113-a304-4329-9d00-ff32aed82237",
           "component_type": "EquipmentAmmo"
         },
         "EmptyReloadSounds": {

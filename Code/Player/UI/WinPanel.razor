@@ -68,8 +68,8 @@
     {
         return winningTeam switch
         {
-            Team.Innocent => "INNOCENT_WIN_TITLE",
-            Team.Murder => "MURDER_WIN_TITLE",
+            Team.Innocent => "#INNOCENT_WIN_TITLE",
+            Team.Murder => "#MURDER_WIN_TITLE",
             _ => throw new ArgumentOutOfRangeException()
         };
     }

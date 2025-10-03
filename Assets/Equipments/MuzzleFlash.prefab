@@ -3,7 +3,7 @@
     "__guid": "90c03c08-5d96-4296-ace1-c0fd50ed6a33",
     "__version": 1,
     "Flags": 0,
-    "Name": "pistolmuzzleflash",
+    "Name": "muzzleflash",
     "Position": "0,0,0",
     "Rotation": "0,0,0,1",
     "Scale": "1,1,1",
@@ -232,7 +232,7 @@
                     "LoopMode": "Loop",
                     "Frames": [
                       {
-                        "Texture": "materials/particles/smoke/render/smokeloop_g_1.vtex"
+                        "Texture": "particles/smoke/smoke002.vtex"
                       }
                     ]
                   }
@@ -449,7 +449,7 @@
                     "LoopMode": "Loop",
                     "Frames": [
                       {
-                        "Texture": "materials/particles/smoke/render/smokeloop_g_1.vtex"
+                        "Texture": "particles/explosion/explosion003.vtex"
                       }
                     ]
                   }
@@ -666,7 +666,7 @@
                     "LoopMode": "Loop",
                     "Frames": [
                       {
-                        "Texture": "materials/particles/light_flare/light_glow_01.vtex"
+                        "Texture": "particles/fire/flame001_side.vtex"
                       }
                     ]
                   }
@@ -939,7 +939,7 @@
                     "LoopMode": "Loop",
                     "Frames": [
                       {
-                        "Texture": "materials/particles/smoke/render/smokeloop_i_1.vtex"
+                        "Texture": "particles/smoke/smoke002.vtex"
                       }
                     ]
                   }
@@ -1214,7 +1214,7 @@
                     "LoopMode": "Loop",
                     "Frames": [
                       {
-                        "Texture": "materials/particles/particle_glow_05.vtex"
+                        "Texture": "sprites/vidya/shapes/sparkle.vtex"
                       }
                     ]
                   }
@@ -1282,6 +1282,11 @@
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "__references": [],
+  "__references": [
+    "facepunch.explosion003#45304",
+    "facepunch.fire_particle_fast#60123",
+    "facepunch.smoke002#45286",
+    "vidya.shape-sparkle#45946"
+  ],
   "__version": 2
 }

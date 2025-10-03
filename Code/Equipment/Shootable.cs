@@ -158,7 +158,10 @@ public sealed class Shootable : EquipmentInputAction
             return false;
         }
 
-        if (Equipment.Tags.Has("reloading") || Equipment.Tags.Has("no_shooting"))
+        if (Equipment.Tags.Has("reloading")
+            || Equipment.Tags.Has("no_shooting") 
+            || Equipment.Tags.Has("bolting") 
+            || Equipment.Tags.Has("has_to_bolt"))
         {
             return false;
         }
@@ -211,7 +214,7 @@ public sealed class Shootable : EquipmentInputAction
             recoil.Shoot();
         }
     }
-    
+
     protected override void OnInputUpdate()
     {
         if (Input.Pressed("FireMode"))
@@ -329,7 +332,7 @@ public sealed class Shootable : EquipmentInputAction
         impact.WorldPosition = pos + normal;
         impact.WorldRotation = Rotation.LookAt(-normal);
         impact.SetParent(target, true);
-        
+
         Sound.Play(surface.SoundCollection.Bullet, pos);
     }
 

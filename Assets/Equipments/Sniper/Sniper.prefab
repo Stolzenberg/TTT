@@ -47,7 +47,7 @@
         "Ammo": {
           "_type": "component",
           "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+          "go": "3af24d16-f81f-48c5-80d9-045c1ddf281f",
           "component_type": "EquipmentAmmo"
         },
         "BaseDamage": 80,
@@ -87,7 +87,7 @@
         "MaxRange": 1024000,
         "MuzzleFlashPrefab": {
           "_type": "gameobject",
-          "prefab": "items/pistolmuzzleflash.prefab"
+          "prefab": "equipments/muzzleflash.prefab"
         },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -107,6 +107,7 @@
         "__type": "Mountain.Boltable",
         "__guid": "310a817c-26ca-4618-b66b-2bda2a79daaa",
         "__enabled": true,
+        "BoltTime": 0.5,
         "EjectionPrefab": {
           "_type": "gameobject",
           "prefab": "equipments/9mmcasing.prefab"
@@ -126,7 +127,7 @@
         "__type": "Mountain.Aimable",
         "__guid": "3e9aa8c3-c306-4411-8dfd-0e56d48946ce",
         "__enabled": true,
-        "AimFieldOfView": 10,
+        "AimFieldOfView": 20,
         "AimSpeed": 15,
         "InputActions": [
           "Attack2"
@@ -146,7 +147,7 @@
         "AmmoComponent": {
           "_type": "component",
           "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "308d4bfb-1461-4671-97ff-8dc1e1034914",
+          "go": "3af24d16-f81f-48c5-80d9-045c1ddf281f",
           "component_type": "EquipmentAmmo"
         },
         "EmptyReloadSounds": {

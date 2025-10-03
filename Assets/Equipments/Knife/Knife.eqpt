@@ -1,23 +1,26 @@
 {
-  "Slot": "Melee",
   "MainPrefab": {
     "_type": "gameobject",
     "prefab": "equipments/knife/knife.prefab"
   },
   "WorldModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/knife/weaponmodelknife.prefab"
+    "prefab": "equipments/worldmodel.prefab"
   },
   "ViewModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/knife/viewmodelknife.prefab"
+    "prefab": "equipments/viewmodel.prefab"
   },
-  "DroppedWorldModelPrefab": {
-    "_type": "gameobject",
-    "prefab": "equipments/knife/droppedweaponmodelknife.prefab"
-  },
+  "Slot": "Melee",
+  "WorldModel": "models/weapons/sbox_melee_m9bayonet/w_m9bayonet.vmdl",
+  "ViewModel": "models/weapons/sbox_melee_m9bayonet/v_m9bayonet.vmdl",
+  "MuzzleBoneName": "camera",
+  "EjectionPortBoneName": "",
   "NameKey": "KNIFE_NAME",
   "DescriptionKey": "KNIFE_DESCRIPTION",
-  "__references": [],
+  "__references": [
+    "facepunch.v_m9bayonet#122036",
+    "facepunch.w_m9bayonet#59685"
+  ],
   "__version": 0
 }
