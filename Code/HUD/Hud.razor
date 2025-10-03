@@ -13,13 +13,24 @@
         <div class="state-text @GetTimeTextClass()">@GetFormattedState()</div>
         <div class="time-text @GetTimeTextClass()">@GetFormattedTime()</div>
     </div>
+
+    @if (Ammo.IsValid())
+    {
+        <div class="lower-right-box">
+            <div class="card">
+                <div class="text">@Ammo.Ammo / @Ammo.MaxAmmo</div>
+            </div>
+        </div>
+    }
 </root>
 
 @code
 {
+    private EquipmentAmmo? Ammo => Client.Local.Player!.ActiveEquipment?.Components?.Get<EquipmentAmmo>(FindMode.EverythingInSelfAndDescendants) ?? null;
+
     protected override int BuildHash()
     {
-        return HashCode.Combine(GameMode.Instance.StateMachine.CurrentState?.RemainingDuration, Client.Local.Team, Client.Local.PlayerColor);
+        return HashCode.Combine(GameMode.Instance.StateMachine.CurrentState?.RemainingDuration, Client.Local.Team, Client.Local.PlayerColor, Client.Local.Player!.ActiveEquipment);
     }
 
     private string GetFormattedState()

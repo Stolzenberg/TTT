@@ -1,12 +1,12 @@
 namespace Mountain;
 
-public class EquipmentAmmo : Component
+public class EquipmentAmmo : Component, IDroppedEquipmentState<EquipmentAmmo>
 {
     [Property, Sync]
     public int Ammo { get; set; } = 0;
 
     [Property]
-    public int MaxAmmo { get; init; } = 30;
+    public int MaxAmmo { get; set; } = 30;
 
     [Property]
     public bool HasAmmo => Ammo > 0;

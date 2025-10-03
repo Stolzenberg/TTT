@@ -19,13 +19,10 @@ public sealed partial class Player
             return;
         }
 
-        var equipment = ActiveEquipment;
-        var resource = ActiveEquipment.Resource;
+        var droppedEquipment = DroppedEquipment.Create(ActiveEquipment.Resource,
+            Camera.WorldPosition + Camera.WorldRotation.Forward * 32f, Rotation.Identity, ActiveEquipment);
         
         ServerRemoveEquipment(ActiveEquipment);
-
-        var droppedEquipment = DroppedEquipment.Create(resource,
-            Camera.WorldPosition + Camera.WorldRotation.Forward * 32f, Rotation.Identity, equipment);
 
         droppedEquipment.Rigidbody.ApplyImpulse(Camera.WorldRotation.Forward * ThrowEquipmentForce);
     }

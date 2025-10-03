@@ -63,9 +63,13 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
         equipment.GameObject.Destroy();
     }
 
-    [Rpc.Host]
-    public void ServerGive(EquipmentResource equipment, bool makeActive = true)
+    public Equipment ServerGive(EquipmentResource equipment, bool makeActive = true)
     {
+        if (!Networking.IsHost)
+        {
+            throw new InvalidOperationException("ServerGive can only be called on the host.");
+        }
+        
         if (Has(equipment))
         {
             throw new ArgumentException($"Equipment resource {equipment} already exists in the player's inventory.");
@@ -92,6 +96,8 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
         {
             ServerSetCurrentEquipment(component);
         }
+
+        return component;
     }
 
     private void ServerSetCurrentEquipment(Equipment equipment)

@@ -54,8 +54,6 @@ public partial class Boltable : EquipmentInputAction, IGameEventHandler<Equipmen
             return;
         }
         
-        Log.Info(timeSinceBolt);
-
         if (timeSinceBolt <= BoltTime)
         {
             return;

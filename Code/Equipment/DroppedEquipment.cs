@@ -14,7 +14,7 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
         {
             throw new InvalidOperationException("DroppedEquipment can only be created on the host.");
         }
-        
+
         var gameObject = new GameObject
         {
             WorldPosition = position,
@@ -29,7 +29,7 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
 
         var droppedWeapon = gameObject.Components.Create<DroppedEquipment>();
         droppedWeapon.Resource = resource;
-        droppedWeapon.timeSinceDropped = 0; 
+        droppedWeapon.timeSinceDropped = 0;
 
         var renderer = gameObject.Components.Create<SkinnedModelRenderer>();
         renderer.Model = worldModel;
@@ -58,7 +58,7 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
         }
 
         gameObject.NetworkSpawn();
-        
+
         return droppedWeapon;
     }
 
@@ -77,14 +77,26 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
         {
             return;
         }
-        
+
         if (player.Has(Resource))
         {
-            Log.Info($"Player {player.Client.DisplayName} tried to pick up {Resource.ResourceName} but already has one.");
+            Log.Info(
+                $"Player {player.Client.DisplayName} tried to pick up {Resource.ResourceName} but already has one.");
+
             return;
         }
 
-        player.ServerGive(Resource);
+        var equipment = player.ServerGive(Resource);
+        
+        Log.Info($"Player {player.Client.DisplayName} added {equipment}.");
+        
+        foreach (var state in equipment.GetComponents<IDroppedEquipmentState>())
+        {
+            state.CopyFromDropped(this);
+        }
+
         GameObject.Destroy();
+
+        Log.Info($"Player {player.Client.DisplayName} picked up {Resource.ResourceName}.");
     }
 }

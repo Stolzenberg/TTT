@@ -20,6 +20,16 @@
     align-items: center;
     gap: 8px;
   }
+  
+    .lower-right-box {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+    }
 
   .state-text {
     font-size: 32px;
