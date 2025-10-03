@@ -11,8 +11,8 @@
   "Slot": "Fists",
   "WorldModel": null,
   "ViewModel": "models/first_person/v_first_person_arms_human.vmdl",
-  "MuzzleBoneName": null,
-  "EjectionPortBoneName": null,
+  "MuzzleBoneName": "camera",
+  "EjectionPortBoneName": "",
   "NameKey": "FIST_NAME",
   "DescriptionKey": "FIST_DESCRIPTION",
   "__references": [
