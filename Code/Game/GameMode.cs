@@ -36,12 +36,7 @@ public sealed class GameMode : SingletonComponent<GameMode>
             component is { Active: false })
         {
             component = GetComponentInChildren<T>() as Component;
-            if (component is null)
-            {
-                throw new($"No {typeof(T).Name} found in the {nameof(GameMode)}.");
-            }
-            
-            componentCache[typeof(T)] = component;
+            componentCache[typeof(T)] = component ?? throw new($"No {typeof(T).Name} found in the {nameof(GameMode)}.");
         }
 
         if (component is not T value)

@@ -76,7 +76,7 @@
         "Children": []
       },
       {
-        "__guid": "76016ecc-8486-41c0-9f9d-af03a9f6f448",
+        "__guid": "27092ccb-647f-41d3-9280-674898e8f243",
         "__version": 1,
         "__Prefab": "prefabs/weapon_effects/ejectionport_gas.prefab",
         "__PrefabInstancePatch": {
@@ -86,7 +86,7 @@
           "MovedObjects": []
         },
         "__PrefabIdToInstanceId": {
-          "c8b93187-5a8b-4ee9-80fd-4a52b9dee157": "76016ecc-8486-41c0-9f9d-af03a9f6f448"
+          "bb473413-d835-4af3-ada7-df5ba1824788": "27092ccb-647f-41d3-9280-674898e8f243"
         }
       }
     ],

@@ -40,11 +40,11 @@
     },
     "LaunchMode": "Launcher",
     "StartupScene": "scenes/startup.scene",
-    "SystemScene": "scenes/system.scene",
     "ControlModes": {
       "Keyboard": false,
       "VR": false,
       "Gamepad": false
-    }
+    },
+    "MapStartupScene": "scenes/startup.scene"
   }
 }
