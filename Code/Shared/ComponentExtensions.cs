@@ -16,4 +16,11 @@ public static class ComponentExtensions
 
         return !component.GameObject.IsValid() ? null : component.GameObject.Root.GetComponentInChildren<Player>();
     }
+
+    public static void CopyPropertiesTo(this Component source, Component destination)
+    {
+        var json = source.Serialize().AsObject();
+        json.Remove("__guid");
+        destination.DeserializeImmediately(json);
+    }
 }

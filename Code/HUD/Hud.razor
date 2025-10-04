@@ -2,10 +2,22 @@
 @using System
 @inherits PanelComponent
 
+@if(Client.Local.Player == null)
+{
+    return;
+}
+
 <root>
+        
+    
     <div class="lower-left-box">
         <div class="card" style="background-color: @Client.Local.PlayerColor.WithAlpha(0.2f).ToString();">
             <div class="text">#@Client.Local.Team.ToString().ToUpper()</div>
+        </div>
+        
+        <div class="health-bar rounded">
+            <div class="health-fill" style="width: @(GetHealthPercentage())%;"></div>
+            <div class="health-text">#HEALTH @GetHealthDisplay()%</div>
         </div>
     </div>
 
@@ -27,10 +39,28 @@
 @code
 {
     private EquipmentAmmo? Ammo => Client.Local.Player!.ActiveEquipment?.Components?.Get<EquipmentAmmo>(FindMode.EverythingInSelfAndDescendants) ?? null;
+    
+    private HealthComponent? Health => Client.Local.Player?.Components?.Get<HealthComponent>(FindMode.EverythingInSelfAndDescendants) ?? null;
 
     protected override int BuildHash()
     {
-        return HashCode.Combine(GameMode.Instance.StateMachine.CurrentState?.RemainingDuration, Client.Local.Team, Client.Local.PlayerColor, Client.Local.Player!.ActiveEquipment);
+        return HashCode.Combine(GameMode.Instance.StateMachine.CurrentState?.RemainingDuration, Client.Local.Team, Client.Local.PlayerColor, Client.Local.Player!.ActiveEquipment, Health?.Health);
+    }
+
+    private float GetHealthPercentage()
+    {
+        if (Health == null || Health.MaxHealth <= 0)
+            return 0f;
+            
+        return Math.Max(0f, Math.Min(100f, (Health.Health / Health.MaxHealth) * 100f));
+    }
+    
+    private string GetHealthDisplay()
+    {
+        if (Health == null)
+            return "0";
+            
+        return ((int)Math.Ceiling(Health.Health)).ToString();
     }
 
     private string GetFormattedState()

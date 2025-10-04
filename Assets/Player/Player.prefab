@@ -335,7 +335,7 @@
         "__version": 1,
         "Flags": 0,
         "Name": "NameTagPanel",
-        "Position": "0,0,100",
+        "Position": "0,0,80",
         "Rotation": "0,0,0,1",
         "Scale": "1,1,1",
         "Tags": "",

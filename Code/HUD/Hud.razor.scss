@@ -1,4 +1,6 @@
-﻿Hud {
+﻿@import "../Shared/Shared.scss";
+
+Hud {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -8,6 +10,10 @@
     position: absolute;
     bottom: 16px;
     left: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 
   .lower-center-box {
@@ -21,15 +27,15 @@
     gap: 8px;
   }
   
-    .lower-right-box {
-        position: absolute;
-        bottom: 16px;
-        right: 16px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 8px;
-    }
+  .lower-right-box {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
 
   .state-text {
     font-size: 32px;
@@ -56,6 +62,35 @@
     font-weight: bold;
     font-size: 42px;
     backdrop-filter: blur(20px);
+  }
+
+  .health-bar {
+    width: 300px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .health-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #ff4444;
+    transition: width 0.25s ease-out;
+    z-index: 1;
+  }
+
+  .health-text {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 2;
+    position: relative;
   }
 }
 

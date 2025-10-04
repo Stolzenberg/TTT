@@ -9,11 +9,14 @@ public static class GameObjectExtensions
             damageable.ServerTakeDamage(damageInfo);
         }
     }
-
-    public static void CopyPropertiesTo(this Component source, Component destination)
+    
+    public static Player? GetPlayer(this GameObject gameObject)
     {
-        var json = source.Serialize().AsObject();
-        json.Remove("__guid");
-        destination.DeserializeImmediately(json);
+        if (!gameObject.IsValid())
+        {
+            return null;
+        }
+
+        return !gameObject.IsValid() ? null : gameObject.Root.GetComponentInChildren<Player>();
     }
 }
