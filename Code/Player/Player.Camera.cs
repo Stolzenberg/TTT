@@ -4,8 +4,11 @@ public sealed partial class Player
 {
     public CameraComponent Camera { get; private set; }
 
-    [Sync]
+    [Sync(SyncFlags.FromHost)]
     public Angles EyeAngles { get; set; }
+
+    [Sync(SyncFlags.FromHost)]
+    public Vector3 EyePosition { get; set; }
 
     [Property, Feature("Camera")]
     private readonly Vector3 cameraOffset = new(5, 11, 0);
@@ -21,7 +24,6 @@ public sealed partial class Player
     [Property, Feature("Camera"), Range(0, 180)]
     private readonly float pitchClamp = 85;
 
-    private Vector3 eyePosition;
     private float fieldOfViewOffset;
     private float targetFieldOfView = Preferences.FieldOfView;
 
@@ -32,7 +34,7 @@ public sealed partial class Player
 
     private void SetupCamera()
     {
-        if (!Client.IsLocalPlayer)
+        if (!IsPossessed)
         {
             return;
         }
@@ -43,6 +45,11 @@ public sealed partial class Player
 
     private void UpdateEyeAngles()
     {
+        if (Client.IsBot)
+        {
+            return;
+        }
+
         var input = Input.AnalogLook;
 
         input *= lookSensitivity;
@@ -76,7 +83,12 @@ public sealed partial class Player
 
     private void UpdateCameraPosition()
     {
-        Camera.WorldRotation = EyeAngles;
+        if (!IsPossessed)
+        {
+            return;
+        }
+
+        Camera.WorldRotation = Current!.EyeAngles;
 
         var position = head.WorldPosition;
 
@@ -90,9 +102,9 @@ public sealed partial class Player
         var worldOffset = head.WorldRotation * offset;
         position += worldOffset;
 
-        eyePosition = position;
+        EyePosition = position;
 
-        Camera.WorldPosition = eyePosition;
+        Camera.WorldPosition = Current.EyePosition;
 
         ScreenShaker.Main.Apply(Camera);
     }
@@ -104,7 +116,8 @@ public sealed partial class Player
 
         if (ActiveEquipment.IsValid())
         {
-            if (ActiveEquipment.EquipmentFlags.HasFlag(Equipment.EquipmentFlag.Aiming) && ActiveEquipment.Aimable != null)
+            if (ActiveEquipment.EquipmentFlags.HasFlag(Equipment.EquipmentFlag.Aiming) &&
+                ActiveEquipment.Aimable != null)
             {
                 fieldOfViewOffset -= ActiveEquipment.Aimable.AimFieldOfView;
                 speed = ActiveEquipment.Aimable.AimSpeed;

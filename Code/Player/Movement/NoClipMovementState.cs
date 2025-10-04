@@ -4,16 +4,20 @@ public sealed class NoClipMovementState : MovementState
 {
     [Sync]
     private bool isNoclip { get; set; }
-    
+
     [Property]
     private readonly float speed = 220f;
-    
-    
+
     protected override void OnUpdate()
     {
         base.OnUpdate();
 
-        if (!Player.Client.IsLocalPlayer)
+        if (!Player.Client.IsLocalClient)
+        {
+            return;
+        }
+
+        if (Player.Health.State == LifeState.Dead)
         {
             return;
         }
@@ -30,7 +34,7 @@ public sealed class NoClipMovementState : MovementState
         body.LinearDamping = 10f;
         body.AngularDamping = 10f;
     }
-    
+
     public override void OnStateBegin()
     {
         Player.Collider.Enabled = false;

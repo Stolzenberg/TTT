@@ -3,21 +3,23 @@
 @namespace Mountain
 
 <root>
-    @if (Client.Local.DisplayName != Name)
+    @if (NameTagOwningPlayer.Client.IsLocalClient)
     {
-        <div class="card">
-            <div class="name">@Name</div>
-        </div>
+        return;
     }
+
+    <div class="card">
+        <div class="name">@Name</div>
+    </div>
 </root>
 
 @code{
     [Property]
     public string Name { get; set; } = string.Empty;
+    private Player NameTagOwningPlayer => this.GetPlayerFromComponent() ?? throw new InvalidOperationException("NameTagPanel must be a child of a player.");
 
     protected override int BuildHash()
     {
         return HashCode.Combine(Name);
     }
-
 }

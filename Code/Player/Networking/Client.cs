@@ -32,7 +32,7 @@ public partial class Client : Component, ITeam
     /// <summary>
     ///     Is this the local player for this client
     /// </summary>
-    public bool IsLocalPlayer => !IsProxy && !IsBot && Connection == Connection.Local;
+    public bool IsLocalClient => !IsProxy && !IsBot && Connection == Connection.Local;
 
     public Color PlayerColor => Team.GetColor();
 
@@ -68,7 +68,7 @@ public partial class Client : Component, ITeam
         IsReady = true;
     }
 
-    public void Kick(string reason = "No reason")
+    public void ServerKick(string reason = "No reason")
     {
         if (Player.IsValid())
         {

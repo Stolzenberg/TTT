@@ -75,7 +75,6 @@ public sealed partial class Player
         }
 
         BodyRenderer.Set("holdtype", (int)holdType);
-
         BodyRenderer.Set("b_noclip", Mode is NoClipMovementState);
     }
 

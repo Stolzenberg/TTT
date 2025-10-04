@@ -17,7 +17,7 @@ public sealed class WaitForMapLoaded : Component, IGameEventHandler<EnterStateEv
         if (mapInstance.IsLoaded)
         {
             Log.Info("Map already loaded, proceeding to next state.");
-            GameMode.Instance.StateMachine.Transition(State, State.DefaultDuration);
+            GameMode.Instance.StateMachine.Transition(State);
         }
     }
 

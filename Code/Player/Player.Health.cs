@@ -56,13 +56,20 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
             return;
         }
 
-        snd.SpacialBlend = Client.IsLocalPlayer ? 0 : snd.SpacialBlend;
+        snd.SpacialBlend = Client.IsLocalClient ? 0 : snd.SpacialBlend;
     }
 
     public void OnKill(DamageInfo damageInfo)
     {
         CreateRagdoll(true);
+        
         NameTag.Destroy();
         DeathPanel.Show(damageInfo);
+        ClearCurrentEquipment();
+
+        if (Client.IsLocalClient)
+        {
+            CycleSpectatorTarget(1);
+        }
     }
 }

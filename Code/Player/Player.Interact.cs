@@ -38,7 +38,7 @@ public sealed partial class Player
             flag = interaction.Pressing(e);
         }
 
-        var distance = GetDistanceFromGameObject(Pressed!.GameObject, eyePosition);
+        var distance = GetDistanceFromGameObject(Pressed!.GameObject, EyePosition);
 
         if (distance > reachLength)
         {
@@ -177,7 +177,7 @@ public sealed partial class Player
 
     private Component? TryGetLookedAt()
     {
-        var eyeTrace = Scene.Trace.Ray(eyePosition, eyePosition + EyeAngles.Forward * reachLength)
+        var eyeTrace = Scene.Trace.Ray(EyePosition, EyePosition + EyeAngles.Forward * reachLength)
             .IgnoreGameObjectHierarchy(GameObject).Radius(interactionRadius).Run();
 
         if (!eyeTrace.Hit || !eyeTrace.GameObject.IsValid())

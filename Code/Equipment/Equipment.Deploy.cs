@@ -86,7 +86,7 @@ public sealed partial class Equipment
 
     private void OnDeployed()
     {
-        if (Owner.IsValid() && Owner.Client.IsLocalPlayer)
+        if (Owner.IsValid() && Owner.IsPossessed)
         {
             CreateViewModel(!HasCreatedViewModel);
         }

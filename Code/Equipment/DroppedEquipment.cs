@@ -4,7 +4,7 @@ namespace Mountain;
 
 public sealed class DroppedEquipment : Component, Component.ITriggerListener
 {
-    private const float PickupCooldown = 1.0f; // 1 second cooldown
+    private const float PickupCooldown = 0.5f;
     private TimeSince timeSinceDropped;
 
     public static DroppedEquipment Create(EquipmentResource resource, Vector3 position, Rotation rotation,

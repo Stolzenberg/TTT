@@ -6,6 +6,5 @@ public sealed partial class Player
     {
         InputMove(Input.AnalogMove);
         ToggleSprinting(Input.Down("run"));
-        ToggleAttack(Input.Down("Attack1"));
     }
 }

@@ -23,16 +23,16 @@ public sealed class RoundWinCondition : Component, IGameEventHandler<EnterStateE
 
     private void CheckCondition()
     {
-        var players = Game.ActiveScene.AllClients().Where(c => c.Team != Team.Unassigned).ToList();
+        var clients = Game.ActiveScene.AllClients().Where(c => c.Team != Team.Unassigned).ToList();
 
         // No players or all players are unassigned
-        if (players.Count == 0)
+        if (clients.Count == 0)
         {
             return;
         }
 
         // Get the set of teams that have at least one alive player
-        var teamsWithAlivePlayers = players.Where(IsPlayerAlive).Select(client => client.Team).Distinct().ToList();
+        var teamsWithAlivePlayers = clients.Where(IsPlayerAlive).Select(client => client.Team).Distinct().ToList();
 
         // If there's only one team left with alive players, that team wins the round
         if (teamsWithAlivePlayers.Count == 1)

@@ -22,7 +22,7 @@ public partial class Client : Component.INetworkListener
             return;
         }
 
-        if (!IsLocalPlayer)
+        if (!IsLocalClient)
         {
             return;
         }

@@ -65,7 +65,12 @@ public abstract class EquipmentInputAction : EquipmentComponent
             return;
         }
 
-        if (!Equipment.Owner.Client.IsLocalPlayer)
+        if (!Equipment.Owner.Client.IsLocalClient)
+        {
+            return;
+        }
+        
+        if (Equipment.Owner.Health.State == LifeState.Dead)
         {
             return;
         }

@@ -1,8 +1,4 @@
-﻿using Sandbox.Events;
-
-namespace Mountain;
-
-public record OnPlayerRagdolledEvent : IGameEvent;
+﻿namespace Mountain;
 
 public sealed partial class Player
 {
@@ -22,13 +18,15 @@ public sealed partial class Player
 
         Physics.Enabled = ragdoll;
 
-        var ev = new OnPlayerRagdolledEvent();
-        Scene.Dispatch(ev);
-
         BodyRenderer.UseAnimGraph = !ragdoll;
         Collider.IsTrigger = ragdoll;
 
         GameObject.Tags.Set("ragdoll", ragdoll);
+        
+        foreach (var renderer in BodyRenderer.GetComponentsInChildren<ModelRenderer>(true))
+        {
+            renderer.RenderType = ModelRenderer.ShadowRenderType.On;
+        }
 
         if (!ragdoll)
         {

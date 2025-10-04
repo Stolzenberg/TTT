@@ -13,6 +13,18 @@ public static class SceneExtensions
     {
         return scene.GetAllComponents<Player>();
     }
+    
+    /// <summary>
+    /// Get all living players in the game
+    /// </summary>
+    public static IEnumerable<Player> GetLivingPlayers(this Scene scene, Player? ignore = null)
+    {
+        return AllPlayers(scene)
+            .Where(p => p != ignore && 
+                        p.IsValid() && 
+                        p.Health.IsValid() && 
+                        p.Health.State == LifeState.Alive);
+    }
 
     public static Player GetPlayerById(this Scene scene, Guid id)
     {

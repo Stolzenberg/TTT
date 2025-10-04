@@ -51,7 +51,7 @@ public sealed partial class Equipment : Component
     {
         if (WorldModel.IsValid())
         {
-            WorldModel.ModelRenderer.RenderType = Owner.Client.IsLocalPlayer
+            WorldModel.ModelRenderer.RenderType = Owner.Client.IsLocalClient
                 ? ModelRenderer.ShadowRenderType.ShadowsOnly
                 : ModelRenderer.ShadowRenderType.On;
         }

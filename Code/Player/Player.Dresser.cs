@@ -50,10 +50,10 @@ public sealed partial class Player : Component.ExecuteInEditor
 
         BodyRenderer.PostAnimationUpdate();
         
-        // Render only the shadows for the third person renderer if this is not a proxy player.
+        // Render only the shadows for the third person renderer if its locally controlled.
         foreach (var renderer in BodyRenderer.GetComponentsInChildren<ModelRenderer>(true))
         {
-            renderer.RenderType = Client.IsLocalPlayer ? ModelRenderer.ShadowRenderType.ShadowsOnly : ModelRenderer.ShadowRenderType.On;
+            renderer.RenderType = IsLocallyControlled ? ModelRenderer.ShadowRenderType.ShadowsOnly : ModelRenderer.ShadowRenderType.On;
         }
     }
 

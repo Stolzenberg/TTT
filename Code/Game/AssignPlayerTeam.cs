@@ -5,13 +5,13 @@ namespace Mountain;
 
 public sealed class AssignPlayerTeam : Component, IGameEventHandler<EnterStateEvent>
 {
-    [ConVar( "murder_precentage", ConVarFlags.Replicated )]
+    [ConVar( "murder_precentage", Name = "Murder Percentage", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
     public float MurderPercentage { get; set; } = 0.2f;
 
-    [ConVar( "max_murders", ConVarFlags.Replicated )]
+    [ConVar( "max_murders", Name = "Max Amount of Murders", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
     public int MaxMurders { get; set; } = 3;
 
-    [ConVar( "min_murders", ConVarFlags.Replicated )]
+    [ConVar( "min_murders", Name = "Min Amount of Murders", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
     public int MinMurders { get; set; } = 1;
 
     void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)

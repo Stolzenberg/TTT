@@ -2,19 +2,27 @@
 @using System
 @inherits PanelComponent
 
-@if(Client.Local.Player == null)
+@if (Client.Local.Player == null)
 {
     return;
 }
 
 <root>
-        
-    
     <div class="lower-left-box">
-        <div class="card" style="background-color: @Client.Local.PlayerColor.WithAlpha(0.2f).ToString();">
-            <div class="text">#@Client.Local.Team.ToString().ToUpper()</div>
-        </div>
+        @if (Client.Local.Player.Health.State == LifeState.Alive)
+        {
+            <div class="card" style="background-color: @Client.Local.PlayerColor.WithAlpha(0.2f).ToString();">
+                <div class="text">#@Client.Local.Team.ToString().ToUpper()</div>
+            </div>
+        }
+        else if (Client.Local.Viewer != null)
+        {
+            <div class="card">
+                <div class="text">@Client.Local.Viewer.Client.DisplayName</div>
+            </div>
+        }
         
+
         <div class="health-bar rounded">
             <div class="health-fill" style="width: @(GetHealthPercentage())%;"></div>
             <div class="health-text">#HEALTH @GetHealthDisplay()%</div>
@@ -26,21 +34,21 @@
         <div class="time-text @GetTimeTextClass()">@GetFormattedTime()</div>
     </div>
 
-    @if (Ammo.IsValid())
-    {
-        <div class="lower-right-box">
+    <div class="lower-right-box">
+        @if (Ammo.IsValid())
+        {
             <div class="card">
                 <div class="text">@Ammo.Ammo / @Ammo.MaxAmmo</div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </root>
 
 @code
 {
-    private EquipmentAmmo? Ammo => Client.Local.Player!.ActiveEquipment?.Components?.Get<EquipmentAmmo>(FindMode.EverythingInSelfAndDescendants) ?? null;
-    
-    private HealthComponent? Health => Client.Local.Player?.Components?.Get<HealthComponent>(FindMode.EverythingInSelfAndDescendants) ?? null;
+    private EquipmentAmmo? Ammo => Client.Local.Viewer!.ActiveEquipment?.Components?.Get<EquipmentAmmo>(FindMode.EverythingInSelfAndDescendants) ?? null;
+
+    private HealthComponent? Health => Client.Local.Viewer?.Components?.Get<HealthComponent>(FindMode.EverythingInSelfAndDescendants) ?? null;
 
     protected override int BuildHash()
     {
@@ -51,15 +59,15 @@
     {
         if (Health == null || Health.MaxHealth <= 0)
             return 0f;
-            
-        return Math.Max(0f, Math.Min(100f, (Health.Health / Health.MaxHealth) * 100f));
+
+        return Math.Max(0f, Math.Min(100f, Health.Health / Health.MaxHealth * 100f));
     }
-    
+
     private string GetHealthDisplay()
     {
         if (Health == null)
             return "0";
-            
+
         return ((int)Math.Ceiling(Health.Health)).ToString();
     }
 

@@ -73,7 +73,7 @@ public class Aimable : EquipmentInputAction
             return;
         }
 
-        if (!Player.Client.IsLocalPlayer)
+        if (!Client.Local.IsLocalClient)
         {
             return;
         }

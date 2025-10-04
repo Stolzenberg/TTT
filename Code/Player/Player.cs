@@ -5,15 +5,14 @@ public sealed partial class Player : Component
     [Sync(SyncFlags.FromHost)]
     public Client Client { get; set; }
 
-    private static Player? local;
-
     protected override void OnStart()
     {
         ChooseBestMovementState();
         ApplyClothing();
-        SetupCamera();
     }
 
+    private TimeSince timeSinceBotRandomAngle = 0;
+    
     protected override void OnUpdate()
     {
         if (!Game.IsPlaying)
@@ -25,16 +24,45 @@ public sealed partial class Player : Component
         UpdateVelocity();
         UpdateRotation();
         UpdateEyes();
+        UpdateCameraPosition();
 
-        if (!Client.IsLocalPlayer)
+        if (Networking.IsHost && Client.IsBot)
+        {
+            if (timeSinceBotRandomAngle < 1f)
+            {
+                return;
+            }
+            
+            timeSinceBotRandomAngle = 0;
+            
+            var angle = EyeAngles;
+            angle += Vector3.Random * 100f;
+            angle.roll = 0;
+
+            if (pitchClamp > 0)
+            {
+                angle.pitch = angle.pitch.Clamp(-pitchClamp, pitchClamp);
+            }
+            
+            EyeAngles = angle;
+        }
+        
+        if (!Client.IsLocalClient)
         {
             return;
         }
 
-        UpdateInput();
-        UpdateLookAt();
+        UpdateSpectator();
+        
+        if (Health.State == LifeState.Dead)
+        {
+            return;
+        }
+
         UpdateEyeAngles();
-        UpdateCameraPosition();
+        UpdateInput();
+        
+        UpdateLookAt();
         UpdateFov();
         UpdateEquipmentChange();
         UpdateEquipmentDrop();

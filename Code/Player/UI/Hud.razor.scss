@@ -14,6 +14,7 @@ Hud {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+    min-width: 300px;
   }
 
   .lower-center-box {
@@ -25,6 +26,7 @@ Hud {
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    opacity: 0.5;
   }
   
   .lower-right-box {
@@ -55,6 +57,7 @@ Hud {
   }
 
   .card {
+    width: 100%;
     padding: 8px 16px;
     border-radius: 8px;
 
@@ -65,7 +68,7 @@ Hud {
   }
 
   .health-bar {
-    width: 300px;
+    width: 100%;
     height: 30px;
     background-color: rgba(0, 0, 0, 0.2);
     overflow: hidden;

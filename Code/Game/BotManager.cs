@@ -7,21 +7,20 @@ public sealed class BotManager : SingletonComponent<BotManager>
 {
     private static readonly string[] BotNames =
     [
-        "Gordon",
-        "Jamie",
-        "Nigella",
-        "Heston",
-        "Anthony",
-        "Ainsley",
-        "Delia",
-        "Loyd",
-        "Paul",
-        "Marco",
+        "Harry",
+        "Hermione",
+        "Ron",
+        "Draco",
+        "Luna",
+        "Neville",
+        "Ginny",
+        "Fred",
+        "George",
     ];
 
     [Sync(SyncFlags.FromHost)]
     private int CurrentBotId { get; set; }
-    public string[] Names;
+    private string[] Names;
 
     public void AddBot()
     {
@@ -61,7 +60,7 @@ public sealed class BotManager : SingletonComponent<BotManager>
         {
             if (client.IsBot)
             {
-                client.Kick();
+                client.ServerKick();
             }
         }
     }

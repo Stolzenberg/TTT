@@ -2,79 +2,80 @@
 @inherits PanelComponent
 @namespace Mountain
 
+@if (!IsVisible)
+{
+    return;
+}
 <root>
-    @if (IsVisible)
-    {
-        <div class="card">
-            <div class="death-info">
-                <div class="victim-info">
-                    <h3>@GetVictimName()</h3>
-                    <h3>#WAS_KILLED</h3>
-                    <h3></h3>
-                </div>
+    <div class="card">
+        <div class="death-info">
+            <div class="victim-info">
+                <h3>@GetVictimName()</h3>
+                <h3>#WAS_KILLED</h3>
+                <h3></h3>
+            </div>
 
-                <div class="role-info" style="color: @GetVictimTeam().GetColor().ToString();">
-                    <h3>@GetVictimTeam()</h3>
-                </div>
+            <div class="role-info" style="color: @GetVictimTeam().GetColor().ToString();">
+                <h3>@GetVictimTeam()</h3>
+            </div>
 
-                <div class="killer-info">
-                    @if (GetAttacker() != null)
+            <div class="killer-info">
+                @if (GetAttacker() != null)
+                {
+                    @if (!string.IsNullOrEmpty(GetWeaponName()))
                     {
-                        @if (!string.IsNullOrEmpty(GetWeaponName()))
-                        {
-                            <div class="weapon">
-                                <h3>#WEAPON:</h3>
-                                <h3>#@GetWeaponName()</h3>
-                            </div>
-                        }
-
-                        <div class="damage">
-                            <h3>#DAMAGE:</h3>
-                            <h3>@(DamageInfo?.Damage.ToString("F0") ?? "0")</h3>
-                        </div>
-
-                        @if (GetDistanceToAttacker() > 0)
-                        {
-                            <div class="distance">
-                                <h3>#DISTANCE: </h3>
-                                <h3>@GetDistanceToAttacker().ToString("F0")m</h3>
-                            </div>
-                        }
-
-                        @if (!string.IsNullOrEmpty(GetHitLocation()))
-                        {
-                            <div class="hitbox">
-                                <h3>#HIT:</h3>
-                                <h3>@GetHitLocation()</h3>
-                            </div>
-                        }
-                    }
-                    else
-                    {
-                        <div class="environmental">
-                            <h3>#CAUSE:</h3>
-                            <h3>@GetDeathCause()</h3>
-                        </div>
-
-                        <div class="damage">
-                            <h3>#DAMAGE:</h3>
-                            <h3>@(DamageInfo?.Damage.ToString("F0") ?? "0")</h3>
+                        <div class="weapon">
+                            <h3>#WEAPON:</h3>
+                            <h3>#@GetWeaponName()</h3>
                         </div>
                     }
-                </div>
+
+                    <div class="damage">
+                        <h3>#DAMAGE:</h3>
+                        <h3>@(DamageInfo?.Damage.ToString("F0") ?? "0")</h3>
+                    </div>
+
+                    @if (GetDistanceToAttacker() > 0)
+                    {
+                        <div class="distance">
+                            <h3>#DISTANCE: </h3>
+                            <h3>@GetDistanceToAttacker().ToString("F0")m</h3>
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrEmpty(GetHitLocation()))
+                    {
+                        <div class="hitbox">
+                            <h3>#HIT:</h3>
+                            <h3>@GetHitLocation()</h3>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="environmental">
+                        <h3>#CAUSE:</h3>
+                        <h3>@GetDeathCause()</h3>
+                    </div>
+
+                    <div class="damage">
+                        <h3>#DAMAGE:</h3>
+                        <h3>@(DamageInfo?.Damage.ToString("F0") ?? "0")</h3>
+                    </div>
+                }
             </div>
         </div>
+    </div>
     }
 </root>
 
 @code{
-
     [Property]
     public GameObject Pelvis { get; set; }
 
     public DamageInfo? DamageInfo { get; set; }
 
-    public bool IsVisible => DamageInfo != null && Client.Local.Player?.WorldPosition.Distance(Pelvis.WorldPosition) < 100;
+    public bool IsVisible => DamageInfo != null && Client.Local.Player!.Camera.WorldPosition.Distance(Pelvis.WorldPosition) < 100;
 
     protected override int BuildHash()
     {
@@ -153,7 +154,7 @@
     private string GetHitLocation()
     {
         if (DamageInfo == null) return string.Empty;
-        
+
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.Head))
             return "HEAD";
 

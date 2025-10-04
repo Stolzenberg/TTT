@@ -36,16 +36,16 @@ public sealed partial class Player
         
         OwnerTeleport(SpawnPosition, SpawnRotation);
 
-        foreach (var equipment in DefaultEquipments)
-        {
-            ServerGive(equipment);
-        }
+        ServerGiveDefaultEquipment();
         
         Scene.Dispatch(new PlayerSpawnedEvent(this));
     }
 
     public void SetSpawnPoint(TeamSpawnPoint spawnPoint)
     {
+        WorldPosition = spawnPoint.WorldPosition;
+        WorldRotation = spawnPoint.WorldRotation;
+        
         SpawnPosition = spawnPoint.WorldPosition;
         SpawnRotation = spawnPoint.WorldRotation;
 

@@ -8,7 +8,7 @@ public sealed class DisconnectPlayers : Component, IGameEventHandler<EnterStateE
     {
         foreach (var client in Game.ActiveScene.AllClients())
         {
-            client.Kick("Disconnected by the server.");
+            client.ServerKick("Disconnected by the server.");
         }
     }
 }

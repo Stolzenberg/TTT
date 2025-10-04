@@ -3,14 +3,15 @@ using Sandbox.Events;
 
 namespace Mountain;
 
-public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, IGameEventHandler<EquipmentHolsteredEvent>
+public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>,
+    IGameEventHandler<EquipmentHolsteredEvent>
 {
     public Dictionary<EquipmentSlot, Equipment> Equipments => GetComponentsInChildren<Equipment>()
         .ToDictionary(e => e.Resource.Slot);
 
     [Property, Feature("Equipment")]
     public GameObject RightHandSocket { get; init; } = null!;
-    
+
     [Property, Feature("Equipment")]
     public EquipmentResource[] DefaultEquipments { get; private set; } = [];
 
@@ -37,9 +38,10 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
 
     public bool Has(EquipmentResource resource)
     {
-        return Equipments.Any(pair => pair.Value.Enabled && pair.Value.Resource == resource || pair.Key == resource.Slot);
+        return Equipments.Any(pair =>
+            pair.Value.Enabled && pair.Value.Resource == resource || pair.Key == resource.Slot);
     }
-    
+
     [Rpc.Host]
     private void ServerRemoveEquipment(Equipment equipment)
     {
@@ -69,12 +71,12 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
         {
             throw new InvalidOperationException("ServerGive can only be called on the host.");
         }
-        
+
         if (Has(equipment))
         {
             throw new ArgumentException($"Equipment resource {equipment} already exists in the player's inventory.");
         }
-    
+
         if (!equipment.MainPrefab.IsValid())
         {
             throw new ArgumentException($"Equipment resource {equipment} does not have a valid main prefab.");
@@ -89,7 +91,7 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
         var component = gameObject.GetComponentInChildren<Equipment>(true);
         component.Owner = this;
         gameObject.NetworkSpawn(Network.Owner);
-        
+
         Log.Info($"{this} was given equipment {equipment}.");
 
         if (makeActive)
@@ -108,7 +110,7 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
         }
 
         TimeSinceEquipmentDeployed = 0;
-        
+
         ClearCurrentEquipment();
         equipment.Deploy();
     }
@@ -119,6 +121,14 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>, 
         if (ActiveEquipment.IsValid())
         {
             ActiveEquipment.Holster();
+        }
+    }
+
+    private void ServerGiveDefaultEquipment()
+    {
+        foreach (var equipment in DefaultEquipments)
+        {
+            ServerGive(equipment);
         }
     }
 }

@@ -19,7 +19,6 @@ public partial class Client
     public GameObject PlayerPrefab { get; set; }
 
     public TimeSince TimeSinceRespawnStateChanged { get; private set; }
-    public DamageInfo LastDamageInfo { get; private set; }
 
     /// <summary>
     ///     Are we ready to respawn?
@@ -49,11 +48,6 @@ public partial class Client
         }
     }
 
-    public void OnKill(DamageInfo damageInfo)
-    {
-        LastDamageInfo = damageInfo;
-    }
-
     protected void OnRespawnStateChanged(LifeState oldValue, LifeState newValue)
     {
         TimeSinceRespawnStateChanged = 0f;
@@ -61,21 +55,20 @@ public partial class Client
 
     private void ServerSpawn(TeamSpawnPoint spawnPoint)
     {
-        var prefab = PlayerPrefab.Clone(spawnPoint.WorldTransform);
-        prefab.Name = $"Player ({DisplayName})";
+        var gameObject = PlayerPrefab.Clone(spawnPoint.WorldTransform);
+        gameObject.Name = $"Player ({DisplayName})";
        
-        var player = prefab.GetComponent<Player>();
-
-        player.NameTag.Name = DisplayName;
-        player.WorldRotation = spawnPoint.WorldRotation;
-        player.Client = this;
-        
-        player.SetSpawnPoint(spawnPoint);
-        prefab.NetworkSpawn(Network.Owner);
-
+        var player = gameObject.GetComponent<Player>();
         Player = player;
 
+        Player.NameTag.Name = DisplayName;
+        Player.Client = this;
+        
+        Player.SetSpawnPoint(spawnPoint);
+        gameObject.NetworkSpawn(Network.Owner);
         RespawnState = RespawnState.Not;
         Player.ServerRespawn();
+
+        Player.Possess(player);
     }
 }
