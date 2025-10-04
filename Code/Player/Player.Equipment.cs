@@ -53,7 +53,7 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>,
 
             if (targetWeapon.Value.IsValid())
             {
-                Switch(targetWeapon);
+                Switch(targetWeapon.Value);
             }
             else
             {

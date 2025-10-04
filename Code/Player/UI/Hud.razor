@@ -11,19 +11,19 @@
     <div class="lower-left-box">
         @if (Client.Local.Player.Health.State == LifeState.Alive)
         {
-            <div class="card" style="background-color: @Client.Local.PlayerColor.WithAlpha(0.2f).ToString();">
+            <div class="card blur" style="background-color: @Client.Local.PlayerColor.WithAlpha(0.2f).ToString();">
                 <div class="text">#@Client.Local.Team.ToString().ToUpper()</div>
             </div>
         }
         else if (Client.Local.Viewer != null)
         {
-            <div class="card">
+            <div class="card blur">
                 <div class="text">@Client.Local.Viewer.Client.DisplayName</div>
             </div>
         }
         
 
-        <div class="health-bar rounded">
+        <div class="health-bar rounded blur">
             <div class="health-fill" style="width: @(GetHealthPercentage())%;"></div>
             <div class="health-text">#HEALTH @GetHealthDisplay()%</div>
         </div>
@@ -37,7 +37,7 @@
     <div class="lower-right-box">
         @if (Ammo.IsValid())
         {
-            <div class="card">
+            <div class="card blur">
                 <div class="text">@Ammo.Ammo / @Ammo.MaxAmmo</div>
             </div>
         }

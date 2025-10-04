@@ -37,9 +37,8 @@ public sealed partial class Player
 
         Current.SetupCamera();
         Current.ApplyClothing();
-        
-        // TODO: Initate the equipment deploy
-        
+        Current.ActiveEquipment?.CreateViewModel(false);
+
         Log.Info($"Possessing {player}");
     }
     
@@ -61,8 +60,8 @@ public sealed partial class Player
             return;
         }
         
-        // Deposses logic here...
         player.ApplyClothing();
+        player.ActiveEquipment?.DestroyViewModel();
 
         Log.Info($"De-possessing {player}");
     }

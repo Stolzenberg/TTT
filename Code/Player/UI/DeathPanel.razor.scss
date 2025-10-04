@@ -1,7 +1,8 @@
-﻿DeathPanel {
+﻿@import "../../Shared/Shared.scss";
+
+DeathPanel {
   .card {
     background-color: #0008;
-    backdrop-filter: blur(20px);
     overflow: hidden;
     justify-content: center;
     align-items: center;

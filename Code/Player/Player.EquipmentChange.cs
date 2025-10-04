@@ -84,7 +84,7 @@ public sealed partial class Player
             return;
         }
 
-        Switch(weaponToSwitchTo);
+        Switch(weaponToSwitchTo.Value);
     }
 
     private void SwitchToSlot(EquipmentSlot slot)
@@ -95,19 +95,19 @@ public sealed partial class Player
             return;
         }
 
-        Switch(equipment);
+        Switch(equipment.Value);
     }
 
-    private void Switch(KeyValuePair<EquipmentSlot, Equipment> equipment)
+    private void Switch(Equipment equipment)
     {
-        if (!equipment.Value.IsValid())
+        if (!equipment.IsValid())
         {
             return;
         }
 
         if (ActiveEquipment.IsValid())
         {
-            if (ActiveEquipment.Resource.Slot == equipment.Key)
+            if (ActiveEquipment.Resource.Slot == equipment.Resource.Slot)
             {
                 return;
             }
@@ -118,6 +118,6 @@ public sealed partial class Player
             }
         }
 
-        ServerSetCurrentEquipment(equipment.Value);
+        ServerSetCurrentEquipment(equipment);
     }
 }

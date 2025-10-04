@@ -26,6 +26,7 @@ public sealed partial class Player : Component
         UpdateEyes();
         UpdateCameraPosition();
 
+        // Just some random bot logic to debugg shit.
         if (Networking.IsHost && Client.IsBot)
         {
             if (timeSinceBotRandomAngle < 1f)
@@ -46,13 +47,13 @@ public sealed partial class Player : Component
             
             EyeAngles = angle;
 
-            // var equipment = Equipments.Shuffle().First();
-            // if (!equipment.Value.IsValid())
-            // {
-            //     return;
-            // }
-            //
-            // Switch(equipment);
+            var equipment = Equipments.Shuffle().First();
+            if (!equipment.Value.IsValid())
+            {
+                return;
+            }
+            
+            Switch(equipment.Value);
         }
         
         if (!Client.IsLocalClient)

@@ -153,8 +153,7 @@
           "component_type": "DeathPanel"
         },
         "DefaultEquipments": [
-          "equipments/assaultrifle/assaultrifle.eqpt",
-          "equipments/pistol/pistol.eqpt"
+          "equipments/fist/fist.eqpt"
         ],
         "defaultFovChangeSpeed": 25,
         "head": {

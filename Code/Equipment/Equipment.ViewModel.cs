@@ -15,12 +15,13 @@ public sealed partial class Equipment
             }
         }
     }
+    
     [Sync]
     private bool HasCreatedViewModel { get; set; }
 
     private EquipmentViewModel viewModel;
 
-    private void DestroyViewModel()
+    public void DestroyViewModel()
     {
         if (ViewModel.IsValid())
         {
@@ -31,7 +32,7 @@ public sealed partial class Equipment
     /// <summary>
     ///     Creates a viewmodel for the player to use.
     /// </summary>
-    private void CreateViewModel(bool playDeployEffects = true)
+    public void CreateViewModel(bool playDeployEffects = true)
     {
         DestroyViewModel();
         UpdateRenderMode();
