@@ -37,7 +37,8 @@ public sealed partial class Player
 
         Current.SetupCamera();
         Current.ApplyClothing();
-        Current.ActiveEquipment?.Deploy();
+        
+        // TODO: Initate the equipment deploy
         
         Log.Info($"Possessing {player}");
     }

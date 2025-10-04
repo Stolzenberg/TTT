@@ -47,11 +47,11 @@ public sealed partial class Equipment : Component
         Reloading = 1 << 3,
     }
 
-    public void UpdateRenderMode()
+    private void UpdateRenderMode()
     {
         if (WorldModel.IsValid())
         {
-            WorldModel.ModelRenderer.RenderType = Owner.Client.IsLocalClient
+            WorldModel.ModelRenderer.RenderType = Owner.IsPossessed
                 ? ModelRenderer.ShadowRenderType.ShadowsOnly
                 : ModelRenderer.ShadowRenderType.On;
         }

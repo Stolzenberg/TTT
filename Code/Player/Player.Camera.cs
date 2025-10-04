@@ -45,11 +45,6 @@ public sealed partial class Player
 
     private void UpdateEyeAngles()
     {
-        if (Client.IsBot)
-        {
-            return;
-        }
-
         var input = Input.AnalogLook;
 
         input *= lookSensitivity;

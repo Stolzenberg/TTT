@@ -128,7 +128,21 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>,
     {
         foreach (var equipment in DefaultEquipments)
         {
-            ServerGive(equipment);
+            ServerGive(equipment, false);
+        }
+        
+        var firstEquipment = Equipments.OrderBy(pair => pair.Key).FirstOrDefault();
+        if (firstEquipment.Value.IsValid())
+        {
+            ServerSetCurrentEquipment(firstEquipment.Value);
+        }
+    }
+    
+    private void ServerRemoveAllEquipments()
+    {
+        foreach (var equipment in Equipments.Values.ToArray())
+        {
+            ServerRemoveEquipment(equipment);
         }
     }
 }

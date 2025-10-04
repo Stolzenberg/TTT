@@ -65,8 +65,8 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
         
         NameTag.Destroy();
         DeathPanel.Show(damageInfo);
-        ClearCurrentEquipment();
-
+        ServerRemoveAllEquipments();
+        
         if (Client.IsLocalClient)
         {
             CycleSpectatorTarget(1);

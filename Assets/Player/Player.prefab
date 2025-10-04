@@ -153,7 +153,8 @@
           "component_type": "DeathPanel"
         },
         "DefaultEquipments": [
-          "equipments/fist/fist.eqpt"
+          "equipments/assaultrifle/assaultrifle.eqpt",
+          "equipments/pistol/pistol.eqpt"
         ],
         "defaultFovChangeSpeed": 25,
         "head": {
@@ -389,13 +390,7 @@
             "OnComponentEnabled": null,
             "OnComponentFixedUpdate": null,
             "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "Player": {
-              "_type": "component",
-              "component_id": "f2a614e4-f3e7-4794-93d2-438c184464f8",
-              "go": "5136a60c-9581-40b0-bf67-76a73bc7f462",
-              "component_type": "Player"
-            }
+            "OnComponentUpdate": null
           }
         ],
         "Children": []

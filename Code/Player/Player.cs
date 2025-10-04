@@ -45,6 +45,14 @@ public sealed partial class Player : Component
             }
             
             EyeAngles = angle;
+
+            // var equipment = Equipments.Shuffle().First();
+            // if (!equipment.Value.IsValid())
+            // {
+            //     return;
+            // }
+            //
+            // Switch(equipment);
         }
         
         if (!Client.IsLocalClient)
@@ -55,6 +63,11 @@ public sealed partial class Player : Component
         UpdateSpectator();
         
         if (Health.State == LifeState.Dead)
+        {
+            return;
+        }
+
+        if (Client.IsBot)
         {
             return;
         }
