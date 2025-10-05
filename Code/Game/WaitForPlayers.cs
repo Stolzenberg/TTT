@@ -13,7 +13,7 @@ public sealed class WaitForPlayers : Component, IGameEventHandler<EnterStateEven
     /// <summary>
     ///     Only start the game if there are at least this many players.
     /// </summary>
-    [Property, Sync(SyncFlags.FromHost)]
+    [Property, Sync(SyncFlags.FromHost), ConVar( "min_players", Name = "Min Amount of Players to Start", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
     public int MinPlayerCount { get; set; } = 2;
 
     [Sync(SyncFlags.FromHost)]

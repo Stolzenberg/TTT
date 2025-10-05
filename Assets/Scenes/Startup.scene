@@ -167,7 +167,7 @@
           "__guid": "db5cf404-6bae-4fa1-8149-7f83acde4918",
           "__version": 1,
           "Flags": 0,
-          "Name": "Loading",
+          "Name": "Waiting",
           "Position": "0,0,0",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
@@ -181,6 +181,54 @@
             {
               "__type": "Mountain.GameState",
               "__guid": "5e451a09-c4f4-471d-b9fa-2d8610f01376",
+              "__enabled": true,
+              "DefaultDuration": 0,
+              "DefaultNextState": {
+                "_type": "component",
+                "component_id": "786bbcc7-5a81-4442-a90a-a43b64ab8e16",
+                "go": "e3061bfe-3c7f-43ae-aba0-ab5c28805d09",
+                "component_type": "GameState"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.WaitForPlayers",
+              "__guid": "bcc7b5c5-a512-4698-b6cb-83a6d865c386",
+              "__enabled": true,
+              "MinPlayerCount": 2,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "c218a0cc-a0ba-4a06-8661-7430e149d29c",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Loading",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Mountain.GameState",
+              "__guid": "7d55c065-ad49-4adc-b45b-755573b1e955",
               "__enabled": true,
               "DefaultDuration": 120,
               "DefaultNextState": {
@@ -198,7 +246,7 @@
             },
             {
               "__type": "Mountain.WaitForMapLoaded",
-              "__guid": "32550b7e-ba7a-424b-9d58-9c889f0cc370",
+              "__guid": "853e13f9-65a8-426f-bacd-63c931d070fa",
               "__enabled": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
