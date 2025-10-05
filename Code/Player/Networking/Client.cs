@@ -3,17 +3,11 @@ using Sandbox.Events;
 
 namespace Mountain;
 
-public partial class Client : Component, ITeam
+public partial class Client : Component
 {
-    /// <summary>
-    ///     The team this player is on.
-    /// </summary>
-    [Property, Group("Setup"), Sync(SyncFlags.FromHost), Change(nameof(OnTeamPropertyChanged))]
-
-    public Team Team { get; set; }
     public static Client Local { get; private set; }
 
-    [Sync(SyncFlags.FromHost), Property]
+    [Sync(SyncFlags.FromHost)]
     public ulong SteamId { get; set; }
 
     public Connection? Connection => Network.Owner;
@@ -29,13 +23,11 @@ public partial class Client : Component, ITeam
     /// </summary>
     public string DisplayName => $"{Name}{(!IsConnected ? " (Disconnected)" : "")}";
 
-    /// <summary>
-    ///     Is this the local player for this client
-    /// </summary>
     public bool IsLocalClient => !IsProxy && !IsBot && Connection == Connection.Local;
-
-    public Color PlayerColor => Team.GetColor();
-
+    
+    /// <summary>
+    /// The main PlayerPawn of this player if one exists, will not change when the player possesses gadgets etc. (synced)
+    /// </summary>
     [Sync(SyncFlags.FromHost)]
     public Player? Player { get; private set; }
 
@@ -63,9 +55,15 @@ public partial class Client : Component, ITeam
     [Rpc.Owner]
     public void ClientInit()
     {
+        if (!IsLocalClient)
+        {
+            return;
+        }
+        
         Local = this;
-
         IsReady = true;
+        
+        SetupCamera();
     }
 
     public void ServerKick(string reason = "No reason")
@@ -81,33 +79,9 @@ public partial class Client : Component, ITeam
         Network.Owner.Kick(reason);
     }
 
-    public void AssignTeam(Team team)
-    {
-        if (!Networking.IsHost)
-        {
-            return;
-        }
-
-        Team = team;
-
-        Scene.Dispatch(new TeamAssignedEvent(this, team));
-    }
-
     protected override void OnUpdate()
     {
         HandleCleanup();
-    }
-
-    /// <summary>
-    ///     Called when <see cref="Team" /> changes across the network.
-    /// </summary>
-    private void OnTeamPropertyChanged(Team before, Team after)
-    {
-        GameObject.Root.Dispatch(new TeamChangedEvent(before, after));
-
-        if (Player.IsValid())
-        {
-            Player.GameObject.Root.Dispatch(new TeamChangedEvent(before, after));
-        }
+        UpdateSpectator();
     }
 }

@@ -12,7 +12,7 @@ public sealed partial class Player : Component
     }
 
     private TimeSince timeSinceBotRandomAngle = 0;
-    
+
     protected override void OnUpdate()
     {
         if (!Game.IsPlaying)
@@ -33,9 +33,9 @@ public sealed partial class Player : Component
             {
                 return;
             }
-            
+
             timeSinceBotRandomAngle = 0;
-            
+
             var angle = EyeAngles;
             angle += Vector3.Random * 100f;
             angle.roll = 0;
@@ -44,7 +44,7 @@ public sealed partial class Player : Component
             {
                 angle.pitch = angle.pitch.Clamp(-pitchClamp, pitchClamp);
             }
-            
+
             EyeAngles = angle;
 
             var equipment = Equipments.Shuffle().First();
@@ -52,17 +52,10 @@ public sealed partial class Player : Component
             {
                 return;
             }
-            
+
             Switch(equipment.Value);
         }
-        
-        if (!Client.IsLocalClient)
-        {
-            return;
-        }
 
-        UpdateSpectator();
-        
         if (Health.State == LifeState.Dead)
         {
             return;
@@ -73,12 +66,15 @@ public sealed partial class Player : Component
             return;
         }
 
-        UpdateEyeAngles();
-        UpdateInput();
-        
-        UpdateLookAt();
-        UpdateFov();
-        UpdateEquipmentChange();
-        UpdateEquipmentDrop();
+        if (IsLocallyControlled)
+        {
+            UpdateEyeAngles();
+            UpdateInput();
+
+            UpdateLookAt();
+            UpdateFov();
+            UpdateEquipmentChange();
+            UpdateEquipmentDrop();
+        }
     }
 }

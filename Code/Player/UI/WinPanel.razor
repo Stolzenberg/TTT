@@ -87,8 +87,7 @@
     private static bool IsPlayerAlive(Client client)
     {
         var player = client.Player;
-
-        if (player == null) return false;
+        if (!player.IsValid()) return false;
 
         return player.Components.TryGet<HealthComponent>(out var health) && health.State == LifeState.Alive;
     }

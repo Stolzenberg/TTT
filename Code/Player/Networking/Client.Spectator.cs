@@ -1,9 +1,9 @@
 namespace Mountain;
 
-public sealed partial class Player
+public sealed partial class Client
 {
     /// <summary>
-    /// The player we are currently spectating (null for free camera)
+    /// The player we are currently spectating
     /// </summary>
     [Sync]
     public Player? SpectatorTarget { get; set; }
@@ -18,12 +18,18 @@ public sealed partial class Player
     /// </summary>
     private void UpdateSpectator()
     {
-        if (!Client.IsLocalClient || Health.State != LifeState.Dead)
+        if (!IsLocalClient)
         {
-            SpectatorTarget = null;
             return;
         }
-        
+
+        if (!Player.IsValid() || Player.Health.State != LifeState.Dead)
+        {
+            SpectatorTarget = null;
+
+            return;
+        }
+
         // Handle spectator cycling input
         if (Input.Pressed("Right"))
         {
@@ -33,13 +39,13 @@ public sealed partial class Player
         {
             CycleSpectatorTarget(-1);
         }
-        
+
         if (SpectatorTarget.IsValid() && SpectatorTarget.Health.State == LifeState.Dead)
         {
             // Spectated player died, switch to next target
             CycleSpectatorTarget(1);
         }
-        
+
         UpdateSpectatorCamera();
     }
 
@@ -47,13 +53,14 @@ public sealed partial class Player
     /// Cycle to the next or previous spectator target
     /// </summary>
     /// <param name="direction">1 for next, -1 for previous</param>
-    private void CycleSpectatorTarget(int direction)
+    public void CycleSpectatorTarget(int direction)
     {
-        var livingPlayers = Scene.GetLivingPlayers(this).ToList();
-        
+        var livingPlayers = Scene.GetLivingPlayers(Player).ToList();
+
         if (livingPlayers.Count == 0)
         {
             SpectatorTarget = null;
+
             return;
         }
 
@@ -88,21 +95,21 @@ public sealed partial class Player
     /// </summary>
     private void UpdateSpectatorCamera()
     {
-        if (!Client.IsLocalClient || Health.State != LifeState.Dead || !Camera.IsValid())
+        if (!Player.IsValid() || Player.Health.State != LifeState.Dead)
         {
+            SpectatorTarget = null;
+
             return;
         }
 
         // If we have a spectator target, position camera at their head
-        if (!SpectatorTarget.IsValid() || !SpectatorTarget.head.IsValid())
+        if (!SpectatorTarget.IsValid())
         {
             return;
         }
 
-        Camera.WorldPosition = SpectatorTarget.head.WorldPosition;
+        Camera.WorldPosition = SpectatorTarget.EyePosition;
         Camera.WorldRotation = SpectatorTarget.EyeAngles;
-            
-        // Copy their field of view settings
-        Camera.FieldOfView = SpectatorTarget.Camera?.FieldOfView ?? Preferences.FieldOfView;
+        Camera.FieldOfView = SpectatorTarget.CurrentFieldOfView;
     }
 }

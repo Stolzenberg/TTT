@@ -31,12 +31,12 @@ public sealed partial class Player
         var wheel = Input.MouseWheel;
 
         // gamepad input
-        if (Input.Pressed("NextSlot"))
+        if (Input.Pressed("SlotNext"))
         {
             wheel.y = -1;
         }
 
-        if (Input.Pressed("PrevSlot"))
+        if (Input.Pressed("SlotPrev"))
         {
             wheel.y = 1;
         }

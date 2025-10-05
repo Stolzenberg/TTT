@@ -37,11 +37,21 @@ public sealed class EquipmentSpawnPoint : Component, IGameEventHandler<BetweenRo
 
     protected override void OnStart()
     {
+        if (!Networking.IsHost)
+        {
+            return;
+        }
+        
         SpawnEquipment();
     }
 
     public void OnGameEvent(BetweenRoundCleanupEvent eventArgs)
     {
+        if (!Networking.IsHost)
+        {
+            return;
+        }
+        
         SpawnEquipment();
     }
     

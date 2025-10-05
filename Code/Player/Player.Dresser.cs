@@ -50,10 +50,9 @@ public sealed partial class Player : Component.ExecuteInEditor
 
         BodyRenderer.PostAnimationUpdate();
         
-        // Render only the shadows for the third person renderer if its locally controlled.
         foreach (var renderer in BodyRenderer.GetComponentsInChildren<ModelRenderer>(true))
         {
-            renderer.RenderType = IsLocallyControlled ? ModelRenderer.ShadowRenderType.ShadowsOnly : ModelRenderer.ShadowRenderType.On;
+            renderer.RenderType = IsPossessed ? ModelRenderer.ShadowRenderType.ShadowsOnly : ModelRenderer.ShadowRenderType.On;
         }
     }
 

@@ -1,18 +1,15 @@
 ﻿@using System
-@inherits PanelComponent
+@inherits Sandbox.UI.Panel
+
 @namespace Mountain
 
-@if (!IsVisible)
-{
-    return;
-}
-<root>
-    <div class="card blur">
+<root class="modal">
+    <div class="container blur">
         <div class="death-info">
             <div class="victim-info">
                 <h3>@GetVictimName()</h3>
                 <h3>#WAS_KILLED</h3>
-                <h3></h3>
+                <h3>Death since: @DamageInfo.TimeSinceEvent</h3>
             </div>
 
             <div class="role-info" style="color: @GetVictimTeam().GetColor().ToString();">
@@ -20,7 +17,7 @@
             </div>
 
             <div class="killer-info">
-                @if (GetAttacker() != null)
+                @if (WasAttackerPlayer())
                 {
                     @if (!string.IsNullOrEmpty(GetWeaponName()))
                     {
@@ -32,7 +29,7 @@
 
                     <div class="damage">
                         <h3>#DAMAGE:</h3>
-                        <h3>@(DamageInfo?.Damage.ToString("F0") ?? "0")</h3>
+                        <h3>@(DamageInfo.Damage.ToString("F0") ?? "0")</h3>
                     </div>
 
                     @if (GetDistanceToAttacker() > 0)
@@ -60,64 +57,62 @@
 
                     <div class="damage">
                         <h3>#DAMAGE:</h3>
-                        <h3>@(DamageInfo?.Damage.ToString("F0") ?? "0")</h3>
+                        <h3>@(DamageInfo.Damage.ToString("F0") ?? "0")</h3>
                     </div>
                 }
             </div>
         </div>
     </div>
-    }
 </root>
 
-@code{
-    [Property]
-    public GameObject Pelvis { get; set; }
+@code {
+    public Action OnSubmit { get; set; }
+    public DamageInfo DamageInfo { get; set; }
 
-    public DamageInfo? DamageInfo { get; set; }
+    public static void Show(DamageInfo damageInfo, Action submitAction = null)
+    {
+        var screenPanel = Game.ActiveScene.GetAllComponents<ModalRoot>().FirstOrDefault();
 
-    public bool IsVisible => DamageInfo != null && Client.Local.Player!.Camera.WorldPosition.Distance(Pelvis.WorldPosition) < 100;
+        if (!screenPanel.IsValid())
+            return;
+
+        var modal = screenPanel.Panel.AddChild<DeathInfoModal>();
+
+        modal.DamageInfo = damageInfo;
+        modal.OnSubmit = submitAction;
+    }
 
     protected override int BuildHash()
     {
-        return HashCode.Combine(DamageInfo, IsVisible);
+        return HashCode.Combine(DamageInfo);
     }
 
-    public void Show(DamageInfo damageInfo)
+    private void OnSubmitButton()
     {
-        GameObject.Enabled = true;
-        DamageInfo = damageInfo;
-    }
-
-    protected override void OnUpdate()
-    {
-        WorldPosition = Pelvis.WorldPosition + new Vector3(0, 0, 32);
+        OnSubmit.Invoke();
+        Delete();
     }
 
     private string GetVictimName()
     {
-        if (DamageInfo == null) return "Unknown Player";
-        var victim = DamageInfo.Victim?.GetPlayerFromComponent();
+        var victim = DamageInfo.Victim.GetPlayerFromComponent();
 
-        return victim?.Client?.DisplayName ?? "Unknown Player";
+        return victim!.Client.DisplayName;
     }
 
     private Team GetVictimTeam()
     {
-        if (DamageInfo == null) return Team.Unassigned;
-        var victim = DamageInfo.Victim?.GetPlayerFromComponent();
+        var victim = DamageInfo.Victim.GetPlayerFromComponent();
 
         return victim!.Client.Team;
     }
 
-    private Player? GetAttacker()
-    {
-        return DamageInfo?.Attacker.GetPlayerFromComponent();
-    }
-
     private string GetWeaponName()
     {
-        if (DamageInfo == null || !DamageInfo.Inflictor.IsValid())
+        if (!DamageInfo.Inflictor.IsValid())
+        {
             return string.Empty;
+        }
 
         // Try to get equipment name from the inflictor
         var equipment = DamageInfo.Inflictor.GetComponent<Equipment>();
@@ -138,10 +133,8 @@
 
     private float GetDistanceToAttacker()
     {
-        if (DamageInfo == null) return 0f;
-
-        var attacker = GetAttacker();
-        var victim = DamageInfo.Victim?.GetPlayerFromComponent();
+        var attacker = DamageInfo.Attacker.GetPlayerFromComponent();
+        var victim = DamageInfo.Victim.GetPlayerFromComponent();
 
         if (attacker != null && victim != null)
         {
@@ -151,42 +144,60 @@
         return 0f;
     }
 
+    private bool WasAttackerPlayer()
+    {
+        var attacker = DamageInfo.Attacker.GetPlayerFromComponent();
+
+        return attacker != null;
+    }
+
     private string GetHitLocation()
     {
-        if (DamageInfo == null) return string.Empty;
-
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.Head))
+        {
             return "HEAD";
+        }
 
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.UpperBody))
+        {
             return "UPPER_BODY";
+        }
 
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.LowerBody))
+        {
             return "LOWER_BODY";
+        }
 
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.Leg))
+        {
             return "LEG";
+        }
 
         if (DamageInfo.Hitbox.HasFlag(HitboxTags.Arm))
+        {
             return "ARM";
+        }
 
         return string.Empty;
     }
 
     private string GetDeathCause()
     {
-        if (DamageInfo == null) return "Unknown";
-
         if (DamageInfo.WasFallDamage)
+        {
             return "Fall Damage";
+        }
 
         if (DamageInfo.WasExplosion)
+        {
             return "Explosion";
+        }
 
         if (DamageInfo.WasMelee)
+        {
             return "Melee Attack";
+        }
 
         return "Environmental";
     }
-
 }

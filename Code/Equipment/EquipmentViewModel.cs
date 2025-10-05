@@ -53,6 +53,11 @@ public sealed class EquipmentViewModel : EquipmentModel
 
     protected override void OnUpdate()
     {
+        if (!Client.Local.Player.IsValid())
+        {
+            return;
+        }
+        
         ViewModel();
         ApplyInertia();
         ApplyVelocity();
@@ -60,11 +65,6 @@ public sealed class EquipmentViewModel : EquipmentModel
 
     private void ViewModel()
     {
-        if (!Client.Local.Player.IsValid())
-        {
-            return;
-        }
-        
         ModelRenderer.Set("b_sprint", Client.Local.Player.IsSprinting);
         ModelRenderer.Set("b_grounded", Client.Local.Player.IsOnGround);
 
@@ -92,12 +92,12 @@ public sealed class EquipmentViewModel : EquipmentModel
 
     private void ApplyInertia()
     {
-        if (!Client.Local.Player.IsValid())
+        if (!Client.Local.IsValid())
         {
             return;
         }
         
-        var inRot = Client.Local.Player!.Camera.WorldRotation;
+        var inRot = Client.Local.Camera.WorldRotation;
 
         // Need to fetch data from the camera for the first frame
         if (!activateInertia)
@@ -109,8 +109,8 @@ public sealed class EquipmentViewModel : EquipmentModel
             activateInertia = true;
         }
 
-        var newPitch = Client.Local.Player.Camera.WorldRotation.Pitch();
-        var newYaw = Client.Local.Player.Camera.WorldRotation.Yaw();
+        var newPitch = Client.Local.Camera.WorldRotation.Pitch();
+        var newYaw = Client.Local.Camera.WorldRotation.Yaw();
 
         PitchInertia = Angles.NormalizeAngle(newPitch - lastPitch);
         YawInertia = Angles.NormalizeAngle(lastYaw - newYaw);
@@ -121,11 +121,6 @@ public sealed class EquipmentViewModel : EquipmentModel
 
     private void ApplyVelocity()
     {
-        if (!Client.Local.Player.IsValid())
-        {
-            return;
-        }
-        
         var moveVel = Client.Local.Player.Velocity;
         var moveLen = moveVel.Length;
 

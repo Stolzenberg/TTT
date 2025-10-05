@@ -124,7 +124,7 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>,
         }
     }
 
-    private void ServerGiveDefaultEquipment()
+    private void GiveDefaultEquipment()
     {
         foreach (var equipment in DefaultEquipments)
         {

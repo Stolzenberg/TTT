@@ -1,3 +1,5 @@
+using System;
+
 namespace Mountain;
 
 public sealed partial class Player
@@ -12,36 +14,37 @@ public sealed partial class Player
     /// <summary>
     /// Is this pawn locally controlled by us?
     /// </summary>
-    public bool IsLocallyControlled => IsPossessed && !IsProxy;
+    public bool IsLocallyControlled => IsPossessed && !IsProxy && !Client.IsBot;
 
-    private void Possess()
+    public void Possess()
     {
         Possess(this);
     }
-    
-    public static void Possess(Player player)
+
+    private static void Possess(Player player)
     {
         if (player.IsPossessed)
         {
             Log.Warning("Trying to possess a player that is already possessed by you.");
+
             return;
         }
 
-        if (Current != null)
+        if (Current.IsValid())
         {
+            Log.Info($"Current: {Current}");
             DePossess(Current);
         }
-    
-        Current = player;
-        Client.Local.Possess(player);
 
-        Current.SetupCamera();
+        Current = player;
+        Client.Possess(player);
+
         Current.ApplyClothing();
         Current.ActiveEquipment?.CreateViewModel(false);
 
         Log.Info($"Possessing {player}");
     }
-    
+
     public void DePossess()
     {
         DePossess(this);
@@ -50,16 +53,17 @@ public sealed partial class Player
     private static void DePossess(Player player)
     {
         var wasPossessed = player.IsValid() && player.IsPossessed;
-        
+
         Current = null;
-        Client.Local.Unpossess();
+        Client.Unpossess();
 
         if (!wasPossessed)
         {
             Log.Warning($"Trying to depossess a player {player} that is not possessed by you.");
+
             return;
         }
-        
+
         player.ApplyClothing();
         player.ActiveEquipment?.DestroyViewModel();
 

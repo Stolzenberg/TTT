@@ -293,11 +293,27 @@ public sealed class Shootable : EquipmentInputAction
             var damage = CalculateDamageFalloff(BaseDamage, tr.Distance);
             damage = damage.CeilToInt();
 
-            if (tr.GameObject.IsValid())
+            if (!tr.GameObject.IsValid())
             {
-                tr.GameObject.ServerTakeDamage(new(Equipment.Owner, damage, Equipment, tr.EndPosition, tr.Direction,
-                    tr.GetHitboxTags()));
+                continue;
             }
+
+            var health = tr.GameObject.Root.GetComponentInChildren<HealthComponent>();
+            if (!health.IsValid())
+            {
+                continue;
+            }
+                
+            tr.GameObject.ServerTakeDamage(new()
+            {
+                Attacker = Equipment.Owner,
+                Victim = health,
+                Inflictor = Equipment,
+                Position = tr.EndPosition,
+                Damage = damage,
+                Force = tr.Direction * damage,
+                Hitbox = tr.GetHitboxTags(),
+            });
         }
     }
 

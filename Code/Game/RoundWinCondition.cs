@@ -61,12 +61,12 @@ public sealed class RoundWinCondition : Component, IGameEventHandler<EnterStateE
 
     private static bool IsPlayerAlive(Client client)
     {
-        var pawn = client.Player;
-        if (pawn == null)
+        var player = client.Player;
+        if (!player.IsValid())
         {
             return false;
         }
 
-        return pawn.Components.TryGet<HealthComponent>(out var health) && health.State == LifeState.Alive;
+        return player.Health.State == LifeState.Alive;
     }
 }

@@ -29,7 +29,6 @@
           "_type": "gameobject",
           "prefab": "player/player.prefab"
         },
-        "SteamId": 0,
         "Team": "Unassigned"
       }
     ],

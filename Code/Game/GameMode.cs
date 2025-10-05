@@ -53,7 +53,7 @@ public sealed class GameMode : SingletonComponent<GameMode>
         {
             for (var i = 0; i < BotCount; i++)
             {
-                Get<BotManager>()?.AddBot();
+                Get<BotManager>().AddBot();
             }
         }
     }

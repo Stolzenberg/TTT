@@ -28,23 +28,28 @@ public partial class Client
 
     public bool IsRespawning => RespawnState is RespawnState.Delayed;
 
-    public void ServerRespawn(bool forceNew = true)
+    public void Respawn(bool forceNew = true)
     {
+        if (!Networking.IsHost)
+        {
+            throw new InvalidOperationException("Respawn can only be called on the host.");
+        }
+        
         var spawnPoint = GameMode.Instance.Get<TeamSpawnAssigner>().GetSpawnPoint(this);
         Log.Info(
-            $"Spawning player.. ( {GameObject.Name} ({DisplayName}, {Team}), {spawnPoint.WorldPosition}, [{string.Join(", ", spawnPoint.Tags)}] )");
+            $"Spawning ({DisplayName}, {Team}), {spawnPoint.WorldPosition}, [{string.Join(", ", spawnPoint.Tags)}]");
 
         if (forceNew || !Player.IsValid() || Player.Health.State == LifeState.Dead)
         {
             Player?.GameObject?.Destroy();
             Player = null;
 
-            ServerSpawn(spawnPoint);
+            Spawn(spawnPoint);
         }
         else
         {
             Player.SetSpawnPoint(spawnPoint);
-            Player.ServerRespawn();
+            Player.Respawn();
         }
     }
 
@@ -53,22 +58,18 @@ public partial class Client
         TimeSinceRespawnStateChanged = 0f;
     }
 
-    private void ServerSpawn(TeamSpawnPoint spawnPoint)
+    private void Spawn(TeamSpawnPoint spawnPoint)
     {
         var gameObject = PlayerPrefab.Clone(spawnPoint.WorldTransform);
         gameObject.Name = $"Player ({DisplayName})";
        
         var player = gameObject.GetComponent<Player>();
         Player = player;
-
-        Player.NameTag.Name = DisplayName;
         Player.Client = this;
         
         Player.SetSpawnPoint(spawnPoint);
         gameObject.NetworkSpawn(Network.Owner);
         RespawnState = RespawnState.Not;
-        Player.ServerRespawn();
-
-        Player.Possess(player);
+        Player.Respawn();
     }
 }

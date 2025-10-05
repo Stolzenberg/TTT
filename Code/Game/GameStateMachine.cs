@@ -11,7 +11,7 @@ public sealed class GameStateMachine : SingletonComponent<GameStateMachine>
     public GameState? CurrentState
     {
         get => currentState;
-        set
+        private set
         {
             if (currentState == value)
             {

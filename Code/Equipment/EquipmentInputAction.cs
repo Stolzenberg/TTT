@@ -65,7 +65,7 @@ public abstract class EquipmentInputAction : EquipmentComponent
             return;
         }
 
-        if (!Equipment.Owner.Client.IsLocalClient)
+        if (!Equipment.Owner.IsLocallyControlled)
         {
             return;
         }

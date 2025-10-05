@@ -57,6 +57,8 @@ public sealed partial class Player : IScenePhysicsEvents
         Mode?.PostPhysicsStep();
         CheckGround();
 
+        HandleImpactDamage();
+
         ChooseBestMovementState();
     }
 

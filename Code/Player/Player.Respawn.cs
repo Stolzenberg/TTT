@@ -1,4 +1,5 @@
-﻿using Sandbox.Events;
+﻿using System;
+using Sandbox.Events;
 
 namespace Mountain;
 
@@ -30,22 +31,28 @@ public sealed partial class Player
     [Sync(SyncFlags.FromHost)]
     public TimeSince TimeSinceLastRespawn { get; private set; }
 
-    public void ServerRespawn()
+    public void Respawn()
     {
-        TimeSinceLastRespawn = 0f;
-        
-        OwnerTeleport(SpawnPosition, SpawnRotation);
+        if (!Networking.IsHost)
+        {
+            throw new InvalidOperationException("Respawn can only be called on the host.");
+        }
 
-        ServerGiveDefaultEquipment();
-        
+        TimeSinceLastRespawn = 0f;
+
+        OwnerRespawn(SpawnPosition, SpawnRotation);
+
+        GiveDefaultEquipment();
+
         Scene.Dispatch(new PlayerSpawnedEvent(this));
+        GameObject.Root.Dispatch(new PlayerSpawnedEvent(this));
     }
 
     public void SetSpawnPoint(TeamSpawnPoint spawnPoint)
     {
         WorldPosition = spawnPoint.WorldPosition;
         WorldRotation = spawnPoint.WorldRotation;
-        
+
         SpawnPosition = spawnPoint.WorldPosition;
         SpawnRotation = spawnPoint.WorldRotation;
 
@@ -56,13 +63,18 @@ public sealed partial class Player
             SpawnPointTags.Add(tag);
         }
     }
-    
+
     [Rpc.Owner]
-    public void OwnerTeleport( Vector3 position, Rotation rotation )
+    private void OwnerRespawn(Vector3 position, Rotation rotation)
     {
-        Transform.World = new( position, rotation );
+        Transform.World = new(position, rotation);
         Transform.ClearInterpolation();
         EyeAngles = rotation.Angles();
         WishVelocity = Vector3.Zero;
+
+        if (!Client.IsBot)
+        {
+            Possess();
+        }
     }
 }

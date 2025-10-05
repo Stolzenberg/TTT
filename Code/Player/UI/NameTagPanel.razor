@@ -1,25 +1,13 @@
-﻿@using System
-@inherits PanelComponent
+﻿@inherits PanelComponent
 @namespace Mountain
 
-<root>
-    @if (NameTagOwningPlayer.Client.IsLocalClient)
-    {
-        return;
-    }
+@if (NameTagOwningPlayer.Client.IsLocalClient)
+{
+    return;
+}
 
-    <div class="card">
-        <div class="name">@Name</div>
+<root>
+    <div class="card rounded blur">
+        <div class="name">@NameTagOwningPlayer.Client.DisplayName</div>
     </div>
 </root>
-
-@code{
-    [Property]
-    public string Name { get; set; } = string.Empty;
-    private Player NameTagOwningPlayer => this.GetPlayerFromComponent() ?? throw new InvalidOperationException("NameTagPanel must be a child of a player.");
-
-    protected override int BuildHash()
-    {
-        return HashCode.Combine(Name);
-    }
-}

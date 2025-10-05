@@ -13,12 +13,24 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
 
     [Property, Feature("Health"), Group("Effects")]
     public SoundEvent BloodImpactSound { get; set; }
-    
+
     [Property, Feature("Health"), Group("Effects")]
     public GameObject BloodEffect { get; set; }
 
+    [Property, Feature("Health"), Group("Fall Damage")]
+    public float MinimumImpactVelocity { get; set; } = 500f;
+    [Property, Feature("Health"), Group("Fall Damage")]
+    public float MinimumFallSoundVelocity { get; set; } = 300f;
+    [Property, Feature("Health"), Group("Fall Damage")]
+    public float FallDamageScale { get; set; } = 0.02f;
+
+    // Velocity tracking for impact detection
+    private Vector3 previousVelocity;
+    private TimeSince lastImpactTime;
+    private const float ImpactCooldown = 0.5f; // Prevent multiple impacts in quick succession
+
     void IGameEventHandler<DamageTakenEvent>.OnGameEvent(DamageTakenEvent eventArgs)
-    { 
+    {
         var damageInfo = eventArgs.DamageInfo;
 
         var attacker = eventArgs.DamageInfo.Attacker.GetPlayerFromComponent();
@@ -63,13 +75,54 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
     {
         CreateRagdoll(true);
         
-        NameTag.Destroy();
-        DeathPanel.Show(damageInfo);
-        ServerRemoveAllEquipments();
-        
+        RequestDropAllEquipment();
+
         if (Client.IsLocalClient)
         {
-            CycleSpectatorTarget(1);
+            Client.CycleSpectatorTarget(1);
         }
+    }
+
+    private void HandleImpactDamage()
+    {
+        if (Mode is NoClipMovementState)
+        {
+            return;
+        }
+        
+        var minimumVelocity = MinimumImpactVelocity;
+        if (Velocity.Length > MinimumFallSoundVelocity)
+        {
+            // Sound
+        }
+
+        // Check if the velocity suddenly changed (impact detection)
+        var velocityChange = (previousVelocity - Velocity).Length;
+
+        var hasImpacted = velocityChange > minimumVelocity && 
+                          lastImpactTime > ImpactCooldown;
+
+        if (hasImpacted)
+        {
+            var damage = velocityChange * FallDamageScale;
+
+            Log.Info("Fall damage should now get applied: " + damage); 
+            
+            // // Apply fall damage
+            // GameObject.ServerTakeDamage(new()
+            // {
+            //     Attacker = this,
+            //     Inflictor = this,
+            //     Victim = this,
+            //     Damage = damage,
+            //     Position = WorldPosition,
+            //     Flags = DamageFlags.FallDamage
+            // });
+
+            lastImpactTime = 0;
+        }
+
+        // Update previous velocity for next frame
+        previousVelocity = Velocity;
     }
 }

@@ -49,15 +49,16 @@ public class HealthComponent : Component, IRespawnable
 
     public void ServerTakeDamage(DamageInfo damageInfo)
     {
-        damageInfo = WithThisAsVictim(damageInfo);
-
-        BroadcastDamage(damageInfo);
+        BroadcastDamage(damageInfo.Damage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
+            damageInfo.Inflictor, damageInfo.Hitbox, damageInfo.Flags);
 
         var rigidbody = GetComponent<Rigidbody>();
         if (rigidbody.IsValid())
         {
-            rigidbody.ApplyImpulseAt(damageInfo.Position, damageInfo.Force * 500);
+            rigidbody.ApplyImpulseAt(damageInfo.Position, damageInfo.Force);
         }
+        
+        Log.Info($"{GameObject.Name} took {damageInfo.Damage} damage from {damageInfo.Attacker?.GameObject.Name ?? "unknown"}");
 
         if (IsGodMode)
         {
@@ -74,7 +75,10 @@ public class HealthComponent : Component, IRespawnable
         Health = 0f;
         State = LifeState.Dead;
 
-        Kill(damageInfo);
+        BroadcastKill(damageInfo.Damage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
+            damageInfo.Inflictor, damageInfo.Hitbox, damageInfo.Flags);
+        
+        Log.Info($"{GameObject.Name} was killed by {damageInfo.Attacker?.GameObject.Name ?? "unknown"}");
     }
 
     /// <summary>
@@ -96,49 +100,21 @@ public class HealthComponent : Component, IRespawnable
     {
         Health = MaxHealth;
     }
-
-    private DamageInfo WithThisAsVictim(DamageInfo damageInfo)
-    {
-        var extraFlags = DamageFlags.None;
-        var hitbox = damageInfo.Hitbox;
-
-        if (damageInfo.WasExplosion || damageInfo.WasMelee)
-        {
-            hitbox = HitboxTags.UpperBody;
-        }
-
-        if (damageInfo.WasFallDamage)
-        {
-            hitbox = HitboxTags.Leg;
-        }
-
-        return damageInfo with
-        {
-            Victim = this,
-            Hitbox = hitbox,
-            Flags = damageInfo.Flags | extraFlags,
-        };
-    }
-
-    private void BroadcastDamage(DamageInfo damageInfo)
-    {
-        BroadcastDamage(damageInfo.Damage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
-            damageInfo.Inflictor, damageInfo.Hitbox, damageInfo.Flags);
-    }
-
-    private void Kill(DamageInfo damageInfo)
-    {
-        BroadcastKill(damageInfo.Damage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
-            damageInfo.Inflictor, damageInfo.Hitbox, damageInfo.Flags);
-    }
-
+    
     [Rpc.Broadcast]
     private void BroadcastDamage(float damage, Vector3 position, Vector3 force, Component attacker,
         Component inflictor = default, HitboxTags hitbox = default, DamageFlags flags = default)
     {
-        var damageInfo = new DamageInfo(attacker, damage, inflictor, position, force, hitbox, flags)
+        var damageInfo = new DamageInfo()
         {
-            Victim = this.GetPlayerFromComponent(),
+            Attacker = attacker,
+            Victim = this,
+            Inflictor = inflictor,
+            Damage = damage,
+            Position = position,
+            Force = force,
+            Hitbox = hitbox,
+            Flags = flags,
         };
 
         GameObject.Root.Dispatch(new DamageTakenEvent(damageInfo));
@@ -157,9 +133,16 @@ public class HealthComponent : Component, IRespawnable
     private void BroadcastKill(float damage, Vector3 position, Vector3 force, Component attacker,
         Component inflictor = default, HitboxTags hitbox = default, DamageFlags flags = default)
     {
-        var damageInfo = new DamageInfo(attacker, damage, inflictor, position, force, hitbox, flags)
+        var damageInfo = new DamageInfo()
         {
+            Attacker = attacker,
             Victim = this,
+            Inflictor = inflictor,
+            Damage = damage,
+            Position = position,
+            Force = force,
+            Hitbox = hitbox,
+            Flags = flags,
         };
 
         Scene.Dispatch(new KillEvent(damageInfo));

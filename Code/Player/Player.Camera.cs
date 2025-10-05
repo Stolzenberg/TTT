@@ -2,13 +2,14 @@ namespace Mountain;
 
 public sealed partial class Player
 {
-    public CameraComponent Camera { get; private set; }
-
-    [Sync(SyncFlags.FromHost)]
+    [Sync]
     public Angles EyeAngles { get; set; }
 
-    [Sync(SyncFlags.FromHost)]
+    [Sync]
     public Vector3 EyePosition { get; set; }
+
+    [Sync]
+    public float CurrentFieldOfView { get; set; }
 
     [Property, Feature("Camera")]
     private readonly Vector3 cameraOffset = new(5, 11, 0);
@@ -30,17 +31,6 @@ public sealed partial class Player
     public void AddFieldOfViewOffset(float degrees)
     {
         fieldOfViewOffset -= degrees;
-    }
-
-    private void SetupCamera()
-    {
-        if (!IsPossessed)
-        {
-            return;
-        }
-
-        Camera = Scene.Camera;
-        Camera.FieldOfView = Preferences.FieldOfView;
     }
 
     private void UpdateEyeAngles()
@@ -83,10 +73,9 @@ public sealed partial class Player
             return;
         }
 
-        Camera.WorldRotation = Current!.EyeAngles;
+        Client.Local.Camera.WorldRotation = EyeAngles;
 
         var position = head.WorldPosition;
-
         var offset = new Vector3
         {
             x = cameraOffset.x,
@@ -99,9 +88,9 @@ public sealed partial class Player
 
         EyePosition = position;
 
-        Camera.WorldPosition = Current.EyePosition;
-
-        ScreenShaker.Main.Apply(Camera);
+        Client.Local.Camera.WorldPosition = EyePosition;
+        
+        ScreenShaker.Main.Apply(Client.Local.Camera);
     }
 
     private void UpdateFov()
@@ -120,6 +109,7 @@ public sealed partial class Player
         }
 
         targetFieldOfView = targetFieldOfView.LerpTo(Preferences.FieldOfView + fieldOfViewOffset, Time.Delta * speed);
-        Camera.FieldOfView = targetFieldOfView;
+        Client.Camera.FieldOfView = targetFieldOfView;
+        CurrentFieldOfView = targetFieldOfView;
     }
 }

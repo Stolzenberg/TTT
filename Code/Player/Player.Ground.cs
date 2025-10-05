@@ -32,9 +32,8 @@ public sealed partial class Player
     public TimeSince TimeSinceGrounded { get; private set; } = 0;
     public TimeSince TimeSinceUngrounded { get; private set; } = 0;
 
-    private Transform groundTransform;
     private TimeUntil timeUntilAllowedGround = 0;
-    
+
     public void ClearGround()
     {
         GroundObject = null;
@@ -44,7 +43,7 @@ public sealed partial class Player
     {
         if (Mode == null)
         {
-          return;  
+            return;
         }
         
         var groundVel = GroundVelocity.z;
@@ -99,7 +98,7 @@ public sealed partial class Player
     {
         timeUntilAllowedGround = MathF.Max(timeUntilAllowedGround, seconds);
         UpdateGroundFromTraceResult(default);
-    }	
+    }
 
     private void UpdateGroundVelocity()
     {
@@ -136,7 +135,6 @@ public sealed partial class Player
         if (GroundObject is not null)
         {
             TimeSinceGrounded = 0;
-            groundTransform = GroundObject.WorldTransform;
             GroundFriction = tr.Surface.Friction;
 
             if (tr.Component is Collider collider)
@@ -152,7 +150,6 @@ public sealed partial class Player
         else
         {
             TimeSinceUngrounded = 0;
-            groundTransform = default;
         }
     }
 }

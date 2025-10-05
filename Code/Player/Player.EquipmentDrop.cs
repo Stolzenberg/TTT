@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Mountain;
+﻿namespace Mountain;
 
 public sealed partial class Player
 {
@@ -14,16 +12,45 @@ public sealed partial class Player
             return;
         }
 
-        if (ActiveEquipment == null)
+        RequestDropActiveEquipment();
+    }
+    
+    [Rpc.Host]
+    private void RequestDropActiveEquipment()
+    {
+        if (!ActiveEquipment.IsValid())
         {
             return;
         }
 
-        var droppedEquipment = DroppedEquipment.Create(ActiveEquipment.Resource,
-            Camera.WorldPosition + Camera.WorldRotation.Forward * 32f, Rotation.Identity, ActiveEquipment);
+        if (ActiveEquipment.Resource.Slot == EquipmentSlot.Fists)
+        {
+            return;
+        }
         
-        ServerRemoveEquipment(ActiveEquipment);
+        DropEquipment(ActiveEquipment);
+    }
+    
+    [Rpc.Host]
+    private void RequestDropAllEquipment()
+    {
+        foreach (var equipment in Equipments.Values.Where(e => e.Resource.Slot != EquipmentSlot.Fists))
+        {
+            DropEquipment(equipment);
+        }
+    }
 
-        droppedEquipment.Rigidbody.ApplyImpulse(Camera.WorldRotation.Forward * ThrowEquipmentForce);
+    private void DropEquipment(Equipment equipment)
+    {
+        var worldPosition = equipment.WorldPosition;
+        var worldRotation = equipment.WorldRotation;
+        var direction = worldPosition + worldRotation.Forward;
+        
+        var droppedEquipment = DroppedEquipment.Create(equipment.Resource,
+            direction * 32f, Rotation.Identity, equipment);
+        
+        ServerRemoveEquipment(equipment);
+
+        droppedEquipment.Rigidbody.ApplyImpulse(direction * ThrowEquipmentForce);
     }
 }

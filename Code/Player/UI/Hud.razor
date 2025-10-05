@@ -1,27 +1,25 @@
 ﻿@namespace Mountain
-@using System
 @inherits PanelComponent
 
-@if (Client.Local.Player == null)
+@if (!Client.Viewer.IsValid())
 {
     return;
 }
 
 <root>
     <div class="lower-left-box">
-        @if (Client.Local.Player.Health.State == LifeState.Alive)
+        @if (Client.Viewer.IsLocalClient)
         {
-            <div class="card blur" style="background-color: @Client.Local.PlayerColor.WithAlpha(0.2f).ToString();">
+            <div class="card blur" style="background-color: @Client.Local.TeamColor.WithAlpha(0.2f).ToString();">
                 <div class="text">#@Client.Local.Team.ToString().ToUpper()</div>
             </div>
         }
-        else if (Client.Local.Viewer != null)
+        else
         {
             <div class="card blur">
-                <div class="text">@Client.Local.Viewer.Client.DisplayName</div>
+                <div class="text">@Client.Viewer.DisplayName</div>
             </div>
         }
-        
 
         <div class="health-bar rounded blur">
             <div class="health-fill" style="width: @(GetHealthPercentage())%;"></div>
@@ -43,73 +41,3 @@
         }
     </div>
 </root>
-
-@code
-{
-    private EquipmentAmmo? Ammo => Client.Local.Viewer!.ActiveEquipment?.Components?.Get<EquipmentAmmo>(FindMode.EverythingInSelfAndDescendants) ?? null;
-
-    private HealthComponent? Health => Client.Local.Viewer?.Components?.Get<HealthComponent>(FindMode.EverythingInSelfAndDescendants) ?? null;
-
-    protected override int BuildHash()
-    {
-        return HashCode.Combine(GameMode.Instance.StateMachine.CurrentState?.RemainingDuration, Client.Local.Team, Client.Local.PlayerColor, Client.Local.Player!.ActiveEquipment, Health?.Health);
-    }
-
-    private float GetHealthPercentage()
-    {
-        if (Health == null || Health.MaxHealth <= 0)
-            return 0f;
-
-        return Math.Max(0f, Math.Min(100f, Health.Health / Health.MaxHealth * 100f));
-    }
-
-    private string GetHealthDisplay()
-    {
-        if (Health == null)
-            return "0";
-
-        return ((int)Math.Ceiling(Health.Health)).ToString();
-    }
-
-    private string GetFormattedState()
-    {
-        var state = GameMode.Instance.StateMachine.CurrentState;
-
-        return "#" + state?.GameObject.Name.ToUpper().Replace("_", " ");
-    }
-
-    private string GetFormattedTime()
-    {
-        var remainingDuration = GameMode.Instance.StateMachine.CurrentState?.RemainingDuration;
-
-        if (remainingDuration == null)
-            return "00:00";
-
-        var totalSeconds = (int)Math.Ceiling(remainingDuration.Value);
-
-        if (totalSeconds < 60)
-        {
-            return totalSeconds.ToString("00");
-        }
-
-        var minutes = totalSeconds / 60;
-        var seconds = totalSeconds % 60;
-
-        return $"{minutes:00}:{seconds:00}";
-    }
-
-    private string GetTimeTextClass()
-    {
-        if (GameMode.Instance.StateMachine.CurrentState != null && !GameMode.Instance.StateMachine.CurrentState.GameObject.Name.Contains("Playing"))
-            return "";
-
-        var remainingDuration = GameMode.Instance.StateMachine.CurrentState?.RemainingDuration;
-
-        if (remainingDuration == null)
-            return "";
-
-        var totalSeconds = (int)Math.Ceiling(remainingDuration.Value);
-
-        return totalSeconds < 20 ? "time-urgent" : "";
-    }
-}

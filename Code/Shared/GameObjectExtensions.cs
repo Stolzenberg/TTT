@@ -2,6 +2,7 @@ namespace Mountain;
 
 public static class GameObjectExtensions
 {
+    [Rpc.Host]
     public static void ServerTakeDamage(this GameObject go, DamageInfo damageInfo)
     {
         foreach (var damageable in go.Root.GetComponents<HealthComponent>())

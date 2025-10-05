@@ -1,15 +1,6 @@
-﻿@import "../../Shared/Shared.scss";
+﻿@import "../../../Shared/Shared.scss";
 
-DeathPanel {
-  .card {
-    background-color: #0008;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border-radius: 8px;
-  }
-
+DeathInfoModal {
   .death-info {
     display: flex;
     flex-direction: column;

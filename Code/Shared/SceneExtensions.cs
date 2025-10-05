@@ -50,7 +50,8 @@ public static class SceneExtensions
 
     public static TeamSpawnPoint GetRandomSpawnPoint(this Scene scene, Team team, params string[] tags)
     {
-        return Random.Shared.FromArray(GetSpawnPoints(scene, team, tags).ToArray());
+        var array = GetSpawnPoints(scene, team, tags).ToArray();
+        return Random.Shared.FromArray(array) ?? throw new InvalidOperationException($"No spawn points found for team {team} with tags {string.Join(", ", tags)}");
     }
 
     /// <summary>

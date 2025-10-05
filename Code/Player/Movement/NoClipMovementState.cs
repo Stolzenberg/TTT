@@ -47,7 +47,7 @@ public sealed class NoClipMovementState : MovementState
 
     public override Vector3 UpdateState(Rotation eyes, Vector3 input)
     {
-        var rot = eyes.Angles() with { pitch = Player.Camera.WorldRotation.Pitch() };
+        var rot = eyes.Angles() with { pitch = Client.Local.Camera.WorldRotation.Pitch() };
 
         if (Input.Down("Jump"))
         {

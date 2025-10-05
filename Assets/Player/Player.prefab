@@ -146,16 +146,11 @@
           "go": "5136a60c-9581-40b0-bf67-76a73bc7f462",
           "component_type": "CapsuleCollider"
         },
-        "DeathPanel": {
-          "_type": "component",
-          "component_id": "66036f5e-2c00-46af-a1f1-4e5982a0f4d8",
-          "go": "c4fc0d60-9c12-4394-a61a-8b6a925b5777",
-          "component_type": "DeathPanel"
-        },
         "DefaultEquipments": [
           "equipments/fist/fist.eqpt"
         ],
         "defaultFovChangeSpeed": 25,
+        "FallDamageScale": 0.02,
         "head": {
           "_type": "gameobject",
           "go": "1b27f319-b9b7-4e56-b6c5-cd65424bc4e2"
@@ -169,12 +164,8 @@
         "interactionRadius": 2,
         "jumpForce": 300,
         "lookSensitivity": 1,
-        "NameTag": {
-          "_type": "component",
-          "component_id": "704ce1c0-689a-46f4-96ec-e9eb4e7742f3",
-          "go": "ff2d82c6-3447-4187-9cb0-1b74f610b4b7",
-          "component_type": "NameTagPanel"
-        },
+        "MinimumFallSoundVelocity": 300,
+        "MinimumImpactVelocity": 900,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -246,101 +237,20 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null
+      },
+      {
+        "__type": "Mountain.OpenDeathDialog",
+        "__guid": "15f84ff4-fcdf-4559-9d4a-df840e91cd5a",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       }
     ],
     "Children": [
-      {
-        "__guid": "1d818e76-9a40-4071-a486-04d99c59adac",
-        "__version": 1,
-        "Flags": 0,
-        "Name": "HUDPanel",
-        "Position": "0,0,0",
-        "Rotation": "0,0,0,1",
-        "Scale": "1,1,1",
-        "Tags": "",
-        "Enabled": true,
-        "NetworkMode": 2,
-        "NetworkInterpolation": true,
-        "NetworkOrphaned": 0,
-        "OwnerTransfer": 1,
-        "Components": [
-          {
-            "__type": "Sandbox.ScreenPanel",
-            "__guid": "289a5f54-f9c2-4942-8ef8-31f144bdee99",
-            "__enabled": true,
-            "AutoScreenScale": true,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "Opacity": 1,
-            "Scale": 1,
-            "ScaleStrategy": "ConsistentHeight",
-            "TargetCamera": null,
-            "ZIndex": 100
-          },
-          {
-            "__type": "Mountain.Hud",
-            "__guid": "3ef82428-6413-4178-a493-ad22156e5c6d",
-            "__enabled": true,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null
-          }
-        ],
-        "Children": []
-      },
-      {
-        "__guid": "fafd3f1b-9ccd-4661-ae21-d1787d5219e6",
-        "__version": 1,
-        "Flags": 0,
-        "Name": "DialogRootPanel",
-        "Position": "0,0,0",
-        "Rotation": "0,0,0,1",
-        "Scale": "1,1,1",
-        "Tags": "",
-        "Enabled": true,
-        "NetworkMode": 2,
-        "NetworkInterpolation": true,
-        "NetworkOrphaned": 0,
-        "OwnerTransfer": 1,
-        "Components": [
-          {
-            "__type": "Sandbox.ScreenPanel",
-            "__guid": "af9a8591-8648-442f-a268-dc08e684f014",
-            "__enabled": true,
-            "AutoScreenScale": true,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "Opacity": 1,
-            "Scale": 1,
-            "ScaleStrategy": "ConsistentHeight",
-            "TargetCamera": null,
-            "ZIndex": 10000
-          },
-          {
-            "__type": "Mountain.DialogRoot",
-            "__guid": "7833eef1-9312-4c45-908f-db038abfa5e6",
-            "__enabled": true,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null
-          }
-        ],
-        "Children": []
-      },
       {
         "__guid": "ff2d82c6-3447-4187-9cb0-1b74f610b4b7",
         "__version": 1,
@@ -390,62 +300,6 @@
             "OnComponentFixedUpdate": null,
             "OnComponentStart": null,
             "OnComponentUpdate": null
-          }
-        ],
-        "Children": []
-      },
-      {
-        "__guid": "c4fc0d60-9c12-4394-a61a-8b6a925b5777",
-        "__version": 1,
-        "Flags": 0,
-        "Name": "DeathPanel",
-        "Position": "0,0,32",
-        "Rotation": "0,0,0,1",
-        "Scale": "1,1,1",
-        "Tags": "",
-        "Enabled": false,
-        "NetworkMode": 0,
-        "NetworkInterpolation": true,
-        "NetworkOrphaned": 0,
-        "OwnerTransfer": 1,
-        "Components": [
-          {
-            "__type": "Sandbox.WorldPanel",
-            "__guid": "db7f83f8-8b22-4c6c-9b6d-fcf0e8e73d9e",
-            "__enabled": true,
-            "HorizontalAlign": "Center",
-            "InteractionRange": 1000,
-            "LookAtCamera": true,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "PanelSize": "512,512",
-            "RenderOptions": {
-              "GameLayer": true,
-              "OverlayLayer": false,
-              "BloomLayer": false,
-              "AfterUILayer": false
-            },
-            "RenderScale": 1,
-            "VerticalAlign": "Center"
-          },
-          {
-            "__type": "Mountain.DeathPanel",
-            "__guid": "66036f5e-2c00-46af-a1f1-4e5982a0f4d8",
-            "__enabled": true,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "Pelvis": {
-              "_type": "gameobject",
-              "go": "a2a6dd5a-6d94-4a9f-8a10-4af2aa90c10d"
-            }
           }
         ],
         "Children": []

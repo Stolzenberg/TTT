@@ -4,18 +4,33 @@ namespace Mountain;
 
 public partial class Client
 {
-    [Sync(SyncFlags.FromHost)]
-    public Player? Viewer { get; private set; }
-    
-    public void Possess(Player player)
-    {
-        if (Viewer == player)
-            return;
+    /// <summary>
+    /// The client we're currently in the view of (clientside).
+    /// Usually the local client, apart from when spectating etc.
+    /// </summary>
+    public static Client? Viewer { get; private set; }
 
-        Viewer = player;
-    }
+    /// <summary>
+    /// Are we in the view of this client (clientside)
+    /// </summary>
+    public bool IsViewer => Viewer == this;
     
-    public void Unpossess()
+    public static void Possess(Player player)
+    {
+        if (!player.IsValid())
+        {
+            throw new InvalidOperationException("Cannot possess a null or invalid player.");
+        }
+
+        if (!Local.IsValid())
+        {
+            throw new InvalidOperationException("Cannot possess a player when there is no local client.");
+        }
+
+        Viewer = player.Client;
+    }
+
+    public static void Unpossess()
     {
         Viewer = null;
     }
