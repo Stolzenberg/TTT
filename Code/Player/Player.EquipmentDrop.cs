@@ -1,9 +1,11 @@
-﻿namespace Mountain;
+﻿using System.Numerics;
+
+namespace Mountain;
 
 public sealed partial class Player
 {
     [Property, Feature("Equipment")]
-    public float ThrowEquipmentForce { get; set; } = 2500f;
+    public float ThrowEquipmentForce { get; set; } = 25f;
 
     private void UpdateEquipmentDrop()
     {
@@ -12,11 +14,11 @@ public sealed partial class Player
             return;
         }
 
-        RequestDropActiveEquipment();
+        RequestDropActiveEquipment(Client.Local.Camera.WorldPosition, Client.Local.Camera.WorldRotation);
     }
     
     [Rpc.Host]
-    private void RequestDropActiveEquipment()
+    private void RequestDropActiveEquipment(Vector3 position, Rotation rotation)
     {
         if (!ActiveEquipment.IsValid())
         {
@@ -28,7 +30,7 @@ public sealed partial class Player
             return;
         }
         
-        DropEquipment(ActiveEquipment);
+        DropEquipment(ActiveEquipment, position, rotation);
     }
     
     [Rpc.Host]
@@ -36,21 +38,17 @@ public sealed partial class Player
     {
         foreach (var equipment in Equipments.Values.Where(e => e.Resource.Slot != EquipmentSlot.Fists))
         {
-            DropEquipment(equipment);
+            DropEquipment(equipment, WorldPosition, WorldRotation);
         }
     }
 
-    private void DropEquipment(Equipment equipment)
+    private void DropEquipment(Equipment equipment, Vector3 position, Rotation rotation)
     {
-        var worldPosition = equipment.WorldPosition;
-        var worldRotation = equipment.WorldRotation;
-        var direction = worldPosition + worldRotation.Forward;
-        
         var droppedEquipment = DroppedEquipment.Create(equipment.Resource,
-            direction * 32f, Rotation.Identity, equipment);
+            position, Rotation.Identity, equipment);
         
         ServerRemoveEquipment(equipment);
 
-        droppedEquipment.Rigidbody.ApplyImpulse(direction * ThrowEquipmentForce);
+        droppedEquipment.Rigidbody.ApplyImpulse(position + rotation.Forward * ThrowEquipmentForce);
     }
 }

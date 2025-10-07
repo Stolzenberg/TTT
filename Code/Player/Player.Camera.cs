@@ -95,6 +95,11 @@ public sealed partial class Player
 
     private void UpdateFov()
     {
+        if (!IsPossessed)
+        {
+            return;
+        }
+        
         fieldOfViewOffset = 0;
         var speed = defaultFovChangeSpeed;
 
@@ -109,7 +114,7 @@ public sealed partial class Player
         }
 
         targetFieldOfView = targetFieldOfView.LerpTo(Preferences.FieldOfView + fieldOfViewOffset, Time.Delta * speed);
-        Client.Camera.FieldOfView = targetFieldOfView;
+        Client.Local.Camera.FieldOfView = targetFieldOfView;
         CurrentFieldOfView = targetFieldOfView;
     }
 }

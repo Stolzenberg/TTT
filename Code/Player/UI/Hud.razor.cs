@@ -5,11 +5,11 @@ namespace Mountain;
 public partial class Hud : PanelComponent
 {
     private EquipmentAmmo? Ammo =>
-        Client.Viewer.Player?.ActiveEquipment?.Components?.Get<EquipmentAmmo>(FindMode
+        Client.Viewer?.Player?.ActiveEquipment?.Components?.Get<EquipmentAmmo>(FindMode
             .EverythingInSelfAndDescendants) ?? null;
 
     private HealthComponent? Health =>
-        Client.Viewer.Player?.Components?.Get<HealthComponent>(FindMode.EverythingInSelfAndDescendants) ?? null;
+        Client.Viewer?.Player?.Components?.Get<HealthComponent>(FindMode.EverythingInSelfAndDescendants) ?? null;
 
     protected override int BuildHash()
     {

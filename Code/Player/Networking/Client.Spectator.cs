@@ -45,8 +45,6 @@ public sealed partial class Client
             // Spectated player died, switch to next target
             CycleSpectatorTarget(1);
         }
-
-        UpdateSpectatorCamera();
     }
 
     /// <summary>
@@ -88,28 +86,5 @@ public sealed partial class Client
 
         SpectatorTarget = livingPlayers[spectatorTargetIndex];
         SpectatorTarget.Possess();
-    }
-
-    /// <summary>
-    /// Update the spectator camera to follow the target player
-    /// </summary>
-    private void UpdateSpectatorCamera()
-    {
-        if (!Player.IsValid() || Player.Health.State != LifeState.Dead)
-        {
-            SpectatorTarget = null;
-
-            return;
-        }
-
-        // If we have a spectator target, position camera at their head
-        if (!SpectatorTarget.IsValid())
-        {
-            return;
-        }
-
-        Camera.WorldPosition = SpectatorTarget.EyePosition;
-        Camera.WorldRotation = SpectatorTarget.EyeAngles;
-        Camera.FieldOfView = SpectatorTarget.CurrentFieldOfView;
     }
 }

@@ -188,7 +188,7 @@
         "rotationSpeed": 1.5,
         "rotationSpeedModifier": 10,
         "Source": "OwnerConnection",
-        "ThrowEquipmentForce": 2500,
+        "ThrowEquipmentForce": 4000,
         "velocityModifier": 0
       },
       {
@@ -293,7 +293,6 @@
             "__type": "Mountain.NameTagPanel",
             "__guid": "704ce1c0-689a-46f4-96ec-e9eb4e7742f3",
             "__enabled": true,
-            "Name": "",
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,

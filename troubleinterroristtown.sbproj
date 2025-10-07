@@ -39,12 +39,12 @@
       "DistinctAssemblyReferences": []
     },
     "LaunchMode": "Launcher",
-    "StartupScene": "scenes/startup.scene",
+    "StartupScene": "scenes/main.scene",
     "ControlModes": {
       "Keyboard": false,
       "VR": false,
       "Gamepad": false
     },
-    "MapStartupScene": "scenes/startup.scene"
+    "MapStartupScene": "scenes/main.scene"
   }
 }

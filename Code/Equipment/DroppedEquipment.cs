@@ -20,6 +20,7 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
             WorldPosition = position,
             WorldRotation = rotation,
             Name = resource.ResourceName,
+            Tags = { "pickup" },
         };
 
         gameObject.Tags.Add("pickup");
@@ -46,6 +47,7 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
         collider.Center = new(0, 0, (max.z - min.z) / 2);
 
         droppedWeapon.Rigidbody = gameObject.Components.Create<Rigidbody>();
+        droppedWeapon.Rigidbody.MassOverride = 15f; // So throwing feels for all weapons the same.
 
         gameObject.Components.Create<DestroyBetweenRounds>();
 

@@ -25,6 +25,7 @@ public sealed partial class Player : Component
         UpdateRotation();
         UpdateEyes();
         UpdateCameraPosition();
+        UpdateFov();
 
         // Just some random bot logic to debugg shit.
         if (Networking.IsHost && Client.IsBot)
@@ -61,18 +62,12 @@ public sealed partial class Player : Component
             return;
         }
 
-        if (Client.IsBot)
-        {
-            return;
-        }
-
         if (IsLocallyControlled)
         {
             UpdateEyeAngles();
             UpdateInput();
 
             UpdateLookAt();
-            UpdateFov();
             UpdateEquipmentChange();
             UpdateEquipmentDrop();
         }
