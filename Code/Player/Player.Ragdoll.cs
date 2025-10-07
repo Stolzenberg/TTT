@@ -8,14 +8,9 @@ public sealed partial class Player
     public Vector3 DamageTakenPosition { get; private set; }
     public Vector3 DamageTakenForce { get; private set; }
 
-    [Rpc.Broadcast(NetFlags.HostOnly)]
+    [Rpc.Host]
     private void CreateRagdoll(bool ragdoll)
     {
-        if (!Physics.IsValid())
-        {
-            return;
-        }
-
         Physics.Enabled = ragdoll;
 
         BodyRenderer.UseAnimGraph = !ragdoll;

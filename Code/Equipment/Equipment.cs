@@ -59,8 +59,7 @@ public sealed partial class Equipment : Component
 
     protected override void OnStart()
     {
-        wasDeployed = IsDeployed;
-        hasStarted = true;
+        previousDeployedState = IsDeployed;
 
         if (IsDeployed)
         {
@@ -70,5 +69,10 @@ public sealed partial class Equipment : Component
         {
             OnHolstered();
         }
+    }
+
+    public override string ToString()
+    {
+        return $"Equipment(Resource={Resource.NameKey}, Owner={Owner.Client.DisplayName}, IsDeployed={IsDeployed})";
     }
 }

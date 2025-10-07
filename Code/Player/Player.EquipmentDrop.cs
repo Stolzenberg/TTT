@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 
 namespace Mountain;
 
@@ -44,10 +45,15 @@ public sealed partial class Player
 
     private void DropEquipment(Equipment equipment, Vector3 position, Rotation rotation)
     {
+        if (!Networking.IsHost)
+        {
+            throw new InvalidOperationException("DropEquipment can only be called on the host.");
+        }
+        
         var droppedEquipment = DroppedEquipment.Create(equipment.Resource,
             position, Rotation.Identity, equipment);
         
-        ServerRemoveEquipment(equipment);
+        RemoveEquipment(equipment);
 
         droppedEquipment.Rigidbody.ApplyImpulse(position + rotation.Forward * ThrowEquipmentForce);
     }

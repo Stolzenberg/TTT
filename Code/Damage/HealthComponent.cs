@@ -6,7 +6,7 @@ namespace Mountain;
 /// <summary>
 ///     A health component for any kind of GameObject.
 /// </summary>
-public class HealthComponent : Component, IRespawnable
+public class HealthComponent : Component
 {
     /// <summary>
     ///     Are we in god mode?
@@ -40,13 +40,6 @@ public class HealthComponent : Component, IRespawnable
     [Group("Life State"), Sync(SyncFlags.FromHost), Change(nameof(OnStatePropertyChanged))]
     public LifeState State { get; private set; }
 
-    /// <summary>
-    ///     A list of all Respawnable things on this GameObject
-    /// </summary>
-    protected IEnumerable<IRespawnable> Respawnables => GetComponents<IRespawnable>();
-
-    protected IEnumerable<IDamageListener> DamageListeners => GetComponents<IDamageListener>();
-
     public void ServerTakeDamage(DamageInfo damageInfo)
     {
         BroadcastDamage(damageInfo.Damage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
@@ -78,7 +71,7 @@ public class HealthComponent : Component, IRespawnable
         BroadcastKill(damageInfo.Damage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
             damageInfo.Inflictor, damageInfo.Hitbox, damageInfo.Flags);
         
-        Log.Info($"{GameObject.Name} was killed by {damageInfo.Attacker?.GameObject.Name ?? "unknown"}");
+        Log.Info($"{GameObject.Name} was killed by {damageInfo.Attacker.GameObject.Name ?? "unknown"}");
     }
 
     /// <summary>
@@ -118,15 +111,12 @@ public class HealthComponent : Component, IRespawnable
         };
 
         GameObject.Root.Dispatch(new DamageTakenEvent(damageInfo));
-
         Scene.Dispatch(new DamageTakenGlobalEvent(damageInfo));
 
         if (damageInfo.Attacker.IsValid())
         {
             damageInfo.Attacker.GameObject.Root.Dispatch(new DamageGivenEvent(damageInfo));
         }
-
-        DamageListeners.ToList().ForEach(x => x.OnDamaged(damageInfo));
     }
 
     [Rpc.Broadcast]
@@ -145,8 +135,7 @@ public class HealthComponent : Component, IRespawnable
             Flags = flags,
         };
 
-        Scene.Dispatch(new KillEvent(damageInfo));
-
-        Respawnables.ToList().ForEach(x => x.OnKill(damageInfo));
+        GameObject.Root.Dispatch(new KillEvent(damageInfo));
+        Scene.Dispatch(new GlobalKillEvent(damageInfo));
     }
 }

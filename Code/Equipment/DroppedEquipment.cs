@@ -69,6 +69,11 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
 
     public void OnTriggerEnter(GameObject other)
     {
+        if (!Networking.IsHost)
+        {
+            return;
+        }
+        
         var player = other.GetComponent<Player>();
         if (player == null)
         {
@@ -83,14 +88,14 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
         if (player.Has(Resource))
         {
             Log.Info(
-                $"Player {player.Client.DisplayName} tried to pick up {Resource.ResourceName} but already has one.");
+                $"{player.Client.DisplayName} tried to pick up {Resource.ResourceName} but already has equipment on this slot {Resource.Slot}.");
 
             return;
         }
 
-        var equipment = player.ServerGive(Resource);
+        var equipment = player.Give(Resource);
         
-        Log.Info($"Player {player.Client.DisplayName} added {equipment}.");
+        Log.Info($"{player.Client.DisplayName} added {equipment}.");
         
         foreach (var state in equipment.GetComponents<IDroppedEquipmentState>())
         {
@@ -99,6 +104,6 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
 
         GameObject.Destroy();
 
-        Log.Info($"Player {player.Client.DisplayName} picked up {Resource.ResourceName}.");
+        Log.Info($"{player.Client.DisplayName} picked up {equipment}.");
     }
 }

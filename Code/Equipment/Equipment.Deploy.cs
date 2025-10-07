@@ -15,9 +15,8 @@ public sealed partial class Equipment
     /// </summary>
     [Property, Group("Sounds")]
     public SoundEvent DeploySound { get; set; }
-    private bool hasStarted;
-
-    private bool wasDeployed;
+    
+    private bool previousDeployedState;
 
     [Rpc.Owner]
     public void Deploy()
@@ -39,6 +38,8 @@ public sealed partial class Equipment
         }
 
         IsDeployed = true;
+        
+        Log.Info($"Deployed {this}");
     }
 
     [Rpc.Owner]
@@ -50,38 +51,42 @@ public sealed partial class Equipment
         }
 
         IsDeployed = false;
+        
+        Log.Info($"Holstered {this}");
     }
 
     private void OnIsDeployedPropertyChanged(bool oldValue, bool newValue)
     {
-        if (!hasStarted)
-        {
-            return;
-        }
-
         UpdateDeployedState();
     }
 
     private void UpdateDeployedState()
     {
-        if (IsDeployed == wasDeployed)
+        Log.Info($"{Owner.Client.DisplayName}'s {this} deployed state changed: {previousDeployedState} -> {IsDeployed}");
+        
+        // No state change, nothing to do
+        if (IsDeployed == previousDeployedState)
         {
             return;
         }
 
-        switch (wasDeployed)
+        switch (IsDeployed)
         {
-            case false when IsDeployed:
+            // Handle state transitions
+            case true when !previousDeployedState:
+                // Transitioning from holstered to deployed
                 OnDeployed();
 
                 break;
-            case true when !IsDeployed:
+            case false when previousDeployedState:
+                // Transitioning from deployed to holstered
                 OnHolstered();
 
                 break;
         }
 
-        wasDeployed = IsDeployed;
+        // Update our tracking of the previous state
+        previousDeployedState = IsDeployed;
     }
 
     private void OnDeployed()
@@ -100,6 +105,8 @@ public sealed partial class Equipment
         UpdateRenderMode();
 
         GameObject.Root.Dispatch(new EquipmentDeployedEvent(this));
+        
+        Log.Info($"{Owner.Client.DisplayName} is going to deploy {this}");
     }
 
     private void OnHolstered()
@@ -110,6 +117,8 @@ public sealed partial class Equipment
 
         HasCreatedViewModel = false;
 
-        GameObject.Root.Dispatch(new EquipmentDeployedEvent(this));
+        GameObject.Root.Dispatch(new EquipmentHolsteredEvent(this));
+        
+        Log.Info($"{Owner.Client.DisplayName} is going to holster {this}");
     }
 }

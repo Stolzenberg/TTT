@@ -42,9 +42,13 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>,
             pair.Value.Enabled && pair.Value.Resource == resource || pair.Key == resource.Slot);
     }
 
-    [Rpc.Host]
-    private void ServerRemoveEquipment(Equipment equipment)
+    private void RemoveEquipment(Equipment equipment)
     {
+        if (!Networking.IsHost)
+        {
+            throw new InvalidOperationException("RemoveEquipment can only be called on the host.");
+        }
+        
         if (equipment == ActiveEquipment)
         {
             var otherEquipment = Equipments.Where(pair => pair.Value != equipment);
@@ -55,94 +59,105 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>,
             {
                 Switch(targetWeapon.Value);
             }
-            else
-            {
-                ClearCurrentEquipment();
-                ActiveEquipment = null;
-            }
         }
 
+        // BUG: When we destroy the gameobject here it is to early when dropping a weapon to update other players world model.
+        // Other players wont get the update because the equipment.IsDeployed = false will not get send anymore.
+        // Idea: We have to wait until the equipment switch is done
+        
         equipment.GameObject.Destroy();
+        equipment.Enabled = false;
+        
+        Log.Info($"{Client.DisplayName} removed equipment {equipment}.");
     }
 
-    public Equipment ServerGive(EquipmentResource equipment, bool makeActive = true)
+    public Equipment Give(EquipmentResource equipmentResource, bool makeActive = true)
     {
         if (!Networking.IsHost)
         {
-            throw new InvalidOperationException("ServerGive can only be called on the host.");
+            throw new InvalidOperationException("Give can only be called on the host.");
         }
 
-        if (Has(equipment))
+        if (Has(equipmentResource))
         {
-            throw new ArgumentException($"Equipment resource {equipment} already exists in the player's inventory.");
+            throw new ArgumentException($"Equipment resource {equipmentResource} already exists in the player's inventory.");
         }
 
-        if (!equipment.MainPrefab.IsValid())
+        if (!equipmentResource.MainPrefab.IsValid())
         {
-            throw new ArgumentException($"Equipment resource {equipment} does not have a valid main prefab.");
+            throw new ArgumentException($"Equipment resource {equipmentResource} does not have a valid main prefab.");
         }
 
-        var gameObject = equipment.MainPrefab.Clone(new CloneConfig
+        var gameObject = equipmentResource.MainPrefab.Clone(new CloneConfig
         {
             Transform = new(),
             Parent = GameObject,
         });
 
-        var component = gameObject.GetComponentInChildren<Equipment>(true);
-        component.Owner = this;
+        var equipment = gameObject.GetComponentInChildren<Equipment>(true);
+        equipment.Owner = this;
         gameObject.NetworkSpawn(Network.Owner);
 
-        Log.Info($"{this} was given equipment {equipment}.");
+        Log.Info($"{Client.DisplayName} was given equipment {equipment}.");
 
         if (makeActive)
         {
-            ServerSetCurrentEquipment(component);
+            SetCurrentEquipment(equipment);
         }
 
-        return component;
+        return equipment;
     }
 
-    private void ServerSetCurrentEquipment(Equipment equipment)
+    private void SetCurrentEquipment(Equipment equipment)
     {
+        if (!Networking.IsHost)
+        {
+            throw new InvalidOperationException("SetCurrentEquipment can only be called on the host.");
+        }
+        
         if (equipment == ActiveEquipment)
         {
             return;
         }
+        
+        if (!Equipments.ContainsValue(equipment))
+        {
+            throw new InvalidOperationException($"{Client.DisplayName} tried to set current equipment {equipment} they don't have.");
+        }
+        
+        HolsterCurrentEquipment();
 
         TimeSinceEquipmentDeployed = 0;
 
-        ClearCurrentEquipment();
         equipment.Deploy();
     }
 
     [Rpc.Owner]
-    private void ClearCurrentEquipment()
+    private void HolsterCurrentEquipment()
     {
-        if (ActiveEquipment.IsValid())
+        Log.Info("Trying to holster current equipment");
+        
+        if (!ActiveEquipment.IsValid())
         {
-            ActiveEquipment.Holster();
+            Log.Info("No active equipment to holster");
+            return;    
         }
+        
+        Log.Info($"Holster current equipment {ActiveEquipment}.");
+        ActiveEquipment.Holster();
     }
 
     private void GiveDefaultEquipment()
     {
         foreach (var equipment in DefaultEquipments)
         {
-            ServerGive(equipment, false);
+            Give(equipment, false);
         }
         
         var firstEquipment = Equipments.OrderBy(pair => pair.Key).FirstOrDefault();
         if (firstEquipment.Value.IsValid())
         {
-            ServerSetCurrentEquipment(firstEquipment.Value);
-        }
-    }
-    
-    private void ServerRemoveAllEquipments()
-    {
-        foreach (var equipment in Equipments.Values.ToArray())
-        {
-            ServerRemoveEquipment(equipment);
+            SetCurrentEquipment(firstEquipment.Value);
         }
     }
 }

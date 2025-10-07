@@ -18,12 +18,12 @@ public sealed partial class Player
                 continue;
             }
 
-            SwitchToSlot(slot);
+            RequestSwitchToSlot(slot);
 
             return;
         }
 
-        HandleWheelEquipmentChange();
+        // HandleWheelEquipmentChange();
     }
 
     private void HandleWheelEquipmentChange()
@@ -45,7 +45,37 @@ public sealed partial class Player
         {
             return;
         }
+        
+        RequestWheelSwitch((int)wheel.y);
+    }
 
+    [Rpc.Host]
+    private void RequestSwitchToSlot(EquipmentSlot slot)
+    {
+        if (!Networking.IsHost)
+        {
+            throw new InvalidOperationException("SwitchToSlot can only be called on the host.");
+        }
+        
+        var equipment = Equipments.FirstOrDefault(pair => pair.Key == slot);
+        if (!equipment.Value.IsValid())
+        {
+            return;
+        }
+        
+        Log.Info($"{Client.DisplayName} requested switching to slot {slot}");
+
+        Switch(equipment.Value);
+    }
+
+    [Rpc.Host]
+    private void RequestWheelSwitch(int direction)
+    {
+        if (!Networking.IsHost)
+        {
+            throw new InvalidOperationException("RequestWheelSwitch can only be called on the host.");
+        }
+        
         var availableWeapons = Equipments.OrderBy(x => x.Key).ToList();
         if (availableWeapons.Count == 0)
         {
@@ -66,7 +96,7 @@ public sealed partial class Player
             break;
         }
 
-        var slotDelta = wheel.y > 0f ? 1 : -1;
+        var slotDelta = direction > 0 ? 1 : -1;
         currentSlot += slotDelta;
 
         if (currentSlot < 0)
@@ -83,41 +113,40 @@ public sealed partial class Player
         {
             return;
         }
-
+        
+        Log.Info($"{Client.DisplayName} requested wheel switch to slot {currentSlot}");
+        
         Switch(weaponToSwitchTo.Value);
-    }
-
-    private void SwitchToSlot(EquipmentSlot slot)
-    {
-        var equipment = Equipments.FirstOrDefault(pair => pair.Key == slot);
-        if (!equipment.Value.IsValid())
-        {
-            return;
-        }
-
-        Switch(equipment.Value);
     }
 
     private void Switch(Equipment equipment)
     {
+        if (!Networking.IsHost)
+        {
+            throw new InvalidOperationException("Switch can only be called on the host.");
+        }
+        
         if (!equipment.IsValid())
         {
             return;
+        }
+
+        if (!Equipments.ContainsValue(equipment))
+        {
+            throw new InvalidOperationException($"{Client.DisplayName} tried to switch to equipment {equipment} they don't have.");
         }
 
         if (ActiveEquipment.IsValid())
         {
             if (ActiveEquipment.Resource.Slot == equipment.Resource.Slot)
             {
+                Log.Info($"{Client.DisplayName} tried to switch to the same equipment {equipment}");
                 return;
             }
-
-            if (ActiveEquipment.IsDeployed)
-            {
-                ActiveEquipment.Holster();
-            }
         }
+        
+        Log.Info($"{Client.DisplayName} switched to {equipment} from {ActiveEquipment}");
 
-        ServerSetCurrentEquipment(equipment);
+        SetCurrentEquipment(equipment);
     }
 }

@@ -3,7 +3,7 @@ using Sandbox.Events;
 
 namespace Mountain;
 
-public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespawnable
+public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IGameEventHandler<KillEvent>
 {
     /// <summary>
     ///     An accessor for health component if we have one.
@@ -54,7 +54,7 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
 
         if (BloodEffect.IsValid())
         {
-            BloodEffect?.Clone(new CloneConfig
+            BloodEffect.Clone(new CloneConfig
             {
                 StartEnabled = true,
                 Transform = new(position),
@@ -71,13 +71,13 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
         snd.SpacialBlend = Client.IsLocalClient ? 0 : snd.SpacialBlend;
     }
 
-    public void OnKill(DamageInfo damageInfo)
+    void IGameEventHandler<KillEvent>.OnGameEvent(KillEvent eventArgs)
     {
-        CreateRagdoll(true);
-        
+        // CreateRagdoll(true);
+
         RequestDropAllEquipment();
 
-        if (Client.IsLocalClient)
+        if (IsLocallyControlled)
         {
             Client.CycleSpectatorTarget(1);
         }
@@ -89,7 +89,7 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
         {
             return;
         }
-        
+
         var minimumVelocity = MinimumImpactVelocity;
         if (Velocity.Length > MinimumFallSoundVelocity)
         {
@@ -99,15 +99,14 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IRespa
         // Check if the velocity suddenly changed (impact detection)
         var velocityChange = (previousVelocity - Velocity).Length;
 
-        var hasImpacted = velocityChange > minimumVelocity && 
-                          lastImpactTime > ImpactCooldown;
+        var hasImpacted = velocityChange > minimumVelocity && lastImpactTime > ImpactCooldown;
 
         if (hasImpacted)
         {
             var damage = velocityChange * FallDamageScale;
 
-            Log.Info("Fall damage should now get applied: " + damage); 
-            
+            Log.Info("Fall damage should now get applied: " + damage);
+
             // // Apply fall damage
             // GameObject.ServerTakeDamage(new()
             // {

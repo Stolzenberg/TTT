@@ -13,7 +13,7 @@ public partial class Hud : PanelComponent
 
     protected override int BuildHash()
     {
-        return HashCode.Combine(GameMode.Instance.StateMachine.CurrentState?.RemainingDuration, Client.Local.Team, Client.Local.Player?.ActiveEquipment, Health?.Health);
+        return HashCode.Combine(GameMode.Instance.StateMachine.CurrentState?.RemainingDuration, Client.Viewer?.Team, Client.Viewer?.Player?.ActiveEquipment, Health?.Health);
     }
 
     private float GetHealthPercentage()

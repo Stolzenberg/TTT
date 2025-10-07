@@ -364,7 +364,7 @@
               "__type": "Mountain.GameState",
               "__guid": "a568ae5b-a251-4c0e-949d-708a5cde842c",
               "__enabled": true,
-              "DefaultDuration": 60,
+              "DefaultDuration": 500,
               "DefaultNextState": {
                 "_type": "component",
                 "component_id": "afb93b76-33e5-4178-b6d0-e992813800f4",

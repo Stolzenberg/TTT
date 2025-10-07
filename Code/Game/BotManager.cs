@@ -48,13 +48,13 @@ public sealed class BotManager : SingletonComponent<BotManager>
     }
 
     [ConCmd("addbot", ConVarFlags.Server)]
-    private static void Command_Add_Bot()
+    private static void CommandAddBot()
     {
         Instance.AddBot();
     }
 
     [ConCmd("kickbots", ConVarFlags.Server)]
-    private static void Command_Kick_Bots()
+    private static void CommandKickBots()
     {
         foreach (var client in Game.ActiveScene.AllClients())
         {

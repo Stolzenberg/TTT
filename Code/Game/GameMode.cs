@@ -57,4 +57,22 @@ public sealed class GameMode : SingletonComponent<GameMode>
             }
         }
     }
+    
+    
+
+    [ConCmd("skipstate", ConVarFlags.Server)]
+    private static void CommandSkipState()
+    {
+        if (!Instance.StateMachine.CurrentState.IsValid())
+        {
+            throw new InvalidOperationException("GameMode's StateMachine is not valid.");
+        }
+        
+        if (!Instance.StateMachine.CurrentState.DefaultNextState.IsValid())
+        {
+            throw new InvalidOperationException("GameMode's StateMachine is not valid.");
+        }
+        
+        Instance.StateMachine.Transition(Instance.StateMachine.CurrentState.DefaultNextState);
+    }
 }
