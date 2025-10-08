@@ -51,10 +51,11 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
 
         gameObject.Components.Create<DestroyBetweenRounds>();
 
-        if (equipment is not null)
+        if (equipment.IsValid())
         {
             foreach (var state in equipment.GetComponents<IDroppedEquipmentState>())
             {
+                Log.Info($"Transferring state {droppedWeapon} to dropped equipments component {state}.");
                 state.CopyToDropped(droppedWeapon);
             }
         }
@@ -95,10 +96,9 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
 
         var equipment = player.Give(Resource);
         
-        Log.Info($"{player.Client.DisplayName} added {equipment}.");
-        
         foreach (var state in equipment.GetComponents<IDroppedEquipmentState>())
         {
+            Log.Info($"Transferring state {this} to picked up equipments component {state}.");
             state.CopyFromDropped(this);
         }
 

@@ -107,7 +107,7 @@
         "__type": "Mountain.Boltable",
         "__guid": "310a817c-26ca-4618-b66b-2bda2a79daaa",
         "__enabled": true,
-        "BoltTime": 0.5,
+        "BoltTime": 0.6,
         "EjectionPrefab": {
           "_type": "gameobject",
           "prefab": "equipments/9mmcasing.prefab"

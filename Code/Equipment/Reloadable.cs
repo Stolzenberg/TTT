@@ -28,7 +28,7 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
     [Property]
     public Dictionary<float, SoundEvent> EmptyReloadSounds { get; init; } = new();
 
-    [Sync]
+    [Sync, Change(nameof(OnReloadingPropertyChanged))]
     private bool IsReloading { get; set; }
 
     private bool queueCancel;
@@ -62,7 +62,7 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
             return;
         }
 
-        if (Player.IsProxy)
+        if (!Player.IsLocallyControlled)
         {
             return;
         }
@@ -76,6 +76,28 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
         {
             EndReload();
         }
+    }
+    
+    protected void OnReloadingPropertyChanged(bool oldValue, bool newValue)
+    {
+        if (!Player.IsPossessed)
+        {
+            return;
+        }
+        
+        if (SingleReload)
+        {
+            Equipment.ViewModel.ModelRenderer.Set("b_reloading", newValue);
+
+            var hasAmmo = AmmoComponent.HasAmmo;
+            Equipment.ViewModel.ModelRenderer.Set(!hasAmmo ? "b_reloading_first_shell" : "b_reloading_shell", newValue);
+        }
+        else
+        {
+            Equipment.ViewModel.ModelRenderer.Set("b_reload", newValue);
+        }
+
+        Equipment.Owner.BodyRenderer.Set("b_reload", newValue);
     }
 
     private bool CanReload()
@@ -104,71 +126,43 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
             timeUntilReload = GetReloadTime();
         }
 
-        if (SingleReload)
-        {
-            // Tags will be better so we can just react to stimuli.
-            Equipment.ViewModel.ModelRenderer.Set("b_reloading", true);
-
-            var hasAmmo = AmmoComponent.HasAmmo;
-            Equipment.ViewModel.ModelRenderer.Set(!hasAmmo ? "b_reloading_first_shell" : "b_reloading_shell", true);
-        }
-        else
-        {
-            // Tags will be better so we can just react to stimuli.
-            Equipment.ViewModel.ModelRenderer.Set("b_reload", true);
-        }
-
-
         foreach (var kv in GetReloadSounds())
         {
             // Play this sound after a certain time but only if we're reloading.
             PlayAsyncSound(kv.Key, kv.Value, () => IsReloading);
         }
-
-        Equipment.Owner.BodyRenderer.Set("b_reload", true);
     }
 
     [Rpc.Owner]
     private void CancelReload()
     {
-        if (!IsProxy)
-        {
-            IsReloading = false;
-        }
-
-        // Tags will be better so we can just react to stimuli.
-        Equipment.ViewModel.ModelRenderer.Set("b_reload", false);
-        Equipment.Owner.BodyRenderer.Set("b_reload", false);
-        Equipment.ViewModel.ModelRenderer.Set("b_reloading", false);
+        IsReloading = false;
     }
 
     [Rpc.Owner]
     private void EndReload()
     {
-        if (!IsProxy)
+        if (SingleReload)
         {
-            if (SingleReload)
-            {
-                AmmoComponent.Ammo++;
-                AmmoComponent.Ammo = AmmoComponent.Ammo.Clamp(0, AmmoComponent.MaxAmmo);
+            AmmoComponent.Ammo++;
+            AmmoComponent.Ammo = AmmoComponent.Ammo.Clamp(0, AmmoComponent.MaxAmmo);
 
-                // Reload more!
-                if (!queueCancel && AmmoComponent.Ammo < AmmoComponent.MaxAmmo)
-                {
-                    StartReload();
-                }
-                else
-                {
-                    Equipment.ViewModel.ModelRenderer?.Set("b_reloading", false);
-                    IsReloading = false;
-                }
+            // Reload more!
+            if (!queueCancel && AmmoComponent.Ammo < AmmoComponent.MaxAmmo)
+            {
+                StartReload();
             }
             else
             {
+                Equipment.ViewModel.ModelRenderer.Set("b_reloading", false);
                 IsReloading = false;
-                // Refill the ammo container.
-                AmmoComponent.Ammo = AmmoComponent.MaxAmmo;
             }
+        }
+        else
+        {
+            IsReloading = false;
+            // Refill the ammo container.
+            AmmoComponent.Ammo = AmmoComponent.MaxAmmo;
         }
 
         // Tags will be better so we can just react to stimuli.

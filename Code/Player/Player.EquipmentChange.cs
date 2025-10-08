@@ -23,7 +23,7 @@ public sealed partial class Player
             return;
         }
 
-        // HandleWheelEquipmentChange();
+        HandleWheelEquipmentChange();
     }
 
     private void HandleWheelEquipmentChange()

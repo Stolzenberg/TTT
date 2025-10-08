@@ -8,9 +8,6 @@ public sealed partial class Player
     [Sync]
     public Vector3 EyePosition { get; set; }
 
-    [Sync]
-    public float CurrentFieldOfView { get; set; }
-
     [Property, Feature("Camera")]
     private readonly Vector3 cameraOffset = new(5, 11, 0);
     [Property, Feature("Camera")]
@@ -115,6 +112,5 @@ public sealed partial class Player
 
         targetFieldOfView = targetFieldOfView.LerpTo(Preferences.FieldOfView + fieldOfViewOffset, Time.Delta * speed);
         Client.Local.Camera.FieldOfView = targetFieldOfView;
-        CurrentFieldOfView = targetFieldOfView;
     }
 }

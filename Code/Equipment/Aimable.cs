@@ -17,7 +17,7 @@ public class Aimable : EquipmentInputAction
         {
             return;
         }
-
+        
         if (after)
         {
             Equipment.EquipmentFlags |= Equipment.EquipmentFlag.Aiming;
@@ -73,7 +73,7 @@ public class Aimable : EquipmentInputAction
             return;
         }
 
-        if (!Client.Local.IsLocalClient)
+        if (!Player.IsLocallyControlled)
         {
             return;
         }

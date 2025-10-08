@@ -42,8 +42,8 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "pitchInertiaScale": 2,
-        "yawInertiaScale": 2
+        "pitchInertiaScale": 10,
+        "yawInertiaScale": 10
       },
       {
         "__type": "Mountain.DestroyBetweenRounds",

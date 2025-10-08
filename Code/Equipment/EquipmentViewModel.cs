@@ -17,10 +17,10 @@ public sealed class EquipmentViewModel : EquipmentModel
     private readonly float ironSightsFireScale = 0.2f;
 
     [Property, Feature("View")]
-    private readonly float yawInertiaScale = 2f;
+    private readonly float yawInertiaScale = 10f;
 
     [Property, Feature("View")]
-    private readonly float pitchInertiaScale = 2f;
+    private readonly float pitchInertiaScale = 10f;
 
     private bool activateInertia;
     private float lastPitch;
@@ -53,11 +53,6 @@ public sealed class EquipmentViewModel : EquipmentModel
 
     protected override void OnUpdate()
     {
-        if (!Client.Local.Player.IsValid())
-        {
-            return;
-        }
-        
         ViewModel();
         ApplyInertia();
         ApplyVelocity();
@@ -65,15 +60,15 @@ public sealed class EquipmentViewModel : EquipmentModel
 
     private void ViewModel()
     {
-        ModelRenderer.Set("b_sprint", Client.Local.Player.IsSprinting);
-        ModelRenderer.Set("b_grounded", Client.Local.Player.IsOnGround);
-
-        if (!Client.Local.Player.ActiveEquipment.IsValid())
+        if (!Equipment.IsValid())
         {
             return;
         }
+        
+        ModelRenderer.Set("b_sprint", Equipment.Owner.IsSprinting);
+        ModelRenderer.Set("b_grounded", Equipment.Owner.IsOnGround);
 
-        var isAiming = Client.Local.Player.ActiveEquipment.EquipmentFlags.HasFlag(Equipment.EquipmentFlag.Aiming);
+        var isAiming = Equipment.EquipmentFlags.HasFlag(Equipment.EquipmentFlag.Aiming);
         ModelRenderer.Set("ironsights", isAiming ? 1 : 0);
         ModelRenderer.Set("ironsights_fire_scale", isAiming ? ironSightsFireScale : 0f);
        
@@ -121,17 +116,22 @@ public sealed class EquipmentViewModel : EquipmentModel
 
     private void ApplyVelocity()
     {
-        var moveVel = Client.Local.Player.Velocity;
+        if (!Equipment.IsValid())
+        {
+            return;
+        }
+        
+        var moveVel = Equipment.Owner.Velocity;
         var moveLen = moveVel.Length;
 
-        var wishMove = Client.Local.Player.WishVelocity.Normal * 1f;
-
+        var wishMove = Equipment.Owner.WishVelocity.Normal * 1f;
+        
         lerpedWishMove = lerpedWishMove.LerpTo(wishMove, Time.Delta * 7.0f);
-        ModelRenderer?.Set("move_bob", moveLen.Remap(0, 300, 0, 1, true));
+        ModelRenderer.Set("move_bob", moveLen.Remap(0, 300, 0, 1, true));
 
-        YawInertia += lerpedWishMove.y * 10f;
+        YawInertia += lerpedWishMove.y;
 
-        ModelRenderer?.Set("aim_yaw_inertia", YawInertia * yawInertiaScale);
-        ModelRenderer?.Set("aim_pitch_inertia", PitchInertia * pitchInertiaScale);
+        ModelRenderer.Set("aim_yaw_inertia", YawInertia * yawInertiaScale);
+        ModelRenderer.Set("aim_pitch_inertia", PitchInertia * pitchInertiaScale);
     }
 }

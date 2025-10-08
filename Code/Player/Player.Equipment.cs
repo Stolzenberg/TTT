@@ -61,10 +61,6 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>,
             }
         }
 
-        // BUG: When we destroy the gameobject here it is to early when dropping a weapon to update other players world model.
-        // Other players wont get the update because the equipment.IsDeployed = false will not get send anymore.
-        // Idea: We have to wait until the equipment switch is done
-        
         equipment.GameObject.Destroy();
         equipment.Enabled = false;
         
@@ -96,6 +92,7 @@ public sealed partial class Player : IGameEventHandler<EquipmentDeployedEvent>,
 
         var equipment = gameObject.GetComponentInChildren<Equipment>(true);
         equipment.Owner = this;
+        
         gameObject.NetworkSpawn(Network.Owner);
 
         Log.Info($"{Client.DisplayName} was given equipment {equipment}.");

@@ -9,6 +9,8 @@ public sealed partial class Player
     /// </summary>
     public Vector3 GroundVelocity { get; set; }
     public bool IsOnGround => GroundObject.IsValid();
+    
+    [Sync]
     public GameObject? GroundObject { get; set; }
     /// <summary>
     ///     The collider component we're standing on. Null if we're standing nothing

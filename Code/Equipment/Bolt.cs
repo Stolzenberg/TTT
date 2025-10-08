@@ -10,7 +10,7 @@ public partial class Boltable : EquipmentInputAction, IGameEventHandler<Equipmen
     [Property]
     public float BoltTime { get; set; } = 0.5f;
 
-    [Sync]
+    [Sync, Change(nameof(OnBoltingPropertyChanged))]
     public bool Bolting { get; private set; }
 
     [Sync]
@@ -43,8 +43,8 @@ public partial class Boltable : EquipmentInputAction, IGameEventHandler<Equipmen
         {
             return;
         }
-
-        if (Player.IsProxy)
+        
+        if (!Player.IsLocallyControlled)
         {
             return;
         }
@@ -75,8 +75,6 @@ public partial class Boltable : EquipmentInputAction, IGameEventHandler<Equipmen
             return;
         }
         
-        Equipment.ViewModel.ModelRenderer.Set("b_reload_bolt", true);
-
         if (!EjectionPrefab.IsValid())
         {
             return;
@@ -99,6 +97,16 @@ public partial class Boltable : EquipmentInputAction, IGameEventHandler<Equipmen
         Bolting = true;
         
         gameObject.NetworkSpawn();
+    }
+    
+    protected void OnBoltingPropertyChanged(bool oldValue, bool newValue)
+    {
+        if (!Player.IsPossessed)
+        {
+            return;
+        }
+        
+        Equipment.ViewModel.ModelRenderer.Set("b_reload_bolt", newValue);
     }
 
     public void OnGameEvent(EquipmentShotEvent eventArgs)

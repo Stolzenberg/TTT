@@ -34,4 +34,14 @@ public sealed partial class Equipment
         WorldModel?.DestroyGameObject();
         WorldModel = null;
     }
+
+    private void UpdateRenderMode()
+    {
+        if (WorldModel.IsValid())
+        {
+            WorldModel.ModelRenderer.RenderType = Owner.IsPossessed
+                ? ModelRenderer.ShadowRenderType.ShadowsOnly
+                : ModelRenderer.ShadowRenderType.On;
+        }
+    }
 }

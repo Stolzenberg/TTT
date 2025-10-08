@@ -515,7 +515,7 @@
                   "__type": "Mountain.GameState",
                   "__guid": "afb93b76-33e5-4178-b6d0-e992813800f4",
                   "__enabled": true,
-                  "DefaultDuration": 10,
+                  "DefaultDuration": 1000,
                   "DefaultNextState": {
                     "_type": "component",
                     "component_id": "8d006b6c-153d-4304-82eb-3f52e3b595d9",
@@ -551,7 +551,7 @@
                   "__type": "Mountain.GameState",
                   "__guid": "7baaa51b-a8e5-46e7-b441-00bff7aa05fd",
                   "__enabled": true,
-                  "DefaultDuration": 10,
+                  "DefaultDuration": 1000,
                   "DefaultNextState": {
                     "_type": "component",
                     "component_id": "8d006b6c-153d-4304-82eb-3f52e3b595d9",

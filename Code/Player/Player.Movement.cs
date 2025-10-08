@@ -8,10 +8,10 @@ public sealed partial class Player : IScenePhysicsEvents
     public Rigidbody Body =>
         body ??= GetComponent<Rigidbody>();
 
-    /// <summary>
-    ///     Our actual physical velocity minus our ground velocity
-    /// </summary>
+    [Sync]
     public Vector3 Velocity { get; private set; }
+    
+    [Sync]
     public bool IsSprinting { get; private set; }
 
     /// <summary>
@@ -51,6 +51,11 @@ public sealed partial class Player : IScenePhysicsEvents
 
     void IScenePhysicsEvents.PostPhysicsStep()
     {
+        if (!Client.IsLocalClient)
+        {
+            return;
+        }
+        
         Velocity = Body.Velocity - GroundVelocity;
         UpdateGroundVelocity();
 

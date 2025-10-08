@@ -47,14 +47,10 @@ public sealed partial class Equipment : Component
         Reloading = 1 << 3,
     }
 
-    private void UpdateRenderMode()
+    protected override void OnDestroy()
     {
-        if (WorldModel.IsValid())
-        {
-            WorldModel.ModelRenderer.RenderType = Owner.IsPossessed
-                ? ModelRenderer.ShadowRenderType.ShadowsOnly
-                : ModelRenderer.ShadowRenderType.On;
-        }
+        DestroyWorldModel();
+        DestroyViewModel();
     }
 
     protected override void OnStart()
@@ -70,7 +66,7 @@ public sealed partial class Equipment : Component
             OnHolstered();
         }
     }
-
+    
     public override string ToString()
     {
         return $"Equipment(Resource={Resource.NameKey}, Owner={Owner.Client.DisplayName}, IsDeployed={IsDeployed})";
