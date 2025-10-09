@@ -34,9 +34,13 @@ public sealed partial class Player
         DropEquipment(ActiveEquipment, position, rotation);
     }
     
-    [Rpc.Host]
-    private void RequestDropAllEquipment()
+    private void DropAllEquipment()
     {
+        if (!Networking.IsHost)
+        {
+            throw new InvalidOperationException("DropAllEquipment can only be called on the host.");
+        }
+
         foreach (var equipment in Equipments.Values.Where(e => e.Resource.Slot != EquipmentSlot.Fists))
         {
             DropEquipment(equipment, WorldPosition, WorldRotation);

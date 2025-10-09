@@ -3,7 +3,7 @@ using Sandbox.Events;
 
 namespace Mountain;
 
-public partial class NameTagPanel : PanelComponent, IGameEventHandler<GlobalKillEvent>
+public partial class NameTagPanel : PanelComponent, IGameEventHandler<KillEvent>
 {
     private Player NameTagOwningPlayer => this.GetPlayerFromComponent() ?? throw new InvalidOperationException("NameTagPanel must be a child of a player.");
 
@@ -12,10 +12,8 @@ public partial class NameTagPanel : PanelComponent, IGameEventHandler<GlobalKill
         return HashCode.Combine(NameTagOwningPlayer.Client.DisplayName);
     }
 
-    void IGameEventHandler<GlobalKillEvent>.OnGameEvent(GlobalKillEvent eventArgs)
+    void IGameEventHandler<KillEvent>.OnGameEvent(KillEvent eventArgs)
     {
-        if (eventArgs.DamageInfo.Victim != NameTagOwningPlayer.Health) return;
-
-        Destroy();
+        GameObject.Destroy();
     }
 }

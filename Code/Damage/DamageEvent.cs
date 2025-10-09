@@ -27,7 +27,7 @@ public record DamageGivenEvent(DamageInfo DamageInfo) : IGameEvent;
 public record GlobalKillEvent(DamageInfo DamageInfo) : IGameEvent;
 
 /// <summary>
-///     Event dispatched on a root object whhen a <see cref="HealthComponent" /> died after taking damage.
+///     Event dispatched on a root object when a <see cref="HealthComponent" /> died after taking damage.
 /// </summary>
 /// <param name="Damage">Information about the killing blow.</param>
 public record KillEvent(DamageInfo DamageInfo) : IGameEvent;

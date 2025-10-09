@@ -1,7 +1,7 @@
 ﻿@inherits PanelComponent
 @namespace Mountain
 
-@if (NameTagOwningPlayer.Client.IsLocalClient)
+@if (NameTagOwningPlayer.IsPossessed)
 {
     return;
 }

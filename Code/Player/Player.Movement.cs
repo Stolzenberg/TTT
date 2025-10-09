@@ -39,7 +39,7 @@ public sealed partial class Player : IScenePhysicsEvents
     {
         UpdateBody();
 
-        if (!Client.IsLocalClient)
+        if (!IsLocallyControlled)
         {
             return;
         }
@@ -51,7 +51,7 @@ public sealed partial class Player : IScenePhysicsEvents
 
     void IScenePhysicsEvents.PostPhysicsStep()
     {
-        if (!Client.IsLocalClient)
+        if (!IsLocallyControlled)
         {
             return;
         }

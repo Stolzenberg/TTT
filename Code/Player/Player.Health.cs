@@ -33,9 +33,6 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IGameE
     {
         var damageInfo = eventArgs.DamageInfo;
 
-        var attacker = eventArgs.DamageInfo.Attacker.GetPlayerFromComponent();
-        var victim = eventArgs.DamageInfo.Victim?.GetPlayerFromComponent();
-
         var position = eventArgs.DamageInfo.Position;
         var force = damageInfo.Force.IsNearZeroLength ? Random.Shared.VectorInSphere() : damageInfo.Force;
 
@@ -44,12 +41,6 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IGameE
         if (!damageInfo.Attacker.IsValid())
         {
             return;
-        }
-
-        if (attacker != victim && Body.IsValid())
-        {
-            DamageTakenPosition = position;
-            DamageTakenForce = force.Normal * damageInfo.Damage;
         }
 
         if (BloodEffect.IsValid())
@@ -73,14 +64,19 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IGameE
 
     void IGameEventHandler<KillEvent>.OnGameEvent(KillEvent eventArgs)
     {
-        // CreateRagdoll(true);
-
-        RequestDropAllEquipment();
+        if (Networking.IsHost)
+        {
+            var ragdoll = Ragdoll.Create(this);
+            ragdoll.ApplyRagdollImpulses(eventArgs.DamageInfo.Position, eventArgs.DamageInfo.Force);
+            DropAllEquipment();
+        }
 
         if (IsLocallyControlled)
         {
             Client.CycleSpectatorTarget(1);
         }
+        
+        GameObject.Destroy();
     }
 
     private void HandleImpactDamage()

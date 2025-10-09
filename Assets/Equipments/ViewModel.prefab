@@ -142,7 +142,7 @@
                 "__guid": "54e9071f-5308-48ab-a3ed-e4ed129450a6",
                 "__enabled": true,
                 "AnimationGraph": null,
-                "BodyGroups": 18446744073709551615,
+                "BodyGroups": 21,
                 "BoneMergeTarget": {
                   "_type": "component",
                   "component_id": "90c4c47a-b339-4149-9832-c21896caaf7a",
@@ -155,7 +155,7 @@
                 "MaterialGroup": "default",
                 "MaterialOverride": null,
                 "Materials": null,
-                "Model": "models/first_person/first_person_arms_citizen_4fingers.vmdl",
+                "Model": "models/first_person/v_first_person_arms_human.vmdl",
                 "Morphs": {},
                 "OnComponentDestroy": null,
                 "OnComponentDisabled": null,
@@ -217,6 +217,8 @@
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "__references": [],
+  "__references": [
+    "facepunch.v_first_person_arms_human#122024"
+  ],
   "__version": 2
 }

@@ -12,7 +12,7 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
     {
         if (!Networking.IsHost)
         {
-            throw new InvalidOperationException("DroppedEquipment can only be created on the host.");
+            throw new InvalidOperationException("Creating dropped equipment can only be created on the host.");
         }
 
         var gameObject = new GameObject
@@ -22,8 +22,6 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
             Name = resource.ResourceName,
             Tags = { "pickup" },
         };
-
-        gameObject.Tags.Add("pickup");
 
         var worldModel = resource.WorldModel;
         var bounds = worldModel.Bounds;

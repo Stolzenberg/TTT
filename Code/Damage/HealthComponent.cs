@@ -67,7 +67,7 @@ public class HealthComponent : Component
 
         Health = 0f;
         State = LifeState.Dead;
-
+        
         BroadcastKill(damageInfo.Damage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
             damageInfo.Inflictor, damageInfo.Hitbox, damageInfo.Flags);
         

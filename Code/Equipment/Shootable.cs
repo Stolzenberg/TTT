@@ -34,6 +34,9 @@ public sealed class Shootable : EquipmentInputAction
     public float BulletSpread { get; init; } = 0;
 
     [Property, Feature("Bullet")]
+    public float Force { get; init; } = 1000f;
+
+    [Property, Feature("Bullet")]
     public float PenetrationThickness { get; init; } = 32f;
 
     [Property, Feature("Effects")]
@@ -311,7 +314,7 @@ public sealed class Shootable : EquipmentInputAction
                 Inflictor = Equipment,
                 Position = tr.EndPosition,
                 Damage = damage,
-                Force = tr.Direction * damage,
+                Force = tr.Direction * Force,
                 Hitbox = tr.GetHitboxTags(),
             });
         }

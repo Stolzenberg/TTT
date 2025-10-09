@@ -24,7 +24,7 @@ public sealed partial class Equipment
         WorldModel = gameObject.GetComponent<EquipmentWorldModel>();
         WorldModel.ModelRenderer.Model = Resource.WorldModel;
         
-        // TODO FIX ME LATER
+        // TODO: FIX ME LATER
         // ViewModel.Muzzle = ViewModel.ModelRenderer.GetBoneObject(Resource.MuzzleBoneName);
         // ViewModel.EjectionPort = ViewModel.ModelRenderer.GetBoneObject(Resource.EjectionPortBoneName);
     }

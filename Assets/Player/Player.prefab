@@ -82,39 +82,6 @@
         "OnHealthChanged": null
       },
       {
-        "__type": "Sandbox.ModelPhysics",
-        "__guid": "7c8f4262-8434-4c48-8a70-ac8302b90d92",
-        "__enabled": false,
-        "Bodies": [],
-        "IgnoreRoot": false,
-        "Joints": [],
-        "Locking": {
-          "X": false,
-          "Y": false,
-          "Z": false,
-          "Pitch": false,
-          "Yaw": false,
-          "Roll": false
-        },
-        "Model": "player/citizen.vmdl",
-        "MotionEnabled": true,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "PhysicsWereCreated": false,
-        "Renderer": {
-          "_type": "component",
-          "component_id": "093b5d3b-b943-4ddd-b2b1-84a8522e00b5",
-          "go": "b0c01d11-3688-4b62-91e1-c5f3af8caf9d",
-          "component_type": "SkinnedModelRenderer"
-        },
-        "RigidbodyFlags": 0,
-        "StartAsleep": false
-      },
-      {
         "__type": "Mountain.Player",
         "__guid": "f2a614e4-f3e7-4794-93d2-438c184464f8",
         "__enabled": true,
@@ -172,12 +139,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Physics": {
-          "_type": "component",
-          "component_id": "7c8f4262-8434-4c48-8a70-ac8302b90d92",
-          "go": "5136a60c-9581-40b0-bf67-76a73bc7f462",
-          "component_type": "ModelPhysics"
-        },
+        "Physics": null,
         "pitchClamp": 85,
         "reachLength": 20,
         "RightHandSocket": {
@@ -261,7 +223,7 @@
         "Scale": "1,1,1",
         "Tags": "",
         "Enabled": true,
-        "NetworkMode": 0,
+        "NetworkMode": 1,
         "NetworkInterpolation": true,
         "NetworkOrphaned": 0,
         "OwnerTransfer": 1,
