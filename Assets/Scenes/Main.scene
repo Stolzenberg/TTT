@@ -89,8 +89,8 @@
           "__type": "Mountain.GameMode",
           "__guid": "eaae459f-616f-4c61-9c11-d9f68129468c",
           "__enabled": true,
-          "BotCount": 7,
-          "DebuggingEnabled": false,
+          "BotCount": 1,
+          "DebuggingEnabled": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -388,18 +388,18 @@
                 "go": "ba05d456-1e6d-4f32-a6db-1cadf0a3310a",
                 "component_type": "GameState"
               },
-              "MurderWin": {
-                "_type": "component",
-                "component_id": "7baaa51b-a8e5-46e7-b441-00bff7aa05fd",
-                "go": "ba485052-150e-4a0f-a343-29ccaa73965c",
-                "component_type": "GameState"
-              },
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
-              "OnComponentUpdate": null
+              "OnComponentUpdate": null,
+              "TraitorWin": {
+                "_type": "component",
+                "component_id": "7baaa51b-a8e5-46e7-b441-00bff7aa05fd",
+                "go": "ba485052-150e-4a0f-a343-29ccaa73965c",
+                "component_type": "GameState"
+              }
             },
             {
               "__type": "Mountain.AssignPlayerTeam",
@@ -473,7 +473,7 @@
             },
             {
               "__type": "Mountain.WinPanel",
-              "__guid": "ad365e0f-483c-4147-923b-f87758435e43",
+              "__guid": "2070d482-c7f5-4dd8-99d1-7eeb8142c4e4",
               "__enabled": true,
               "InnocentWinState": {
                 "_type": "component",
@@ -481,18 +481,18 @@
                 "go": "ba05d456-1e6d-4f32-a6db-1cadf0a3310a",
                 "component_type": "GameState"
               },
-              "MurderWinState": {
-                "_type": "component",
-                "component_id": "7baaa51b-a8e5-46e7-b441-00bff7aa05fd",
-                "go": "ba485052-150e-4a0f-a343-29ccaa73965c",
-                "component_type": "GameState"
-              },
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
-              "OnComponentUpdate": null
+              "OnComponentUpdate": null,
+              "TraitorWinState": {
+                "_type": "component",
+                "component_id": "7baaa51b-a8e5-46e7-b441-00bff7aa05fd",
+                "go": "ba485052-150e-4a0f-a343-29ccaa73965c",
+                "component_type": "GameState"
+              }
             }
           ],
           "Children": [
@@ -536,7 +536,7 @@
               "__guid": "ba485052-150e-4a0f-a343-29ccaa73965c",
               "__version": 1,
               "Flags": 0,
-              "Name": "MurderWin",
+              "Name": "TraitorWin",
               "Position": "0,0,0",
               "Rotation": "0,0,0,1",
               "Scale": "1,1,1",

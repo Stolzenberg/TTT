@@ -51,7 +51,7 @@ public class HealthComponent : Component
             rigidbody.ApplyImpulseAt(damageInfo.Position, damageInfo.Force);
         }
         
-        Log.Info($"{GameObject.Name} took {damageInfo.Damage} damage from {damageInfo.Attacker?.GameObject.Name ?? "unknown"}");
+        Log.Info($"{GameObject.Name} took {damageInfo.Damage} damage from {damageInfo.Attacker.GameObject.Name ?? "unknown"} flags: {damageInfo.Flags}");
 
         if (IsGodMode)
         {

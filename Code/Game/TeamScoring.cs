@@ -15,7 +15,7 @@ public sealed class TeamScoring : Component
     public Team GetHighest()
     {
         var tScore = Scores.GetValueOrDefault(Team.Innocent);
-        var ctScore = Scores.GetValueOrDefault(Team.Murder);
+        var ctScore = Scores.GetValueOrDefault(Team.Traitor);
 
         if (tScore > ctScore)
         {
@@ -24,7 +24,7 @@ public sealed class TeamScoring : Component
 
         if (ctScore > tScore)
         {
-            return Team.Murder;
+            return Team.Traitor;
         }
 
         return Team.Unassigned;

@@ -22,7 +22,7 @@ public sealed class NoClipMovementState : MovementState
             return;
         }
 
-        if (Input.Pressed("Voice"))
+        if (Input.Pressed("Voice") && Input.Down("Jump"))
         {
             isNoclip = !isNoclip;
         }

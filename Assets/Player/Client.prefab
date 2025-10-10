@@ -18,6 +18,12 @@
         "__type": "Mountain.Client",
         "__guid": "6a98621e-3b1e-4c27-97cb-7f9d92ef7580",
         "__enabled": true,
+        "ClientVoice": {
+          "_type": "component",
+          "component_id": "42bc1e16-b6c0-4f78-b886-7b6696eab9b6",
+          "go": "881d5411-1545-4673-887b-d5a67366d6e2",
+          "component_type": "ClientVoice"
+        },
         "disconnectCleanupTime": 120,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -30,6 +36,52 @@
           "prefab": "player/player.prefab"
         },
         "Team": "Unassigned"
+      },
+      {
+        "__type": "Mountain.ClientVoice",
+        "__guid": "42bc1e16-b6c0-4f78-b886-7b6696eab9b6",
+        "__enabled": true,
+        "Client": {
+          "_type": "component",
+          "component_id": "6a98621e-3b1e-4c27-97cb-7f9d92ef7580",
+          "go": "881d5411-1545-4673-887b-d5a67366d6e2",
+          "component_type": "Client"
+        },
+        "Distance": 2000,
+        "Falloff": [
+          {
+            "x": 0,
+            "y": 1,
+            "in": 3.1415927,
+            "out": -3.1415927,
+            "mode": "Mirrored"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "in": -0,
+            "out": -0,
+            "mode": "Mirrored"
+          }
+        ],
+        "Loopback": false,
+        "Mode": "PushToTalk",
+        "MorphScale": 3,
+        "MorphSmoothTime": 0.1,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "PushToTalkInput": "voice",
+        "Renderer": null,
+        "VoiceMixer": {
+          "Name": "game",
+          "Id": "a8108f71-6c45-4e44-81fe-e0a313879251"
+        },
+        "Volume": 100,
+        "WorldspacePlayback": true
       }
     ],
     "Children": [],

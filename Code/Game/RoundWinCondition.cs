@@ -9,7 +9,7 @@ public sealed class RoundWinCondition : Component, IGameEventHandler<EnterStateE
     public GameState InnocentWin { get; set; }
     
     [Property]
-    public GameState MurderWin { get; set; }
+    public GameState TraitorWin { get; set; }
 
     void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
     {
@@ -47,9 +47,9 @@ public sealed class RoundWinCondition : Component, IGameEventHandler<EnterStateE
             {
                 GameMode.Instance.StateMachine.Transition(InnocentWin);
             }
-            else if (winningTeam == Team.Murder)
+            else if (winningTeam == Team.Traitor)
             {
-                GameMode.Instance.StateMachine.Transition(MurderWin);
+                GameMode.Instance.StateMachine.Transition(TraitorWin);
             }
         }
         // All dead, innocent wins

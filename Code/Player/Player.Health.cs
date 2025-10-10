@@ -101,18 +101,16 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IGameE
         {
             var damage = velocityChange * FallDamageScale;
 
-            Log.Info("Fall damage should now get applied: " + damage);
-
-            // // Apply fall damage
-            // GameObject.ServerTakeDamage(new()
-            // {
-            //     Attacker = this,
-            //     Inflictor = this,
-            //     Victim = this,
-            //     Damage = damage,
-            //     Position = WorldPosition,
-            //     Flags = DamageFlags.FallDamage
-            // });
+            // Apply fall damage
+            GameObject.ServerTakeDamage(new()
+            {
+                Attacker = this,
+                Inflictor = this,
+                Victim = this,
+                Damage = damage,
+                Position = WorldPosition,
+                Flags = DamageFlags.FallDamage
+            });
 
             lastImpactTime = 0;
         }

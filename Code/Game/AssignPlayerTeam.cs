@@ -5,27 +5,27 @@ namespace Mountain;
 
 public sealed class AssignPlayerTeam : Component, IGameEventHandler<EnterStateEvent>
 {
-    [ConVar( "murder_precentage", Name = "Murder Percentage", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public float MurderPercentage { get; set; } = 0.2f;
+    [ConVar( "traitor_precentage", Name = "Traitor Percentage", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public float TraitorPercentage { get; set; } = 0.2f;
 
-    [ConVar( "max_murders", Name = "Max Amount of Murders", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public int MaxMurders { get; set; } = 3;
+    [ConVar( "max_traitors", Name = "Max Amount of Traitors", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public int MaxTraitors { get; set; } = 3;
 
-    [ConVar( "min_murders", Name = "Min Amount of Murders", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public int MinMurders { get; set; } = 1;
+    [ConVar( "min_traitors", Name = "Min Amount of Traitors", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public int MinTraitors { get; set; } = 1;
 
     void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
     {
         var clients = Game.ActiveScene.AllClients().ToList();
         var clientCount = clients.Count;
 
-        // Calculate number of murders
-        var numMurders = (int)(clientCount * MurderPercentage);
-        numMurders = Math.Clamp(numMurders, MinMurders, MaxMurders);
-        numMurders = Math.Min(numMurders, clientCount);
+        // Calculate number of traitors
+        var numTraitors = (int)(clientCount * TraitorPercentage);
+        numTraitors = Math.Clamp(numTraitors, MinTraitors, MaxTraitors);
+        numTraitors = Math.Min(numTraitors, clientCount);
 
         // Remaining are innocents
-        var numInnocents = clientCount - numMurders;
+        var numInnocents = clientCount - numTraitors;
 
         // Shuffle players
         var rng = new Random();
@@ -35,8 +35,8 @@ public sealed class AssignPlayerTeam : Component, IGameEventHandler<EnterStateEv
         for (var i = 0; i < clients.Count; i++)
         {
             var client = clients[i];
-            if (i < numMurders)
-                client.AssignTeam(Team.Murder);
+            if (i < numTraitors)
+                client.AssignTeam(Team.Traitor);
             else
                 client.AssignTeam(Team.Innocent);
         }

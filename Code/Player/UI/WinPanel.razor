@@ -32,7 +32,14 @@
         @if (GetRemainingTime() > 0)
         {
             <div class="next-round-timer">
-                Next round in @GetRemainingTime().ToString("F0") seconds
+                @if(GetRemainingTime() > 1) 
+                {
+                    <p>@LocalizationHelper.Resolve("#NEXT_ROUND_IN_SECONDS", GetRemainingTime().ToString("F0"))</p>
+                }
+                else 
+                {
+                    <p>#NEXT_ROUND_STARTS_NOW</p>
+                }
             </div>
         }
     </div>
@@ -43,7 +50,7 @@
     public GameState InnocentWinState { get; set; }
     
     [Property]
-    public GameState MurderWinState { get; set; }
+    public GameState TraitorWinState { get; set; }
 
     private Team winningTeam;
 
@@ -53,9 +60,9 @@
         {
             winningTeam = Team.Innocent;
         }
-        else if (GameMode.Instance.StateMachine.CurrentState == MurderWinState)
+        else if (GameMode.Instance.StateMachine.CurrentState == TraitorWinState)
         {
-            winningTeam = Team.Murder;
+            winningTeam = Team.Traitor;
         }
     }
 
@@ -66,12 +73,7 @@
 
     private string GetWinMessage()
     {
-        return winningTeam switch
-        {
-            Team.Innocent => "#INNOCENT_WIN_TITLE",
-            Team.Murder => "#MURDER_WIN_TITLE",
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        return "#" + winningTeam.ToString().ToUpper() + "_WIN_TITLE";
     }
 
     private string GetWinningTeamColor()
@@ -99,4 +101,11 @@
         return currentState?.RemainingDuration ?? 0f;
     }
 
+    private static string GetRemainingTimeLabel()
+    {
+        var remainingTime = GetRemainingTime();
+        var seconds = (int)Math.Ceiling(remainingTime);
+
+        return $"#NEXT_ROUND_IN {seconds} #SECONDS";
+    }
 }
