@@ -25,6 +25,7 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
 
     [Property]
     public Dictionary<float, SoundEvent> TimedReloadSounds { get; init; } = new();
+    
     [Property]
     public Dictionary<float, SoundEvent> EmptyReloadSounds { get; init; } = new();
 

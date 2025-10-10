@@ -81,6 +81,7 @@
         },
         "FireModeSwitchDelay": 0.3,
         "FireRate": 1000,
+        "Force": 1000,
         "InputActions": [
           "Attack1"
         ],

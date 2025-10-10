@@ -56,7 +56,9 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
                 Log.Info($"Transferring state {droppedWeapon} to dropped equipments component {state}.");
                 state.CopyToDropped(droppedWeapon);
             }
-        }
+            
+            gameObject.Tags.Add("dropped_data");
+        } 
 
         gameObject.NetworkSpawn();
 
@@ -91,9 +93,9 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
 
             return;
         }
-
-        var equipment = player.Give(Resource);
         
+        var equipment = player.Give(Resource);
+
         foreach (var state in equipment.GetComponents<IDroppedEquipmentState>())
         {
             Log.Info($"Transferring state {this} to picked up equipments component {state}.");
