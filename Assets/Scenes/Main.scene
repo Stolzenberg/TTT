@@ -302,14 +302,14 @@
               "__guid": "e8a25bd5-c479-4773-b807-16b76ebb0520",
               "__enabled": true,
               "BoundsShrinkAmount": 200,
-              "DefaultEquipmentSpawnChance": 0.7,
+              "DefaultEquipmentSpawnChance": 0.85,
               "DefaultEquipmentSpawnForce": 1000,
-              "DefaultUseSpawnForce": false,
+              "DefaultUseSpawnForce": true,
               "EnableEquipmentSpawns": true,
-              "EquipmentCollisionHeight": 16,
-              "EquipmentCollisionRadius": 8,
+              "EquipmentCollisionHeight": 4,
+              "EquipmentCollisionRadius": 4,
               "EquipmentFreeSpaceRadius": 0.4,
-              "EquipmentMinWallDistance": 24,
+              "EquipmentMinWallDistance": 8,
               "EquipmentSpawnHeightOffset": 5,
               "EquipmentToSpawn": [
                 {
@@ -765,7 +765,7 @@
               "__enabled": true,
               "__version": 1,
               "EnableCollision": true,
-              "MapName": "darklands.fwmapbasic2",
+              "MapName": "monkestudio.ttt_fun_13",
               "NoOrigin": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -1273,6 +1273,72 @@
           "Children": []
         }
       ]
+    },
+    {
+      "__guid": "fff13e30-0369-4281-929d-836e1dc7b572",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "KillVolume",
+      "Position": "0,0,-5000",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "zone",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "1a5c9fac-2bce-4153-897e-5425e703f26d",
+          "__enabled": true,
+          "Center": "0,0,0",
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "RollingResistance": null,
+          "Scale": "90000,90000,500",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "Mountain.KillVolume",
+          "__guid": "847bcf87-fb9a-42ca-8e01-394021731b81",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "Mountain.World.Zone",
+          "__guid": "7c474423-affe-46a6-97be-8bb64bf16985",
+          "__enabled": true,
+          "Color": "1000,0,0,1",
+          "DisplayName": "Killing Zone",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": []
     }
   ],
   "SceneProperties": {

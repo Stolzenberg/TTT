@@ -396,9 +396,46 @@ public sealed class PrepareMapSpawns : Component, IGameEventHandler<EnterStateEv
         }
         
         Log.Info("No equipment spawn points found in map, generating dynamic equipment spawns...");
+
+        
+        var spawns = mapInstance.GetComponentsInChildren<MapObjectComponent>()
+            .Where(s => s.GameObject.Name.Contains("ttt_weapon")).ToList();
+
+        if (spawns.Any())
+        {
+            HandleOtherTTTMapEquipmentSpawns(spawns);
+            Log.Info("Found existing TTT equipment spawns, skipping dynamic generation.");
+            return;
+        }
+        
         GenerateDynamicEquipmentSpawns();
     }
-    
+
+    private void HandleOtherTTTMapEquipmentSpawns(List<MapObjectComponent> spawns)
+    {
+        var index = 0;
+        foreach (var mapObject in spawns)
+        {
+            var equipmentSpawnPoint = mapObject.AddComponent<EquipmentSpawnPoint>();
+            equipmentSpawnPoint.Equipment = EquipmentToSpawn[Game.Random.Int(0, EquipmentToSpawn.Count - 1)].Equipment;
+            
+            if (DefaultEquipmentSpawnChance < 1f)
+            {
+                equipmentSpawnPoint.UseSpawnChance = true;
+                equipmentSpawnPoint.ChancePercentage = DefaultEquipmentSpawnChance;
+            }
+            if (DefaultUseSpawnForce)
+            {
+                equipmentSpawnPoint.UseSpawnForce = true;
+                equipmentSpawnPoint.SpawnForce = DefaultEquipmentSpawnForce;
+            }
+
+            mapObject.GameObject.Name = $"EquipmentSpawn ({equipmentSpawnPoint.Equipment.ResourceName ?? "Unknown"}) {index++} [TTT Map]";
+        }
+        
+        Log.Info($"Converted {index} existing TTT equipment spawns to EquipmentSpawnPoints.");
+    }
+
     private void GenerateDynamicEquipmentSpawns()
     {
         var bounds = mapInstance.Bounds;

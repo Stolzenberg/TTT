@@ -53,11 +53,12 @@ public sealed class Zone : Component
 
     protected override void DrawGizmos()
     {
-        Gizmo.Draw.Color = Color.WithAlpha(Gizmo.IsSelected ? Color.a * 0.5f : Color.a * 0.25f);
+        Gizmo.Draw.Color = Color.WithAlpha(Gizmo.IsSelected ? Color.a * 0.5f : Color.a * 0.05f);
 
         foreach (var collider in GetComponents<BoxCollider>().Where(x => x.IsTrigger))
         {
             Gizmo.Transform = collider.Transform.World;
+            Gizmo.Draw.SolidBox(BBox.FromPositionAndSize(collider.Center, collider.Scale));
             Gizmo.Draw.LineBBox(BBox.FromPositionAndSize(collider.Center, collider.Scale));
         }
     }
