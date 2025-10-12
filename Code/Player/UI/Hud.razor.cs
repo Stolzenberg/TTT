@@ -8,12 +8,12 @@ public partial class Hud : PanelComponent
         Client.Viewer?.Player?.ActiveEquipment?.Components?.Get<EquipmentAmmo>(FindMode
             .EverythingInSelfAndDescendants) ?? null;
 
-    private HealthComponent? Health =>
-        Client.Viewer?.Player?.Components?.Get<HealthComponent>(FindMode.EverythingInSelfAndDescendants) ?? null;
+    private Health? Health =>
+        Client.Viewer?.Player?.Components?.Get<Health>(FindMode.EverythingInSelfAndDescendants) ?? null;
 
     protected override int BuildHash()
     {
-        return HashCode.Combine(GameMode.Instance.StateMachine.CurrentState?.RemainingDuration, Client.Viewer?.Team, Client.Viewer?.Player?.ActiveEquipment, Health?.Health);
+        return HashCode.Combine(GameMode.Instance.StateMachine.CurrentState?.RemainingDuration, Client.Viewer?.Team, Client.Viewer?.Player?.ActiveEquipment, Health?.CurrentHealth);
     }
 
     private float GetHealthPercentage()
@@ -23,7 +23,7 @@ public partial class Hud : PanelComponent
             return 0f;
         }
 
-        return Math.Max(0f, Math.Min(100f, Health.Health / Health.MaxHealth * 100f));
+        return Math.Max(0f, Math.Min(100f, Health.CurrentHealth / Health.MaxHealth * 100f));
     }
 
     private string GetHealthDisplay()
@@ -33,7 +33,7 @@ public partial class Hud : PanelComponent
             return "0";
         }
 
-        return ((int)Math.Ceiling(Health.Health)).ToString();
+        return ((int)Math.Ceiling(Health.CurrentHealth)).ToString();
     }
 
     private string GetFormattedState()

@@ -6,7 +6,7 @@ namespace Mountain;
 /// <summary>
 ///     A health component for any kind of GameObject.
 /// </summary>
-public class HealthComponent : Component
+public class Health : Component
 {
     /// <summary>
     ///     Are we in god mode?
@@ -29,7 +29,7 @@ public class HealthComponent : Component
     ///     What's our health?
     /// </summary>
     [Sync(SyncFlags.FromHost), Change(nameof(OnHealthPropertyChanged))]
-    public float Health { get; set; } = 100f;
+    public float CurrentHealth { get; set; } = 100f;
 
     [Property, Group("Setup")]
     public float MaxHealth { get; set; } = 100f;
@@ -58,14 +58,14 @@ public class HealthComponent : Component
             return;
         }
 
-        Health = Math.Max(0f, Health - damageInfo.Damage);
+        CurrentHealth = Math.Max(0f, CurrentHealth - damageInfo.Damage);
 
-        if (Health > 0f || State != LifeState.Alive)
+        if (CurrentHealth > 0f || State != LifeState.Alive)
         {
             return;
         }
 
-        Health = 0f;
+        CurrentHealth = 0f;
         State = LifeState.Dead;
         
         BroadcastKill(damageInfo.Damage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
@@ -75,7 +75,7 @@ public class HealthComponent : Component
     }
 
     /// <summary>
-    ///     Called when <see cref="Health" /> is changed across the network.
+    ///     Called when <see cref="CurrentHealth" /> is changed across the network.
     /// </summary>
     /// <param name="oldValue"></param>
     /// <param name="newValue"></param>
@@ -91,7 +91,7 @@ public class HealthComponent : Component
 
     protected override void OnStart()
     {
-        Health = MaxHealth;
+        CurrentHealth = MaxHealth;
     }
     
     [Rpc.Broadcast]

@@ -5,7 +5,7 @@ public static class GameObjectExtensions
     [Rpc.Host]
     public static void ServerTakeDamage(this GameObject go, DamageInfo damageInfo)
     {
-        foreach (var damageable in go.Root.GetComponents<HealthComponent>())
+        foreach (var damageable in go.Root.GetComponents<Health>())
         {
             damageable.ServerTakeDamage(damageInfo);
         }

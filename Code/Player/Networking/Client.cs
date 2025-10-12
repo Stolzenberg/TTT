@@ -41,9 +41,6 @@ public partial class Client : Component
     [Sync(SyncFlags.FromHost)]
     public string SteamName { get; set; }
     
-    [Property]
-    public ClientVoice ClientVoice { get; set; }
-
     public void HostInit()
     {
         if (Connection is null)

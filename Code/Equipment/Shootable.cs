@@ -301,7 +301,7 @@ public sealed class Shootable : EquipmentInputAction
                 continue;
             }
 
-            var health = tr.GameObject.Root.GetComponentInChildren<HealthComponent>();
+            var health = tr.GameObject.Root.GetComponentInChildren<Health>();
             if (!health.IsValid())
             {
                 continue;

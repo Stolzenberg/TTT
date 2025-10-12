@@ -91,7 +91,7 @@
         var player = client.Player;
         if (!player.IsValid()) return false;
 
-        return player.Components.TryGet<HealthComponent>(out var health) && health.State == LifeState.Alive;
+        return player.Components.TryGet<Health>(out var health) && health.State == LifeState.Alive;
     }
 
     private static float GetRemainingTime()

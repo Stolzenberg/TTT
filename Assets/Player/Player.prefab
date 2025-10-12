@@ -68,20 +68,6 @@
         "StartAsleep": false
       },
       {
-        "__type": "Mountain.HealthComponent",
-        "__guid": "f3092691-71bd-47cf-a5f4-8dfad6702f2b",
-        "__enabled": true,
-        "IsGodMode": false,
-        "MaxHealth": 100,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "OnHealthChanged": null
-      },
-      {
         "__type": "Mountain.Player",
         "__guid": "f2a614e4-f3e7-4794-93d2-438c184464f8",
         "__enabled": true,
@@ -124,9 +110,9 @@
         },
         "Health": {
           "_type": "component",
-          "component_id": "f3092691-71bd-47cf-a5f4-8dfad6702f2b",
+          "component_id": "915ea177-d19c-42e5-991b-1bb8324e49a1",
           "go": "5136a60c-9581-40b0-bf67-76a73bc7f462",
-          "component_type": "HealthComponent"
+          "component_type": "Health"
         },
         "interactionRadius": 2,
         "jumpForce": 300,
@@ -139,7 +125,6 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Physics": null,
         "pitchClamp": 85,
         "reachLength": 20,
         "RightHandSocket": {
@@ -152,6 +137,74 @@
         "Source": "OwnerConnection",
         "ThrowEquipmentForce": 4000,
         "velocityModifier": 0
+      },
+      {
+        "__type": "Mountain.Health",
+        "__guid": "915ea177-d19c-42e5-991b-1bb8324e49a1",
+        "__enabled": true,
+        "IsGodMode": false,
+        "MaxHealth": 100,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OnHealthChanged": null
+      },
+      {
+        "__type": "Mountain.PlayerVoice",
+        "__guid": "9d00a801-d2d3-44b6-af0e-52e4ef82678f",
+        "__enabled": true,
+        "Distance": 3320,
+        "Falloff": [
+          {
+            "x": 0,
+            "y": 1,
+            "in": 0,
+            "out": -1.8,
+            "mode": "Mirrored"
+          },
+          {
+            "x": 0.05,
+            "y": 0.22,
+            "in": 3.5,
+            "out": -3.5,
+            "mode": "Mirrored"
+          },
+          {
+            "x": 0.2,
+            "y": 0.04,
+            "in": 0.16,
+            "out": -0.16,
+            "mode": "Mirrored"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "in": 0,
+            "out": 0,
+            "mode": "Mirrored"
+          }
+        ],
+        "Loopback": false,
+        "Mode": "PushToTalk",
+        "MorphScale": 3,
+        "MorphSmoothTime": 0.1,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "PushToTalkInput": "voice",
+        "Renderer": null,
+        "VoiceMixer": {
+          "Name": "voice",
+          "Id": "7ef4a976-ef16-433e-bf63-98af00e43762"
+        },
+        "Volume": 1,
+        "WorldspacePlayback": true
       },
       {
         "__type": "Mountain.WalkMovementState",

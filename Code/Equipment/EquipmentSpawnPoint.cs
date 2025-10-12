@@ -18,7 +18,7 @@ public sealed class EquipmentSpawnPoint : Component, IGameEventHandler<BetweenRo
     public bool UseSpawnForce { get; set; } = false;
 
     [Property, Feature("Spawn Force"), FeatureEnabled("Spawn Force")]
-    private float SpawnForce { get; set; } = 1000f;
+    public float SpawnForce { get; set; } = 1000f;
     
     
     private static readonly Model Model = Model.Load("models/arrow.vmdl");

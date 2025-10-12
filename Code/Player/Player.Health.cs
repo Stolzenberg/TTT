@@ -5,11 +5,8 @@ namespace Mountain;
 
 public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IGameEventHandler<KillEvent>
 {
-    /// <summary>
-    ///     An accessor for health component if we have one.
-    /// </summary>
-    [Property]
-    public HealthComponent Health { get; set; }
+    [Property, Feature("Health")]
+    public Health Health { get; set; }
 
     [Property, Feature("Health"), Group("Effects")]
     public SoundEvent BloodImpactSound { get; set; }

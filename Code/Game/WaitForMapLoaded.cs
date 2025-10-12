@@ -9,9 +9,13 @@ public sealed class WaitForMapLoaded : Component, IGameEventHandler<EnterStateEv
     
     private MapInstance mapInstance;
 
-    void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
+    protected override void OnStart()
     {
         mapInstance = GameMode.Instance.Get<MapInstance>();
+    }
+
+    void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
+    {
         mapInstance.OnMapLoaded += OnMapLoaded;
         
         if (mapInstance.IsLoaded)

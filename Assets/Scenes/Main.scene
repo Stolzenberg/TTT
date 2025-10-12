@@ -185,8 +185,8 @@
               "DefaultDuration": 1,
               "DefaultNextState": {
                 "_type": "component",
-                "component_id": "786bbcc7-5a81-4442-a90a-a43b64ab8e16",
-                "go": "e3061bfe-3c7f-43ae-aba0-ab5c28805d09",
+                "component_id": "7d55c065-ad49-4adc-b45b-755573b1e955",
+                "go": "c218a0cc-a0ba-4a06-8661-7430e149d29c",
                 "component_type": "GameState"
               },
               "OnComponentDestroy": null,
@@ -233,8 +233,8 @@
               "DefaultDuration": 120,
               "DefaultNextState": {
                 "_type": "component",
-                "component_id": "786bbcc7-5a81-4442-a90a-a43b64ab8e16",
-                "go": "e3061bfe-3c7f-43ae-aba0-ab5c28805d09",
+                "component_id": "53f8d3a9-d576-4e79-ab77-e5d136d222ac",
+                "go": "007c2c5a-5f62-4dad-884e-2368e94e6f1d",
                 "component_type": "GameState"
               },
               "OnComponentDestroy": null,
@@ -256,10 +256,131 @@
               "OnComponentUpdate": null,
               "State": {
                 "_type": "component",
+                "component_id": "53f8d3a9-d576-4e79-ab77-e5d136d222ac",
+                "go": "007c2c5a-5f62-4dad-884e-2368e94e6f1d",
+                "component_type": "GameState"
+              }
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "007c2c5a-5f62-4dad-884e-2368e94e6f1d",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Generating",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Mountain.GameState",
+              "__guid": "53f8d3a9-d576-4e79-ab77-e5d136d222ac",
+              "__enabled": true,
+              "DefaultDuration": 0,
+              "DefaultNextState": {
+                "_type": "component",
                 "component_id": "786bbcc7-5a81-4442-a90a-a43b64ab8e16",
                 "go": "e3061bfe-3c7f-43ae-aba0-ab5c28805d09",
                 "component_type": "GameState"
-              }
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.PrepareMapSpawns",
+              "__guid": "e8a25bd5-c479-4773-b807-16b76ebb0520",
+              "__enabled": true,
+              "BoundsShrinkAmount": 200,
+              "DefaultEquipmentSpawnChance": 0.7,
+              "DefaultEquipmentSpawnForce": 1000,
+              "DefaultUseSpawnForce": false,
+              "EnableEquipmentSpawns": true,
+              "EquipmentCollisionHeight": 16,
+              "EquipmentCollisionRadius": 8,
+              "EquipmentFreeSpaceRadius": 0.4,
+              "EquipmentMinWallDistance": 24,
+              "EquipmentSpawnHeightOffset": 5,
+              "EquipmentToSpawn": [
+                {
+                  "Equipment": "equipments/pistol/pistol.eqpt",
+                  "UseCustomSpawnChance": false,
+                  "SpawnChance": 0.7,
+                  "UseCustomSpawnForce": true,
+                  "SpawnForce": 1000
+                },
+                {
+                  "Equipment": "equipments/crowbar/crowbar.eqpt",
+                  "UseCustomSpawnChance": false,
+                  "SpawnChance": 0.7,
+                  "UseCustomSpawnForce": true,
+                  "SpawnForce": 1000
+                },
+                {
+                  "Equipment": "equipments/assaultrifle/assaultrifle.eqpt",
+                  "UseCustomSpawnChance": false,
+                  "SpawnChance": 0.7,
+                  "UseCustomSpawnForce": true,
+                  "SpawnForce": 1000
+                },
+                {
+                  "Equipment": "equipments/knife/knife.eqpt",
+                  "UseCustomSpawnChance": false,
+                  "SpawnChance": 0.7,
+                  "UseCustomSpawnForce": true,
+                  "SpawnForce": 1000
+                },
+                {
+                  "Equipment": "equipments/mp/mp.eqpt",
+                  "UseCustomSpawnChance": false,
+                  "SpawnChance": 0.7,
+                  "UseCustomSpawnForce": true,
+                  "SpawnForce": 1000
+                },
+                {
+                  "Equipment": "equipments/rocketlauncher/rocketlauncher.eqpt",
+                  "UseCustomSpawnChance": false,
+                  "SpawnChance": 0.7,
+                  "UseCustomSpawnForce": true,
+                  "SpawnForce": 1000
+                },
+                {
+                  "Equipment": "equipments/sniper/sniper.eqpt",
+                  "UseCustomSpawnChance": false,
+                  "SpawnChance": 0.7,
+                  "UseCustomSpawnForce": true,
+                  "SpawnForce": 1000
+                }
+              ],
+              "FreeSpaceRadius": 0.6,
+              "MaxSpawnAttempts": 100,
+              "MinEquipmentSpawnDistance": 100,
+              "MinEquipmentSpawnPoints": 50,
+              "MinSpawnDistance": 150,
+              "MinSpawnPointsPerTeam": 8,
+              "MinWallDistance": 32,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "PlayerBodyHeight": 72,
+              "PlayerBodyRadius": 16,
+              "SpawnHeightOffset": 10,
+              "Teams": [
+                "Unassigned"
+              ]
             }
           ],
           "Children": []
@@ -283,7 +404,7 @@
               "__type": "Mountain.GameState",
               "__guid": "786bbcc7-5a81-4442-a90a-a43b64ab8e16",
               "__enabled": true,
-              "DefaultDuration": 0,
+              "DefaultDuration": 10,
               "DefaultNextState": {
                 "_type": "component",
                 "component_id": "a568ae5b-a251-4c0e-949d-708a5cde842c",
@@ -334,6 +455,17 @@
             {
               "__type": "Mountain.ImmortalPlayers",
               "__guid": "c1526cc7-b94f-4cf6-96e2-2e8afb8d0976",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.NoCollisionBetweenPlayers",
+              "__guid": "daf6f446-40f5-4de6-975b-65fc83fe5f6f",
               "__enabled": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -590,12 +722,7 @@
               "__guid": "8d006b6c-153d-4304-82eb-3f52e3b595d9",
               "__enabled": true,
               "DefaultDuration": 0,
-              "DefaultNextState": {
-                "_type": "component",
-                "component_id": "786bbcc7-5a81-4442-a90a-a43b64ab8e16",
-                "go": "e3061bfe-3c7f-43ae-aba0-ab5c28805d09",
-                "component_type": "GameState"
-              },
+              "DefaultNextState": null,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -638,7 +765,7 @@
               "__enabled": true,
               "__version": 1,
               "EnableCollision": true,
-              "MapName": "facepunch.bm_dockyard",
+              "MapName": "darklands.fwmapbasic2",
               "NoOrigin": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -651,7 +778,75 @@
               "UseMapFromLaunch": true
             }
           ],
-          "Children": []
+          "Children": [
+            {
+              "__guid": "6b1ad11d-5082-484a-a0b3-07b6b24f5921",
+              "__version": 1,
+              "Flags": 0,
+              "Name": "Sun",
+              "Position": "0,0,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "light_directional,light",
+              "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkInterpolation": true,
+              "NetworkOrphaned": 0,
+              "OwnerTransfer": 1,
+              "Components": [
+                {
+                  "__type": "Sandbox.DirectionalLight",
+                  "__guid": "9de4a89d-fdae-4d81-87a4-acb9fc6f528e",
+                  "__enabled": true,
+                  "FogMode": "Enabled",
+                  "FogStrength": 1,
+                  "LightColor": "0.91373,0.98039,1,1",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "Shadows": true,
+                  "SkyColor": "0,0,0,0"
+                }
+              ],
+              "Children": [
+                {
+                  "__guid": "92802ceb-0fd3-42d8-864f-a2b7b5d0cec5",
+                  "__version": 1,
+                  "Flags": 0,
+                  "Name": "2D Skybox",
+                  "Position": "0,0,0",
+                  "Rotation": "0,0,0,1",
+                  "Scale": "1,1,1",
+                  "Tags": "skybox",
+                  "Enabled": true,
+                  "NetworkMode": 2,
+                  "NetworkInterpolation": true,
+                  "NetworkOrphaned": 0,
+                  "OwnerTransfer": 1,
+                  "Components": [
+                    {
+                      "__type": "Sandbox.SkyBox2D",
+                      "__guid": "c063f719-3eb4-4920-8326-c04cfc160cc6",
+                      "__enabled": true,
+                      "OnComponentDestroy": null,
+                      "OnComponentDisabled": null,
+                      "OnComponentEnabled": null,
+                      "OnComponentFixedUpdate": null,
+                      "OnComponentStart": null,
+                      "OnComponentUpdate": null,
+                      "SkyIndirectLighting": true,
+                      "SkyMaterial": "materials/skybox/skybox_day_01.vmat",
+                      "Tint": "1,1,1,1"
+                    }
+                  ],
+                  "Children": []
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -832,7 +1027,7 @@
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
-      "Enabled": true,
+      "Enabled": false,
       "NetworkMode": 2,
       "NetworkInterpolation": true,
       "NetworkOrphaned": 0,
@@ -1073,260 +1268,6 @@
               "SpawnForce": 1000,
               "UseSpawnChance": false,
               "UseSpawnForce": false
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "09370a89-4a08-446a-acf7-c55a4aa42397",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "PlayerSpawn (4)",
-          "Position": "-178,784.0001,11.29883",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.TeamSpawnPoint",
-              "__guid": "aa89d389-bb76-462c-8072-d158f3a8fb78",
-              "__enabled": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "Team": "Unassigned"
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "b78b4cf1-a6f7-44f2-8710-11cc57aaab58",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "PlayerSpawn (3)",
-          "Position": "562,784.0001,11.29883",
-          "Rotation": "0,0,-0.9999999,0.00000005960464",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.TeamSpawnPoint",
-              "__guid": "20715025-b6d7-4a59-baaa-61e9b714fd0f",
-              "__enabled": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "Team": "Unassigned"
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "d90f13ec-30f0-413d-97f7-9beb8f600eff",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "PlayerSpawn (2)",
-          "Position": "608.0001,1088,11.29883",
-          "Rotation": "0,-0,-0.7071068,0.7071068",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.TeamSpawnPoint",
-              "__guid": "a51cb192-fce2-405e-a0da-26a1913b0011",
-              "__enabled": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "Team": "Unassigned"
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "671e7ecd-3785-4096-9440-0bb03d62f99c",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "PlayerSpawn (1)",
-          "Position": "448.0001,543.9999,11.29888",
-          "Rotation": "0,0,0.7071067,0.7071068",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.TeamSpawnPoint",
-              "__guid": "508ec048-9e8f-462c-b0a0-260508526499",
-              "__enabled": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "Team": "Unassigned"
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "4abbdd2b-fc9d-4f0c-af95-c410fc2bc255",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "DamageVolume",
-          "Position": "608,864,116.7012",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "zone",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Sandbox.BoxCollider",
-              "__guid": "f0ed5342-3145-4de7-bef7-69c94eacefeb",
-              "__enabled": true,
-              "Center": "0,0,0",
-              "Elasticity": null,
-              "Friction": null,
-              "IsTrigger": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "RollingResistance": null,
-              "Scale": "100,100,250",
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "Mountain.DamageTrigger",
-              "__guid": "0912f05d-05aa-495b-ada5-0ab4080d7637",
-              "__enabled": true,
-              "damage": 200,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            },
-            {
-              "__type": "Mountain.World.Zone",
-              "__guid": "964f0191-c224-4b15-9faa-d5389d29644b",
-              "__enabled": true,
-              "Color": "1,0,0,1",
-              "DisplayName": "Damage",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "825b91ea-76a9-45bc-94d7-8dcca17f7ee5",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "DamageVolume",
-          "Position": "-64,544,116.7012",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "zone",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Sandbox.BoxCollider",
-              "__guid": "b62e7a6a-85be-4b40-8e3f-62f41bd16db0",
-              "__enabled": true,
-              "Center": "0,0,0",
-              "Elasticity": null,
-              "Friction": null,
-              "IsTrigger": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "RollingResistance": null,
-              "Scale": "100,100,250",
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "Mountain.DamageTrigger",
-              "__guid": "df165df3-4c21-4d89-a776-a59e43720115",
-              "__enabled": true,
-              "damage": 10,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            },
-            {
-              "__type": "Mountain.World.Zone",
-              "__guid": "c11fe275-7c46-48e2-89da-66c7b0284411",
-              "__enabled": true,
-              "Color": "1,0,0,1",
-              "DisplayName": "Damage",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
             }
           ],
           "Children": []
