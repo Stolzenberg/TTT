@@ -3,5 +3,5 @@
 public sealed partial class Player
 {
     [Property, Feature("Collision")]
-    public Collider Collider { get; init; } = null!;
+    public CapsuleCollider Collider { get; init; } = null!;
 }
