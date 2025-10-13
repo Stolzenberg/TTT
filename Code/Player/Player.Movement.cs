@@ -10,9 +10,6 @@ public sealed partial class Player : IScenePhysicsEvents
 
     [Sync]
     public Vector3 Velocity { get; private set; }
-    
-    [Sync]
-    public bool IsSprinting { get; private set; }
 
     /// <summary>
     ///     We will apply extra friction when we're on the ground and our desired velocity is
@@ -78,11 +75,6 @@ public sealed partial class Player : IScenePhysicsEvents
         }
         
         WishVelocity = Mode!.UpdateState(rot, input);
-    }
-
-    private void ToggleSprinting(bool value)
-    {
-        IsSprinting = value;
     }
 
     private void ChooseBestMovementState()

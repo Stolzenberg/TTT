@@ -65,7 +65,7 @@ public sealed class EquipmentViewModel : EquipmentModel
             return;
         }
         
-        ModelRenderer.Set("b_sprint", Equipment.Owner.IsSprinting);
+        ModelRenderer.Set("b_sprint", Equipment.Owner.Mode is RunMovementState);
         ModelRenderer.Set("b_grounded", Equipment.Owner.IsOnGround);
 
         var isAiming = Equipment.EquipmentFlags.HasFlag(Equipment.EquipmentFlag.Aiming);

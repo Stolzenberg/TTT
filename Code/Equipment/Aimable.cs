@@ -53,7 +53,7 @@ public class Aimable : EquipmentInputAction
             return false;
         }
 
-        if (Player.IsSprinting)
+        if (Player.Mode is RunMovementState)
         {
             return false;
         }
