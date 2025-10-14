@@ -11,7 +11,6 @@ public partial class PlayerVoice : Voice
     {
         Player = this.GetPlayerFromComponent() ?? throw new InvalidOperationException("PlayerVoice must be a child of a player.");
         Renderer = Player.BodyRenderer;
-        Volume = Preferences.VoipVolume * 100f;
         
         TargetMixer = Mixer.FindMixerByName("Voice");
     }

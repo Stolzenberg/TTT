@@ -24,6 +24,7 @@ public sealed partial class Player
 
     private float fieldOfViewOffset;
     private float targetFieldOfView = Preferences.FieldOfView;
+    private Vector3 targetHeadPosition;
 
     public void AddFieldOfViewOffset(float degrees)
     {
@@ -61,6 +62,23 @@ public sealed partial class Player
         {
             EyeAngles += fn.Current;
         }
+    }
+
+    public void SetHeadPosition(float? heightModifier = null)
+    {
+        if (!IsPossessed)
+        {
+            return;
+        }
+        
+        heightModifier ??= clothing.Height;
+
+        targetHeadPosition = Vector3.Up * heightModifier.Value * 128f;
+    }
+
+    private void UpdateHeadPosition()
+    {
+        head.LocalPosition = head.LocalPosition.LerpTo(targetHeadPosition, Time.Delta * 10f);
     }
 
     private void UpdateCameraPosition()

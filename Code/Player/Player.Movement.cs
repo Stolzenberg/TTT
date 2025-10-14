@@ -84,6 +84,8 @@ public sealed partial class Player : IScenePhysicsEvents
         {
             return;
         }
+        
+        Log.Info("Switching movement mode to " + best?.GetType().Name);
 
         Mode?.OnStateEnd(best);
 

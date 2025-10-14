@@ -9,6 +9,7 @@ public sealed partial class Player : Component
     {
         ChooseBestMovementState();
         ApplyClothing();
+        SetHeadPosition(clothing.Height);
     }
 
     private TimeSince timeSinceBotRandomAngle = 0;
@@ -24,6 +25,7 @@ public sealed partial class Player : Component
         UpdateVelocity();
         UpdateRotation();
         UpdateEyes();
+        UpdateHeadPosition();
         UpdateCameraPosition();
         UpdateFov();
 

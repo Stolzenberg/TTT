@@ -4,28 +4,15 @@ namespace Mountain;
 
 public sealed partial class Player
 {
-    /// <summary>
-    ///     The velocity that the ground underneath us is moving
-    /// </summary>
     public Vector3 GroundVelocity { get; set; }
     public bool IsOnGround => GroundObject.IsValid();
     
     [Sync]
     public GameObject? GroundObject { get; set; }
-    /// <summary>
-    ///     The collider component we're standing on. Null if we're standing nothing
-    /// </summary>
     public Component? GroundComponent { get; set; }
 
-    /// <summary>
-    ///     If we're stnding on a surface this is it
-    /// </summary>
-    public Surface? GroundSurface { get; set; }
-
-    /// <summary>
-    ///     The friction property of the ground we're standing on.
-    /// </summary>
     public float GroundFriction { get; set; }
+    public Vector3 GroundNormal { get; set; }
 
     /// <summary>
     ///     Are we standing on a surface that is physically dynamic
@@ -68,7 +55,7 @@ public sealed partial class Player
         }
 
         var from = WorldPosition + Vector3.Up * 4;
-        var to = WorldPosition + Vector3.Down * 2;
+        var to = WorldPosition + Vector3.Down * 4;
 
         var radiusScale = 1f;
         var tr = TraceBody(from, to, radiusScale, 0.5f);
@@ -131,12 +118,12 @@ public sealed partial class Player
 
         GroundObject = body?.GameObject;
         GroundComponent = body?.Component;
-        GroundSurface = tr.Surface;
         GroundIsDynamic = true;
 
         if (GroundObject is not null)
         {
             TimeSinceGrounded = 0;
+            GroundNormal = tr.Normal;
             GroundFriction = tr.Surface.Friction;
 
             if (tr.Component is Collider collider)

@@ -765,7 +765,7 @@
               "__enabled": true,
               "__version": 1,
               "EnableCollision": true,
-              "MapName": "monkestudio.ttt_fun_13",
+              "MapName": "facepunch.bm_dockyard",
               "NoOrigin": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,

@@ -76,7 +76,8 @@ public sealed partial class Player
 
         BodyRenderer.Set("holdtype", (int)holdType);
         BodyRenderer.Set("b_noclip", Mode is NoClipMovementState);
-        BodyRenderer.Set("duck", Mode is CrouchMovementState ? 0.85f : 0);
+        BodyRenderer.Set("duck", Mode is CrouchMovementState ? 1 : 0);
+        BodyRenderer.Set("special_movement_states", Mode is SlideMovementState ? 3 : 0);
     }
 
     private void HandleWish(Rotation rot, Vector3 wishVel)

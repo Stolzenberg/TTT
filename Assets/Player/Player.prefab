@@ -32,7 +32,7 @@
         "OnObjectTriggerExit": null,
         "OnTriggerEnter": null,
         "OnTriggerExit": null,
-        "Radius": 16,
+        "Radius": 18.118525,
         "RollingResistance": null,
         "Start": "0,0,55",
         "Static": false,
@@ -106,7 +106,7 @@
         "FallDamageScale": 0.02,
         "head": {
           "_type": "gameobject",
-          "go": "26d97b0e-6b02-4130-a5c7-155523b72f88"
+          "go": "f8d24212-202b-4314-89b1-75bd1b1dcbdb"
         },
         "Health": {
           "_type": "component",
@@ -129,7 +129,7 @@
         "reachLength": 20,
         "RightHandSocket": {
           "_type": "gameobject",
-          "go": "6a44128e-12e5-43ed-a44f-3d6a2e354137"
+          "go": "9cb23101-f32f-48f0-a494-17c132f7bf80"
         },
         "rotationAngleLimit": 5,
         "rotationSpeed": 1.5,
@@ -156,7 +156,7 @@
         "__type": "Mountain.PlayerVoice",
         "__guid": "9d00a801-d2d3-44b6-af0e-52e4ef82678f",
         "__enabled": true,
-        "Distance": 3320,
+        "Distance": 15000,
         "Falloff": [
           {
             "x": 0,
@@ -203,7 +203,7 @@
           "Name": "voice",
           "Id": "7ef4a976-ef16-433e-bf63-98af00e43762"
         },
-        "Volume": 1,
+        "Volume": 5,
         "WorldspacePlayback": true
       },
       {
@@ -268,7 +268,8 @@
         "__type": "Mountain.CrouchMovementState",
         "__guid": "b1357a5f-8844-4f31-9680-a4c3016eec6a",
         "__enabled": true,
-        "crouchSize": 32,
+        "colliderSize": 32,
+        "headHeightModifier": 0.3,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -276,6 +277,25 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "speed": 80
+      },
+      {
+        "__type": "Mountain.SlideMovementState",
+        "__guid": "5b139cc1-f38f-41d2-9f79-82c8e863167d",
+        "__enabled": true,
+        "colliderSize": 32,
+        "headHeightModifier": 0.2,
+        "maxAngle": 60,
+        "maxSpeed": 400,
+        "minSlideAngle": 35,
+        "minSpeed": 300,
+        "minSpeedForDuckSlide": 500,
+        "movementControl": 0.8,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       }
     ],
     "Children": [
@@ -345,24 +365,7 @@
               }
             }
           ],
-          "PropertyOverrides": [
-            {
-              "Target": {
-                "Type": "Component",
-                "IdValue": "6fb887a1-4602-4236-bf59-068f4bd1a811"
-              },
-              "Property": "Parameters",
-              "Value": {
-                "bools": {},
-                "ints": {},
-                "floats": {
-                  "duck": 0
-                },
-                "vectors": {},
-                "rotations": {}
-              }
-            }
-          ],
+          "PropertyOverrides": [],
           "MovedObjects": [
             {
               "Id": {
@@ -499,6 +502,23 @@
           "9cb036ea-6939-4ed3-8e6d-3ccb530f50fb": "189b359a-b131-4769-8635-a391f65b6d53",
           "66216a75-a9d9-484f-a625-5eb727e930fc": "2cc21fcb-4f9d-41ef-8602-52317918047f"
         }
+      },
+      {
+        "__guid": "f8d24212-202b-4314-89b1-75bd1b1dcbdb",
+        "__version": 1,
+        "Flags": 0,
+        "Name": "Head",
+        "Position": "0,0,0",
+        "Rotation": "0,0,0,1",
+        "Scale": "1,1,1",
+        "Tags": "",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
+        "Components": [],
+        "Children": []
       }
     ],
     "__properties": {

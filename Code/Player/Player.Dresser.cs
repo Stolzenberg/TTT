@@ -21,6 +21,8 @@ public sealed partial class Player : Component.ExecuteInEditor
 
     [ShowIf("Source", ClothingSource.Manual), Property, Feature("Dresser")]
     public List<ClothingContainer.ClothingEntry> Clothing { get; set; } = [];
+    
+    private ClothingContainer clothing = new();
 
     public enum ClothingSource
     {
@@ -37,7 +39,7 @@ public sealed partial class Player : Component.ExecuteInEditor
             return;
         }
 
-        var clothing = GetClothing();
+        clothing = GetClothing();
         if (!ApplyHeightScale)
         {
             clothing.Height = 1;

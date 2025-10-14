@@ -12,7 +12,7 @@ public sealed class NoClipMovementState : MovementState
     {
         base.OnUpdate();
 
-        if (!Player.Client.IsLocalClient)
+        if (!Player.IsLocallyControlled)
         {
             return;
         }
