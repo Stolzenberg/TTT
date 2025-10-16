@@ -28,6 +28,9 @@ public sealed class SlideMovementState : MovementState
     [Property]
     private readonly float minSpeedForDuckSlide = 300f;
 
+    [Property]
+    private readonly float minAngleForDuckSlide = 15f;
+
     private float defaultSize;
     private float currentGroundAngle;
 
@@ -55,7 +58,8 @@ public sealed class SlideMovementState : MovementState
         }
         
         // Check if player is ducking with enough speed to initiate a slide
-        if (Input.Down("Duck"))
+        if (Input.Down("Duck") 
+            && angle >= minAngleForDuckSlide)
         {
             var velocity = Player.Body.Velocity - Player.GroundVelocity;
             var speed = velocity.Length;
