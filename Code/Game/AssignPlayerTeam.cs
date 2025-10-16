@@ -14,6 +14,15 @@ public sealed class AssignPlayerTeam : Component, IGameEventHandler<EnterStateEv
     [ConVar( "min_traitors", Name = "Min Amount of Traitors", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
     public int MinTraitors { get; set; } = 1;
 
+    [ConVar( "detective_percentage", Name = "Detective Percentage", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public float DetectivePercentage { get; set; } = 0.2f;
+
+    [ConVar( "max_detectives", Name = "Max Amount of Detectives", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public int MaxDetectives { get; set; } = 2;
+
+    [ConVar( "min_detectives", Name = "Min Amount of Detectives", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public int MinDetectives { get; set; } = 0;
+    
     void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
     {
         var clients = Game.ActiveScene.AllClients().ToList();
@@ -24,8 +33,10 @@ public sealed class AssignPlayerTeam : Component, IGameEventHandler<EnterStateEv
         numTraitors = Math.Clamp(numTraitors, MinTraitors, MaxTraitors);
         numTraitors = Math.Min(numTraitors, clientCount);
 
-        // Remaining are innocents
-        var numInnocents = clientCount - numTraitors;
+        // Calculate number of detectives
+        var numDetectives = (int)(clientCount * DetectivePercentage);
+        numDetectives = Math.Clamp(numDetectives, MinDetectives, MaxDetectives);
+        numDetectives = Math.Min(numDetectives, clientCount - numTraitors);
 
         // Shuffle players
         var rng = new Random();
@@ -37,6 +48,8 @@ public sealed class AssignPlayerTeam : Component, IGameEventHandler<EnterStateEv
             var client = clients[i];
             if (i < numTraitors)
                 client.AssignTeam(Team.Traitor);
+            else if (i < numTraitors + numDetectives)
+                client.AssignTeam(Team.Detective);
             else
                 client.AssignTeam(Team.Innocent);
         }

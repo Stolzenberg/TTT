@@ -13,6 +13,7 @@ public enum Team
 
     Innocent,
     Traitor,
+    Detective,
 }
 
 public record TeamChangedEvent(Team Before, Team After) : IGameEvent;
@@ -25,6 +26,7 @@ public static class TeamExtensions
     {
         { Team.Innocent, new Color32(39, 174, 96) },
         { Team.Traitor, new Color32(192, 57, 43) },
+        { Team.Detective, new Color32(41, 128, 185) },
         { Team.Unassigned, new Color32(255, 255, 255) },
     };
 
