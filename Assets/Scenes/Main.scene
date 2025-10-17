@@ -509,7 +509,7 @@
               "__type": "Mountain.GameState",
               "__guid": "a568ae5b-a251-4c0e-949d-708a5cde842c",
               "__enabled": true,
-              "DefaultDuration": 25,
+              "DefaultDuration": 500,
               "DefaultNextState": {
                 "_type": "component",
                 "component_id": "afb93b76-33e5-4178-b6d0-e992813800f4",
@@ -796,7 +796,7 @@
               "__enabled": true,
               "__version": 1,
               "EnableCollision": true,
-              "MapName": "facepunch.bm_dockyard",
+              "MapName": "throwupproducs.westerncity_expanded",
               "NoOrigin": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
