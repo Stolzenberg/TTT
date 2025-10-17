@@ -41,6 +41,7 @@ public static class TeamExtensions
         {
             Team.Innocent => Team.Traitor,
             Team.Traitor => Team.Innocent,
+            Team.Detective => Team.Traitor,
             _ => Team.Unassigned,
         };
     }

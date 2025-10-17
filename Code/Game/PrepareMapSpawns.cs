@@ -86,6 +86,13 @@ public sealed class PrepareMapSpawns : Component, IGameEventHandler<EnterStateEv
 
     private void HandlePlayerSpawns()
     {
+        var teamSpawnPoints = mapInstance.GetComponentsInChildren<TeamSpawnPoint>().ToList();
+        if (teamSpawnPoints.Any())
+        {
+            Log.Info($"Team spawn points already exist in map: {teamSpawnPoints.Count}, skipping generation.");
+            return;
+        }
+        
         var spawnPoints = mapInstance.GetComponentsInChildren<SpawnPoint>().ToList();
         if (spawnPoints.Any())
         {
@@ -382,7 +389,6 @@ public sealed class PrepareMapSpawns : Component, IGameEventHandler<EnterStateEv
         }
         
         var existingEquipmentSpawns = mapInstance.GetComponentsInChildren<EquipmentSpawnPoint>().ToList();
-        
         if (existingEquipmentSpawns.Any())
         {
             Log.Info($"Equipment spawn points found in map: {existingEquipmentSpawns.Count}, skipping dynamic generation.");

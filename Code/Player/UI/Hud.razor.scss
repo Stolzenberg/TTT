@@ -52,7 +52,6 @@ Hud {
 
     &.time-urgent {
       color: #ff4444;
-      animation: pulse-urgent 0.5s ease-in-out infinite;
     }
   }
 
@@ -95,19 +94,79 @@ Hud {
     z-index: 2;
     position: relative;
   }
-}
+  
+  .notifications {
+    position: absolute;
+    bottom: 128px;
+    right: 16px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+    
+    .notification {
+      width: auto;
+      max-width: 400px;
+      min-width: 200px;
+      padding: 8px 16px;
+      animation: fade-in 0.5s ease-out;
+      
+      p {
+        margin: 0;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+      }
+      
+      &.info {
+        background-color: rgba(112, 112, 112, 0.5);
+      }
+      
+      &.warning {
+          background-color: rgba(243, 156, 18, 0.5);
+      }
+    
+      &.error {
+        background-color: rgba(192, 57, 43, 0.5);
+      }
+    }
 
-@keyframes pulse-urgent {
-  0% {
-    transform: scale(1);
-    opacity: 1;
+    .fading-out {
+      animation: fade-out 0.5s ease-in-out;
+    }
   }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
+  
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
-  100% {
-    transform: scale(1);
-    opacity: 1;
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-urgent {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 }

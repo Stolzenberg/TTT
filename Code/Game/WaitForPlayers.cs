@@ -13,15 +13,19 @@ public sealed class WaitForPlayers : Component, IGameEventHandler<EnterStateEven
     /// <summary>
     ///     Only start the game if there are at least this many players.
     /// </summary>
-    [Property, Sync(SyncFlags.FromHost), ConVar( "min_players", Name = "Min Amount of Players to Start", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    [Property, Sync(SyncFlags.FromHost),
+     ConVar("min_players", Name = "Min Amount of Players to Start",
+         Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
     public int MinPlayerCount { get; set; } = 2;
 
     [Sync(SyncFlags.FromHost)]
     public bool IsPostponed { get; set; }
-    
+
     void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
     {
         IsPostponed = false;
+        
+        NotificationService.Info("#WAITING_FOR_PLAYERS_NOTIFICATION");
     }
 
     void IGameEventHandler<UpdateStateEvent>.OnGameEvent(UpdateStateEvent eventArgs)
@@ -36,10 +40,11 @@ public sealed class WaitForPlayers : Component, IGameEventHandler<EnterStateEven
         if (!Game.ActiveScene.AllClientsReady())
         {
             Log.Info("Waiting for clients to be ready...");
-            GameMode.Instance.StateMachine.Transition( eventArgs.State.DefaultNextState!, eventArgs.State.DefaultDuration );
+            GameMode.Instance.StateMachine.Transition(eventArgs.State.DefaultNextState!,
+                eventArgs.State.DefaultDuration);
         }
 
-        GameMode.Instance.StateMachine.Transition( eventArgs.State.DefaultNextState!, eventArgs.State.DefaultDuration );
+        GameMode.Instance.StateMachine.Transition(eventArgs.State.DefaultNextState!, eventArgs.State.DefaultDuration);
     }
 
     private void Toggle()

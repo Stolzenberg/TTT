@@ -89,7 +89,7 @@
           "__type": "Mountain.GameMode",
           "__guid": "eaae459f-616f-4c61-9c11-d9f68129468c",
           "__enabled": true,
-          "BotCount": 1,
+          "BotCount": 10,
           "DebuggingEnabled": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -473,6 +473,19 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.SendNotificationOnStateEnter",
+              "__guid": "c0601fbf-3e52-4d6f-b8e5-8b91808c210e",
+              "__enabled": true,
+              "NotificationMessage": "#PREPARING_STATE_STARTED_NOTIFICATION",
+              "NotificationType": "Info",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
             }
           ],
           "Children": []
@@ -496,7 +509,7 @@
               "__type": "Mountain.GameState",
               "__guid": "a568ae5b-a251-4c0e-949d-708a5cde842c",
               "__enabled": true,
-              "DefaultDuration": 500,
+              "DefaultDuration": 25,
               "DefaultNextState": {
                 "_type": "component",
                 "component_id": "afb93b76-33e5-4178-b6d0-e992813800f4",
@@ -537,6 +550,19 @@
               "__type": "Mountain.AssignPlayerTeam",
               "__guid": "ee6ee3eb-dbdb-40aa-86f9-41ba0891a045",
               "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.SendNotificationOnStateEnter",
+              "__guid": "b7a33a5e-c325-4082-9cee-b1ef43b9898b",
+              "__enabled": true,
+              "NotificationMessage": "#PLAYING_STATE_STARTED_NOTIFICATION",
+              "NotificationType": "Info",
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -722,7 +748,12 @@
               "__guid": "8d006b6c-153d-4304-82eb-3f52e3b595d9",
               "__enabled": true,
               "DefaultDuration": 0,
-              "DefaultNextState": null,
+              "DefaultNextState": {
+                "_type": "component",
+                "component_id": "53f8d3a9-d576-4e79-ab77-e5d136d222ac",
+                "go": "007c2c5a-5f62-4dad-884e-2368e94e6f1d",
+                "component_type": "GameState"
+              },
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -887,6 +918,7 @@
           "Priority": 1,
           "RenderExcludeTags": "",
           "RenderTags": "",
+          "RenderTexture": null,
           "TargetEye": "None",
           "Viewport": "0,0,1,1",
           "ZFar": 10000,

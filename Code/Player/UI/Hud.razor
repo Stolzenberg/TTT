@@ -1,4 +1,5 @@
 ﻿@namespace Mountain
+@using System
 @inherits PanelComponent
 
 @if (!Client.Viewer.IsValid())
@@ -32,6 +33,15 @@
         <div class="time-text @GetTimeTextClass()">@GetFormattedTime()</div>
     </div>
 
+    <div class="notifications">
+        @foreach (var notification in Notifications)
+        {
+            <div class="notification @(notification.Type.ToString().ToLower()) rounded blur fading-out">
+                <p>@notification.Message</p>
+            </div>
+        }
+    </div>
+    
     <div class="lower-right-box">
         @if (Ammo.IsValid())
         {

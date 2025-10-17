@@ -2,6 +2,7 @@
     "UNASSIGNED": "Unassigned",
     "INNOCENT": "Innocent",
     "TRAITOR": "Traitor",
+    "DETECTIVE": "Detective",
     "INNOCENT_WIN_TITLE": "Innocents Win",
     "TRAITOR_WIN_TITLE": "Traitors Win",
     "NEXT_ROUND_IN_SECONDS": "Next round starts in {0} seconds",
@@ -17,5 +18,10 @@
     "DISTANCE": "Distance",
     "HIT": "Hit",
     "CAUSE": "Cause",
-    "PISTOL": "Pistol"
+    "PISTOL": "Pistol",
+    "PREPARING_STATE_STARTED_NOTIFICATION": "The round is about to start! Get ready.",
+    "PLAYING_STATE_STARTED_NOTIFICATION": "The round has started! Check your role and objectives.",
+    "WAITING_FOR_PLAYERS_NOTIFICATION": "Waiting for more players to join before starting the round.",
+    "PLAYER_CONNECTING_NOTIFICATION": "{0} is connecting...",
+    "PLAYER_CONNECTED_NOTIFICATION": "{0} has connected."
 }

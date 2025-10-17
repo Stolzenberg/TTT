@@ -43,7 +43,8 @@ WinPanel {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    max-height: 300px;
+    max-height: 800px;
+    overflow-y: scroll;
   }
 
   .player-row {
