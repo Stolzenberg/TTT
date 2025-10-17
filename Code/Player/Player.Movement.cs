@@ -42,8 +42,9 @@ public sealed partial class Player : IScenePhysicsEvents
         }
 
         Mode?.AddVelocity();
-        Mode?.AddJump();
         Mode?.PrePhysicsStep();
+
+        HandleJump();
     }
 
     void IScenePhysicsEvents.PostPhysicsStep()
@@ -62,6 +63,7 @@ public sealed partial class Player : IScenePhysicsEvents
         HandleImpactDamage();
 
         ChooseBestMovementState();
+        HandleStairs();
     }
 
     private void InputMove(Vector3 input)

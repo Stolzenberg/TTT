@@ -74,14 +74,4 @@ public sealed partial class Player : Component
             UpdateEquipmentDrop();
         }
     }
-
-    protected override void OnFixedUpdate()
-    {
-        if (!IsLocallyControlled)
-        {
-            return;
-        }
-
-        HandleStairs();
-    }
 }

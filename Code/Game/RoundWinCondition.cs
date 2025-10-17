@@ -31,8 +31,12 @@ public sealed class RoundWinCondition : Component, IGameEventHandler<EnterStateE
             return;
         }
 
-        // Get the set of teams that have at least one alive player
-        var teamsWithAlivePlayers = clients.Where(IsPlayerAlive).Select(client => client.Team).Distinct().ToList();
+        // Get alive players and normalize their teams (Detective counts as Innocent)
+        var aliveClients = clients.Where(IsPlayerAlive).ToList();
+        var teamsWithAlivePlayers = aliveClients
+            .Select(client => NormalizeTeam(client.Team))
+            .Distinct()
+            .ToList();
 
         // If there's only one team left with alive players, that team wins the round
         if (teamsWithAlivePlayers.Count == 1)
@@ -57,6 +61,14 @@ public sealed class RoundWinCondition : Component, IGameEventHandler<EnterStateE
         {
             GameMode.Instance.StateMachine.Transition(InnocentWin);
         }
+    }
+
+    /// <summary>
+    /// Normalize team for win condition - Detective counts as Innocent
+    /// </summary>
+    private static Team NormalizeTeam(Team team)
+    {
+        return team == Team.Detective ? Team.Innocent : team;
     }
 
     private static bool IsPlayerAlive(Client client)

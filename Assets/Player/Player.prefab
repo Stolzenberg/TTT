@@ -45,7 +45,7 @@
         "__enabled": true,
         "AngularDamping": 0,
         "Gravity": true,
-        "LinearDamping": 0,
+        "LinearDamping": 32,
         "Locking": {
           "X": false,
           "Y": false,
@@ -117,7 +117,7 @@
         "interactionRadius": 2,
         "jumpForce": 300,
         "lookSensitivity": 1,
-        "MaxStepHeight": 24,
+        "MaxStepHeight": 8,
         "MinimumFallSoundVelocity": 300,
         "MinimumImpactVelocity": 900,
         "OnComponentDestroy": null,

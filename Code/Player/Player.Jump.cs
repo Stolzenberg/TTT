@@ -4,9 +4,16 @@ public sealed partial class Player
 {
     [Property, Feature("Jump")]
     private readonly float jumpForce = 330f;
-
-    public void Jump()
+    
+    private void HandleJump()
     {
+        if (!Input.Pressed("Jump") || !IsOnGround || IsFrozen)
+        {
+            return;
+        }
+
+        ClearGround();
+
         Body.Velocity += new Vector3(0, 0, jumpForce);
         BroadcastPlayerJumped();
     }

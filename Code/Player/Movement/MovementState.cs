@@ -164,15 +164,4 @@ public abstract class MovementState : Component
     }
 
     protected abstract float GetSpeed();
-
-    public void AddJump()
-    {
-        if (!Input.Pressed("Jump") || !Player.IsOnGround || Player.IsFrozen)
-        {
-            return;
-        }
-
-        Player.ClearGround();
-        Player.Jump();
-    }
 }

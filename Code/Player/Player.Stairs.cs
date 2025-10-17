@@ -22,6 +22,11 @@ public sealed partial class Player
             return;
         }
         
+        if (!IsOnGround)
+        {
+            return;
+        }
+
         var moveDirection = Velocity.WithZ(0).Normal;
         if (moveDirection.IsNearZeroLength)
         {
@@ -32,14 +37,15 @@ public sealed partial class Player
         {
             return;
         }
-        
-        var colliderLowerHeight = BodyHeight * 0.1f;
-        var checkDistance = BodyRadius + 16f; // Check slightly ahead
+
+        var heightPercentage = 0.1f;
+        var colliderLowerHeight = BodyHeight * heightPercentage;
+        var checkDistance = BodyRadius + 1f; // Check slightly ahead
         
         var lowerCheckStart = WorldPosition + Vector3.Up * colliderLowerHeight;
         var lowerCheckEnd = lowerCheckStart + moveDirection * checkDistance;
         
-        var lowerTrace = TraceBody(lowerCheckStart, lowerCheckEnd, 1.2f);
+        var lowerTrace = TraceBody(lowerCheckStart, lowerCheckEnd, 1f, heightPercentage);
         
         // Debug visualization
         DebugOverlay.Line(lowerCheckStart, lowerCheckEnd, lowerTrace.Hit ? Color.Yellow : Color.Green);
@@ -54,9 +60,9 @@ public sealed partial class Player
         // Trace forward from above the obstacle to see if we can step onto it
         var stepCheckHeight = MaxStepHeight;
         var forwardCheckStart = WorldPosition + moveDirection * checkDistance + Vector3.Up * stepCheckHeight;
-        var forwardCheckEnd = forwardCheckStart + Vector3.Down * (stepCheckHeight + 5f);
+        var forwardCheckEnd = forwardCheckStart + Vector3.Down * (stepCheckHeight + 16f);
         
-        var stepTrace = TraceBody(forwardCheckStart, forwardCheckEnd, .5f);
+        var stepTrace = TraceBody(forwardCheckStart, forwardCheckEnd);
         
         DebugOverlay.Line(forwardCheckStart, forwardCheckEnd, stepTrace.Hit ? Color.Cyan : Color.Red);
         
@@ -69,13 +75,14 @@ public sealed partial class Player
         var stepHeight = stepTrace.EndPosition.z - WorldPosition.z;
         
         // Validate the step is within acceptable range
-        if (stepHeight <= 0.5f || stepHeight > MaxStepHeight)
+        if (stepHeight <= 2f || stepHeight > MaxStepHeight)
         {
             return; // Too small or too tall
         }
         
         // Check if the surface is walkable (not too steep)
-        if (stepTrace.Normal.Angle(Vector3.Up) > 45f)
+        var angle = Vector3.GetAngle(stepTrace.Normal, Vector3.Up);
+        if (angle > 30f)
         {
             return; // Too steep
         }
@@ -95,7 +102,7 @@ public sealed partial class Player
         }
         
         // Reset step offset when we've reached the target
-        if (currentStepOffset >= targetStepHeight - 0.1f)
+        if (currentStepOffset >= targetStepHeight - heightPercentage)
         {
             currentStepOffset = 0;
             targetStepHeight = 0;
