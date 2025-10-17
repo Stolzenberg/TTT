@@ -55,7 +55,7 @@ public sealed partial class Player
         }
 
         var from = WorldPosition + Vector3.Up * 4;
-        var to = WorldPosition + Vector3.Down * 4;
+        var to = WorldPosition + Vector3.Down * 8;
 
         var radiusScale = 1f;
         var tr = TraceBody(from, to, radiusScale, 0.5f);

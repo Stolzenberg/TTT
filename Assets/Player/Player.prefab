@@ -117,7 +117,7 @@
         "interactionRadius": 2,
         "jumpForce": 300,
         "lookSensitivity": 1,
-        "MaxStepHeight": 8,
+        "MaxStepHeight": 24,
         "MinimumFallSoundVelocity": 300,
         "MinimumImpactVelocity": 900,
         "OnComponentDestroy": null,

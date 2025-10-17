@@ -21,18 +21,8 @@ public sealed partial class Player
             WorldPosition = WorldPosition.WithZ(WorldPosition.z - (currentStepOffset * Time.Delta));
             return;
         }
-        
-        if (!IsOnGround)
-        {
-            return;
-        }
 
-        var moveDirection = Velocity.WithZ(0).Normal;
-        if (moveDirection.IsNearZeroLength)
-        {
-            moveDirection = WishVelocity.WithZ(0).Normal;
-        }
-        
+        var moveDirection = WishVelocity.WithZ(0).Normal;
         if (moveDirection.IsNearZeroLength)
         {
             return;
@@ -45,7 +35,7 @@ public sealed partial class Player
         var lowerCheckStart = WorldPosition + Vector3.Up * colliderLowerHeight;
         var lowerCheckEnd = lowerCheckStart + moveDirection * checkDistance;
         
-        var lowerTrace = TraceBody(lowerCheckStart, lowerCheckEnd, 1f, heightPercentage);
+        var lowerTrace = TraceBody(lowerCheckStart, lowerCheckEnd, 2f, heightPercentage);
         
         // Debug visualization
         DebugOverlay.Line(lowerCheckStart, lowerCheckEnd, lowerTrace.Hit ? Color.Yellow : Color.Green);
@@ -62,7 +52,7 @@ public sealed partial class Player
         var forwardCheckStart = WorldPosition + moveDirection * checkDistance + Vector3.Up * stepCheckHeight;
         var forwardCheckEnd = forwardCheckStart + Vector3.Down * (stepCheckHeight + 16f);
         
-        var stepTrace = TraceBody(forwardCheckStart, forwardCheckEnd);
+        var stepTrace = TraceBody(forwardCheckStart, forwardCheckEnd, 2f);
         
         DebugOverlay.Line(forwardCheckStart, forwardCheckEnd, stepTrace.Hit ? Color.Cyan : Color.Red);
         
