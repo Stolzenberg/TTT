@@ -803,7 +803,7 @@
               "__enabled": true,
               "__version": 1,
               "EnableCollision": true,
-              "MapName": "pumpernickel.ttt_rooftops",
+              "MapName": "thieves.rooftops",
               "NoOrigin": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
