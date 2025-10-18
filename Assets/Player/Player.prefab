@@ -320,7 +320,7 @@
         "DismountVelocity": 200,
         "InvertPitchThreshold": 50,
         "InvertWhenLookingDown": true,
-        "LadderSnapStrength": 5,
+        "LadderSnapStrength": 15.036496,
         "MaxSnapDistance": 24,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,

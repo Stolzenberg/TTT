@@ -82,7 +82,7 @@ public sealed class LadderMovementState : MovementState
     {
         // Reset velocity when starting to climb
         Player.Body.Velocity = Vector3.Zero;
-        
+
         Player.Body.WorldRotation = ClimbingRotation;
     }
 
@@ -168,7 +168,7 @@ public sealed class LadderMovementState : MovementState
         {
             return 0f;
         }
-        
+
         if (!ClimbingForward.HasValue)
         {
             return 0f;
@@ -178,6 +178,7 @@ public sealed class LadderMovementState : MovementState
 
         // Angle in degrees between 0 and 180
         var angle = Vector3.GetAngle(eyeFwd, ClimbingForward.Value);
+
         // Convert to percentage where 0° -> 0% (looking at ladder) and 180° -> 100% (looking directly away)
         return angle / 180f * 100f;
     }
@@ -185,7 +186,6 @@ public sealed class LadderMovementState : MovementState
     private bool IsLookingAwayOver(float thresholdPercent)
     {
         var percentage = GetLookingAwayPercentage();
-        Log.Info("Looking away percentage: " + percentage);
         return percentage >= thresholdPercent;
     }
 
@@ -199,7 +199,7 @@ public sealed class LadderMovementState : MovementState
         {
             return;
         }
-
+        
         var bestCandidate = BestCandidate();
         if (!bestCandidate.IsValid())
         {
@@ -211,7 +211,7 @@ public sealed class LadderMovementState : MovementState
         // Check if we need to update the climbing rotation
         // (either new collider or the hit normal was updated for current collider)
         var needsRotationUpdate = bestCandidate != ClimbingCollider;
-        
+
         ClimbingCollider = bestCandidate;
 
         if (IsClimbing && needsRotationUpdate)
@@ -229,8 +229,7 @@ public sealed class LadderMovementState : MovementState
         Collider? bestCandidate = null;
 
         // Trace forward from the player at multiple heights to detect climbable surfaces
-        var eyeRotation = Player.EyeAngles.ToRotation();
-        var forwardDirection = eyeRotation.Forward.WithZ(0).Normal;
+        var forwardDirection = Player.EyeAngles.Forward.WithZ(0).Normal;
 
         // If the player isn't moving forward, use the body rotation instead
         if (forwardDirection.IsNearZeroLength)
@@ -302,8 +301,6 @@ public sealed class LadderMovementState : MovementState
         var toLadder = ClimbingCollider!.WorldPosition - Player.WorldPosition;
         ClimbingForward = Player.EyeAngles.Forward.WithZ(0);
         ClimbingRotation = ClimbingCollider.WorldRotation;
-        
-        Log.Info("Climbing forward set to: " + ClimbingForward.Value);
 
         // If the player is behind the ladder, flip the rotation 180 degrees
         if (toLadder.Dot(ClimbingRotation.Forward) < 0)
