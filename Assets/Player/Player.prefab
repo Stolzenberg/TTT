@@ -312,23 +312,23 @@
       },
       {
         "__type": "Mountain.LadderMovementState",
-        "__guid": "e48b780f-3cf2-495f-b748-bf16ca35c60e",
+        "__guid": "223f69f7-ba1b-4142-8d6a-18f17d340b60",
         "__enabled": true,
         "BaseClimbSpeed": 250,
-        "ClimbableCheckDistance": 32,
+        "ClimbableCheckDistance": 24,
         "ClimbableTags": "ladder,climbable",
-        "DismountVelocity": 200,
+        "DismountVelocity": 600,
         "InvertPitchThreshold": 50,
         "InvertWhenLookingDown": true,
-        "LadderSnapStrength": 15.036496,
-        "MaxSnapDistance": 24,
+        "LadderSnapStrength": 5,
+        "MaxSnapDistance": 50,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Priority": 200
+        "Priority": 100
       }
     ],
     "Children": [
