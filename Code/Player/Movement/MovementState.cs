@@ -4,6 +4,12 @@ namespace Mountain;
 
 public abstract class MovementState : Component
 {
+    /// <summary>
+    /// Priority for this movement state when conditions are met.
+    /// </summary>
+    [Property]
+    public int Priority { get; set; } = 100;
+    
     protected Player Player =>
         player ??= GetComponent<Player>();
     private readonly float accelerationTime = 0.1f;

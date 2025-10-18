@@ -20,7 +20,7 @@ public sealed class CrouchMovementState : MovementState
             return 0;
         }
         
-        return Input.Down("Duck") ? 100 : 0;
+        return Input.Down("Duck") ? Priority : 0;
     }
 
     public override void AddVelocity()

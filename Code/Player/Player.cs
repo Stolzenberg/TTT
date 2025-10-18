@@ -29,36 +29,6 @@ public sealed partial class Player : Component
         UpdateCameraPosition();
         UpdateFov();
 
-        // Just some random bot logic to debugg shit.
-        if (Networking.IsHost && Client.IsBot)
-        {
-            if (timeSinceBotRandomAngle < 1f)
-            {
-                return;
-            }
-
-            timeSinceBotRandomAngle = 0;
-
-            var angle = EyeAngles;
-            angle += Vector3.Random * 100f;
-            angle.roll = 0;
-
-            if (pitchClamp > 0)
-            {
-                angle.pitch = angle.pitch.Clamp(-pitchClamp, pitchClamp);
-            }
-
-            EyeAngles = angle;
-
-            var equipment = Equipments.Shuffle().First();
-            if (!equipment.Value.IsValid())
-            {
-                return;
-            }
-
-            Switch(equipment.Value);
-        }
-
         if (Health.State == LifeState.Dead)
         {
             return;

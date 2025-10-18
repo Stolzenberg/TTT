@@ -103,7 +103,7 @@
           "equipments/fist/fist.eqpt"
         ],
         "defaultFovChangeSpeed": 25,
-        "FallDamageScale": 0.02,
+        "FallDamageScale": 0.08,
         "head": {
           "_type": "gameobject",
           "go": "f8d24212-202b-4314-89b1-75bd1b1dcbdb"
@@ -119,7 +119,7 @@
         "lookSensitivity": 1,
         "MaxStepHeight": 24,
         "MinimumFallSoundVelocity": 300,
-        "MinimumImpactVelocity": 900,
+        "MinimumImpactVelocity": 850,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -233,6 +233,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
+        "Priority": 100,
         "speed": 220
       },
       {
@@ -245,6 +246,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
+        "Priority": 150,
         "speed": 380
       },
       {
@@ -257,6 +259,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
+        "Priority": 1000,
         "speed": 220
       },
       {
@@ -268,7 +271,8 @@
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "Priority": 1000
       },
       {
         "__type": "Mountain.CrouchMovementState",
@@ -282,6 +286,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
+        "Priority": 150,
         "speed": 80
       },
       {
@@ -302,7 +307,30 @@
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "Priority": 150
+      },
+      {
+        "__type": "Mountain.LadderMovementState",
+        "__guid": "3bd8e0ef-a726-4312-b08e-cfa62c29f29b",
+        "__enabled": true,
+        "BaseClimbSpeed": 2250,
+        "ClimbableCheckDistance": 32,
+        "ClimbableTags": "ladder,climbable",
+        "DismountVelocity": 200,
+        "InvertPitchThreshold": 50,
+        "InvertWhenLookingDown": true,
+        "LadderSnapStrength": 0,
+        "MaxSnapDistance": 24,
+        "MinOverlapRatio": 0.5,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Priority": 200,
+        "RotationSpeed": 5
       }
     ],
     "Children": [

@@ -179,7 +179,7 @@ public sealed partial class Player
     {
         var eyeTrace = Scene.Trace.Ray(EyePosition, EyePosition + EyeAngles.Forward * reachLength)
             .IgnoreGameObjectHierarchy(GameObject).Radius(interactionRadius).Run();
-
+        
         if (!eyeTrace.Hit || !eyeTrace.GameObject.IsValid())
         {
             return null;

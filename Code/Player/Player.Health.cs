@@ -15,11 +15,11 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IGameE
     public GameObject BloodEffect { get; set; }
 
     [Property, Feature("Health"), Group("Fall Damage")]
-    public float MinimumImpactVelocity { get; set; } = 500f;
+    public float MinimumImpactVelocity { get; set; } = 600f;
     [Property, Feature("Health"), Group("Fall Damage")]
     public float MinimumFallSoundVelocity { get; set; } = 300f;
     [Property, Feature("Health"), Group("Fall Damage")]
-    public float FallDamageScale { get; set; } = 0.02f;
+    public float FallDamageScale { get; set; } = 0.08f;
 
     // Velocity tracking for impact detection
     private Vector3 previousVelocity;

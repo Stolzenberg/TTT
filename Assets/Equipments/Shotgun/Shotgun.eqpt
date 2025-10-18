@@ -1,0 +1,25 @@
+{
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/shotgun/shotgun.prefab"
+  },
+  "WorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/worldmodel.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/viewmodel.prefab"
+  },
+  "Slot": "Primary",
+  "WorldModel": "models/weapons/sbox_shotgun_spaghellim4/v_spaghellim4.vmdl",
+  "ViewModel": "models/weapons/sbox_shotgun_spaghellim4/v_spaghellim4.vmdl",
+  "MuzzleBoneName": "muzzle",
+  "EjectionPortBoneName": "bolt_flap",
+  "NameKey": "SHOTGUN_NAME",
+  "DescriptionKey": "SHOTGUN_DESCRIPTION",
+  "__references": [
+    "facepunch.v_spaghellim4#122033"
+  ],
+  "__version": 0
+}

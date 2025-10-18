@@ -29,7 +29,7 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
     [Property]
     public Dictionary<float, SoundEvent> EmptyReloadSounds { get; init; } = new();
 
-    [Sync, Change(nameof(OnReloadingPropertyChanged))]
+    [Sync]
     private bool IsReloading { get; set; }
 
     private bool queueCancel;
@@ -79,28 +79,6 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
         }
     }
     
-    protected void OnReloadingPropertyChanged(bool oldValue, bool newValue)
-    {
-        if (!Player.IsPossessed)
-        {
-            return;
-        }
-        
-        if (SingleReload)
-        {
-            Equipment.ViewModel.ModelRenderer.Set("b_reloading", newValue);
-
-            var hasAmmo = AmmoComponent.HasAmmo;
-            Equipment.ViewModel.ModelRenderer.Set(!hasAmmo ? "b_reloading_first_shell" : "b_reloading_shell", newValue);
-        }
-        else
-        {
-            Equipment.ViewModel.ModelRenderer.Set("b_reload", newValue);
-        }
-
-        Equipment.Owner.BodyRenderer.Set("b_reload", newValue);
-    }
-
     private bool CanReload()
     {
         return !IsReloading && AmmoComponent.IsValid() && !AmmoComponent.IsFull;
@@ -126,6 +104,26 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
             IsReloading = true;
             timeUntilReload = GetReloadTime();
         }
+        
+        if (!Player.IsPossessed)
+        {
+            return;
+        }
+        
+        if (SingleReload)
+        {
+            Equipment.ViewModel.ModelRenderer.Set("b_reloading", true);
+
+            var hasAmmo = AmmoComponent.HasAmmo;
+            Log.Info(hasAmmo);
+            Equipment.ViewModel.ModelRenderer.Set(!hasAmmo ? "b_reloading_first_shell" : "b_reloading_shell", true);
+        }
+        else
+        {
+            Equipment.ViewModel.ModelRenderer.Set("b_reload", true);
+        }
+
+        Equipment.Owner.BodyRenderer.Set("b_reload", true);
 
         foreach (var kv in GetReloadSounds())
         {
@@ -167,7 +165,7 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
         }
 
         // Tags will be better so we can just react to stimuli.
-        Equipment.ViewModel.ModelRenderer?.Set("b_reload", false);
+        Equipment.ViewModel.ModelRenderer.Set("b_reload", false);
     }
 
     private async void PlayAsyncSound(float delay, SoundEvent snd, Func<bool> playCondition = null)

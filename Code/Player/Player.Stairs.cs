@@ -1,4 +1,5 @@
 using System;
+using Sandbox.Movement;
 
 namespace Mountain;
 
@@ -21,16 +22,16 @@ public sealed partial class Player
             WorldPosition = WorldPosition.WithZ(WorldPosition.z - (currentStepOffset * Time.Delta));
             return;
         }
-
+        
         var moveDirection = WishVelocity.WithZ(0).Normal;
         if (moveDirection.IsNearZeroLength)
         {
             return;
         }
 
-        var heightPercentage = 0.1f;
+        var heightPercentage = 0.2f;
         var colliderLowerHeight = BodyHeight * heightPercentage;
-        var checkDistance = BodyRadius + 1f; // Check slightly ahead
+        var checkDistance = BodyRadius + 2f; // Check slightly ahead
         
         var lowerCheckStart = WorldPosition + Vector3.Up * colliderLowerHeight;
         var lowerCheckEnd = lowerCheckStart + moveDirection * checkDistance;
@@ -38,7 +39,7 @@ public sealed partial class Player
         var lowerTrace = TraceBody(lowerCheckStart, lowerCheckEnd, 2f, heightPercentage);
         
         // Debug visualization
-        DebugOverlay.Line(lowerCheckStart, lowerCheckEnd, lowerTrace.Hit ? Color.Yellow : Color.Green);
+        // DebugOverlay.Line(lowerCheckStart, lowerCheckEnd, lowerTrace.Hit ? Color.Yellow : Color.Green);
         
         // If no collision in lower area, nothing to step over
         if (!lowerTrace.Hit)
@@ -54,7 +55,7 @@ public sealed partial class Player
         
         var stepTrace = TraceBody(forwardCheckStart, forwardCheckEnd, 2f);
         
-        DebugOverlay.Line(forwardCheckStart, forwardCheckEnd, stepTrace.Hit ? Color.Cyan : Color.Red);
+        // DebugOverlay.Line(forwardCheckStart, forwardCheckEnd, stepTrace.Hit ? Color.Cyan : Color.Red);
         
         if (!stepTrace.Hit)
         {
@@ -78,7 +79,7 @@ public sealed partial class Player
         }
         
         // Debug visualization of the step
-        DebugOverlay.Sphere(new (stepTrace.EndPosition, 2f), Color.Green, 3f);
+        // DebugOverlay.Sphere(new (stepTrace.EndPosition, 2f), Color.Green, 3f);
         
         // Smoothly step up
         targetStepHeight = stepHeight;

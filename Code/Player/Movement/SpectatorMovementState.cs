@@ -6,7 +6,7 @@ public sealed class SpectatorMovementState : MovementState
     {
         if (playerMovement.Health.State == LifeState.Dead)
         {
-            return 1000;
+            return Priority;
         }
 
         return 0;

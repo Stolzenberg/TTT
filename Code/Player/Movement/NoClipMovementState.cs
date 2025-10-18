@@ -64,7 +64,7 @@ public sealed class NoClipMovementState : MovementState
 
     public override int Score(Player playerMovement)
     {
-        return isNoclip ? 10000 : -10000;
+        return isNoclip ? Priority : 0;
     }
 
     protected override float GetSpeed()

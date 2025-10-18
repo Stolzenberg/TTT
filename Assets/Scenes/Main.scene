@@ -89,7 +89,7 @@
           "__type": "Mountain.GameMode",
           "__guid": "eaae459f-616f-4c61-9c11-d9f68129468c",
           "__enabled": true,
-          "BotCount": 10,
+          "BotCount": 1,
           "DebuggingEnabled": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -359,6 +359,13 @@
                   "UseCustomSpawnChance": false,
                   "SpawnChance": 0.7,
                   "UseCustomSpawnForce": true,
+                  "SpawnForce": 1000
+                },
+                {
+                  "Equipment": "equipments/shotgun/shotgun.eqpt",
+                  "UseCustomSpawnChance": false,
+                  "SpawnChance": 0.7,
+                  "UseCustomSpawnForce": false,
                   "SpawnForce": 1000
                 }
               ],
@@ -796,7 +803,7 @@
               "__enabled": true,
               "__version": 1,
               "EnableCollision": true,
-              "MapName": "throwupproducs.westerncity_expanded",
+              "MapName": "pumpernickel.ttt_rooftops",
               "NoOrigin": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -809,75 +816,7 @@
               "UseMapFromLaunch": true
             }
           ],
-          "Children": [
-            {
-              "__guid": "6b1ad11d-5082-484a-a0b3-07b6b24f5921",
-              "__version": 1,
-              "Flags": 0,
-              "Name": "Sun",
-              "Position": "0,0,0",
-              "Rotation": "0,0,0,1",
-              "Scale": "1,1,1",
-              "Tags": "light_directional,light",
-              "Enabled": true,
-              "NetworkMode": 2,
-              "NetworkInterpolation": true,
-              "NetworkOrphaned": 0,
-              "OwnerTransfer": 1,
-              "Components": [
-                {
-                  "__type": "Sandbox.DirectionalLight",
-                  "__guid": "9de4a89d-fdae-4d81-87a4-acb9fc6f528e",
-                  "__enabled": true,
-                  "FogMode": "Enabled",
-                  "FogStrength": 1,
-                  "LightColor": "0.91373,0.98039,1,1",
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "Shadows": true,
-                  "SkyColor": "0,0,0,0"
-                }
-              ],
-              "Children": [
-                {
-                  "__guid": "92802ceb-0fd3-42d8-864f-a2b7b5d0cec5",
-                  "__version": 1,
-                  "Flags": 0,
-                  "Name": "2D Skybox",
-                  "Position": "0,0,0",
-                  "Rotation": "0,0,0,1",
-                  "Scale": "1,1,1",
-                  "Tags": "skybox",
-                  "Enabled": true,
-                  "NetworkMode": 2,
-                  "NetworkInterpolation": true,
-                  "NetworkOrphaned": 0,
-                  "OwnerTransfer": 1,
-                  "Components": [
-                    {
-                      "__type": "Sandbox.SkyBox2D",
-                      "__guid": "c063f719-3eb4-4920-8326-c04cfc160cc6",
-                      "__enabled": true,
-                      "OnComponentDestroy": null,
-                      "OnComponentDisabled": null,
-                      "OnComponentEnabled": null,
-                      "OnComponentFixedUpdate": null,
-                      "OnComponentStart": null,
-                      "OnComponentUpdate": null,
-                      "SkyIndirectLighting": true,
-                      "SkyMaterial": "materials/skybox/skybox_day_01.vmat",
-                      "Tint": "1,1,1,1"
-                    }
-                  ],
-                  "Children": []
-                }
-              ]
-            }
-          ]
+          "Children": []
         }
       ]
     },
@@ -1051,267 +990,11 @@
       "Children": []
     },
     {
-      "__guid": "dd54274c-4abf-4d7a-85b3-4a753a897c2a",
-      "__version": 1,
-      "Flags": 0,
-      "Name": "Testing",
-      "Position": "0,0,0",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": false,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
-      "OwnerTransfer": 1,
-      "Components": [],
-      "Children": [
-        {
-          "__guid": "151cf517-5290-4c83-955b-d7d04ed469e3",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "EquipmentSpawnCrowbar",
-          "Position": "110,432,43.29883",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.EquipmentSpawnPoint",
-              "__guid": "172ef98b-8fbc-4af1-be73-8f9efb0f123b",
-              "__enabled": true,
-              "ChancePercentage": 0.5,
-              "Equipment": "equipments/crowbar/crowbar.eqpt",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "SpawnForce": 1000,
-              "UseSpawnChance": false,
-              "UseSpawnForce": false
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "fec0639f-677a-4b77-bd23-ab1b0da34a3d",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "EquipmentSpawnKnife",
-          "Position": "142,528,43.29883",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.EquipmentSpawnPoint",
-              "__guid": "8fe0325e-bc16-4754-994a-061f275bf068",
-              "__enabled": true,
-              "ChancePercentage": 0.5,
-              "Equipment": "equipments/knife/knife.eqpt",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "SpawnForce": 1000,
-              "UseSpawnChance": false,
-              "UseSpawnForce": false
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "c90ebb87-5a84-4f34-bffd-b9b479b5ff41",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "EquipmentSpawnRocketLauncher",
-          "Position": "-22.0002,528.0001,43.29883",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.EquipmentSpawnPoint",
-              "__guid": "3c295806-08ea-4427-9c80-371bf1f51f65",
-              "__enabled": true,
-              "ChancePercentage": 0.5,
-              "Equipment": "equipments/rocketlauncher/rocketlauncher.eqpt",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "SpawnForce": 1000,
-              "UseSpawnChance": false,
-              "UseSpawnForce": false
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "d69ee708-4736-4eaa-9bcc-caf986521123",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "EquipmentSpawnSniper",
-          "Position": "-22.0002,656.0001,43.29883",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.EquipmentSpawnPoint",
-              "__guid": "2b36bf05-4687-4bf0-b1d4-d2f7b62df3e1",
-              "__enabled": true,
-              "ChancePercentage": 0.5,
-              "Equipment": "equipments/sniper/sniper.eqpt",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "SpawnForce": 1000,
-              "UseSpawnChance": false,
-              "UseSpawnForce": false
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "caa8ca99-0e37-4700-80e0-391703cb2dae",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "EquipmentSpawnAssaultRifle",
-          "Position": "-22.0002,784.0001,43.29883",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.EquipmentSpawnPoint",
-              "__guid": "de615d02-89aa-45fc-a5dd-1622a7fd75de",
-              "__enabled": true,
-              "ChancePercentage": 0.5,
-              "Equipment": "equipments/assaultrifle/assaultrifle.eqpt",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "SpawnForce": 1000,
-              "UseSpawnChance": false,
-              "UseSpawnForce": false
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "2538393a-a4b5-4d1f-a6b9-1aff8d77bbcb",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "EquipmentSpawnMP",
-          "Position": "-22.0002,912.0001,43.29883",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.EquipmentSpawnPoint",
-              "__guid": "cdcc9c3d-c923-4a83-bd36-a6787814c493",
-              "__enabled": true,
-              "ChancePercentage": 0.5,
-              "Equipment": "equipments/mp/mp.eqpt",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "SpawnForce": 1000,
-              "UseSpawnChance": false,
-              "UseSpawnForce": false
-            }
-          ],
-          "Children": []
-        },
-        {
-          "__guid": "6868f418-66ed-4a68-9d49-2d61f8bedbb9",
-          "__version": 1,
-          "Flags": 0,
-          "Name": "EquipmentSpawnPistol",
-          "Position": "78,1104,43.29883",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkInterpolation": true,
-          "NetworkOrphaned": 0,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Mountain.EquipmentSpawnPoint",
-              "__guid": "0b53e6c4-df4a-4de3-bfd6-c6a9d23bf108",
-              "__enabled": true,
-              "ChancePercentage": 0.5,
-              "Equipment": "equipments/pistol/pistol.eqpt",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "SpawnForce": 1000,
-              "UseSpawnChance": false,
-              "UseSpawnForce": false
-            }
-          ],
-          "Children": []
-        }
-      ]
-    },
-    {
       "__guid": "fff13e30-0369-4281-929d-836e1dc7b572",
       "__version": 1,
       "Flags": 0,
       "Name": "KillVolume",
-      "Position": "0,0,-5000",
+      "Position": "0,0,-2200",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "zone",

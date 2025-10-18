@@ -147,7 +147,6 @@ public sealed class SlideMovementState : MovementState
 
     public override void OnStateBegin()
     {
-        base.OnStateBegin();
         defaultSize = Player.Collider.Start.z;
         Player.Collider.Start = new(0, 0, colliderSize);
         Player.SetHeadPosition(headHeightModifier);
@@ -155,7 +154,6 @@ public sealed class SlideMovementState : MovementState
 
     public override void OnStateEnd(MovementState? next)
     {
-        base.OnStateEnd(next);
         Player.Collider.Start = new(0, 0, defaultSize);
         Player.SetHeadPosition();
     }

@@ -7,7 +7,7 @@ public sealed class RunMovementState : MovementState
 
     public override int Score(Player playerMovement)
     {
-        return Input.Down("run") ? 100 : 0;
+        return Input.Down("run") ? Priority : 0;
     }
 
     public override void AddVelocity()
