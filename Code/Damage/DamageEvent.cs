@@ -31,3 +31,9 @@ public record GlobalKillEvent(DamageInfo DamageInfo) : IGameEvent;
 /// </summary>
 /// <param name="Damage">Information about the killing blow.</param>
 public record KillEvent(DamageInfo DamageInfo) : IGameEvent;
+
+/// <summary>
+///     Event dispatched on a root object that killed another object.
+/// </summary>
+/// <param name="Damage">Information about the damage.</param>
+public record KilledEvent(DamageInfo DamageInfo) : IGameEvent;

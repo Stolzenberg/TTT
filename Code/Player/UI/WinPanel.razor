@@ -20,6 +20,9 @@
                             <div class="player-team" style="background-color: @client.Team.GetColor(); color: white;">
                                 @client.Team.ToString()
                             </div>
+                            <div class="player-karma">
+                                Karma: @Math.Round(client.Player!.Karma)
+                            </div>
                         </div>
                         <div class="player-status @(IsPlayerAlive(client) ? "status-alive" : "status-dead")">
                             @(IsPlayerAlive(client) ? "ALIVE" : "DEAD")

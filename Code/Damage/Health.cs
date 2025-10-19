@@ -77,11 +77,26 @@ public class Health : Component
          Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
     public float HealingTickRate { get; set; } = 0.1f;
 
-    private TimeSince _timeSinceLastHealTick = 0f;
+    private TimeSince timeSinceLastHealTick = 0f;
 
     public void ServerTakeDamage(DamageInfo damageInfo)
     {
-        BroadcastDamage(damageInfo.Damage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
+        // Apply karma damage multiplier if attacker is a player attacking another player
+        var actualDamage = damageInfo.Damage;
+        
+        if (damageInfo.Attacker.IsValid() && damageInfo.Victim.IsValid())
+        {
+            var attackerPlayer = damageInfo.Attacker.GameObject.Root.GetComponentInChildren<Player>();
+            var victimPlayer = damageInfo.Victim.GameObject.Root.GetComponentInChildren<Player>();
+            
+            if (attackerPlayer.IsValid() && victimPlayer.IsValid() && attackerPlayer != victimPlayer)
+            {
+                var karmaMultiplier = attackerPlayer.GetKarmaDamageMultiplier();
+                actualDamage = damageInfo.Damage * karmaMultiplier;
+            }
+        }
+        
+        BroadcastDamage(actualDamage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
             damageInfo.Inflictor, damageInfo.Hitbox, damageInfo.Flags);
 
         var rigidbody = GetComponent<Rigidbody>();
@@ -89,19 +104,21 @@ public class Health : Component
         {
             rigidbody.ApplyImpulseAt(damageInfo.Position, damageInfo.Force);
         }
-
-        Log.Info(
-            $"{GameObject.Name} took {damageInfo.Damage} damage from {damageInfo.Attacker.GameObject.Name ?? "unknown"} flags: {damageInfo.Flags}");
-
+        
         if (IsGodMode)
         {
+            Log.Info($"{GameObject.Name} is in god mode and took no damage. But should have taken {actualDamage} damage from {damageInfo.Attacker.GameObject.Name ?? "unknown"} flags: {damageInfo.Flags}");
             return;
         }
+
+        Log.Info(
+            $"{GameObject.Name} took {actualDamage} damage from {damageInfo.Attacker.GameObject.Name ?? "unknown"} flags: {damageInfo.Flags}");
+
 
         // Reset the damage timer for healing over time
         TimeSinceLastDamage = 0f;
 
-        CurrentHealth = Math.Max(0f, CurrentHealth - damageInfo.Damage);
+        CurrentHealth = Math.Max(0f, CurrentHealth - actualDamage);
 
         if (CurrentHealth > 0f || State != LifeState.Alive)
         {
@@ -111,7 +128,7 @@ public class Health : Component
         CurrentHealth = 0f;
         State = LifeState.Dead;
 
-        BroadcastKill(damageInfo.Damage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
+        BroadcastKill(actualDamage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
             damageInfo.Inflictor, damageInfo.Hitbox, damageInfo.Flags);
 
         Log.Info($"{GameObject.Name} was killed by {damageInfo.Attacker.GameObject.Name ?? "unknown"}");
@@ -158,7 +175,7 @@ public class Health : Component
         }
 
         // Check if it's time for a healing tick
-        if (_timeSinceLastHealTick < HealingTickRate)
+        if (timeSinceLastHealTick < HealingTickRate)
         {
             return;
         }
@@ -166,12 +183,12 @@ public class Health : Component
         // Apply healing
         var healAmount = HealingPerSecond * HealingTickRate;
         CurrentHealth = Math.Min(MaxHealth, CurrentHealth + healAmount);
-        _timeSinceLastHealTick = 0f;
+        timeSinceLastHealTick = 0f;
     }
 
     [Rpc.Broadcast]
     private void BroadcastDamage(float damage, Vector3 position, Vector3 force, Component attacker,
-        Component inflictor = default, HitboxTags hitbox = default, DamageFlags flags = default)
+        Component inflictor, HitboxTags hitbox, DamageFlags flags)
     {
         var damageInfo = new DamageInfo
         {
@@ -184,19 +201,19 @@ public class Health : Component
             Hitbox = hitbox,
             Flags = flags,
         };
-
-        GameObject.Root.Dispatch(new DamageTakenEvent(damageInfo));
-        Scene.Dispatch(new DamageTakenGlobalEvent(damageInfo));
 
         if (damageInfo.Attacker.IsValid())
         {
             damageInfo.Attacker.GameObject.Root.Dispatch(new DamageGivenEvent(damageInfo));
         }
+
+        GameObject.Root.Dispatch(new DamageTakenEvent(damageInfo));
+        Scene.Dispatch(new DamageTakenGlobalEvent(damageInfo));
     }
 
     [Rpc.Broadcast]
     private void BroadcastKill(float damage, Vector3 position, Vector3 force, Component attacker,
-        Component inflictor = default, HitboxTags hitbox = default, DamageFlags flags = default)
+        Component inflictor, HitboxTags hitbox, DamageFlags flags)
     {
         var damageInfo = new DamageInfo
         {
@@ -209,6 +226,11 @@ public class Health : Component
             Hitbox = hitbox,
             Flags = flags,
         };
+
+        if (damageInfo.Attacker.IsValid())
+        {
+            damageInfo.Attacker.GameObject.Root.Dispatch(new KilledEvent(damageInfo));
+        }
 
         GameObject.Root.Dispatch(new KillEvent(damageInfo));
         Scene.Dispatch(new GlobalKillEvent(damageInfo));

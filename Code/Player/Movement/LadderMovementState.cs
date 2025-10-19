@@ -205,7 +205,7 @@ public sealed class LadderMovementState : MovementState
                 .IgnoreGameObjectHierarchy(Player.GameObject).Run();
 
             // Debug visualization (optional)
-            DebugOverlay.Sphere(new Sphere(Player.WorldPosition, ClimbableCheckDistance), trace.Hit ? Color.Green : Color.Red);
+            // DebugOverlay.Sphere(new Sphere(Player.WorldPosition, ClimbableCheckDistance), trace.Hit ? Color.Green : Color.Red);
 
             if (!trace.Hit)
             {

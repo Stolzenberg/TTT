@@ -10,6 +10,7 @@ public sealed partial class Player : Component
         ChooseBestMovementState();
         ApplyClothing();
         SetHeadPosition(clothing.Height);
+        InitializeKarma();
     }
 
     private TimeSince timeSinceBotRandomAngle = 0;

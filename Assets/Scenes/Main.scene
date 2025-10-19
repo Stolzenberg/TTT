@@ -89,7 +89,7 @@
           "__type": "Mountain.GameMode",
           "__guid": "eaae459f-616f-4c61-9c11-d9f68129468c",
           "__enabled": true,
-          "BotCount": 1,
+          "BotCount": 10,
           "DebuggingEnabled": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -658,6 +658,17 @@
                 "go": "ba485052-150e-4a0f-a343-29ccaa73965c",
                 "component_type": "GameState"
               }
+            },
+            {
+              "__type": "Mountain.RestoreKarma",
+              "__guid": "45443027-dd56-4b77-b0c5-406cb51f8e82",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
             }
           ],
           "Children": [
@@ -803,7 +814,7 @@
               "__enabled": true,
               "__version": 1,
               "EnableCollision": true,
-              "MapName": "thieves.rooftops",
+              "MapName": "facepunch.flatgrass",
               "NoOrigin": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,

@@ -45,4 +45,15 @@ public static class TeamExtensions
             _ => Team.Unassigned,
         };
     }
+    
+    
+    /// <summary>
+    ///     Check if two teams are allies (should not attack each other).
+    /// </summary>
+    public static bool AreTeamsAllied(this Team team1, Team team2)
+    {
+        // Innocents and Detectives are allies
+        return team1 is Team.Innocent or Team.Detective && 
+               team2 is Team.Innocent or Team.Detective;
+    }
 }
