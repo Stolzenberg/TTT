@@ -658,17 +658,6 @@
                 "go": "ba485052-150e-4a0f-a343-29ccaa73965c",
                 "component_type": "GameState"
               }
-            },
-            {
-              "__type": "Mountain.RestoreKarma",
-              "__guid": "45443027-dd56-4b77-b0c5-406cb51f8e82",
-              "__enabled": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
             }
           ],
           "Children": [
@@ -782,6 +771,17 @@
             {
               "__type": "Mountain.BetweenRoundCleanup",
               "__guid": "c0c34667-759a-4f7f-9caf-5ad44c0aa529",
+              "__enabled": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Mountain.RestoreKarma",
+              "__guid": "4b129787-cd10-4d18-a97f-ab334876b03c",
               "__enabled": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,

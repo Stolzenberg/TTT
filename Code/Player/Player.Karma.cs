@@ -106,6 +106,8 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
         }
 
         Karma = Math.Clamp(Karma + KarmaRestoration, KarmaMin, KarmaMax);
+        
+        Log.Info($"{Client.DisplayName} restored {KarmaRestoration:F1} karma. New karma: {Karma:F1}");
     }
 
     /// <summary>

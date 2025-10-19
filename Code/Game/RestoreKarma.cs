@@ -5,9 +5,9 @@ namespace Mountain;
 /// <summary>
 ///     Restores karma for all players at the end of each round (for good behavior).
 /// </summary>
-public sealed class RestoreKarma : Component, IGameEventHandler<BetweenRoundCleanupEvent>
+public sealed class RestoreKarma : Component, IGameEventHandler<EnterStateEvent>
 {
-    void IGameEventHandler<BetweenRoundCleanupEvent>.OnGameEvent(BetweenRoundCleanupEvent eventArgs)
+    void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
     {
         if (!Networking.IsHost)
         {
