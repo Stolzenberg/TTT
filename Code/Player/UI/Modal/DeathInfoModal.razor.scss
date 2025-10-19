@@ -5,6 +5,7 @@ DeathInfoModal {
     min-width: 400px;
     min-height: 200px;
     padding: 16px;
+    font-size: 32px;
   }
   
   .death-info {
@@ -15,14 +16,12 @@ DeathInfoModal {
 
   .victim-info {
     color: #ff6666;
-    font-size: 18px;
     font-weight: bold;
     display: flex;
     flex-direction: column;
   }
 
   .role-info {
-    font-size: 18px;
     font-weight: bold;
   }
 
@@ -31,6 +30,5 @@ DeathInfoModal {
     flex-direction: column;
     gap: 8px;
     color: white;
-    font-size: 16px;
   }
 }

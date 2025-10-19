@@ -23,6 +23,7 @@ public sealed class Ragdoll : Component
         var ragdoll = gameObject.AddComponent<Ragdoll>();
         
         ragdoll.DamageInfo = damageInfo;
+        ragdoll.Client = player.Client;
         
         gameObject.AddComponent<OpenDeathDialog>();
         gameObject.AddComponent<DestroyBetweenRounds>();
@@ -45,6 +46,7 @@ public sealed class Ragdoll : Component
         return ragdoll;
     }
 
+    public Client Client { get; set; }
     public Dresser Dresser { get; set; }
     public ModelPhysics ModelPhysics { get; set; }
     public DamageInfo DamageInfo { get; set; }

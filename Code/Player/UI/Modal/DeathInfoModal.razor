@@ -16,39 +16,10 @@
             </div>
 
             <div class="killer-info">
-                @if (WasAttackerPlayer())
+                @if (!string.IsNullOrEmpty(GetWeaponName()))
                 {
-                    @if (!string.IsNullOrEmpty(GetWeaponName()))
-                    {
-                        <div class="weapon">
-                            <h3>#WEAPON:</h3>
-                            <h3>#@GetWeaponName()</h3>
-                        </div>
-                    }
-
-                    <div class="damage">
-                        <h3>#DAMAGE:</h3>
-                        <h3>@(DamageInfo.Damage.ToString("F0") ?? "0")</h3>
-                    </div>
-
-                    @if (!string.IsNullOrEmpty(GetHitLocation()))
-                    {
-                        <div class="hitbox">
-                            <h3>#HIT:</h3>
-                            <h3>@GetHitLocation()</h3>
-                        </div>
-                    }
-                }
-                else
-                {
-                    <div class="environmental">
-                        <h3>#CAUSE:</h3>
-                        <h3>@GetDeathCause()</h3>
-                    </div>
-
-                    <div class="damage">
-                        <h3>#DAMAGE:</h3>
-                        <h3>@(DamageInfo.Damage.ToString("F0") ?? "0")</h3>
+                    <div class="weapon">
+                        <h3>@LocalizationHelper.Resolve("#WAS_KILLED_BY_WEAPON", Language.GetPhrase(GetWeaponName()))</h3>
                     </div>
                 }
             </div>
@@ -57,12 +28,12 @@
 </root>
 
 @code {
-    public Action OnSubmit { get; set; }
     public DamageInfo DamageInfo { get; set; }
+    public Client VictimClient { get; set; }
 
     public double TimeSinceEvent { get; set; }
 
-    public static void Show(DamageInfo damageInfo, Action submitAction = null)
+    public static void Show(DamageInfo damageInfo, Client client)
     {
         var screenPanel = Game.ActiveScene.GetAllComponents<ModalRoot>().FirstOrDefault();
         if (!screenPanel.IsValid())
@@ -75,7 +46,19 @@
         var modal = screenPanel.Panel.AddChild<DeathInfoModal>();
 
         modal.DamageInfo = damageInfo;
-        modal.OnSubmit = submitAction;
+        modal.VictimClient = client;
+    }
+    
+    public static void Close()
+    {
+        var screenPanel = Game.ActiveScene.GetAllComponents<ModalRoot>().FirstOrDefault();
+        if (!screenPanel.IsValid())
+        {
+            return;
+        }
+        
+        var modal = screenPanel.Panel.Children.First(c => c is DeathInfoModal);
+        modal.Delete();
     }
 
     protected override int BuildHash()
@@ -88,20 +71,14 @@
         TimeSinceEvent = (DateTime.UtcNow - DamageInfo.KilledAtUtc).TotalSeconds;
     }
 
-    private void OnSubmitButton()
-    {
-        OnSubmit.Invoke();
-        Delete();
-    }
-
     private string GetVictimName()
     {
-        return "test";
+        return VictimClient.DisplayName;
     }
 
     private Team GetVictimTeam()
     {
-        return Team.Unassigned;
+        return VictimClient.Team;
     }
 
     private string GetWeaponName()
@@ -126,75 +103,5 @@
         }
 
         return string.Empty;
-    }
-
-    private float GetDistanceToAttacker()
-    {
-        var attacker = DamageInfo.Attacker.GetPlayerFromComponent();
-        var victim = DamageInfo.Victim.GetPlayerFromComponent();
-
-        if (attacker != null && victim != null)
-        {
-            return attacker.WorldPosition.Distance(victim.WorldPosition);
-        }
-
-        return 0f;
-    }
-
-    private bool WasAttackerPlayer()
-    {
-        var attacker = DamageInfo.Attacker.GetPlayerFromComponent();
-
-        return attacker != null;
-    }
-
-    private string GetHitLocation()
-    {
-        if (DamageInfo.Hitbox.HasFlag(HitboxTags.Head))
-        {
-            return "HEAD";
-        }
-
-        if (DamageInfo.Hitbox.HasFlag(HitboxTags.UpperBody))
-        {
-            return "UPPER_BODY";
-        }
-
-        if (DamageInfo.Hitbox.HasFlag(HitboxTags.LowerBody))
-        {
-            return "LOWER_BODY";
-        }
-
-        if (DamageInfo.Hitbox.HasFlag(HitboxTags.Leg))
-        {
-            return "LEG";
-        }
-
-        if (DamageInfo.Hitbox.HasFlag(HitboxTags.Arm))
-        {
-            return "ARM";
-        }
-
-        return string.Empty;
-    }
-
-    private string GetDeathCause()
-    {
-        if (DamageInfo.WasFallDamage)
-        {
-            return "Fall Damage";
-        }
-
-        if (DamageInfo.WasExplosion)
-        {
-            return "Explosion";
-        }
-
-        if (DamageInfo.WasMelee)
-        {
-            return "Melee Attack";
-        }
-
-        return "Environmental";
     }
 }

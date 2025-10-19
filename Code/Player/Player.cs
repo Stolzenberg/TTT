@@ -13,8 +13,6 @@ public sealed partial class Player : Component
         InitializeKarma();
     }
 
-    private TimeSince timeSinceBotRandomAngle = 0;
-
     protected override void OnUpdate()
     {
         if (!Game.IsPlaying)

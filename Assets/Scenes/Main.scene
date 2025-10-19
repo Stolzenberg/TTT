@@ -89,7 +89,7 @@
           "__type": "Mountain.GameMode",
           "__guid": "eaae459f-616f-4c61-9c11-d9f68129468c",
           "__enabled": true,
-          "BotCount": 2,
+          "BotCount": 10,
           "DebuggingEnabled": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -411,7 +411,7 @@
               "__type": "Mountain.GameState",
               "__guid": "786bbcc7-5a81-4442-a90a-a43b64ab8e16",
               "__enabled": true,
-              "DefaultDuration": 10,
+              "DefaultDuration": 0,
               "DefaultNextState": {
                 "_type": "component",
                 "component_id": "a568ae5b-a251-4c0e-949d-708a5cde842c",

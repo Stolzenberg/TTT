@@ -51,14 +51,19 @@ public abstract class ScreenShake
 
         public override bool Update(CameraComponent camera)
         {
-            if (!Client.Local.Player.IsValid())
+            if (!Client.Viewer.IsValid())
+            {
+                return false;
+            }
+            
+            if (!Client.Viewer.Player.IsValid())
             {
                 return false;
             }
 
             var c = Curve.Evaluate(Progress);
 
-            Client.Local.Player.AddFieldOfViewOffset(Amount * c);
+            Client.Viewer.Player.AddFieldOfViewOffset(Amount * c);
 
             return LifeTime < Length;
         }
