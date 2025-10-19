@@ -2,20 +2,17 @@
 
 public sealed class OpenDeathDialog : Component, IInteraction
 {
-    private Player player;
+    private Ragdoll ragdoll;
 
     protected override void OnStart()
     {
-        player = this.GetPlayerFromComponent() ?? throw new System.InvalidOperationException("OpenDeathDialog must be a child of a Player.");
+        ragdoll = GetComponent<Ragdoll>();
     }
-    
-    public bool CanPress(IInteraction.Event e)
-    {
-        return player.Health.State == LifeState.Dead;
-    }
-    
+
     public bool Press(IInteraction.Event e)
     {
-        throw new System.NotImplementedException();
+        Log.Info($"Opening death dialog for player. {ragdoll.DamageInfo}");
+        DeathInfoModal.Show(ragdoll.DamageInfo);
+        return true;
     }
 }

@@ -79,6 +79,21 @@ public class Health : Component
 
     private TimeSince timeSinceLastHealTick = 0f;
 
+    [Button]
+    private void DebugDamage()
+    {
+        ServerTakeDamage(new DamageInfo
+        {
+            Attacker = this,
+            Victim = this,
+            Inflictor = null,
+            Damage = 50f,
+            Position = GameObject.WorldPosition,
+            Force = Vector3.Up * 100f,
+            Flags = DamageFlags.None,
+        });
+    }
+    
     public void ServerTakeDamage(DamageInfo damageInfo)
     {
         // Apply karma damage multiplier if attacker is a player attacking another player

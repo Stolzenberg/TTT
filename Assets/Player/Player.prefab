@@ -114,7 +114,7 @@
           "go": "5136a60c-9581-40b0-bf67-76a73bc7f462",
           "component_type": "Health"
         },
-        "interactionRadius": 2,
+        "interactionRadius": 8,
         "jumpForce": 300,
         "lookSensitivity": 1,
         "MaxStepHeight": 24,
@@ -127,7 +127,7 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "pitchClamp": 85,
-        "reachLength": 20,
+        "reachLength": 64,
         "RightHandSocket": {
           "_type": "gameobject",
           "go": "9cb23101-f32f-48f0-a494-17c132f7bf80"
@@ -211,17 +211,6 @@
         },
         "Volume": 5,
         "WorldspacePlayback": true
-      },
-      {
-        "__type": "Mountain.OpenDeathDialog",
-        "__guid": "15f84ff4-fcdf-4559-9d4a-df840e91cd5a",
-        "__enabled": true,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null
       },
       {
         "__type": "Mountain.WalkMovementState",

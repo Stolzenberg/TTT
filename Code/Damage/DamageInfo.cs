@@ -1,3 +1,5 @@
+using System;
+
 namespace Mountain;
 
 public record struct DamageInfo()
@@ -22,7 +24,7 @@ public record struct DamageInfo()
 
     public bool WasFallDamage => Flags.HasFlag(DamageFlags.FallDamage);
 
-    public RealTimeSince TimeSinceEvent { get; init; } = 0;
+    public DateTime KilledAtUtc { get; init; } = DateTime.UtcNow;
 
     public override string ToString()
     {

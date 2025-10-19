@@ -3,13 +3,12 @@
 
 @namespace Mountain
 
-<root class="modal">
-    <div class="container blur">
+<root class="center">
+    <div class="container blur rounded">
         <div class="death-info">
             <div class="victim-info">
-                <h3>@GetVictimName()</h3>
-                <h3>#WAS_KILLED</h3>
-                <h3>Death since: @DamageInfo.TimeSinceEvent</h3>
+                <h3>@LocalizationHelper.Resolve("#WAS_KILLED", GetVictimName())</h3>
+                <h3>@LocalizationHelper.Resolve("#DEATH_SINCE", TimeSinceEvent.ToString("F0"))</h3>
             </div>
 
             <div class="role-info" style="color: @GetVictimTeam().GetColor().ToString();">
@@ -31,14 +30,6 @@
                         <h3>#DAMAGE:</h3>
                         <h3>@(DamageInfo.Damage.ToString("F0") ?? "0")</h3>
                     </div>
-
-                    @if (GetDistanceToAttacker() > 0)
-                    {
-                        <div class="distance">
-                            <h3>#DISTANCE: </h3>
-                            <h3>@GetDistanceToAttacker().ToString("F0")m</h3>
-                        </div>
-                    }
 
                     @if (!string.IsNullOrEmpty(GetHitLocation()))
                     {
@@ -69,12 +60,17 @@
     public Action OnSubmit { get; set; }
     public DamageInfo DamageInfo { get; set; }
 
+    public double TimeSinceEvent { get; set; }
+
     public static void Show(DamageInfo damageInfo, Action submitAction = null)
     {
         var screenPanel = Game.ActiveScene.GetAllComponents<ModalRoot>().FirstOrDefault();
-
         if (!screenPanel.IsValid())
+        {
             return;
+        }
+
+        screenPanel.Panel.DeleteChildren(true);
 
         var modal = screenPanel.Panel.AddChild<DeathInfoModal>();
 
@@ -84,7 +80,12 @@
 
     protected override int BuildHash()
     {
-        return HashCode.Combine(DamageInfo);
+        return HashCode.Combine(TimeSinceEvent);
+    }
+
+    public override void Tick()
+    {
+        TimeSinceEvent = (DateTime.UtcNow - DamageInfo.KilledAtUtc).TotalSeconds;
     }
 
     private void OnSubmitButton()
@@ -95,16 +96,12 @@
 
     private string GetVictimName()
     {
-        var victim = DamageInfo.Victim.GetPlayerFromComponent();
-
-        return victim!.Client.DisplayName;
+        return "test";
     }
 
     private Team GetVictimTeam()
     {
-        var victim = DamageInfo.Victim.GetPlayerFromComponent();
-
-        return victim!.Client.Team;
+        return Team.Unassigned;
     }
 
     private string GetWeaponName()

@@ -9,9 +9,10 @@ public sealed partial class Player
     public Component? Hovered { get; set; }
 
     [Property, Feature("Interact")]
-    private readonly float reachLength = 20f;
+    private readonly float reachLength = 64f;
+
     [Property, Feature("Interact")]
-    private readonly float interactionRadius = 2f;
+    private readonly float interactionRadius = 8f;
 
     private void UpdateLookAt()
     {
@@ -179,23 +180,14 @@ public sealed partial class Player
     {
         var eyeTrace = Scene.Trace.Ray(EyePosition, EyePosition + EyeAngles.Forward * reachLength)
             .IgnoreGameObjectHierarchy(GameObject).Radius(interactionRadius).Run();
-        
-        if (!eyeTrace.Hit || !eyeTrace.GameObject.IsValid())
+
+        if (!eyeTrace.Hit || eyeTrace.GameObject == null)
         {
             return null;
         }
 
-        foreach (var component in eyeTrace.GameObject.GetComponents<IInteraction>())
-        {
-            if (component.CanPress(new()
-                {
-                    Source = this,
-                }))
-            {
-                return component as Component;
-            }
-        }
-
-        return null;
+        return eyeTrace.GameObject.Root
+            .GetComponents<IInteraction>()
+            .FirstOrDefault(c => c.CanPress(new() { Source = this })) as Component;
     }
 }

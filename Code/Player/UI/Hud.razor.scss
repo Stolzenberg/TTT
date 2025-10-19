@@ -41,13 +41,13 @@ Hud {
 
   .state-text {
     font-size: 32px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8);
     font-weight: bold;
   }
 
   .time-text {
     font-size: 24px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8);
     font-weight: bold;
 
     &.time-urgent {

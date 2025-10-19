@@ -89,7 +89,7 @@
           "__type": "Mountain.GameMode",
           "__guid": "eaae459f-616f-4c61-9c11-d9f68129468c",
           "__enabled": true,
-          "BotCount": 10,
+          "BotCount": 2,
           "DebuggingEnabled": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -563,19 +563,6 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null
-            },
-            {
-              "__type": "Mountain.SendNotificationOnStateEnter",
-              "__guid": "b7a33a5e-c325-4082-9cee-b1ef43b9898b",
-              "__enabled": true,
-              "NotificationMessage": "#PLAYING_STATE_STARTED_NOTIFICATION",
-              "NotificationType": "Info",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
             }
           ],
           "Children": []
@@ -950,6 +937,17 @@
           "ScaleStrategy": "ConsistentHeight",
           "TargetCamera": null,
           "ZIndex": 1000
+        },
+        {
+          "__type": "Mountain.ModalRoot",
+          "__guid": "787f1400-fa78-4da8-b495-8721e37d7937",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": []
@@ -1056,6 +1054,46 @@
           "__enabled": true,
           "Color": "1000,0,0,1",
           "DisplayName": "Killing Zone",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "6a75fd80-067b-43ad-8d52-d15dc950c8e8",
+      "__version": 1,
+      "Flags": 0,
+      "Name": "Notifications",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "NetworkOrphaned": 0,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Mountain.NetworkNotifications",
+          "__guid": "66ad782d-d18d-4fb8-af0c-771d4adfcd4c",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "Mountain.TeamNotifications",
+          "__guid": "aad3273b-6e20-4953-a3c2-fdb0c6de52ee",
+          "__enabled": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,

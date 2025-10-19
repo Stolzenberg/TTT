@@ -63,7 +63,7 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IGameE
     {
         if (Networking.IsHost)
         {
-            var ragdoll = Ragdoll.Create(this);
+            var ragdoll = Ragdoll.Create(this, eventArgs.DamageInfo);
             ragdoll.ApplyRagdollImpulses(eventArgs.DamageInfo.Position, eventArgs.DamageInfo.Force);
             DropAllEquipment();
         }

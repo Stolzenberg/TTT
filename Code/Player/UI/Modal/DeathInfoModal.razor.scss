@@ -1,6 +1,12 @@
 ﻿@import "../../../Shared/Shared.scss";
 
 DeathInfoModal {
+  .container {
+    min-width: 400px;
+    min-height: 200px;
+    padding: 16px;
+  }
+  
   .death-info {
     display: flex;
     flex-direction: column;

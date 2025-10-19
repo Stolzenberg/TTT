@@ -4,7 +4,7 @@ namespace Mountain;
 
 public sealed class Ragdoll : Component
 {
-    public static Ragdoll Create(Player player)
+    public static Ragdoll Create(Player player, DamageInfo damageInfo)
     {
         if (!Networking.IsHost)
         {
@@ -22,6 +22,9 @@ public sealed class Ragdoll : Component
         
         var ragdoll = gameObject.AddComponent<Ragdoll>();
         
+        ragdoll.DamageInfo = damageInfo;
+        
+        gameObject.AddComponent<OpenDeathDialog>();
         gameObject.AddComponent<DestroyBetweenRounds>();
         
         var renderer = gameObject.AddComponent<SkinnedModelRenderer>();
@@ -44,6 +47,7 @@ public sealed class Ragdoll : Component
 
     public Dresser Dresser { get; set; }
     public ModelPhysics ModelPhysics { get; set; }
+    public DamageInfo DamageInfo { get; set; }
     
     public void ApplyRagdollImpulses(Vector3 position, Vector3 force)
     {

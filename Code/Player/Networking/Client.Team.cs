@@ -22,6 +22,12 @@ public partial class Client : ITeam
 
         Team = team;
 
+        BroadcastTeam(team);
+    }
+
+    [Rpc.Broadcast]
+    private void BroadcastTeam(Team team)
+    {
         Scene.Dispatch(new TeamAssignedEvent(this, team));
     }
 
