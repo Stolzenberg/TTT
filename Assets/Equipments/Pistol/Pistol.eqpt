@@ -16,6 +16,7 @@
   "ViewModel": "models/weapons/sbox_pistol_usp/v_usp.vmdl",
   "MuzzleBoneName": "silencer",
   "EjectionPortBoneName": "slide",
+  "AmmoType": "Pistol",
   "NameKey": "PISTOL_NAME",
   "DescriptionKey": "PISTOL_DESCRIPTION",
   "__references": [

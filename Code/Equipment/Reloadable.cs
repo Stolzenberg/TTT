@@ -25,7 +25,7 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
 
     [Property]
     public Dictionary<float, SoundEvent> TimedReloadSounds { get; init; } = new();
-    
+
     [Property]
     public Dictionary<float, SoundEvent> EmptyReloadSounds { get; init; } = new();
 
@@ -78,10 +78,22 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
             EndReload();
         }
     }
-    
+
     private bool CanReload()
     {
-        return !IsReloading && AmmoComponent.IsValid() && !AmmoComponent.IsFull;
+        if (IsReloading || !AmmoComponent.IsValid() || AmmoComponent.IsFull)
+        {
+            return false;
+        }
+
+        // Check if player has ammo in inventory for this weapon type
+        var ammoType = Equipment.Resource.AmmoType;
+        if (ammoType != AmmoType.None && !Player.HasAmmo(ammoType))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private float GetReloadTime()
@@ -104,12 +116,12 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
             IsReloading = true;
             timeUntilReload = GetReloadTime();
         }
-        
+
         if (!Player.IsPossessed)
         {
             return;
         }
-        
+
         if (SingleReload)
         {
             Equipment.ViewModel.ModelRenderer.Set("b_reloading", true);
@@ -140,13 +152,30 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
     [Rpc.Owner]
     private void EndReload()
     {
+        var ammoType = Equipment.Resource.AmmoType;
+
         if (SingleReload)
         {
-            AmmoComponent.Ammo++;
-            AmmoComponent.Ammo = AmmoComponent.Ammo.Clamp(0, AmmoComponent.MaxAmmo);
+            // Try to take 1 ammo from player inventory
+            if (ammoType != AmmoType.None)
+            {
+                var ammoTaken = Player.TakeAmmo(ammoType, 1);
+                if (ammoTaken > 0)
+                {
+                    AmmoComponent.Ammo++;
+                    AmmoComponent.Ammo = AmmoComponent.Ammo.Clamp(0, AmmoComponent.MaxAmmo);
+                }
+            }
+            else
+            {
+                // No ammo type, just refill (for melee or infinite ammo weapons)
+                AmmoComponent.Ammo++;
+                AmmoComponent.Ammo = AmmoComponent.Ammo.Clamp(0, AmmoComponent.MaxAmmo);
+            }
 
             // Reload more!
-            if (!queueCancel && AmmoComponent.Ammo < AmmoComponent.MaxAmmo)
+            if (!queueCancel && AmmoComponent.Ammo < AmmoComponent.MaxAmmo &&
+                (ammoType == AmmoType.None || Player.HasAmmo(ammoType)))
             {
                 StartReload();
             }
@@ -159,8 +188,21 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
         else
         {
             IsReloading = false;
-            // Refill the ammo container.
-            AmmoComponent.Ammo = AmmoComponent.MaxAmmo;
+
+            // Calculate how much ammo we need to fill the magazine
+            var ammoNeeded = AmmoComponent.MaxAmmo - AmmoComponent.Ammo;
+
+            if (ammoType != AmmoType.None)
+            {
+                // Take ammo from player inventory
+                var ammoTaken = Player.TakeAmmo(ammoType, ammoNeeded);
+                AmmoComponent.Ammo += ammoTaken;
+            }
+            else
+            {
+                // No ammo type, just refill (for melee or infinite ammo weapons)
+                AmmoComponent.Ammo = AmmoComponent.MaxAmmo;
+            }
         }
 
         // Tags will be better so we can just react to stimuli.

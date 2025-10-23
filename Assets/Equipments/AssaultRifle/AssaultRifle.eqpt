@@ -16,6 +16,7 @@
   "ViewModel": "models/weapons/sbox_assault_m4a1/v_m4a1.vmdl",
   "MuzzleBoneName": "muzzle",
   "EjectionPortBoneName": "bolt_flap",
+  "AmmoType": "Rifle",
   "NameKey": "ASSAULTRIFLE_NAME",
   "DescriptionKey": "ASSAULTRIFLE_DESCRIPTION",
   "__references": [

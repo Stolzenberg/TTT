@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq;
 
 namespace Mountain;
 
 public partial class Hud : PanelComponent
 {
+    private const int MaxNotifications = 5;
+    private const float NotificationLifetime = 6.0f;
+    private Equipment? ActiveEquipment => Client.Viewer?.Player?.ActiveEquipment;
+
     private EquipmentAmmo? Ammo =>
-        Client.Viewer?.Player?.ActiveEquipment?.Components?.Get<EquipmentAmmo>(FindMode
-            .EverythingInSelfAndDescendants) ?? null;
+        ActiveEquipment?.Components?.Get<EquipmentAmmo>(FindMode.EverythingInSelfAndDescendants) ?? null;
 
     private Health? Health =>
         Client.Viewer?.Player?.Components?.Get<Health>(FindMode.EverythingInSelfAndDescendants) ?? null;
-    
+
     private List<Notification> Notifications { get; set; } = new();
-    private const int MaxNotifications = 5;
-    private const float NotificationLifetime = 6.0f;
 
     protected override void OnEnabled()
     {
@@ -34,23 +31,23 @@ public partial class Hud : PanelComponent
     protected override void OnUpdate()
     {
         base.OnUpdate();
-        
+
         // Remove old notifications
         Notifications.RemoveAll(n => n.CreatedAt > NotificationLifetime);
-        
+
         StateHasChanged();
     }
 
     private void HandleNotification(Notification notification)
     {
         Notifications.Add(notification);
-        
+
         // Keep only the most recent notifications
         if (Notifications.Count > MaxNotifications)
         {
             Notifications.RemoveAt(0);
         }
-        
+
         StateHasChanged();
     }
 

@@ -1,8 +1,12 @@
 ﻿@namespace Mountain
-@using System
 @inherits PanelComponent
 
 @if (!Client.Viewer.IsValid())
+{
+    return;
+}
+
+@if (!Client.Viewer.Player.IsValid())
 {
     return;
 }
@@ -43,10 +47,11 @@
     </div>
     
     <div class="lower-right-box">
-        @if (Ammo.IsValid())
+        @if (Ammo.IsValid() && ActiveEquipment.IsValid())
         {
             <div class="card blur">
-                <div class="text">@Ammo.Ammo / @Ammo.MaxAmmo</div>
+                <div class="weapon-ammo-text">@Ammo.Ammo / @Ammo.MaxAmmo</div>
+                <div class="player-ammo-text">+@Client.Viewer.Player.GetAmmo(ActiveEquipment.Resource.AmmoType)</div>
             </div>
         }
     </div>

@@ -16,6 +16,7 @@
   "ViewModel": "models/weapons/sbox_sniper_m700/v_m700.vmdl",
   "MuzzleBoneName": "bolt",
   "EjectionPortBoneName": "bolt",
+  "AmmoType": "Sniper",
   "NameKey": "SNIPER_NAME",
   "DescriptionKey": "SNIPER_DESCRIPTION",
   "__references": [

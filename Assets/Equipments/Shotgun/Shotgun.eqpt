@@ -16,6 +16,7 @@
   "ViewModel": "models/weapons/sbox_shotgun_spaghellim4/v_spaghellim4.vmdl",
   "MuzzleBoneName": "muzzle",
   "EjectionPortBoneName": "bolt_flap",
+  "AmmoType": "Shotgun",
   "NameKey": "SHOTGUN_NAME",
   "DescriptionKey": "SHOTGUN_DESCRIPTION",
   "__references": [

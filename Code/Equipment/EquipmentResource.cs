@@ -36,19 +36,22 @@ public partial class EquipmentResource : GameResource
     [Category("Information")]
     public string EjectionPortBoneName { get; set; } = "ejection_port";
 
+    [Category("Information")]
+    public AmmoType AmmoType { get; set; } = AmmoType.None;
+
     [Hide]
     public string NameKey => $"{ResourceName.ToUpper()}_NAME";
 
     [Hide]
     public string DescriptionKey => $"{ResourceName.ToUpper()}_DESCRIPTION";
 
-    protected override Bitmap CreateAssetTypeIcon(int width, int height)
-    {
-        return CreateSimpleAssetTypeIcon("receipt", width, height, "#fdea60", "black");
-    }
-
     public override string ToString()
     {
         return $"{ResourceName}, NameKey: {NameKey}, DescriptionKey: {DescriptionKey}";
+    }
+
+    protected override Bitmap CreateAssetTypeIcon(int width, int height)
+    {
+        return CreateSimpleAssetTypeIcon("receipt", width, height, "#fdea60", "black");
     }
 }

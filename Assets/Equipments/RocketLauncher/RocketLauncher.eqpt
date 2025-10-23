@@ -16,6 +16,7 @@
   "ViewModel": "models/weapons/sbox_rpg_recoillessrifle/v_recoillessrifle.vmdl",
   "MuzzleBoneName": "weapon_root_children",
   "EjectionPortBoneName": "ejection_port",
+  "AmmoType": "Rocket",
   "NameKey": "ROCKETLAUNCHER_NAME",
   "DescriptionKey": "ROCKETLAUNCHER_DESCRIPTION",
   "__references": [
