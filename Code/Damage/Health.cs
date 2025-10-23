@@ -73,56 +73,42 @@ public class Health : Component
     ///     How often (in seconds) to apply healing ticks.
     /// </summary>
     [Property, Feature("Healing Over Time"),
-     ConVar("healing_tick_rate", Name = "Healing Tick Rate",
-         Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+     ConVar("healing_tick_rate", Name = "Healing Tick Rate", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
     public float HealingTickRate { get; set; } = 0.1f;
 
     private TimeSince timeSinceLastHealTick = 0f;
 
-    [Button]
-    private void DebugDamage()
-    {
-        ServerTakeDamage(new DamageInfo
-        {
-            Attacker = this,
-            Victim = this,
-            Inflictor = null,
-            Damage = 50f,
-            Position = GameObject.WorldPosition,
-            Force = Vector3.Up * 100f,
-            Flags = DamageFlags.None,
-        });
-    }
-    
     public void ServerTakeDamage(DamageInfo damageInfo)
     {
         // Apply karma damage multiplier if attacker is a player attacking another player
         var actualDamage = damageInfo.Damage;
-        
+
         if (damageInfo.Attacker.IsValid() && damageInfo.Victim.IsValid())
         {
             var attackerPlayer = damageInfo.Attacker.GameObject.Root.GetComponentInChildren<Player>();
             var victimPlayer = damageInfo.Victim.GameObject.Root.GetComponentInChildren<Player>();
-            
+
             if (attackerPlayer.IsValid() && victimPlayer.IsValid() && attackerPlayer != victimPlayer)
             {
                 var karmaMultiplier = attackerPlayer.GetKarmaDamageMultiplier();
                 actualDamage = damageInfo.Damage * karmaMultiplier;
             }
         }
-        
-        BroadcastDamage(actualDamage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
-            damageInfo.Inflictor, damageInfo.Hitbox, damageInfo.Flags);
+
+        BroadcastDamage(actualDamage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker, damageInfo.Inflictor,
+            damageInfo.Hitbox, damageInfo.Flags);
 
         var rigidbody = GetComponent<Rigidbody>();
         if (rigidbody.IsValid())
         {
             rigidbody.ApplyImpulseAt(damageInfo.Position, damageInfo.Force);
         }
-        
+
         if (IsGodMode)
         {
-            Log.Info($"{GameObject.Name} is in god mode and took no damage. But should have taken {actualDamage} damage from {damageInfo.Attacker.GameObject.Name ?? "unknown"} flags: {damageInfo.Flags}");
+            Log.Info(
+                $"{GameObject.Name} is in god mode and took no damage. But should have taken {actualDamage} damage from {damageInfo.Attacker.GameObject.Name ?? "unknown"} flags: {damageInfo.Flags}");
+
             return;
         }
 
@@ -143,8 +129,8 @@ public class Health : Component
         CurrentHealth = 0f;
         State = LifeState.Dead;
 
-        BroadcastKill(actualDamage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker,
-            damageInfo.Inflictor, damageInfo.Hitbox, damageInfo.Flags);
+        BroadcastKill(actualDamage, damageInfo.Position, damageInfo.Force, damageInfo.Attacker, damageInfo.Inflictor,
+            damageInfo.Hitbox, damageInfo.Flags);
 
         Log.Info($"{GameObject.Name} was killed by {damageInfo.Attacker.GameObject.Name ?? "unknown"}");
     }
@@ -201,9 +187,24 @@ public class Health : Component
         timeSinceLastHealTick = 0f;
     }
 
+    [Button]
+    private void DebugDamage()
+    {
+        ServerTakeDamage(new DamageInfo
+        {
+            Attacker = this,
+            Victim = this,
+            Inflictor = null,
+            Damage = 50f,
+            Position = GameObject.WorldPosition,
+            Force = Vector3.Up * 100f,
+            Flags = DamageFlags.None,
+        });
+    }
+
     [Rpc.Broadcast]
-    private void BroadcastDamage(float damage, Vector3 position, Vector3 force, Component attacker,
-        Component inflictor, HitboxTags hitbox, DamageFlags flags)
+    private void BroadcastDamage(float damage, Vector3 position, Vector3 force, Component attacker, Component inflictor,
+        HitboxTags hitbox, DamageFlags flags)
     {
         var damageInfo = new DamageInfo
         {
@@ -227,8 +228,8 @@ public class Health : Component
     }
 
     [Rpc.Broadcast]
-    private void BroadcastKill(float damage, Vector3 position, Vector3 force, Component attacker,
-        Component inflictor, HitboxTags hitbox, DamageFlags flags)
+    private void BroadcastKill(float damage, Vector3 position, Vector3 force, Component attacker, Component inflictor,
+        HitboxTags hitbox, DamageFlags flags)
     {
         var damageInfo = new DamageInfo
         {

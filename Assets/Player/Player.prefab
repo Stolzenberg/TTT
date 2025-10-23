@@ -319,6 +319,20 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "Priority": 100
+      },
+      {
+        "__type": "Mountain.SwimMovementState",
+        "__guid": "44eac2cf-daef-4c18-b608-cea2808edd38",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Priority": 250,
+        "SwimLevel": 0.7,
+        "SwimSpeed": 100
       }
     ],
     "Children": [

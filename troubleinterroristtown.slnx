@@ -5,7 +5,7 @@
   <Project Path="Code/Mountain.csproj" />
   <Project Path="Editor/Mountain.editor.csproj" />
   <Folder Name="/Addons/">
-    <Project Path="C:/program files/steam/steamapps/common/sbox/addons/base/Code/Base Library.csproj" />
+    <Project Path="C:/Program Files/Steam/steamapps/common/sbox/addons/base/Code/Base Library.csproj"/>
   </Folder>
   <Folder Name="/Libraries/">
     <Project Path="Libraries/facepunch.libevents/Code/libevents.csproj" />
@@ -14,10 +14,10 @@
     <Project Path="Libraries/facepunch.splinetools/Editor/splinetools.editor.csproj" />
   </Folder>
   <Folder Name="/Tools/">
-    <Project Path="C:/program files/steam/steamapps/common/sbox/addons/tools/Code/Base Editor Library.csproj" />
-    <Project Path="C:/program files/steam/steamapps/common/sbox/editor/ActionGraph/Code/actiongraph.csproj" />
-    <Project Path="C:/program files/steam/steamapps/common/sbox/editor/Hammer/Code/hammer.csproj" />
-    <Project Path="C:/program files/steam/steamapps/common/sbox/editor/MovieMaker/Code/moviemaker.csproj" />
-    <Project Path="C:/program files/steam/steamapps/common/sbox/editor/ShaderGraph/Code/shadergraph.csproj" />
+    <Project Path="C:/Program Files/Steam/steamapps/common/sbox/addons/tools/Code/Base Editor Library.csproj"/>
+    <Project Path="C:/Program Files/Steam/steamapps/common/sbox/editor/ActionGraph/Code/actiongraph.csproj"/>
+    <Project Path="C:/Program Files/Steam/steamapps/common/sbox/editor/Hammer/Code/hammer.csproj"/>
+    <Project Path="C:/Program Files/Steam/steamapps/common/sbox/editor/MovieMaker/Code/moviemaker.csproj"/>
+    <Project Path="C:/Program Files/Steam/steamapps/common/sbox/editor/ShaderGraph/Code/shadergraph.csproj"/>
   </Folder>
 </Solution>
