@@ -33,18 +33,34 @@ public sealed partial class Equipment : Component
 
     public Reloadable? Reloadable =>
         reloadable ??= GetComponent<Reloadable>();
-    private Reloadable? reloadable;
-    
+
     public Aimable? Aimable =>
         aimable ??= GetComponent<Aimable>();
-    private Aimable? aimable;
-    
+
     [Flags]
     public enum EquipmentFlag
     {
         None = 0,
         Aiming = 1 << 2,
         Reloading = 1 << 3,
+    }
+
+    private Aimable? aimable;
+    private Reloadable? reloadable;
+
+    public override string ToString()
+    {
+        return $"Equipment(Resource={Resource.NameKey}, Owner={Owner.Client.DisplayName}, IsDeployed={IsDeployed})";
+    }
+
+    [Rpc.Owner]
+    public void OwnerPickup(DroppedEquipment droppedEquipment)
+    {
+        foreach (var state in GetComponents<IDroppedEquipmentState>())
+        {
+            Log.Info($"Transferring state {droppedEquipment} to picked up equipments component {state}.");
+            state.CopyFromDropped(droppedEquipment);
+        }
     }
 
     protected override void OnDestroy()
@@ -65,10 +81,5 @@ public sealed partial class Equipment : Component
         {
             OnHolstered();
         }
-    }
-    
-    public override string ToString()
-    {
-        return $"Equipment(Resource={Resource.NameKey}, Owner={Owner.Client.DisplayName}, IsDeployed={IsDeployed})";
     }
 }

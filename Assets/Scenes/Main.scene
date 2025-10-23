@@ -90,7 +90,7 @@
           "__guid": "eaae459f-616f-4c61-9c11-d9f68129468c",
           "__enabled": true,
           "BotCount": 10,
-          "DebuggingEnabled": true,
+          "DebuggingEnabled": false,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,

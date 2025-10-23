@@ -4,8 +4,44 @@ namespace Mountain;
 
 public sealed class DroppedEquipment : Component, Component.ITriggerListener
 {
+    public Rigidbody Rigidbody { get; set; } = null!;
+    public EquipmentResource Resource { get; set; } = null!;
     private const float PickupCooldown = 0.1f;
     private TimeSince timeSinceDropped;
+
+    public void OnTriggerEnter(GameObject other)
+    {
+        if (!Networking.IsHost)
+        {
+            return;
+        }
+
+        var player = other.GetComponent<Player>();
+        if (player == null)
+        {
+            return;
+        }
+
+        if (timeSinceDropped < PickupCooldown)
+        {
+            return;
+        }
+
+        if (player.Has(Resource))
+        {
+            Log.Info(
+                $"{player.Client.DisplayName} tried to pick up {Resource.ResourceName} but already has equipment on this slot {Resource.Slot}.");
+
+            return;
+        }
+
+        var equipment = player.Give(Resource);
+        equipment.OwnerPickup(this);
+
+        GameObject.Destroy();
+
+        Log.Info($"{player.Client.DisplayName} picked up {equipment}.");
+    }
 
     public static DroppedEquipment Create(EquipmentResource resource, Vector3 position, Rotation rotation,
         Equipment? equipment = null)
@@ -56,54 +92,12 @@ public sealed class DroppedEquipment : Component, Component.ITriggerListener
                 Log.Info($"Transferring state {droppedWeapon} to dropped equipments component {state}.");
                 state.CopyToDropped(droppedWeapon);
             }
-            
+
             gameObject.Tags.Add("dropped_data");
-        } 
+        }
 
         gameObject.NetworkSpawn();
 
         return droppedWeapon;
-    }
-
-    public Rigidbody Rigidbody { get; set; } = null!;
-    public EquipmentResource Resource { get; set; } = null!;
-
-    public void OnTriggerEnter(GameObject other)
-    {
-        if (!Networking.IsHost)
-        {
-            return;
-        }
-        
-        var player = other.GetComponent<Player>();
-        if (player == null)
-        {
-            return;
-        }
-
-        if (timeSinceDropped < PickupCooldown)
-        {
-            return;
-        }
-
-        if (player.Has(Resource))
-        {
-            Log.Info(
-                $"{player.Client.DisplayName} tried to pick up {Resource.ResourceName} but already has equipment on this slot {Resource.Slot}.");
-
-            return;
-        }
-        
-        var equipment = player.Give(Resource);
-
-        foreach (var state in equipment.GetComponents<IDroppedEquipmentState>())
-        {
-            Log.Info($"Transferring state {this} to picked up equipments component {state}.");
-            state.CopyFromDropped(this);
-        }
-
-        GameObject.Destroy();
-
-        Log.Info($"{player.Client.DisplayName} picked up {equipment}.");
     }
 }

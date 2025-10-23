@@ -14,31 +14,28 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
     /// <summary>
     ///     Starting karma value for new players.
     /// </summary>
-    [ConVar("karma_starting", Name = "Starting Karma", 
-        Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated, 
+    [ConVar("karma_starting", Name = "Starting_Karma", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated,
         Help = "The karma value that players start with (default: 1000)")]
     public static float KarmaStarting { get; set; } = 1000f;
 
     /// <summary>
     ///     Maximum karma value.
     /// </summary>
-    [ConVar("karma_max", Name = "Maximum Karma", 
-        Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated,
+    [ConVar("karma_max", Name = "Maximum_Karma", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated,
         Help = "The maximum karma value a player can have (default: 1000)")]
     public static float KarmaMax { get; set; } = 1000f;
 
     /// <summary>
     ///     Minimum karma value.
     /// </summary>
-    [ConVar("karma_min", Name = "Minimum Karma", 
-        Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated,
+    [ConVar("karma_min", Name = "Minimum_Karma", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated,
         Help = "The minimum karma value a player can have (default: 100)")]
     public static float KarmaMin { get; set; } = 100f;
 
     /// <summary>
     ///     Karma penalty for killing an innocent.
     /// </summary>
-    [ConVar("karma_penalty_innocent", Name = "Karma Penalty for Innocent Kill", 
+    [ConVar("karma_penalty_innocent", Name = "Karma_Penalty_for_Innocent_Kill",
         Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated,
         Help = "Amount of karma lost when an innocent kills another innocent (default: 150)")]
     public static float KarmaPenaltyInnocent { get; set; } = 150f;
@@ -46,7 +43,7 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
     /// <summary>
     ///     Karma penalty for killing a detective.
     /// </summary>
-    [ConVar("karma_penalty_detective", Name = "Karma Penalty for Detective Kill", 
+    [ConVar("karma_penalty_detective", Name = "Karma_Penalty_for_Detective_Kill",
         Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated,
         Help = "Amount of karma lost when an innocent kills a detective (default: 200)")]
     public static float KarmaPenaltyDetective { get; set; } = 200f;
@@ -54,7 +51,7 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
     /// <summary>
     ///     Karma restoration per round for good behavior.
     /// </summary>
-    [ConVar("karma_restoration", Name = "Karma Restoration Per Round", 
+    [ConVar("karma_restoration", Name = "Karma_Restoration_Per_Round",
         Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated,
         Help = "Amount of karma restored each round if player doesn't team kill (default: 50)")]
     public static float KarmaRestoration { get; set; } = 50f;
@@ -62,10 +59,14 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
     /// <summary>
     ///     Whether karma system is enabled.
     /// </summary>
-    [ConVar("karma_enabled", Name = "Karma System Enabled", 
-        Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated,
+    [ConVar("karma_enabled", Name = "Karma_System_Enabled", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated,
         Help = "Enable or disable the karma system (default: true)")]
     public static bool KarmaEnabled { get; set; } = true;
+
+    void IGameEventHandler<KilledEvent>.OnGameEvent(KilledEvent eventArgs)
+    {
+        ProcessKarmaPenalty(eventArgs.DamageInfo);
+    }
 
     /// <summary>
     ///     Calculate the damage multiplier based on the player's current karma.
@@ -85,17 +86,6 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
     }
 
     /// <summary>
-    ///     Initialize karma when the player starts.
-    /// </summary>
-    private void InitializeKarma()
-    {
-        if (Networking.IsHost)
-        {
-            Karma = KarmaStarting;
-        }
-    }
-
-    /// <summary>
     ///     Restore some karma at the end of a round (for good behavior).
     /// </summary>
     public void RestoreKarma()
@@ -106,8 +96,19 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
         }
 
         Karma = Math.Clamp(Karma + KarmaRestoration, KarmaMin, KarmaMax);
-        
+
         Log.Info($"{Client.DisplayName} restored {KarmaRestoration:F1} karma. New karma: {Karma:F1}");
+    }
+
+    /// <summary>
+    ///     Initialize karma when the player starts.
+    /// </summary>
+    private void InitializeKarma()
+    {
+        if (Networking.IsHost)
+        {
+            Karma = KarmaStarting;
+        }
     }
 
     /// <summary>
@@ -146,7 +147,7 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
         {
             return;
         }
-        
+
         // Don't penalize for self-damage
         if (victim == attacker)
         {
@@ -165,7 +166,7 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
 
         // Get the appropriate penalty based on victim's role
         var penalty = GetKarmaPenaltyForTeam(victimTeam);
-        
+
         if (penalty <= 0f)
         {
             return;
@@ -176,12 +177,8 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
         var scaledPenalty = penalty * damageRatio;
 
         attacker.Karma = Math.Clamp(attacker.Karma - scaledPenalty, KarmaMin, KarmaMax);
-            
-        Log.Info($"{attacker.Client.DisplayName} lost {scaledPenalty:F1} karma for team damage. New karma: {attacker.Karma:F1}");
-    }
 
-    void IGameEventHandler<KilledEvent>.OnGameEvent(KilledEvent eventArgs)
-    {
-        ProcessKarmaPenalty(eventArgs.DamageInfo);
+        Log.Info(
+            $"{attacker.Client.DisplayName} lost {scaledPenalty:F1} karma for team damage. New karma: {attacker.Karma:F1}");
     }
 }
