@@ -25,6 +25,13 @@ public sealed class DroppedAmmo : DroppedLoot
             return false;
         }
 
+        if (player.Equipments.All(e => e.Value.Resource.AmmoType != AmmoType))
+        {
+            Log.Info($"{player.Client.DisplayName} tried to pick up {AmmoType} ammo but has no weapon that uses it.");
+
+            return false;
+        }
+
         var ammoAdded = player.GiveAmmo(AmmoType, Amount);
 
         if (ammoAdded > 0)

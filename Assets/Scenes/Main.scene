@@ -382,7 +382,7 @@
                   "SpawnChance": 0.7,
                   "UseCustomSpawnForce": false,
                   "SpawnForce": 1000,
-                  "SpawnWeight": 1
+                  "SpawnWeight": 0.01
                 },
                 {
                   "LootType": "Equipment",
@@ -413,7 +413,7 @@
                   "Equipment": null,
                   "AmmoType": "Pistol",
                   "AmmoAmount": 30,
-                  "AmmoModel": null,
+                  "AmmoModel": "models/weapons/sbox_pistol_usp/v_usp_magazine.vmdl",
                   "UseCustomSpawnChance": false,
                   "SpawnChance": 0.7,
                   "UseCustomSpawnForce": false,
@@ -425,7 +425,7 @@
                   "Equipment": null,
                   "AmmoType": "Rifle",
                   "AmmoAmount": 30,
-                  "AmmoModel": null,
+                  "AmmoModel": "models/weapons/sbox_assault_m4a1/w_m4a1_magazine.vmdl",
                   "UseCustomSpawnChance": false,
                   "SpawnChance": 0.7,
                   "UseCustomSpawnForce": false,
@@ -437,7 +437,7 @@
                   "Equipment": null,
                   "AmmoType": "Shotgun",
                   "AmmoAmount": 30,
-                  "AmmoModel": null,
+                  "AmmoModel": "models/weapons/sbox_ammo/12g_ammobox/ammobox_12g.vmdl",
                   "UseCustomSpawnChance": false,
                   "SpawnChance": 0.7,
                   "UseCustomSpawnForce": false,
@@ -449,7 +449,7 @@
                   "Equipment": null,
                   "AmmoType": "Sniper",
                   "AmmoAmount": 30,
-                  "AmmoModel": null,
+                  "AmmoModel": "models/weapons/sbox_sniper_m700/v_m700_magazine.vmdl",
                   "UseCustomSpawnChance": false,
                   "SpawnChance": 0.7,
                   "UseCustomSpawnForce": false,
@@ -461,7 +461,7 @@
                   "Equipment": null,
                   "AmmoType": "SMG",
                   "AmmoAmount": 30,
-                  "AmmoModel": null,
+                  "AmmoModel": "models/weapons/sbox_smg_mp5/v_mp5_magazine.vmdl",
                   "UseCustomSpawnChance": false,
                   "SpawnChance": 0.7,
                   "UseCustomSpawnForce": false,
@@ -473,12 +473,12 @@
                   "Equipment": null,
                   "AmmoType": "Rocket",
                   "AmmoAmount": 30,
-                  "AmmoModel": null,
+                  "AmmoModel": "models/weapons/sbox_ammo/84mm_missile/84mm_missile.vmdl",
                   "UseCustomSpawnChance": false,
                   "SpawnChance": 0.7,
                   "UseCustomSpawnForce": false,
                   "SpawnForce": 1000,
-                  "SpawnWeight": 1
+                  "SpawnWeight": 0.05
                 }
               ],
               "MaxSpawnAttempts": 100,
@@ -1240,6 +1240,13 @@
   "ResourceVersion": 3,
   "Title": "Testing Grounds",
   "Description": null,
-  "__references": [],
+  "__references": [
+    "facepunch.84mmmissile#116809",
+    "facepunch.ammobox12g#95506",
+    "facepunch.v_m700_magazine#60830",
+    "facepunch.v_mp5_magazine#56197",
+    "facepunch.v_usp_magazine#56190",
+    "facepunch.w_m4a1_magazine#55920"
+  ],
   "__version": 3
 }
