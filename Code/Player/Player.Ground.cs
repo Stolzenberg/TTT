@@ -6,7 +6,7 @@ public sealed partial class Player
 {
     public Vector3 GroundVelocity { get; set; }
     public bool IsOnGround => GroundObject.IsValid();
-    
+
     [Sync]
     public GameObject? GroundObject { get; set; }
     public Component? GroundComponent { get; set; }
@@ -34,7 +34,7 @@ public sealed partial class Player
         {
             return;
         }
-        
+
         var groundVel = GroundVelocity.z;
 
         // Ground is pushing us crazy, stop being grounded
@@ -58,7 +58,7 @@ public sealed partial class Player
         var to = WorldPosition + Vector3.Down * 8;
 
         var radiusScale = 1f;
-        var tr = TraceBody(from, to, radiusScale, 0.5f);
+        var tr = TraceBody(from, to, radiusScale);
 
         while (tr.StartedSolid || tr.Hit && !Mode.IsStandableSurface(tr))
         {

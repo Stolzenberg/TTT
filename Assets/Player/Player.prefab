@@ -118,6 +118,14 @@
         "interactionRadius": 8,
         "jumpForce": 300,
         "lookSensitivity": 1,
+        "MaxAmmo": {
+          "Pistol": 120,
+          "Rifle": 180,
+          "Shotgun": 32,
+          "Sniper": 30,
+          "SMG": 150,
+          "Rocket": 6
+        },
         "MaxStepHeight": 24,
         "MinimumFallSoundVelocity": 300,
         "MinimumImpactVelocity": 850,
@@ -285,10 +293,10 @@
         "__enabled": true,
         "colliderSize": 32,
         "headHeightModifier": 0.2,
-        "maxAngle": 60,
+        "maxAngle": 75,
         "maxSpeed": 400,
         "minAngleForDuckSlide": 15,
-        "minSlideAngle": 50,
+        "minSlideAngle": 30,
         "minSpeed": 300,
         "minSpeedForDuckSlide": 200,
         "movementControl": 0.8,
@@ -298,7 +306,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Priority": 150
+        "Priority": 500
       },
       {
         "__type": "Mountain.LadderMovementState",
@@ -330,9 +338,26 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Priority": 250,
+        "Priority": 1000,
         "SwimLevel": 0.7,
         "SwimSpeed": 100
+      },
+      {
+        "__type": "Mountain.IlluminationSensor",
+        "__guid": "03c7aa0f-9d0a-4c6e-9f28-94324a69fb2e",
+        "__enabled": true,
+        "CameraFov": 90,
+        "EnableDebug": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "TextureHeight": 32,
+        "TextureWidth": 32,
+        "UpdateInterval": 0.1,
+        "UpwardCameraWeight": 1
       }
     ],
     "Children": [
@@ -378,6 +403,13 @@
             "__type": "Mountain.NameTagPanel",
             "__guid": "704ce1c0-689a-46f4-96ec-e9eb4e7742f3",
             "__enabled": true,
+            "EnableDistanceFade": true,
+            "EnableLightingFade": true,
+            "FadeStartDistance": 100,
+            "LightingUpdateInterval": 0.1,
+            "LightSensitivity": 0.5,
+            "MaxVisibleDistance": 200,
+            "MinLightLevel": 0.2,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
