@@ -644,7 +644,7 @@ public sealed class PrepareMapSpawns : Component, IGameEventHandler<EnterStateEv
         else if (config.LootType == LootType.Ammo)
         {
             lootSpawnPoint.AmmoType = config.AmmoType;
-            lootSpawnPoint.AmmoAmount = config.AmmoAmount;
+            lootSpawnPoint.Amount = config.AmmoAmount;
             lootSpawnPoint.AmmoModel = config.AmmoModel;
         }
 

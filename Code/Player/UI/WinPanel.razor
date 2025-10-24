@@ -1,5 +1,4 @@
 ﻿@using System
-@using System.Linq
 @inherits PanelComponent
 @namespace Mountain
 
@@ -12,7 +11,7 @@
         <div class="scoreboard">
             <div class="scoreboard-title">#PLAYERS</div>
             <div class="players-list">
-                @foreach (var client in GetAllPlayers().OrderBy(c => c.Team).ThenBy(c => c.DisplayName))
+                @foreach (var client in GetAllClients().OrderBy(c => c.Team).ThenBy(c => c.DisplayName))
                 {
                     <div class="player-row">
                         <div class="player-info">
@@ -84,7 +83,7 @@
         return winningTeam.GetColor().ToString();
     }
 
-    private static IEnumerable<Client> GetAllPlayers()
+    private static IEnumerable<Client> GetAllClients()
     {
         return Game.ActiveScene.AllClients().Where(c => c.IsValid && !string.IsNullOrEmpty(c.DisplayName));
     }

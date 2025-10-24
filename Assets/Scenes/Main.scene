@@ -313,8 +313,8 @@
               "LootSpawnHeightOffset": 5,
               "LootToSpawn": [
                 {
-                  "LootType": "Equipment",
-                  "Equipment": "equipments/assaultrifle/assaultrifle.eqpt",
+                  "LootType": "Currency",
+                  "Equipment": null,
                   "AmmoType": "Pistol",
                   "AmmoAmount": 30,
                   "AmmoModel": null,
@@ -326,7 +326,7 @@
                 },
                 {
                   "LootType": "Equipment",
-                  "Equipment": "equipments/crowbar/crowbar.eqpt",
+                  "Equipment": "equipments/assaultrifle/assaultrifle.eqpt",
                   "AmmoType": "Pistol",
                   "AmmoAmount": 30,
                   "AmmoModel": null,
@@ -435,30 +435,6 @@
                 {
                   "LootType": "Ammo",
                   "Equipment": null,
-                  "AmmoType": "Shotgun",
-                  "AmmoAmount": 30,
-                  "AmmoModel": "models/weapons/sbox_ammo/12g_ammobox/ammobox_12g.vmdl",
-                  "UseCustomSpawnChance": false,
-                  "SpawnChance": 0.7,
-                  "UseCustomSpawnForce": false,
-                  "SpawnForce": 1000,
-                  "SpawnWeight": 1
-                },
-                {
-                  "LootType": "Ammo",
-                  "Equipment": null,
-                  "AmmoType": "Sniper",
-                  "AmmoAmount": 30,
-                  "AmmoModel": "models/weapons/sbox_sniper_m700/v_m700_magazine.vmdl",
-                  "UseCustomSpawnChance": false,
-                  "SpawnChance": 0.7,
-                  "UseCustomSpawnForce": false,
-                  "SpawnForce": 1000,
-                  "SpawnWeight": 1
-                },
-                {
-                  "LootType": "Ammo",
-                  "Equipment": null,
                   "AmmoType": "SMG",
                   "AmmoAmount": 30,
                   "AmmoModel": "models/weapons/sbox_smg_mp5/v_mp5_magazine.vmdl",
@@ -479,6 +455,30 @@
                   "UseCustomSpawnForce": false,
                   "SpawnForce": 1000,
                   "SpawnWeight": 0.05
+                },
+                {
+                  "LootType": "Ammo",
+                  "Equipment": null,
+                  "AmmoType": "Shotgun",
+                  "AmmoAmount": 30,
+                  "AmmoModel": "models/weapons/sbox_ammo/12g_ammobox/ammobox_12g.vmdl",
+                  "UseCustomSpawnChance": false,
+                  "SpawnChance": 0.7,
+                  "UseCustomSpawnForce": false,
+                  "SpawnForce": 1000,
+                  "SpawnWeight": 1
+                },
+                {
+                  "LootType": "Ammo",
+                  "Equipment": null,
+                  "AmmoType": "Sniper",
+                  "AmmoAmount": 30,
+                  "AmmoModel": "models/weapons/sbox_sniper_m700/v_m700_magazine.vmdl",
+                  "UseCustomSpawnChance": false,
+                  "SpawnChance": 0.7,
+                  "UseCustomSpawnForce": false,
+                  "SpawnForce": 1000,
+                  "SpawnWeight": 1
                 }
               ],
               "MaxSpawnAttempts": 100,
@@ -737,6 +737,29 @@
             {
               "__type": "Mountain.WinPanel",
               "__guid": "2070d482-c7f5-4dd8-99d1-7eeb8142c4e4",
+              "__enabled": true,
+              "InnocentWinState": {
+                "_type": "component",
+                "component_id": "afb93b76-33e5-4178-b6d0-e992813800f4",
+                "go": "ba05d456-1e6d-4f32-a6db-1cadf0a3310a",
+                "component_type": "GameState"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "TraitorWinState": {
+                "_type": "component",
+                "component_id": "7baaa51b-a8e5-46e7-b441-00bff7aa05fd",
+                "go": "ba485052-150e-4a0f-a343-29ccaa73965c",
+                "component_type": "GameState"
+              }
+            },
+            {
+              "__type": "Mountain.CurrencyRewardManager",
+              "__guid": "ed5213d0-e907-4751-99a0-52f54ccdf8da",
               "__enabled": true,
               "InnocentWinState": {
                 "_type": "component",

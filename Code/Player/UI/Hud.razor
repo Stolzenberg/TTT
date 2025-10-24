@@ -12,6 +12,12 @@
 }
 
 <root>
+    <div class="upper-right-box">
+        <div class="card blur">
+            <div class="player-currency-text">$ @Client.Viewer.Currency</div>
+        </div>
+    </div>
+
     <div class="lower-left-box">
         @if (Client.Viewer.IsLocalClient)
         {
@@ -45,12 +51,12 @@
             </div>
         }
     </div>
-    
+
     <div class="lower-right-box">
         @if (Ammo.IsValid() && ActiveEquipment.IsValid())
         {
             <div class="card blur">
-                <div class="weapon-ammo-text">@Ammo.Ammo / @Ammo.MaxAmmo</div>
+                <div class="weapon-ammo-text">@Ammo.Ammo</div>
                 <div class="player-ammo-text">+@Client.Viewer.Player.GetAmmo(ActiveEquipment.Resource.AmmoType)</div>
             </div>
         }

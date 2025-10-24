@@ -98,4 +98,9 @@ public abstract class DroppedLoot : Component, Component.ITriggerListener, IPick
         gameObject.Components.Create<DestroyBetweenRounds>();
         gameObject.Tags.Add("pickup");
     }
+
+    protected static Model GetDefaultModel()
+    {
+        return Model.Load("models/citizen_props/crate01.vmdl");
+    }
 }

@@ -49,32 +49,28 @@ public class Health : Component
     ///     Should health regenerate over time?
     /// </summary>
     [Property, Feature("Healing Over Time"), FeatureEnabled("Healing Over Time"),
-     ConVar("healing_over_time_enabled", Name = "Healing Over Time Enabled",
-         Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public bool EnableHealingOverTime { get; set; } = false;
+     ConVar("healing_over_time_enabled", ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public static bool EnableHealingOverTime { get; set; } = false;
 
     /// <summary>
     ///     How much health to restore per second.
     /// </summary>
     [Property, Feature("Healing Over Time"),
-     ConVar("healing_per_second", Name = "Amount of Healing Per Second",
-         Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public float HealingPerSecond { get; set; } = 5f;
+     ConVar("healing_per_second", ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public static float HealingPerSecond { get; set; } = 5f;
 
     /// <summary>
     ///     How long (in seconds) must pass without taking damage before healing starts.
     /// </summary>
-    [Property, Feature("Healing Over Time"),
-     ConVar("healing_delay", Name = "Amount of Seconds without Damage Before Healing Starts",
-         Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public float HealingDelay { get; set; } = 3f;
+    [Property, Feature("Healing Over Time"), ConVar("healing_delay", ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public static float HealingDelay { get; set; } = 3f;
 
     /// <summary>
     ///     How often (in seconds) to apply healing ticks.
     /// </summary>
     [Property, Feature("Healing Over Time"),
-     ConVar("healing_tick_rate", Name = "Healing Tick Rate", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public float HealingTickRate { get; set; } = 0.1f;
+     ConVar("healing_tick_rate", ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public static float HealingTickRate { get; set; } = 0.1f;
 
     private TimeSince timeSinceLastHealTick = 0f;
 

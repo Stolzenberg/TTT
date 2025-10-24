@@ -10,6 +10,7 @@ public enum LootType
 {
     Equipment,
     Ammo,
+    Currency,
 }
 
 /// <summary>
@@ -27,10 +28,13 @@ public sealed class LootSpawnPoint : Component, IGameEventHandler<BetweenRoundCl
     public AmmoType AmmoType { get; set; } = AmmoType.Pistol;
 
     [Property, ShowIf(nameof(LootType), LootType.Ammo)]
-    public int AmmoAmount { get; set; } = 30;
-
-    [Property, ShowIf(nameof(LootType), LootType.Ammo)]
     public Model AmmoModel { get; set; }
+
+    [Property, ShowIf(nameof(LootType), LootType.Currency)]
+    public Model CurrencyModel { get; set; }
+
+    [Property]
+    public int Amount { get; set; } = 30;
 
     [Property, FeatureEnabled("Spawn Chance")]
     public bool UseSpawnChance { get; set; } = false;
@@ -108,14 +112,26 @@ public sealed class LootSpawnPoint : Component, IGameEventHandler<BetweenRoundCl
                 break;
 
             case LootType.Ammo:
-                if (AmmoType != AmmoType.None && AmmoAmount > 0)
+                if (AmmoType != AmmoType.None && Amount > 0)
                 {
-                    droppedLoot = DroppedAmmo.Create(AmmoType, AmmoAmount, spawnPosition, spawnRotation, AmmoModel);
-                    Log.Info($"Spawned {AmmoAmount} {AmmoType} ammo at {WorldPosition}.");
+                    droppedLoot = DroppedAmmo.Create(AmmoType, Amount, spawnPosition, spawnRotation, AmmoModel);
+                    Log.Info($"Spawned {Amount} {AmmoType} ammo at {WorldPosition}.");
                 }
                 else
                 {
                     Log.Warning($"Cannot spawn ammo at {WorldPosition}: Invalid ammo type or amount.");
+                }
+
+                break;
+            case LootType.Currency:
+                if (Amount > 0)
+                {
+                    droppedLoot = DroppedCurrency.Create(Amount, spawnPosition, spawnRotation, CurrencyModel);
+                    Log.Info($"Spawned currency amount {Amount} at {WorldPosition}.");
+                }
+                else
+                {
+                    Log.Warning($"Cannot spawn currency at {WorldPosition}: Invalid amount.");
                 }
 
                 break;

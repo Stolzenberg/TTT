@@ -5,24 +5,24 @@ namespace Mountain;
 
 public sealed class AssignPlayerTeam : Component, IGameEventHandler<EnterStateEvent>
 {
-    [ConVar( "traitor_precentage", Name = "Traitor Percentage", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public float TraitorPercentage { get; set; } = 0.2f;
+    [ConVar("traitor_precentage", ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public static float TraitorPercentage { get; set; } = 0.2f;
 
-    [ConVar( "max_traitors", Name = "Max Amount of Traitors", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public int MaxTraitors { get; set; } = 3;
+    [ConVar("max_traitors", ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public static int MaxTraitors { get; set; } = 3;
 
-    [ConVar( "min_traitors", Name = "Min Amount of Traitors", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public int MinTraitors { get; set; } = 1;
+    [ConVar("min_traitors", ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public static int MinTraitors { get; set; } = 1;
 
-    [ConVar( "detective_percentage", Name = "Detective Percentage", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public float DetectivePercentage { get; set; } = 0.2f;
+    [ConVar("detective_percentage", ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public static float DetectivePercentage { get; set; } = 0.2f;
 
-    [ConVar( "max_detectives", Name = "Max Amount of Detectives", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public int MaxDetectives { get; set; } = 2;
+    [ConVar("max_detectives", ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public static int MaxDetectives { get; set; } = 2;
 
-    [ConVar( "min_detectives", Name = "Min Amount of Detectives", Flags = ConVarFlags.GameSetting | ConVarFlags.Replicated)]
-    public int MinDetectives { get; set; } = 0;
-    
+    [ConVar("min_detectives", ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+    public static int MinDetectives { get; set; } = 0;
+
     void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
     {
         var clients = Game.ActiveScene.AllClients().ToList();

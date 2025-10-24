@@ -2,12 +2,14 @@
 
 namespace Mountain;
 
+public record RoundWonEvent(Team WinningTeam) : IGameEvent;
+
 public sealed class RoundWinCondition : Component, IGameEventHandler<EnterStateEvent>,
     IGameEventHandler<UpdateStateEvent>
 {
     [Property]
     public GameState InnocentWin { get; set; }
-    
+
     [Property]
     public GameState TraitorWin { get; set; }
 
@@ -33,10 +35,7 @@ public sealed class RoundWinCondition : Component, IGameEventHandler<EnterStateE
 
         // Get alive players and normalize their teams (Detective counts as Innocent)
         var aliveClients = clients.Where(IsPlayerAlive).ToList();
-        var teamsWithAlivePlayers = aliveClients
-            .Select(client => NormalizeTeam(client.Team))
-            .Distinct()
-            .ToList();
+        var teamsWithAlivePlayers = aliveClients.Select(client => NormalizeTeam(client.Team)).Distinct().ToList();
 
         // If there's only one team left with alive players, that team wins the round
         if (teamsWithAlivePlayers.Count == 1)
@@ -46,6 +45,7 @@ public sealed class RoundWinCondition : Component, IGameEventHandler<EnterStateE
 
             // Increment score for the winning team
             GameMode.Instance.Get<TeamScoring>().IncrementScore(winningTeam);
+            Scene.Dispatch(new RoundWonEvent(winningTeam));
 
             if (winningTeam == Team.Innocent)
             {

@@ -88,7 +88,7 @@
         "MaxRange": 1024000,
         "MuzzleFlashPrefab": {
           "_type": "gameobject",
-          "prefab": "equipments/muzzleflash.prefab"
+           "prefab": "prefabs/weapon_effects/rifle_muzzleflash.prefab"
         },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -231,6 +231,8 @@
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "__references": [],
+  "__references": [
+    "facepunch.rifle_muzzleflash#76090"
+  ],
   "__version": 2
 }

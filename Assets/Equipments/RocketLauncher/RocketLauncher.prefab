@@ -88,7 +88,7 @@
         "MaxRange": 1024000,
         "MuzzleFlashPrefab": {
           "_type": "gameobject",
-          "prefab": "items/pistolmuzzleflash.prefab"
+          "prefab": "particles/explosion/explosion.medium.prefab"
         },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -230,6 +230,8 @@
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "__references": [],
+  "__references": [
+    "facepunch.explosionmedium#110500"
+  ],
   "__version": 2
 }

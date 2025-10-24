@@ -88,7 +88,7 @@
         "MaxRange": 1024000,
         "MuzzleFlashPrefab": {
           "_type": "gameobject",
-          "prefab": "equipments/muzzleflash.prefab"
+          "prefab": "prefabs/weapon_effects/shotgun_muzzleflash.prefab"
         },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -230,6 +230,8 @@
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "__references": [],
+  "__references": [
+    "facepunch.shotgun_muzzleflash#76091"
+  ],
   "__version": 2
 }

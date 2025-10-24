@@ -76,7 +76,7 @@ public sealed class DroppedAmmo : DroppedLoot
         var droppedAmmo = gameObject.Components.Create<DroppedAmmo>();
         droppedAmmo.AmmoType = ammoType;
         droppedAmmo.Amount = amount;
-        droppedAmmo.AmmoModel = customModel ?? GetDefaultAmmoModel(ammoType);
+        droppedAmmo.AmmoModel = customModel ?? GetDefaultModel();
 
         // Use a simple box bounds for ammo pickups
         var bounds = new BBox(new Vector3(-4, -4, 0), new Vector3(4, 4, 8));
@@ -94,18 +94,5 @@ public sealed class DroppedAmmo : DroppedLoot
             var renderer = gameObject.Components.Create<ModelRenderer>();
             renderer.Model = AmmoModel;
         }
-    }
-
-    /// <summary>
-    /// Gets the default model for a specific ammo type.
-    /// Override this or provide custom models as needed.
-    /// </summary>
-    private static Model GetDefaultAmmoModel(AmmoType ammoType)
-    {
-        // TODO: Replace with actual ammo models based on ammoType
-        // For now, return a placeholder model
-        _ = ammoType; // Suppress unused parameter warning until implemented
-
-        return Model.Load("models/citizen_props/crate01.vmdl");
     }
 }
