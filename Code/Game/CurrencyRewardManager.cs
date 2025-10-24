@@ -8,6 +8,42 @@ namespace Mountain;
 public sealed class CurrencyRewardManager : Component, IGameEventHandler<GlobalKillEvent>,
     IGameEventHandler<RoundWonEvent>
 {
+    /// <summary>
+    /// Base currency reward for completing a round (win or lose).
+    /// </summary>
+    [ConVar("currency_round_base", ConVarFlags.GameSetting | ConVarFlags.Replicated), Range(0, 10000)]
+    public static int RoundBaseReward { get; set; } = 100;
+
+    /// <summary>
+    /// Bonus currency for winning a round.
+    /// </summary>
+    [ConVar("currency_round_win_bonus", ConVarFlags.GameSetting | ConVarFlags.Replicated), Range(0, 10000)]
+    public static int RoundWinBonus { get; set; } = 200;
+
+    /// <summary>
+    /// Currency reward for innocents/detectives killing a traitor.
+    /// </summary>
+    [ConVar("currency_kill_traitor", ConVarFlags.GameSetting | ConVarFlags.Replicated), Range(0, 10000)]
+    public static int KillTraitorReward { get; set; } = 500;
+
+    /// <summary>
+    /// Currency reward for traitors killing an innocent.
+    /// </summary>
+    [ConVar("currency_kill_innocent", ConVarFlags.GameSetting | ConVarFlags.Replicated), Range(0, 10000)]
+    public static int KillInnocentReward { get; set; } = 100;
+
+    /// <summary>
+    /// Currency reward for traitors killing a detective.
+    /// </summary>
+    [ConVar("currency_kill_detective", ConVarFlags.GameSetting | ConVarFlags.Replicated), Range(0, 10000)]
+    public static int KillDetectiveReward { get; set; } = 150;
+
+    /// <summary>
+    /// Penalty for killing a teammate.
+    /// </summary>
+    [ConVar("currency_teamkill_penalty", ConVarFlags.GameSetting | ConVarFlags.Replicated), Range(0, 10000)]
+    public static int TeamKillPenalty { get; set; } = 300;
+
     void IGameEventHandler<GlobalKillEvent>.OnGameEvent(GlobalKillEvent eventArgs)
     {
         if (!Networking.IsHost)
@@ -63,7 +99,7 @@ public sealed class CurrencyRewardManager : Component, IGameEventHandler<GlobalK
         // Check for team kill
         if (attackerTeam.AreTeamsAllied(victimTeam))
         {
-            attackerClient.AddCurrency(-CurrencyConfig.TeamKillPenalty, "Team Kill Penalty");
+            attackerClient.AddCurrency(-TeamKillPenalty, "Team Kill Penalty");
 
             return;
         }
@@ -74,11 +110,11 @@ public sealed class CurrencyRewardManager : Component, IGameEventHandler<GlobalK
             // Traitor killing innocent or detective
             if (victimTeam == Team.Detective)
             {
-                attackerClient.AddCurrency(CurrencyConfig.KillDetectiveReward, "Killed Detective");
+                attackerClient.AddCurrency(KillDetectiveReward, "Killed Detective");
             }
             else if (victimTeam == Team.Innocent)
             {
-                attackerClient.AddCurrency(CurrencyConfig.KillInnocentReward, "Killed Innocent");
+                attackerClient.AddCurrency(KillInnocentReward, "Killed Innocent");
             }
         }
         else if (attackerTeam == Team.Innocent || attackerTeam == Team.Detective)
@@ -86,7 +122,7 @@ public sealed class CurrencyRewardManager : Component, IGameEventHandler<GlobalK
             // Innocent or detective killing traitor
             if (victimTeam == Team.Traitor)
             {
-                attackerClient.AddCurrency(CurrencyConfig.KillTraitorReward, "Killed Traitor");
+                attackerClient.AddCurrency(KillTraitorReward, "Killed Traitor");
             }
         }
     }
@@ -100,7 +136,7 @@ public sealed class CurrencyRewardManager : Component, IGameEventHandler<GlobalK
         foreach (var client in clients)
         {
             // Base reward for playing the round
-            client.AddCurrency(CurrencyConfig.RoundBaseReward, "Round Participation");
+            client.AddCurrency(RoundBaseReward, "Round Participation");
 
             // Bonus for winning
             var normalizedTeam = client.Team == Team.Detective ? Team.Innocent : client.Team;
@@ -108,7 +144,7 @@ public sealed class CurrencyRewardManager : Component, IGameEventHandler<GlobalK
 
             if (normalizedTeam == normalizedWinningTeam)
             {
-                client.AddCurrency(CurrencyConfig.RoundWinBonus, "Round Victory");
+                client.AddCurrency(RoundWinBonus, "Round Victory");
             }
         }
     }

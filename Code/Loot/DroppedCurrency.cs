@@ -5,6 +5,12 @@
 /// </summary>
 public sealed class DroppedCurrency : DroppedLoot
 {
+    /// <summary>
+    /// Amount of currency in a dropped currency pickup.
+    /// </summary>
+    [ConVar("currency_pickup_amount", ConVarFlags.GameSetting | ConVarFlags.Replicated), Range(1, 10000)]
+    public static int PickupAmount { get; set; } = 50;
+
     [Property]
     public int Amount { get; set; } = 50;
 
@@ -42,7 +48,7 @@ public sealed class DroppedCurrency : DroppedLoot
     /// </summary>
     public static DroppedCurrency Create(int amount, Vector3 position, Rotation rotation, Model? customModel = null)
     {
-        var actualAmount = amount > 0 ? amount : CurrencyConfig.PickupAmount;
+        var actualAmount = amount > 0 ? amount : PickupAmount;
         var gameObject = new GameObject
         {
             WorldPosition = position,
