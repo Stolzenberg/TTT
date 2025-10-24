@@ -15,11 +15,11 @@ public class LootSpawnConfig
     [Property, Description("Ammo type to spawn"), ShowIf(nameof(LootType), LootType.Ammo)]
     public AmmoType AmmoType { get; set; } = AmmoType.Pistol;
 
-    [Property, Description("Amount of ammo to spawn"), ShowIf(nameof(LootType), LootType.Ammo), Range(1, 100)]
-    public int AmmoAmount { get; set; } = 30;
-
     [Property, Description("Custom model for ammo pickup"), ShowIf(nameof(LootType), LootType.Ammo)]
     public Model? AmmoModel { get; set; }
+
+    [Property, Description("Amount to spawn"), Range(1, 100)]
+    public int Amount { get; set; } = 30;
 
     [Property, Description("Use custom spawn chance for this loot")]
     public bool UseCustomSpawnChance { get; set; } = false;

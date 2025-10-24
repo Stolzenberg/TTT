@@ -49,7 +49,7 @@ public class Health : Component
     ///     Should health regenerate over time?
     /// </summary>
     [Property, Feature("Healing Over Time"), FeatureEnabled("Healing Over Time"),
-     ConVar("healing_over_time_enabled", ConVarFlags.GameSetting | ConVarFlags.Replicated)]
+     ConVar("healing_over_time", ConVarFlags.GameSetting | ConVarFlags.Replicated)]
     public static bool EnableHealingOverTime { get; set; } = false;
 
     /// <summary>

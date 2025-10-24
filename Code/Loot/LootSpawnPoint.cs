@@ -137,7 +137,7 @@ public sealed class LootSpawnPoint : Component, IGameEventHandler<BetweenRoundCl
                 break;
         }
 
-        if (droppedLoot != null && UseSpawnForce)
+        if (droppedLoot != null && UseSpawnForce && droppedLoot.Rigidbody.IsValid())
         {
             droppedLoot.Rigidbody.ApplyImpulse(Vector3.Up * SpawnForce + Vector3.Random * SpawnForce);
         }

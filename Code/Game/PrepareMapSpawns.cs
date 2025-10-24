@@ -621,7 +621,7 @@ public sealed class PrepareMapSpawns : Component, IGameEventHandler<EnterStateEv
     {
         var lootName = config.LootType == LootType.Equipment
             ? config.Equipment?.ResourceName ?? "Unknown"
-            : $"{config.AmmoAmount}x{config.AmmoType}";
+            : $"{config.Amount}x{config.AmmoType}";
 
         var spawnObject = new GameObject
         {
@@ -644,7 +644,7 @@ public sealed class PrepareMapSpawns : Component, IGameEventHandler<EnterStateEv
         else if (config.LootType == LootType.Ammo)
         {
             lootSpawnPoint.AmmoType = config.AmmoType;
-            lootSpawnPoint.Amount = config.AmmoAmount;
+            lootSpawnPoint.Amount = config.Amount;
             lootSpawnPoint.AmmoModel = config.AmmoModel;
         }
 
