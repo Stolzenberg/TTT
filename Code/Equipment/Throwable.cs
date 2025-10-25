@@ -74,6 +74,7 @@ public sealed class Throwable : EquipmentInputAction
 
     private void Throw()
     {
+        Log.Info("throw");
         if (!ProjectilePrefab.IsValid())
         {
             Log.Warning("Throwable: No ProjectilePrefab assigned!");
@@ -134,6 +135,7 @@ public sealed class Throwable : EquipmentInputAction
 
             var ownerVelocity = Equipment.Owner.IsValid() ? Equipment.Owner.Velocity : Vector3.Zero;
             projectileComponent.InitialVelocity = throwDirection * ThrowForce + ownerVelocity;
+            projectileComponent.InitialAngularVelocity = throwDirection * ThrowForce + ownerVelocity;
             projectileComponent.GravityScale = ThrowGravityScale;
         }
         else

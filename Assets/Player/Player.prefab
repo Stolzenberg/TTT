@@ -100,7 +100,8 @@
           "component_type": "CapsuleCollider"
         },
         "DefaultEquipments": [
-          "equipments/fist/fist.eqpt"
+          "equipments/fist/fist.eqpt",
+          "equipments/explosiongrenade/explosiongrenade.eqpt"
         ],
         "defaultFovChangeSpeed": 25,
         "FallDamageScale": 0.08,

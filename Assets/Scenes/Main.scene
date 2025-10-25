@@ -490,6 +490,18 @@
                   "UseCustomSpawnForce": false,
                   "SpawnForce": 1000,
                   "SpawnWeight": 1
+                },
+                {
+                  "LootType": "Equipment",
+                  "Equipment": "equipments/explosiongrenade/explosiongrenade.eqpt",
+                  "AmmoType": "Pistol",
+                  "AmmoModel": null,
+                  "Amount": 30,
+                  "UseCustomSpawnChance": false,
+                  "SpawnChance": 0.7,
+                  "UseCustomSpawnForce": false,
+                  "SpawnForce": 1000,
+                  "SpawnWeight": 1
                 }
               ],
               "MaxSpawnAttempts": 100,

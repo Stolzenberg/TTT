@@ -20,7 +20,8 @@
         "__enabled": true,
         "BaseDamage": 150,
         "EnableDebug": true,
-        "ExplodesOnImpact": true,
+        "ExplosionDelay": 2,
+        "ExplosionMode": "OnTime",
         "ExplosionRadius": 128,
         "Force": 1000,
         "ImpactEffectPrefab": {
@@ -34,7 +35,8 @@
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "ProximityTriggerRadius": 5
       },
       {
         "__type": "Sandbox.Rigidbody",
@@ -82,7 +84,7 @@
         "OnObjectTriggerExit": null,
         "OnTriggerEnter": null,
         "OnTriggerExit": null,
-        "Radius": 8,
+        "Radius": 1.1,
         "RollingResistance": null,
         "Static": false,
         "Surface": null,
@@ -95,7 +97,7 @@
         "__version": 1,
         "Flags": 0,
         "Name": "w_he_grenade",
-        "Position": "0,0,0",
+        "Position": "0,0,-1.369874",
         "Rotation": "0,0,0,1",
         "Scale": "1,1,1",
         "Tags": "",
@@ -109,7 +111,7 @@
             "__type": "Sandbox.ModelRenderer",
             "__guid": "1baab01e-3add-4833-9cdb-8ad98e49db3a",
             "__enabled": true,
-            "BodyGroups": 11,
+            "BodyGroups": 3,
             "CreateAttachments": false,
             "LodOverride": null,
             "MaterialGroup": null,

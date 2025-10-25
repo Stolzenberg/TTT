@@ -20,7 +20,8 @@
         "__enabled": true,
         "BaseDamage": 500,
         "EnableDebug": false,
-        "ExplodesOnImpact": true,
+        "ExplosionDelay": 3,
+        "ExplosionMode": "OnImpact",
         "ExplosionRadius": 256,
         "Force": 8000,
         "ImpactEffectPrefab": {
@@ -34,7 +35,8 @@
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "ProximityTriggerRadius": 5
       },
       {
         "__type": "Sandbox.Rigidbody",

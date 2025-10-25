@@ -12,10 +12,16 @@ public sealed class Projectile : Component, Component.ICollisionListener
     public float MaxLifetime { get; set; } = 10f;
 
     [Property]
-    public bool ExplodesOnImpact { get; set; } = false;
+    public ExplosionMode ExplosionMode { get; set; } = ExplosionMode.None;
 
     [Property]
     public float ExplosionRadius { get; set; } = 0f;
+
+    [Property, ShowIf(nameof(ExplosionMode), ExplosionMode.OnTime)]
+    public float ExplosionDelay { get; set; } = 3f;
+
+    [Property, ShowIf(nameof(ExplosionMode), ExplosionMode.OnProximity)]
+    public float ProximityTriggerRadius { get; set; } = 5f;
 
     [Property]
     public GameObject? ImpactEffectPrefab { get; set; }
@@ -33,11 +39,14 @@ public sealed class Projectile : Component, Component.ICollisionListener
     public Component? Inflictor { get; set; }
 
     public Vector3 InitialVelocity { get; set; }
+    public Vector3 InitialAngularVelocity { get; set; }
     public float GravityScale { get; set; } = 1f;
 
     [RequireComponent]
     public Rigidbody Rigidbody { get; set; }
+    private bool hasExploded;
     private bool hasHit;
+    private TimeSince timeSinceHit;
 
     private TimeSince timeSinceSpawned;
 
@@ -74,10 +83,33 @@ public sealed class Projectile : Component, Component.ICollisionListener
         timeSinceSpawned = 0;
 
         Rigidbody.Velocity = InitialVelocity;
+        Rigidbody.AngularVelocity = InitialAngularVelocity;
     }
 
     protected override void OnFixedUpdate()
     {
+        if (hasExploded)
+        {
+            return;
+        }
+
+        // Handle OnTime explosion mode
+        if (ExplosionMode == ExplosionMode.OnTime && timeSinceSpawned > ExplosionDelay)
+        {
+            CreateVisuals(WorldPosition, WorldRotation);
+            ApplyExplosionDamage(WorldPosition);
+            hasExploded = true;
+            DestroyProjectile();
+
+            return;
+        }
+
+        // Handle OnProximity explosion mode
+        if (ExplosionMode == ExplosionMode.OnProximity && hasHit)
+        {
+            CheckProximityTrigger();
+        }
+
         if (hasHit)
         {
             return;
@@ -95,8 +127,6 @@ public sealed class Projectile : Component, Component.ICollisionListener
             Rigidbody.Velocity += Scene.PhysicsWorld.Gravity * GravityScale * Time.Delta;
         }
 
-        Rigidbody.AngularVelocity = Vector3.Random.Normal;
-
         if (Rigidbody.Velocity.Length > 0.1f)
         {
             WorldRotation = Rotation.LookAt(Rigidbody.Velocity.Normal);
@@ -105,63 +135,42 @@ public sealed class Projectile : Component, Component.ICollisionListener
 
     private void OnHit(Collision collision)
     {
+        if (ExplosionMode != ExplosionMode.OnImpact)
+        {
+            return;
+        }
+
         hasHit = true;
+        timeSinceHit = 0;
 
         var contact = collision.Contact;
         var hitPosition = contact.Point;
         var hitNormal = contact.Normal;
 
+        CreateVisuals(hitPosition, Rotation.LookAt(hitNormal));
+
+        ApplyExplosionDamage(hitPosition);
+        DestroyProjectile();
+    }
+
+    private void CreateVisuals(Vector3 hitPosition, Rotation rotation)
+    {
+
         if (ImpactEffectPrefab.IsValid())
         {
-            _ = ImpactEffectPrefab.Clone(new CloneConfig
+            var gameObject = ImpactEffectPrefab.Clone(new CloneConfig
             {
-                Transform = new(hitPosition, Rotation.LookAt(hitNormal)),
+                Transform = new(hitPosition, rotation),
                 StartEnabled = true,
             });
+
+            gameObject.AddComponent<DestroyBetweenRounds>();
         }
 
         if (ImpactSound.IsValid())
         {
             Sound.Play(ImpactSound, hitPosition);
         }
-
-        if (ExplodesOnImpact && ExplosionRadius > 0)
-        {
-            ApplyExplosionDamage(hitPosition);
-        }
-        else
-        {
-            ApplyDirectDamage(collision);
-        }
-
-        DestroyProjectile();
-    }
-
-    private void ApplyDirectDamage(Collision collision)
-    {
-        var hitObject = collision.Other.GameObject;
-        if (!hitObject.IsValid())
-        {
-            return;
-        }
-
-        var health = hitObject.Root.GetComponentInChildren<Health>();
-        if (!health.IsValid())
-        {
-            return;
-        }
-
-        var contact = collision.Contact;
-
-        hitObject.ServerTakeDamage(new()
-        {
-            Attacker = Owner,
-            Victim = health,
-            Inflictor = Inflictor,
-            Position = contact.Point,
-            Damage = BaseDamage,
-            Force = Rigidbody.Velocity.Normal * Force,
-        });
     }
 
     private void ApplyExplosionDamage(Vector3 center)
@@ -201,6 +210,47 @@ public sealed class Projectile : Component, Component.ICollisionListener
                 Damage = damage,
                 Force = direction * Force * falloff,
             });
+        }
+    }
+
+    private void CheckProximityTrigger()
+    {
+        if (hasExploded)
+        {
+            return;
+        }
+
+        var overlaps = Scene.FindInPhysics(new Sphere(WorldPosition, ProximityTriggerRadius));
+
+        foreach (var overlap in overlaps)
+        {
+            if (!overlap.IsValid())
+            {
+                continue;
+            }
+
+            // Don't trigger on the owner
+            if (Owner.IsValid() && overlap.Root == Owner.GameObject)
+            {
+                continue;
+            }
+
+            // Don't trigger on self
+            if (overlap.Root == GameObject)
+            {
+                continue;
+            }
+
+            // Check if this is a valid target (has health)
+            var health = overlap.Root.GetComponentInChildren<Health>();
+            if (health.IsValid())
+            {
+                ApplyExplosionDamage(WorldPosition);
+                hasExploded = true;
+                DestroyProjectile();
+
+                return;
+            }
         }
     }
 
