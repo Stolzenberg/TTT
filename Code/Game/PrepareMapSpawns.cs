@@ -161,7 +161,7 @@ public sealed class PrepareMapSpawns : Component, IGameEventHandler<EnterStateEv
             );
 
             // Trace down to find ground
-            var groundPos = FindGroundPosition(randomPos, min.z);
+            var groundPos = FindGroundPosition(randomPos);
 
             if (!groundPos.HasValue)
             {
@@ -191,13 +191,12 @@ public sealed class PrepareMapSpawns : Component, IGameEventHandler<EnterStateEv
         return spawnPositions;
     }
 
-    private Vector3? FindGroundPosition(Vector3 startPos, float minZ)
+    private Vector3? FindGroundPosition(Vector3 startPos)
     {
         // Trace down to find ground
-        var trace = Scene.Trace.Ray(startPos, startPos + Vector3.Down * 10000f)
-            .WithoutTags("player", "trigger", "pickup").Run();
+        var trace = Scene.Trace.Ray(startPos, startPos + Vector3.Down * int.MaxValue).Run();
 
-        if (trace.Hit && trace.EndPosition.z >= minZ)
+        if (trace.Hit)
         {
             return trace.EndPosition;
         }
@@ -421,7 +420,7 @@ public sealed class PrepareMapSpawns : Component, IGameEventHandler<EnterStateEv
             );
 
             // Trace down to find ground
-            var groundPos = FindGroundPosition(randomPos, min.z);
+            var groundPos = FindGroundPosition(randomPos);
 
             if (!groundPos.HasValue)
             {

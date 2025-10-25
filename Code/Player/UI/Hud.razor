@@ -56,8 +56,7 @@
         @if (Ammo.IsValid() && ActiveEquipment.IsValid())
         {
             <div class="card blur">
-                <div class="weapon-ammo-text">@Ammo.Ammo</div>
-                <div class="player-ammo-text">+@Client.Viewer.Player.GetAmmo(ActiveEquipment.Resource.AmmoType)</div>
+                <div>@Ammo.Ammo/@Client.Viewer.Player.GetAmmo(ActiveEquipment.Resource.AmmoType)</div>
             </div>
         }
     </div>

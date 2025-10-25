@@ -32,7 +32,7 @@
         "OnObjectTriggerExit": null,
         "OnTriggerEnter": null,
         "OnTriggerExit": null,
-        "Radius": 18.118525,
+        "Radius": 16,
         "RollingResistance": null,
         "Start": "0,0,55",
         "Static": false,
@@ -356,7 +356,7 @@
         "TextureHeight": 32,
         "TextureWidth": 32,
         "UpdateInterval": 0.1,
-        "UpwardCameraWeight": 1
+        "UpwardCameraWeight": 0.5
       }
     ],
     "Children": [

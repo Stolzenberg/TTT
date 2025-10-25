@@ -56,7 +56,7 @@ public class IlluminationSensor : Component
     /// <summary>
     /// Check if the object is considered "well lit" based on a threshold.
     /// </summary>
-    public bool IsWellLit(float threshold = 0.5f)
+    public bool IsWellLit(float threshold = 0.2f)
     {
         return IlluminationLevel >= threshold;
     }
@@ -112,7 +112,7 @@ public class IlluminationSensor : Component
         // Create upward-facing camera
         upwardCameraObject = new(true, "IlluminationSensorUpCamera");
         upwardCameraObject.SetParent(GameObject);
-        upwardCameraObject.LocalPosition = Vector3.Zero;
+        upwardCameraObject.LocalPosition = new(0, 0, 16);
         upwardCameraObject.LocalRotation = Rotation.From(new(-90, 0, 0)); // Looking up
 
         upwardCamera = upwardCameraObject.Components.Create<CameraComponent>();
@@ -124,7 +124,7 @@ public class IlluminationSensor : Component
         // Create downward-facing camera
         downwardCameraObject = new(true, "IlluminationSensorDownCamera");
         downwardCameraObject.SetParent(GameObject);
-        downwardCameraObject.LocalPosition = new(0, 0, 8);
+        downwardCameraObject.LocalPosition = new(0, 0, 16);
         downwardCameraObject.LocalRotation = Rotation.From(new(90, 0, 0)); // Looking down
 
         downwardCamera = downwardCameraObject.Components.Create<CameraComponent>();

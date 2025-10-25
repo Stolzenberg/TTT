@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Sandbox.Events;
 
 namespace Mountain;
@@ -129,6 +130,22 @@ public class Health : Component
             damageInfo.Hitbox, damageInfo.Flags);
 
         Log.Info($"{GameObject.Name} was killed by {damageInfo.Attacker.GameObject.Name ?? "unknown"}");
+    }
+
+    public async Task SetTempGodMode(int milliseconds)
+    {
+        if (!Networking.IsHost)
+        {
+            Log.Error("SetTempGodMode can only be called on the host.");
+
+            return;
+        }
+
+        IsGodMode = true;
+
+        await Task.Delay(milliseconds);
+
+        IsGodMode = false;
     }
 
     /// <summary>

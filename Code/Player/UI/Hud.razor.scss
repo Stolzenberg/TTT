@@ -78,14 +78,6 @@ Hud {
     flex-direction: column;
     gap: 8px;
     align-items: end;
-   
-    .weapon-ammo-text {
-    }
-
-    .player-ammo-text {
-      font-size: 32px;
-      margin: auto;
-    }
   }
 
   .health-bar {

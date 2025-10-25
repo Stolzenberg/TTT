@@ -50,7 +50,7 @@
         "AttackRange": 100,
         "AttackRate": 1,
         "AttackSound": null,
-        "BaseDamage": 50,
+        "BaseDamage": 5,
         "DamageFlags": "Melee",
         "Force": 500,
         "HitEffectPrefab": null,

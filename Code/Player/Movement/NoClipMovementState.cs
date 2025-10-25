@@ -8,26 +8,6 @@ public sealed class NoClipMovementState : MovementState
     [Property]
     private readonly float speed = 220f;
 
-    protected override void OnUpdate()
-    {
-        base.OnUpdate();
-
-        if (!Player.IsLocallyControlled)
-        {
-            return;
-        }
-
-        if (Player.Health.State == LifeState.Dead)
-        {
-            return;
-        }
-
-        if (Input.Pressed("Voice") && Input.Down("Jump"))
-        {
-            isNoclip = !isNoclip;
-        }
-    }
-
     public override void UpdateRigidBody(Rigidbody body)
     {
         body.Gravity = false;
@@ -43,6 +23,7 @@ public sealed class NoClipMovementState : MovementState
     public override void OnStateEnd(MovementState? next)
     {
         Player.Collider.Enabled = true;
+        _ = Player.Health.SetTempGodMode(5000);
     }
 
     public override Vector3 UpdateState(Rotation eyes, Vector3 input)
@@ -65,6 +46,26 @@ public sealed class NoClipMovementState : MovementState
     public override int Score(Player playerMovement)
     {
         return isNoclip ? Priority : 0;
+    }
+
+    protected override void OnUpdate()
+    {
+        base.OnUpdate();
+
+        if (!Player.IsLocallyControlled)
+        {
+            return;
+        }
+
+        if (Player.Health.State == LifeState.Dead)
+        {
+            return;
+        }
+
+        if (Input.Pressed("Voice") && Input.Down("Jump"))
+        {
+            isNoclip = !isNoclip;
+        }
     }
 
     protected override float GetSpeed()

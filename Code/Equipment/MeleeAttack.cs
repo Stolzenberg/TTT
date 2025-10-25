@@ -223,7 +223,7 @@ public sealed class MeleeAttack : EquipmentInputAction
             });
         }
 
-        if (surface.IsValid())
+        if (surface.IsValid() && surface.PrefabCollection.BluntImpact.IsValid())
         {
             var impact = surface.PrefabCollection.BluntImpact.Clone();
             impact.WorldPosition = position + normal;
