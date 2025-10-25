@@ -58,7 +58,7 @@ public sealed partial class Player
         var to = WorldPosition + Vector3.Down * 8;
 
         var radiusScale = 1f;
-        var tr = TraceBody(from, to, radiusScale);
+        var tr = TraceBody(from, to, radiusScale, 0.5f);
 
         while (tr.StartedSolid || tr.Hit && !Mode.IsStandableSurface(tr))
         {

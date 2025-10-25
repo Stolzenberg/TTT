@@ -71,7 +71,7 @@
         "ProjectileCount": 1,
         "ProjectilePrefab": {
           "_type": "gameobject",
-          "prefab": "equipments/rocketlauncher/rocket.prefab"
+          "prefab": "equipments/rocketlauncher/rocketprojectile.prefab"
         },
         "ProjectileSpeed": 3500,
         "ProjectileSpread": 0.1,

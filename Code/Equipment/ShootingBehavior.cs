@@ -123,35 +123,6 @@ public abstract class ShootingBehavior : EquipmentInputAction
         return true;
     }
 
-    protected void Shoot()
-    {
-
-        TimeSinceShoot = 0;
-
-        if (Ammo is not null)
-        {
-            Ammo.Ammo--;
-        }
-
-        if (CurrentFireMode == FireMode.Burst)
-        {
-            IsBurstFiring = true;
-        }
-
-        ShootEffects();
-        GameObject.Dispatch(new EquipmentShotEvent());
-
-        // Derived classes implement the actual shooting mechanism
-        PerformShoot();
-
-        // Trigger recoil
-        var recoil = Equipment.GetComponentInChildren<Recoil>();
-        if (recoil.IsValid())
-        {
-            recoil.Shoot();
-        }
-    }
-
     /// <summary>
     /// Implemented by derived classes to perform the actual shooting (raycast, spawn projectile, etc.)
     /// </summary>
@@ -212,6 +183,35 @@ public abstract class ShootingBehavior : EquipmentInputAction
             }
 
             Shoot();
+        }
+    }
+
+    private void Shoot()
+    {
+
+        TimeSinceShoot = 0;
+
+        if (Ammo is not null)
+        {
+            Ammo.Ammo--;
+        }
+
+        if (CurrentFireMode == FireMode.Burst)
+        {
+            IsBurstFiring = true;
+        }
+
+        ShootEffects();
+        GameObject.Dispatch(new EquipmentShotEvent());
+
+        // Derived classes implement the actual shooting mechanism
+        PerformShoot();
+
+        // Trigger recoil
+        var recoil = Equipment.GetComponentInChildren<Recoil>();
+        if (recoil.IsValid())
+        {
+            recoil.Shoot();
         }
     }
 

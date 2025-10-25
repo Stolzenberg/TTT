@@ -923,7 +923,7 @@
               "__enabled": true,
               "__version": 1,
               "EnableCollision": true,
-              "MapName": "facepunch.flatgrass",
+              "MapName": "throwupproducs.skateshed",
               "NoOrigin": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,

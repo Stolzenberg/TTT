@@ -1,0 +1,27 @@
+{
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/explosiongrenade/explosiongrenade.prefab"
+  },
+  "WorldModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/worldmodel.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "equipments/explosiongrenade/viewmodel.prefab"
+  },
+  "Slot": "Utility",
+  "WorldModel": "models/weapons/sbox_grenade_explosive/w_he_grenade.vmdl",
+  "ViewModel": "models/weapons/sbox_grenade_explosive/v_he_grenade.vmdl",
+  "MuzzleBoneName": "muzzle",
+  "EjectionPortBoneName": "ejection_port",
+  "AmmoType": "None",
+  "NameKey": "EXPLOSIONGRENADE_NAME",
+  "DescriptionKey": "EXPLOSIONGRENADE_DESCRIPTION",
+  "__references": [
+    "facepunch.v_he_grenade#71895",
+    "facepunch.w_he_grenade#58001"
+  ],
+  "__version": 0
+}

@@ -95,6 +95,8 @@ public sealed class Projectile : Component, Component.ICollisionListener
             Rigidbody.Velocity += Scene.PhysicsWorld.Gravity * GravityScale * Time.Delta;
         }
 
+        Rigidbody.AngularVelocity = Vector3.Random.Normal;
+
         if (Rigidbody.Velocity.Length > 0.1f)
         {
             WorldRotation = Rotation.LookAt(Rigidbody.Velocity.Normal);

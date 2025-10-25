@@ -1,0 +1,116 @@
+{
+  "RootObject": {
+    "__guid": "98fa3662-d7ce-4b30-ae7a-7c84dcbf3f4c",
+    "__version": 1,
+    "Flags": 0,
+    "Name": "explosiongrenade",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkInterpolation": true,
+    "NetworkOrphaned": 0,
+    "OwnerTransfer": 1,
+    "Components": [
+      {
+        "__type": "Mountain.Equipment",
+        "__guid": "a4f7e90c-973e-4c38-80fe-b7cddc79e979",
+        "__enabled": true,
+        "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
+        "Handedness": "Right",
+        "HoldType": "Punch",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Resource": "equipments/explosiongrenade/explosiongrenade.eqpt"
+      },
+      {
+        "__type": "Mountain.TagBinder",
+        "__guid": "f1751d83-ee95-4dd5-99bc-c3fa4f59db6a",
+        "__enabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "Mountain.Throwable",
+        "__guid": "9413ca30-56a2-4f7f-a110-fc3d8706a975",
+        "__enabled": true,
+        "InputActions": [
+          "Attack1"
+        ],
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "ProjectilePrefab": {
+          "_type": "gameobject",
+          "prefab": "equipments/explosiongrenade/grenadeprojectile.prefab"
+        },
+        "RequiresAllInputActions": false,
+        "ThrowAngle": 15,
+        "ThrowCooldown": 0.5,
+        "ThrowForce": 1000,
+        "ThrowGravityScale": 1,
+        "ThrowSound": null
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "e34109f1-5805-4ac6-8401-d0ab75d70caa",
+        "__version": 1,
+        "__Prefab": "equipments/explosiongrenade/grenadeprojectile.prefab",
+        "__PrefabInstancePatch": {
+          "AddedObjects": [],
+          "RemovedObjects": [],
+          "PropertyOverrides": [],
+          "MovedObjects": []
+        },
+        "__PrefabIdToInstanceId": {
+          "893e52fb-9d5b-49b6-be72-97367e7c3fd0": "e34109f1-5805-4ac6-8401-d0ab75d70caa",
+          "5b4816f2-b50b-41ee-be1a-687f180955f1": "fa353814-0b7c-43ed-a02e-b1ab34c2ab24",
+          "21f895be-23e6-4462-a905-ffd0e72a9207": "103f6296-e2b0-4975-8a13-64406ef9f7b5",
+          "5daf6640-ae34-4abb-8e44-51ba6edcdc0f": "d03110f1-dfae-46bf-896a-430ca747b88e",
+          "2892e59f-98e3-4d6e-a4d1-a49db5386ae9": "a92ee84a-48b1-48bf-98b6-24021f50a9d5",
+          "1baab01e-3add-4833-9cdb-8ad98e49db3a": "5903779f-aeca-4b49-b7bf-95ae592e242b"
+        }
+      }
+    ],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    },
+    "__variables": []
+  },
+  "ResourceVersion": 2,
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "__references": [],
+  "__version": 2
+}

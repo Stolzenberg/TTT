@@ -101,14 +101,11 @@ public sealed class MeleeAttack : EquipmentInputAction
         }
     }
 
-    protected override void OnInputUpdate()
+    protected override void OnInputDown()
     {
-        if (Input.Pressed("attack1"))
+        if (CanAttack())
         {
-            if (CanAttack())
-            {
-                Attack();
-            }
+            Attack();
         }
     }
 

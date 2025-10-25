@@ -100,9 +100,7 @@
           "component_type": "CapsuleCollider"
         },
         "DefaultEquipments": [
-          "equipments/fist/fist.eqpt",
-          "equipments/rocketlauncher/rocketlauncher.eqpt",
-          "equipments/crowbar/crowbar.eqpt"
+          "equipments/fist/fist.eqpt"
         ],
         "defaultFovChangeSpeed": 25,
         "FallDamageScale": 0.08,
