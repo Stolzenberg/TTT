@@ -101,7 +101,8 @@
         },
         "DefaultEquipments": [
           "equipments/fist/fist.eqpt",
-          "equipments/shotgun/shotgun.eqpt"
+          "equipments/rocketlauncher/rocketlauncher.eqpt",
+          "equipments/crowbar/crowbar.eqpt"
         ],
         "defaultFovChangeSpeed": 25,
         "FallDamageScale": 0.08,

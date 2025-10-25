@@ -41,56 +41,45 @@
         "OnComponentUpdate": null
       },
       {
-        "__type": "Mountain.Shootable",
-        "__guid": "e22c97d6-f75d-4e30-9e35-fda63ca881ad",
+        "__type": "Mountain.MeleeAttack",
+        "__guid": "b28353a0-7ed4-4658-b9cc-bfc284b13112",
         "__enabled": true,
-        "Ammo": null,
-        "BaseDamage": 5,
-        "BaseDamageFalloff": [
-          {
-            "x": 0,
-            "y": 1,
-            "in": 0,
-            "out": 0,
-            "mode": "Mirrored"
-          },
-          {
-            "x": 1,
-            "y": 0,
-            "in": 0,
-            "out": 0,
-            "mode": "Mirrored"
-          }
-        ],
-        "BulletCount": 1,
-        "BulletSize": 1,
-        "BulletSpread": 0,
-        "BurstAmount": 3,
-        "BurstEndDelay": 0.2,
-        "CurrentFireMode": "Automatic",
-        "DryFireSound": null,
-        "DryShootDelay": 0.15,
-        "EjectionPrefab": null,
-        "FireModeSwitchDelay": 0.3,
-        "FireRate": 150,
+        "AllowMultipleHitsPerTarget": false,
+        "AttackDuration": 0.3,
+        "AttackRadius": 30,
+        "AttackRange": 100,
+        "AttackRate": 1,
+        "AttackSound": null,
+        "BaseDamage": 50,
+        "DamageFlags": "Melee",
+        "Force": 500,
+        "HitEffectPrefab": null,
+        "HitSound": null,
         "InputActions": [
           "Attack1"
         ],
-        "MaxRange": 64,
-        "MuzzleFlashPrefab": null,
+        "MaxTargetsPerSwing": 5,
+        "MissSound": null,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "PenetrationThickness": 32,
-        "RequiresAllInputActions": false,
-        "RequiresHasAmmo": false,
-        "ShootSound": null,
-        "SupportedFireModes": [
-          "Semi"
-        ]
+        "RequiresAllInputActions": false
+      },
+      {
+        "__type": "Mountain.ScreenShakeOnAttack",
+        "__guid": "137dbbf8-395b-4020-8c45-94627f20f0db",
+        "__enabled": true,
+        "Length": 0.1,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Size": 0.1
       }
     ],
     "Children": [],

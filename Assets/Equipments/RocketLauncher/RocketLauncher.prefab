@@ -41,8 +41,8 @@
         "OnComponentUpdate": null
       },
       {
-        "__type": "Mountain.Shootable",
-        "__guid": "f484ae40-93d3-48cd-bf0c-f53090e17141",
+        "__type": "Mountain.ProjectileShooting",
+        "__guid": "b995a1c3-2853-4235-a152-ed6a3214a5ef",
         "__enabled": true,
         "Ammo": {
           "_type": "component",
@@ -50,56 +50,34 @@
           "go": "57f0e113-a304-4329-9d00-ff32aed82237",
           "component_type": "EquipmentAmmo"
         },
-        "BaseDamage": 100,
-        "BaseDamageFalloff": [
-          {
-            "x": 0,
-            "y": 1,
-            "in": 0,
-            "out": 0,
-            "mode": "Mirrored"
-          },
-          {
-            "x": 1,
-            "y": 0,
-            "in": 0,
-            "out": 0,
-            "mode": "Mirrored"
-          }
-        ],
-        "BulletCount": 1,
-        "BulletSize": 3,
-        "BulletSpread": 0,
-        "BurstAmount": 2,
+        "BurstAmount": 3,
         "BurstEndDelay": 0.2,
-        "CurrentFireMode": "Semi",
-        "DryFireSound": "equipments/sounds/gundryfire.sound",
+        "CurrentFireMode": "Automatic",
+        "DryFireSound": null,
         "DryShootDelay": 0.15,
-        "EjectionPrefab": {
-          "_type": "gameobject",
-          "prefab": "items/9mmcasing.prefab"
-        },
+        "EjectionPrefab": null,
         "FireModeSwitchDelay": 0.3,
-        "FireRate": 100,
-        "Force": 1000,
+        "FireRate": 150,
         "InputActions": [
           "Attack1"
         ],
-        "MaxRange": 1024000,
-        "MuzzleFlashPrefab": {
-          "_type": "gameobject",
-          "prefab": "particles/explosion/explosion.medium.prefab"
-        },
+        "MuzzleFlashPrefab": null,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "PenetrationThickness": 6,
+        "ProjectileCount": 1,
+        "ProjectilePrefab": {
+          "_type": "gameobject",
+          "prefab": "equipments/rocketlauncher/rocket.prefab"
+        },
+        "ProjectileSpeed": 3500,
+        "ProjectileSpread": 0.1,
         "RequiresAllInputActions": false,
         "RequiresHasAmmo": true,
-        "ShootSound": "equipments/pistol/pistolshoot.sound",
+        "ShootSound": null,
         "SupportedFireModes": [
           "Semi"
         ]
@@ -158,7 +136,7 @@
         "__type": "Mountain.Recoil",
         "__guid": "39326447-5734-4156-84e8-a686c7d81245",
         "__enabled": true,
-        "HorizontalSpread": "-0.5 0.5",
+        "HorizontalSpread": "-0.9 0.9",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -174,7 +152,7 @@
         "ResetTime": 0.01,
         "Scale": "2,5",
         "UseRecoilPattern": false,
-        "VerticalSpread": "0 8"
+        "VerticalSpread": "16 16"
       },
       {
         "__type": "Mountain.EquipmentAmmo",
@@ -182,7 +160,7 @@
         "__enabled": true,
         "Ammo": 1,
         "HasAmmo": true,
-        "MaxAmmo": 5,
+        "MaxAmmo": 1,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -191,7 +169,7 @@
         "OnComponentUpdate": null
       },
       {
-        "__type": "Mountain.ScreenShakeOnShot",
+        "__type": "Mountain.ScreenShakeOnAttack",
         "__guid": "fefc1b61-3a3d-4e8f-a10f-3d611353f1a9",
         "__enabled": true,
         "Length": 0.25,
@@ -230,8 +208,6 @@
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "__references": [
-    "facepunch.explosionmedium#110500"
-  ],
+  "__references": [],
   "__version": 2
 }

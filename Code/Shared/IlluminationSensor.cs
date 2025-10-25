@@ -110,7 +110,7 @@ public class IlluminationSensor : Component
         CleanupCameras();
 
         // Create upward-facing camera
-        upwardCameraObject = new(true, "IlluminationSensor_UpCamera");
+        upwardCameraObject = new(true, "IlluminationSensorUpCamera");
         upwardCameraObject.SetParent(GameObject);
         upwardCameraObject.LocalPosition = Vector3.Zero;
         upwardCameraObject.LocalRotation = Rotation.From(new(-90, 0, 0)); // Looking up
@@ -122,7 +122,7 @@ public class IlluminationSensor : Component
         upwardCamera.IsMainCamera = false;
 
         // Create downward-facing camera
-        downwardCameraObject = new(true, "IlluminationSensor_DownCamera");
+        downwardCameraObject = new(true, "IlluminationSensorDownCamera");
         downwardCameraObject.SetParent(GameObject);
         downwardCameraObject.LocalPosition = new(0, 0, 8);
         downwardCameraObject.LocalRotation = Rotation.From(new(90, 0, 0)); // Looking down
@@ -184,7 +184,7 @@ public class IlluminationSensor : Component
         if (EnableDebug)
         {
             Log.Info(
-                $"[IlluminationSensor] Up: {upwardBrightness:F2}, Down: {downwardBrightness:F2}, Combined: {IlluminationLevel:F2}");
+                $"IlluminationSensor: Up: {upwardBrightness:F2}, Down: {downwardBrightness:F2}, Combined: {IlluminationLevel:F2}");
         }
     }
 
@@ -225,14 +225,14 @@ public class IlluminationSensor : Component
             if (EnableDebug)
             {
                 Log.Info(
-                    $"[IlluminationSensor] Pixel count: {pixelCount}, Total brightness: {totalBrightness:F2}, Average: {averageBrightness:F2}");
+                    $"IlluminationSensor: Pixel count: {pixelCount}, Total brightness: {totalBrightness:F2}, Average: {averageBrightness:F2}");
             }
 
             return averageBrightness;
         }
         catch (Exception ex)
         {
-            Log.Warning($"[IlluminationSensor] Error calculating brightness: {ex.Message}");
+            Log.Warning($"IlluminationSensor: Error calculating brightness: {ex.Message}");
 
             return 1f;
         }

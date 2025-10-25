@@ -41,82 +41,36 @@
         "OnComponentUpdate": null
       },
       {
-        "__type": "Mountain.Shootable",
-        "__guid": "f484ae40-93d3-48cd-bf0c-f53090e17141",
+        "__type": "Mountain.MeleeAttack",
+        "__guid": "8f365e55-992d-4e20-af02-afdbcfb06cf2",
         "__enabled": true,
-        "Ammo": null,
-        "BaseDamage": 1000,
-        "BaseDamageFalloff": [
-          {
-            "x": 0,
-            "y": 1,
-            "in": 0,
-            "out": 0,
-            "mode": "Mirrored"
-          },
-          {
-            "x": 1,
-            "y": 0,
-            "in": 0,
-            "out": 0,
-            "mode": "Mirrored"
-          }
-        ],
-        "BulletCount": 1,
-        "BulletSize": 1,
-        "BulletSpread": 0,
-        "BurstAmount": 2,
-        "BurstEndDelay": 0.2,
-        "CurrentFireMode": "Semi",
-        "DryFireSound": null,
-        "DryShootDelay": 0.15,
-        "EjectionPrefab": null,
-        "FireModeSwitchDelay": 0.3,
-        "FireRate": 100,
+        "AllowMultipleHitsPerTarget": false,
+        "AttackDuration": 0.3,
+        "AttackRadius": 30,
+        "AttackRange": 100,
+        "AttackRate": 1,
+        "AttackSound": null,
+        "BaseDamage": 50,
+        "DamageFlags": "Melee",
+        "Force": 500,
+        "HitEffectPrefab": null,
+        "HitSound": null,
         "InputActions": [
           "Attack1"
         ],
-        "MaxRange": 64,
-        "MuzzleFlashPrefab": null,
+        "MaxTargetsPerSwing": 5,
+        "MissSound": null,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "PenetrationThickness": 6,
-        "RequiresAllInputActions": false,
-        "RequiresHasAmmo": false,
-        "ShootSound": null,
-        "SupportedFireModes": [
-          "Semi"
-        ]
+        "RequiresAllInputActions": false
       },
       {
-        "__type": "Mountain.Recoil",
-        "__guid": "39326447-5734-4156-84e8-a686c7d81245",
-        "__enabled": true,
-        "HorizontalSpread": "-0.1 0.1",
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "RecoilPattern": {
-          "Points": [],
-          "LoopStart": 0,
-          "LoopEnd": 0,
-          "IsLooping": false
-        },
-        "ResetTime": 0.01,
-        "Scale": "2,5",
-        "UseRecoilPattern": false,
-        "VerticalSpread": "0 2"
-      },
-      {
-        "__type": "Mountain.ScreenShakeOnShot",
-        "__guid": "fefc1b61-3a3d-4e8f-a10f-3d611353f1a9",
+        "__type": "Mountain.ScreenShakeOnAttack",
+        "__guid": "43515115-ed58-4d44-a11b-fce6acdb0c72",
         "__enabled": true,
         "Length": 0.1,
         "OnComponentDestroy": null,

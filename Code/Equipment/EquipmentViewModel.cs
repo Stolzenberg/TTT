@@ -45,7 +45,7 @@ public sealed class EquipmentViewModel : EquipmentModel
 
     protected override void OnStart()
     {
-        if (GetComponentInChildren<Shootable>() is { } shoot)
+        if (GetComponentInChildren<ShootingBehavior>() is { } shoot)
         {
             SetFireMode(shoot.CurrentFireMode);
         }
@@ -64,14 +64,14 @@ public sealed class EquipmentViewModel : EquipmentModel
         {
             return;
         }
-        
+
         ModelRenderer.Set("b_sprint", Equipment.Owner.Mode is RunMovementState);
         ModelRenderer.Set("b_grounded", Equipment.Owner.IsOnGround);
 
         var isAiming = Equipment.EquipmentFlags.HasFlag(Equipment.EquipmentFlag.Aiming);
         ModelRenderer.Set("ironsights", isAiming ? 1 : 0);
         ModelRenderer.Set("ironsights_fire_scale", isAiming ? ironSightsFireScale : 0f);
-       
+
         if (Equipment.Aimable != null)
         {
             ModelRenderer.Set("speed_ironsights", Equipment.Aimable.AimSpeed * 0.05f);
@@ -91,7 +91,7 @@ public sealed class EquipmentViewModel : EquipmentModel
         {
             return;
         }
-        
+
         var inRot = Client.Local.Camera.WorldRotation;
 
         // Need to fetch data from the camera for the first frame
@@ -120,12 +120,12 @@ public sealed class EquipmentViewModel : EquipmentModel
         {
             return;
         }
-        
+
         var moveVel = Equipment.Owner.Velocity;
         var moveLen = moveVel.Length;
 
         var wishMove = Equipment.Owner.WishVelocity.Normal * 1f;
-        
+
         lerpedWishMove = lerpedWishMove.LerpTo(wishMove, Time.Delta * 7.0f);
         ModelRenderer.Set("move_bob", moveLen.Remap(0, 300, 0, 1, true));
 

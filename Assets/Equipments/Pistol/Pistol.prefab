@@ -41,7 +41,7 @@
         "OnComponentUpdate": null
       },
       {
-        "__type": "Mountain.Shootable",
+        "__type": "Mountain.RaycastShooting",
         "__guid": "f484ae40-93d3-48cd-bf0c-f53090e17141",
         "__enabled": true,
         "Ammo": {
@@ -191,7 +191,7 @@
         "OnComponentUpdate": null
       },
       {
-        "__type": "Mountain.ScreenShakeOnShot",
+        "__type": "Mountain.ScreenShakeOnAttack",
         "__guid": "fefc1b61-3a3d-4e8f-a10f-3d611353f1a9",
         "__enabled": true,
         "Length": 0.1,
