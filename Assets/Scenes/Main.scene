@@ -936,38 +936,7 @@
               "UseMapFromLaunch": true
             }
           ],
-          "Children": [
-            {
-              "__guid": "ffd1d204-a596-4fbf-816e-982c88b0e9fe",
-              "__version": 1,
-              "Flags": 0,
-              "Name": "Cube",
-              "Position": "160,288,-243.4422",
-              "Rotation": "0,0,0,1",
-              "Scale": "1,1,1",
-              "Tags": "",
-              "Enabled": true,
-              "NetworkMode": 2,
-              "NetworkInterpolation": true,
-              "NetworkOrphaned": 0,
-              "OwnerTransfer": 1,
-              "Components": [
-                {
-                  "__type": "Mountain.TeamSpawnPoint",
-                  "__guid": "cb04a394-b7f6-4057-ad53-546680eec4d0",
-                  "__enabled": true,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "Team": "Unassigned"
-                }
-              ],
-              "Children": []
-            }
-          ]
+          "Children": []
         }
       ]
     },

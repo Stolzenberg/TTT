@@ -76,7 +76,10 @@ public partial class NameTagPanel : PanelComponent, IGameEventHandler<KillEvent>
             }
         }
 
-        opacity *= OwnersIlluminationSensor.IlluminationLevel;
+        if (!OwnersIlluminationSensor.IsWellLit())
+        {
+            opacity *= OwnersIlluminationSensor.IlluminationLevel;
+        }
 
         CurrentOpacity = opacity;
         StateHasChanged();
