@@ -4,13 +4,29 @@ public sealed class OpenDeathDialog : Component, IInteraction
 {
     [Property]
     private readonly float interactionDistance = 128f;
-    
-    private Ragdoll ragdoll;
     private bool isOpen;
 
-    protected override void OnStart()
+    private Ragdoll ragdoll;
+
+    public bool CanPress(IInteraction.Event e)
     {
-        ragdoll = GetComponent<Ragdoll>();
+        if (!Client.Local.IsLocalClient)
+        {
+            return false;
+        }
+
+        if (isOpen)
+        {
+            return false;
+        }
+
+        if (GameMode.Instance.StateMachine.CurrentState != null &&
+            !GameMode.Instance.StateMachine.CurrentState.GameObject.Name.Contains("Playing"))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public bool Press(IInteraction.Event e)
@@ -18,21 +34,27 @@ public sealed class OpenDeathDialog : Component, IInteraction
         Log.Info($"Opening death dialog for player. {ragdoll.DamageInfo}");
         DeathInfoModal.Show(ragdoll.DamageInfo, ragdoll.Client);
         isOpen = true;
+
         return true;
     }
-    
+
+    protected override void OnStart()
+    {
+        ragdoll = GetComponent<Ragdoll>();
+    }
+
     protected override void OnUpdate()
     {
         if (!isOpen)
         {
             return;
         }
-        
+
         if (!Client.Local.IsLocalClient)
         {
             return;
         }
-        
+
         if (!Client.Local.Player.IsValid())
         {
             return;
