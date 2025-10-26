@@ -1,0 +1,171 @@
+{
+  "RootObject": {
+    "__guid": "7b58f17d-b72b-4cbc-a144-92966fdddf1a",
+    "__version": 1,
+    "Flags": 0,
+    "Name": "worldmodel",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkInterpolation": true,
+    "NetworkOrphaned": 0,
+    "OwnerTransfer": 1,
+    "Components": [
+      {
+        "__type": "Mountain.EquipmentWorldModel",
+        "__guid": "778bd2e0-c585-4489-a68d-7b67df72d176",
+        "__enabled": true,
+        "EjectionPort": {
+          "_type": "gameobject",
+          "go": "f8f57f36-0108-40d8-adcf-94c50ee281a5"
+        },
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "f4ce8514-d605-404f-97a9-3bca694a9a10",
+          "go": "16030d4c-7507-4266-b3be-279870b89587",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Muzzle": {
+          "_type": "gameobject",
+          "go": "9e6f6657-ff2b-407b-b18b-34e11d7bef65"
+        },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "16030d4c-7507-4266-b3be-279870b89587",
+        "__version": 1,
+        "Flags": 0,
+        "Name": "Renderer",
+        "Position": "3.915583,0.004403582,-3.941945",
+        "Rotation": "0.000001159188,-0.000001352319,0.0000006986229,0.9999941",
+        "Scale": "1.5,1.5,1.5",
+        "Tags": "",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "f4ce8514-d605-404f-97a9-3bca694a9a10",
+            "__enabled": true,
+            "AnimationGraph": null,
+            "BodyGroups": 3,
+            "BoneMergeTarget": null,
+            "CreateAttachments": false,
+            "CreateBoneObjects": false,
+            "LodOverride": 0,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Materials": null,
+            "Model": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
+            "Morphs": {},
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "Parameters": {
+              "bools": {},
+              "ints": {},
+              "floats": {},
+              "vectors": {},
+              "rotations": {}
+            },
+            "PlaybackRate": 0,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Sequence": {
+              "Name": null,
+              "Looping": true,
+              "Blending": false
+            },
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": false
+          }
+        ],
+        "Children": [
+          {
+            "__guid": "9e6f6657-ff2b-407b-b18b-34e11d7bef65",
+            "__version": 1,
+            "Flags": 0,
+            "Name": "Muzzle",
+            "Position": "12.82808,-0.00000000002789117,8.106431",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkInterpolation": true,
+            "NetworkOrphaned": 0,
+            "OwnerTransfer": 1,
+            "Components": [],
+            "Children": []
+          },
+          {
+            "__guid": "f8f57f36-0108-40d8-adcf-94c50ee281a5",
+            "__version": 1,
+            "Flags": 0,
+            "Name": "EjectionPort",
+            "Position": "1.950909,-0.1338152,8.782173",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": "particles",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkInterpolation": true,
+            "NetworkOrphaned": 0,
+            "OwnerTransfer": 1,
+            "Components": [],
+            "Children": []
+          }
+        ]
+      }
+    ],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    },
+    "__variables": []
+  },
+  "ResourceVersion": 2,
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "__references": [
+    "facepunch.w_mp5#33703"
+  ],
+  "__version": 2
+}

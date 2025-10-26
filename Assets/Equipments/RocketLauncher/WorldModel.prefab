@@ -1,0 +1,171 @@
+{
+  "RootObject": {
+    "__guid": "9e492564-d7fc-4bd6-8ff0-768d42105dc2",
+    "__version": 1,
+    "Flags": 0,
+    "Name": "worldmodel",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkInterpolation": true,
+    "NetworkOrphaned": 0,
+    "OwnerTransfer": 1,
+    "Components": [
+      {
+        "__type": "Mountain.EquipmentWorldModel",
+        "__guid": "b0fccc3a-2bbf-4b65-8b2b-747fb402b4b1",
+        "__enabled": true,
+        "EjectionPort": {
+          "_type": "gameobject",
+          "go": "2935b3fb-1442-4b92-921d-f79d10bbb491"
+        },
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "b760a481-10d1-4852-8563-0803d9eaaffb",
+          "go": "e423fc71-904b-44ab-a5b8-286e3793f2e5",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Muzzle": {
+          "_type": "gameobject",
+          "go": "1bd6e372-e27a-48c6-8da1-f4d2902caa45"
+        },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "e423fc71-904b-44ab-a5b8-286e3793f2e5",
+        "__version": 1,
+        "Flags": 0,
+        "Name": "Renderer",
+        "Position": "3.915583,0.004403582,-3.941945",
+        "Rotation": "0.000001159188,-0.000001352319,0.0000006986229,0.9999941",
+        "Scale": "1.5,1.5,1.5",
+        "Tags": "",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "NetworkOrphaned": 0,
+        "OwnerTransfer": 1,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "b760a481-10d1-4852-8563-0803d9eaaffb",
+            "__enabled": true,
+            "AnimationGraph": null,
+            "BodyGroups": 18446744073709551615,
+            "BoneMergeTarget": null,
+            "CreateAttachments": false,
+            "CreateBoneObjects": false,
+            "LodOverride": 0,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Materials": null,
+            "Model": "models/weapons/sbox_rpg_recoillessrifle/w_recoillessrifle.vmdl",
+            "Morphs": {},
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "Parameters": {
+              "bools": {},
+              "ints": {},
+              "floats": {},
+              "vectors": {},
+              "rotations": {}
+            },
+            "PlaybackRate": 0,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Sequence": {
+              "Name": null,
+              "Looping": true,
+              "Blending": false
+            },
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": false
+          }
+        ],
+        "Children": [
+          {
+            "__guid": "1bd6e372-e27a-48c6-8da1-f4d2902caa45",
+            "__version": 1,
+            "Flags": 0,
+            "Name": "Muzzle",
+            "Position": "18.36022,0.00000000007761022,7.161657",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkInterpolation": true,
+            "NetworkOrphaned": 0,
+            "OwnerTransfer": 1,
+            "Components": [],
+            "Children": []
+          },
+          {
+            "__guid": "2935b3fb-1442-4b92-921d-f79d10bbb491",
+            "__version": 1,
+            "Flags": 0,
+            "Name": "EjectionPort",
+            "Position": "-15.07546,0.0000000008634136,7.019051",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": "particles",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkInterpolation": true,
+            "NetworkOrphaned": 0,
+            "OwnerTransfer": 1,
+            "Components": [],
+            "Children": []
+          }
+        ]
+      }
+    ],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    },
+    "__variables": []
+  },
+  "ResourceVersion": 2,
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "__references": [
+    "facepunch.wrecoillessrifle#113432"
+  ],
+  "__version": 2
+}
