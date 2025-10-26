@@ -121,27 +121,24 @@ public sealed class Throwable : EquipmentInputAction
         // Spawn position slightly in front of player
         var spawnPos = eyePos + eyeAngles.Forward * 50f;
 
-        var projectile = ProjectilePrefab.Clone(new CloneConfig
+        var gameObject = ProjectilePrefab.Clone(new CloneConfig
         {
             Transform = new(spawnPos, Rotation.LookAt(throwDirection)),
             StartEnabled = true,
             Name = $"Thrown {Equipment.GameObject.Name}",
         });
 
-        if (projectile.Components.Get<Projectile>() is { } projectileComponent)
-        {
-            projectileComponent.Owner = Equipment.Owner;
-            projectileComponent.Inflictor = Equipment;
+        var projectileComponent = gameObject.Components.Get<Projectile>();
 
-            var ownerVelocity = Equipment.Owner.IsValid() ? Equipment.Owner.Velocity : Vector3.Zero;
-            projectileComponent.InitialVelocity = throwDirection * ThrowForce + ownerVelocity;
-            projectileComponent.InitialAngularVelocity = throwDirection * ThrowForce + ownerVelocity;
-            projectileComponent.GravityScale = ThrowGravityScale;
-        }
-        else
-        {
-            Log.Warning("Throwable: ProjectilePrefab does not have a Projectile component!");
-        }
+        projectileComponent.Owner = Equipment.Owner;
+        projectileComponent.Inflictor = Equipment;
+
+        var ownerVelocity = Equipment.Owner.IsValid() ? Equipment.Owner.Velocity : Vector3.Zero;
+        projectileComponent.InitialVelocity = throwDirection * ThrowForce + ownerVelocity;
+        projectileComponent.InitialAngularVelocity = throwDirection * ThrowForce + ownerVelocity;
+        projectileComponent.GravityScale = ThrowGravityScale;
+
+        gameObject.NetworkSpawn();
     }
 
     [Rpc.Broadcast]

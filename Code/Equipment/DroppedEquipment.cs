@@ -24,7 +24,7 @@ public sealed class DroppedEquipment : DroppedLoot
 
     public override string GetDisplayName()
     {
-        return Resource?.ResourceName ?? "Unknown Equipment";
+        return Resource.ResourceName ?? "Unknown Equipment";
     }
 
     public static DroppedEquipment Create(EquipmentResource resource, Vector3 position, Rotation rotation,
@@ -45,8 +45,16 @@ public sealed class DroppedEquipment : DroppedLoot
         var droppedWeapon = gameObject.Components.Create<DroppedEquipment>();
         droppedWeapon.Resource = resource;
 
-        var worldModel = resource.WorldModel;
-        var bounds = worldModel.Bounds;
+        if (!resource.WorldModelPrefab.IsValid())
+        {
+            throw new InvalidOperationException(
+                $"DroppedEquipment.Create: Resource {resource.ResourceName} does not have a valid WorldModelPrefab assigned.");
+        }
+
+        var prefab = resource.WorldModelPrefab;
+        var model = prefab.GetComponent<EquipmentModel>();
+
+        var bounds = model.ModelRenderer.Model.Bounds;
 
         droppedWeapon.InitializeDroppedLoot(gameObject, bounds);
 
@@ -68,7 +76,15 @@ public sealed class DroppedEquipment : DroppedLoot
 
     protected override void CreateVisuals(GameObject gameObject)
     {
-        var renderer = gameObject.Components.Create<SkinnedModelRenderer>();
-        renderer.Model = Resource.WorldModel;
+        var renderer = gameObject.AddComponent<SkinnedModelRenderer>();
+        var prefab = Resource.WorldModelPrefab;
+        if (!prefab.IsValid())
+        {
+            throw new InvalidOperationException(
+                $"DroppedEquipment.CreateVisuals: Resource {Resource.ResourceName} does not have a valid WorldModelPrefab assigned.");
+        }
+
+        var model = prefab.GetComponent<EquipmentModel>();
+        renderer.Model = model.ModelRenderer.Model;
     }
 }

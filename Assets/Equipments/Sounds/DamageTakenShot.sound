@@ -5,7 +5,7 @@
   "Decibels": 50,
   "SelectionMode": "Random",
   "Sounds": [
-    "sounds/damagetakenshot.vsnd"
+    "equipments/sounds/damagetakenshot.vsnd"
   ],
   "Occlusion": true,
   "AirAbsorption": true,

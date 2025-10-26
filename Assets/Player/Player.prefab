@@ -76,8 +76,11 @@
         "aimStrengthHead": 0.5,
         "AirFriction": 0.1,
         "ApplyHeightScale": true,
-        "BloodEffect": null,
-        "BloodImpactSound": null,
+        "BloodEffect": {
+          "_type": "gameobject",
+          "prefab": "particles/surfaces/impact.flesh.mist.prefab"
+        },
+        "BloodImpactSound": "equipments/sounds/damagetakenshot.sound",
         "BodyRenderer": {
           "_type": "component",
           "component_id": "093b5d3b-b943-4ddd-b2b1-84a8522e00b5",
@@ -565,7 +568,20 @@
           "26ad7040-71d3-4f74-8850-3742a092117e": "9e055a06-db12-437c-aa50-c317fb58faa5",
           "540cbee2-9e90-4f08-ab5d-7bd5dca4811f": "77e8a863-d14d-4041-a911-8019cbe52741",
           "9cb036ea-6939-4ed3-8e6d-3ccb530f50fb": "189b359a-b131-4769-8635-a391f65b6d53",
-          "66216a75-a9d9-484f-a625-5eb727e930fc": "2cc21fcb-4f9d-41ef-8602-52317918047f"
+          "66216a75-a9d9-484f-a625-5eb727e930fc": "2cc21fcb-4f9d-41ef-8602-52317918047f",
+          "7a0e7895-b470-4904-ab50-49874a17332f": "5f4eb3c4-62c6-4a24-9b0d-d0804093e853",
+          "f93d04e7-d559-49a7-bfbe-ec478c811b34": "acb333b7-8d58-4227-81d2-74e827618bc6",
+          "60695b02-aa01-4a48-a557-2f659a041e2b": "688ef9d7-bc48-4a1a-9ec2-9dc7599d82eb",
+          "9ef8d486-b08e-45d8-a6fe-dbd28e9e7363": "8ea14e6d-eceb-40cd-8967-911373414b58",
+          "058b4b13-d45c-43d9-bf25-08f0f6147af9": "32a95a19-551d-4eec-bf4f-2fb183130897",
+          "c585c0f9-3f97-432c-b57f-78ddf3803f28": "e327fd5a-3a81-4865-9add-0956384c11cb",
+          "6c04d1e7-a3c0-4357-a067-3738f0c7f929": "e705cd5b-bc5c-4ac7-b7b6-9ad6c7a2fa4b",
+          "864dd52f-7863-441f-afa1-16092b3151fd": "1da73e27-2ce9-4fdf-a869-01cd637b477f",
+          "9c0fe88e-ea5f-4d6a-bc98-91a5b1d20b44": "b1f1143c-5cfd-4b54-b5de-35ab115f8313",
+          "939f5060-af14-4f30-bff6-9325ddf40390": "0b77409c-e797-44ca-9200-901f0e27a542",
+          "e732d954-1ad5-4a06-8057-c7bcaaa74f17": "7926361f-3d90-4846-a509-b7e52667244e",
+          "7a8b0802-2725-4454-8b48-75a201485de3": "7f13adab-e423-4b38-b6ba-58a529d20ccb",
+          "14ea6abd-f28a-46b9-b675-a945972eb37a": "c32fa528-d0f0-4460-b835-fbaedd3d827d"
         }
       },
       {
@@ -611,6 +627,8 @@
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "__references": [],
+  "__references": [
+    "facepunch.impactfleshmist#110498"
+  ],
   "__version": 2
 }

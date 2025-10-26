@@ -5,23 +5,16 @@
   },
   "WorldModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/worldmodel.prefab"
+    "prefab": "equipments/assaultrifle/worldmodel.prefab"
   },
   "ViewModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/viewmodel.prefab"
+    "prefab": "equipments/assaultrifle/viewmodel.prefab"
   },
   "Slot": "Primary",
-  "WorldModel": "models/weapons/sbox_assault_m4a1/w_m4a1.vmdl",
-  "ViewModel": "models/weapons/sbox_assault_m4a1/v_m4a1.vmdl",
-  "MuzzleBoneName": "muzzle",
-  "EjectionPortBoneName": "bolt_flap",
   "AmmoType": "Rifle",
   "NameKey": "ASSAULTRIFLE_NAME",
   "DescriptionKey": "ASSAULTRIFLE_DESCRIPTION",
-  "__references": [
-    "facepunch.v_m4a1#122030",
-    "facepunch.w_m4a1#60166"
-  ],
+  "__references": [],
   "__version": 0
 }

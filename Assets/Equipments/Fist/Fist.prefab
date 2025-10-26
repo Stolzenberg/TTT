@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "__guid": "57616bd2-0d21-460a-98e2-41b0ccda9aa1",
+    "__guid": "4e6b67ef-e75a-49ef-bdca-1c9492339cd8",
     "__version": 1,
     "Flags": 0,
     "Name": "fist",
@@ -16,7 +16,7 @@
     "Components": [
       {
         "__type": "Mountain.Equipment",
-        "__guid": "cf138b11-d410-43e0-829e-41747957c7fc",
+        "__guid": "567475c4-7292-4a3a-a1af-01f84ac25554",
         "__enabled": true,
         "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
         "Handedness": "Right",
@@ -31,7 +31,7 @@
       },
       {
         "__type": "Mountain.TagBinder",
-        "__guid": "a9e8b525-dea7-4c3a-9b60-aa24a6fd54db",
+        "__guid": "16d495f1-5a28-4edb-9568-e11743d450a9",
         "__enabled": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -42,7 +42,7 @@
       },
       {
         "__type": "Mountain.MeleeAttack",
-        "__guid": "b28353a0-7ed4-4658-b9cc-bfc284b13112",
+        "__guid": "f9b8782a-0808-446a-b889-aeda0a149a46",
         "__enabled": true,
         "AllowMultipleHitsPerTarget": false,
         "AttackDuration": 0.3,
@@ -70,7 +70,7 @@
       },
       {
         "__type": "Mountain.ScreenShakeOnAttack",
-        "__guid": "137dbbf8-395b-4020-8c45-94627f20f0db",
+        "__guid": "92e75f83-069f-4531-abd4-a07530bafbc0",
         "__enabled": true,
         "Length": 0.1,
         "OnComponentDestroy": null,

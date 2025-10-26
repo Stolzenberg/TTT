@@ -5,22 +5,16 @@
   },
   "WorldModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/worldmodel.prefab"
+    "prefab": "equipments/crowbar/worldmodel.prefab"
   },
   "ViewModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/viewmodel.prefab"
+    "prefab": "equipments/crowbar/viewmodel.prefab"
   },
   "Slot": "Melee",
-  "WorldModel": "models/weapons/sbox_melee_crowbar/w_crowbar.vmdl",
-  "ViewModel": "models/weapons/sbox_melee_crowbar/v_crowbar.vmdl",
-  "MuzzleBoneName": "camera",
-  "EjectionPortBoneName": "",
+  "AmmoType": "None",
   "NameKey": "CROWBAR_NAME",
   "DescriptionKey": "CROWBAR_DESCRIPTION",
-  "__references": [
-    "facepunch.v_crowbar#122029",
-    "facepunch.w_crowbar#38177"
-  ],
+  "__references": [],
   "__version": 0
 }

@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "__guid": "d0196860-75bf-49bc-aa93-5abee2853675",
+    "__guid": "c42fafc4-9575-4816-bfe5-3957cbee79a1",
     "__version": 1,
     "Flags": 0,
     "Name": "crowbar",
@@ -16,7 +16,7 @@
     "Components": [
       {
         "__type": "Mountain.Equipment",
-        "__guid": "cf138b11-d410-43e0-829e-41747957c7fc",
+        "__guid": "25c0f139-ff64-4089-a9a3-57a30ba2c9aa",
         "__enabled": true,
         "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
         "Handedness": "Right",
@@ -31,7 +31,7 @@
       },
       {
         "__type": "Mountain.TagBinder",
-        "__guid": "a9e8b525-dea7-4c3a-9b60-aa24a6fd54db",
+        "__guid": "c8b99a56-c40a-455c-8833-11282253c478",
         "__enabled": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -42,7 +42,7 @@
       },
       {
         "__type": "Mountain.MeleeAttack",
-        "__guid": "f484ae40-93d3-48cd-bf0c-f53090e17141",
+        "__guid": "bb6d2787-61cd-4f26-9b9b-d43c0520346b",
         "__enabled": true,
         "AllowMultipleHitsPerTarget": false,
         "AttackDuration": 0.3,
@@ -70,7 +70,7 @@
       },
       {
         "__type": "Mountain.ScreenShakeOnAttack",
-        "__guid": "ebaec665-49ec-404b-b802-5d11ed768f8e",
+        "__guid": "926e5fa5-112d-4748-9526-b84563838628",
         "__enabled": true,
         "Length": 0.1,
         "OnComponentDestroy": null,

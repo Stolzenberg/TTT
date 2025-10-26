@@ -155,7 +155,6 @@ public sealed class Projectile : Component, Component.ICollisionListener
 
     private void CreateVisuals(Vector3 hitPosition, Rotation rotation)
     {
-
         if (ImpactEffectPrefab.IsValid())
         {
             var gameObject = ImpactEffectPrefab.Clone(new CloneConfig
@@ -165,6 +164,8 @@ public sealed class Projectile : Component, Component.ICollisionListener
             });
 
             gameObject.AddComponent<DestroyBetweenRounds>();
+
+            gameObject.NetworkSpawn();
         }
 
         if (ImpactSound.IsValid())
@@ -245,6 +246,7 @@ public sealed class Projectile : Component, Component.ICollisionListener
             var health = overlap.Root.GetComponentInChildren<Health>();
             if (health.IsValid())
             {
+                CreateVisuals(WorldPosition, WorldRotation);
                 ApplyExplosionDamage(WorldPosition);
                 hasExploded = true;
                 DestroyProjectile();

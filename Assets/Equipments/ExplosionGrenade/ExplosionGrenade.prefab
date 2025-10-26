@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "__guid": "98fa3662-d7ce-4b30-ae7a-7c84dcbf3f4c",
+    "__guid": "f30c94c8-2674-4f3c-8b02-1901d62960ee",
     "__version": 1,
     "Flags": 0,
     "Name": "explosiongrenade",
@@ -16,7 +16,7 @@
     "Components": [
       {
         "__type": "Mountain.Equipment",
-        "__guid": "a4f7e90c-973e-4c38-80fe-b7cddc79e979",
+        "__guid": "47ca1a1d-4e04-4a24-a479-af518b354510",
         "__enabled": true,
         "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
         "Handedness": "Right",
@@ -31,7 +31,7 @@
       },
       {
         "__type": "Mountain.TagBinder",
-        "__guid": "f1751d83-ee95-4dd5-99bc-c3fa4f59db6a",
+        "__guid": "43521fb0-99c6-432e-b42b-a637a4f70430",
         "__enabled": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -42,7 +42,7 @@
       },
       {
         "__type": "Mountain.Throwable",
-        "__guid": "9413ca30-56a2-4f7f-a110-fc3d8706a975",
+        "__guid": "cc4a61f6-a814-4e73-a871-26db4b555cb5",
         "__enabled": true,
         "InputActions": [
           "Attack1"

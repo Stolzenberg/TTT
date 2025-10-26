@@ -20,34 +20,23 @@ public sealed class ProjectileShooting : ShootingBehavior
 
     protected override void PerformShoot()
     {
-        Log.Info("perform shoot projectile");
-
         for (var i = 0; i < ProjectileCount; i++)
         {
-            SpawnProjectile();
+            SpawnProjectile(Ray.Position, Ray.Forward);
         }
     }
 
     [Rpc.Host]
-    private void SpawnProjectile()
+    private void SpawnProjectile(Vector3 worldPosition, Vector3 direction)
     {
         if (!ProjectilePrefab.IsValid())
         {
-            Log.Warning("ProjectileShooting: No ProjectilePrefab assigned!");
-
-            return;
-        }
-
-        var muzzle = Visual.Muzzle;
-        if (!muzzle.IsValid())
-        {
-            Log.Warning("ProjectileShooting: No muzzle found on visual model!");
+            Log.Error("ProjectileShooting: No ProjectilePrefab assigned!");
 
             return;
         }
 
         // Calculate direction with spread
-        var direction = Ray.Forward;
         if (ProjectileSpread > 0)
         {
             var spread = (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * ProjectileSpread * 0.25f;
@@ -56,31 +45,27 @@ public sealed class ProjectileShooting : ShootingBehavior
         }
 
         // Spawn the projectile
-        var projectile = ProjectilePrefab.Clone(new CloneConfig
+        var gameObject = ProjectilePrefab.Clone(new CloneConfig
         {
-            Transform = new Transform(muzzle.WorldPosition, Rotation.LookAt(direction)),
+            Transform = new Transform(worldPosition, Rotation.LookAt(direction)),
             StartEnabled = true,
             Name = $"Projectile from {Equipment.GameObject.Name}",
         });
 
-        // Configure the projectile component
-        if (projectile.Components.Get<Projectile>() is { } projectileComponent)
-        {
-            projectileComponent.Owner = Equipment.Owner;
-            projectileComponent.Inflictor = Equipment;
+        var projectileComponent = gameObject.GetComponent<Projectile>();
 
-            // Calculate initial velocity (projectile speed + inherited velocity from owner)
-            var ownerVelocity = Vector3.Zero;
-            if (Equipment.Owner.IsValid())
-            {
-                ownerVelocity = Equipment.Owner.Velocity;
-            }
+        projectileComponent.Owner = Equipment.Owner;
+        projectileComponent.Inflictor = Equipment;
 
-            projectileComponent.InitialVelocity = direction * ProjectileSpeed + ownerVelocity;
-        }
-        else
+        // Calculate initial velocity (projectile speed + inherited velocity from owner)
+        var ownerVelocity = Vector3.Zero;
+        if (Equipment.Owner.IsValid())
         {
-            Log.Warning("ProjectileShooting: ProjectilePrefab does not have a Projectile component!");
+            ownerVelocity = Equipment.Owner.Velocity;
         }
+
+        projectileComponent.InitialVelocity = direction * ProjectileSpeed + ownerVelocity;
+
+        gameObject.NetworkSpawn();
     }
 }

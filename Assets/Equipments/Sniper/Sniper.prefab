@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "__guid": "3af24d16-f81f-48c5-80d9-045c1ddf281f",
+    "__guid": "165a68d5-7249-4368-8108-96a0831c07c6",
     "__version": 1,
     "Flags": 0,
     "Name": "sniper",
@@ -16,7 +16,7 @@
     "Components": [
       {
         "__type": "Mountain.Equipment",
-        "__guid": "cf138b11-d410-43e0-829e-41747957c7fc",
+        "__guid": "0cb17434-5923-48dd-98a0-616f36f315c9",
         "__enabled": true,
         "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
         "Handedness": "Both",
@@ -31,7 +31,7 @@
       },
       {
         "__type": "Mountain.TagBinder",
-        "__guid": "a9e8b525-dea7-4c3a-9b60-aa24a6fd54db",
+        "__guid": "8a0f0fab-f601-416d-a17f-3f00e92d0d60",
         "__enabled": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -42,12 +42,12 @@
       },
       {
         "__type": "Mountain.RaycastShooting",
-        "__guid": "f484ae40-93d3-48cd-bf0c-f53090e17141",
+        "__guid": "53a7feac-a3fb-4add-8f25-a6a3dffc9578",
         "__enabled": true,
         "Ammo": {
           "_type": "component",
-          "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "3af24d16-f81f-48c5-80d9-045c1ddf281f",
+          "component_id": "89f111cc-155b-4d67-baa4-9a531fb89897",
+          "go": "165a68d5-7249-4368-8108-96a0831c07c6",
           "component_type": "EquipmentAmmo"
         },
         "BaseDamage": 80,
@@ -106,7 +106,7 @@
       },
       {
         "__type": "Mountain.Boltable",
-        "__guid": "310a817c-26ca-4618-b66b-2bda2a79daaa",
+        "__guid": "ffdae37c-4d96-451e-af33-d6d147e0bdc9",
         "__enabled": true,
         "BoltTime": 0.6,
         "EjectionPrefab": {
@@ -126,7 +126,7 @@
       },
       {
         "__type": "Mountain.Aimable",
-        "__guid": "3e9aa8c3-c306-4411-8dfd-0e56d48946ce",
+        "__guid": "82572ac8-9fa9-4bdd-8fa9-df30363d1d95",
         "__enabled": true,
         "AimFieldOfView": 20,
         "AimSpeed": 15,
@@ -143,12 +143,12 @@
       },
       {
         "__type": "Mountain.Reloadable",
-        "__guid": "1cacf3d9-3fb4-44a4-b9ef-84ad8654850c",
+        "__guid": "7d3b9ec8-4677-427d-8942-fb75aa370251",
         "__enabled": true,
         "AmmoComponent": {
           "_type": "component",
-          "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "3af24d16-f81f-48c5-80d9-045c1ddf281f",
+          "component_id": "89f111cc-155b-4d67-baa4-9a531fb89897",
+          "go": "165a68d5-7249-4368-8108-96a0831c07c6",
           "component_type": "EquipmentAmmo"
         },
         "EmptyReloadSounds": {
@@ -176,7 +176,7 @@
       },
       {
         "__type": "Mountain.Recoil",
-        "__guid": "39326447-5734-4156-84e8-a686c7d81245",
+        "__guid": "4bd51c71-8719-4602-96da-a3060b2749a4",
         "__enabled": true,
         "HorizontalSpread": "-0.1 0.1",
         "OnComponentDestroy": null,
@@ -198,7 +198,7 @@
       },
       {
         "__type": "Mountain.EquipmentAmmo",
-        "__guid": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
+        "__guid": "89f111cc-155b-4d67-baa4-9a531fb89897",
         "__enabled": true,
         "Ammo": 7,
         "HasAmmo": true,
@@ -212,7 +212,7 @@
       },
       {
         "__type": "Mountain.ScreenShakeOnAttack",
-        "__guid": "fefc1b61-3a3d-4e8f-a10f-3d611353f1a9",
+        "__guid": "5a16922f-d7ec-4d1c-aa49-bd4eac8a1929",
         "__enabled": true,
         "Length": 0.1,
         "OnComponentDestroy": null,

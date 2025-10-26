@@ -20,11 +20,11 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IGameE
     public float MinimumFallSoundVelocity { get; set; } = 300f;
     [Property, Feature("Health"), Group("Fall Damage")]
     public float FallDamageScale { get; set; } = 0.08f;
+    private const float ImpactCooldown = 0.5f; // Prevent multiple impacts in quick succession
+    private TimeSince lastImpactTime;
 
     // Velocity tracking for impact detection
     private Vector3 previousVelocity;
-    private TimeSince lastImpactTime;
-    private const float ImpactCooldown = 0.5f; // Prevent multiple impacts in quick succession
 
     void IGameEventHandler<DamageTakenEvent>.OnGameEvent(DamageTakenEvent eventArgs)
     {
@@ -42,12 +42,14 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IGameE
 
         if (BloodEffect.IsValid())
         {
-            BloodEffect.Clone(new CloneConfig
+            var gameObject = BloodEffect.Clone(new CloneConfig
             {
                 StartEnabled = true,
                 Transform = new(position),
                 Name = $"Blood effect from ({GameObject})",
             });
+
+            gameObject.AddComponent<DestroyBetweenRounds>();
         }
 
         var snd = Sound.Play(BloodImpactSound, position);
@@ -72,7 +74,7 @@ public sealed partial class Player : IGameEventHandler<DamageTakenEvent>, IGameE
         {
             Client.CycleSpectatorTarget(1);
         }
-        
+
         GameObject.Destroy();
     }
 

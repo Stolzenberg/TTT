@@ -15,7 +15,7 @@ public sealed partial class Equipment
             }
         }
     }
-    
+
     [Sync]
     private bool HasCreatedViewModel { get; set; }
 
@@ -40,17 +40,13 @@ public sealed partial class Equipment
         if (Resource.ViewModelPrefab.IsValid())
         {
             // We want to use Scene.Camera directly here to avoid issues with the player not created, or client local not being set yet.
-            var gameObject = Resource.ViewModelPrefab.Clone(Scene.Camera.GameObject, Vector3.Zero, Rotation.Identity, Vector3.One);
-            
+            var gameObject =
+                Resource.ViewModelPrefab.Clone(Scene.Camera.GameObject, Vector3.Zero, Rotation.Identity, Vector3.One);
+
             gameObject.BreakFromPrefab();
 
-            var equipmentViewModel = gameObject.GetComponent<EquipmentViewModel>();
-            ViewModel = equipmentViewModel;
-            
+            ViewModel = gameObject.GetComponent<EquipmentViewModel>();
             ViewModel.PlayDeployEffects = playDeployEffects;
-            ViewModel.ModelRenderer.Model = Resource.ViewModel;
-            ViewModel.Muzzle = ViewModel.ModelRenderer.GetBoneObject(Resource.MuzzleBoneName);
-            ViewModel.EjectionPort = ViewModel.ModelRenderer.GetBoneObject(Resource.EjectionPortBoneName);
         }
 
         if (!playDeployEffects)

@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "__guid": "ce7f03e5-7ba1-4bc9-abee-16cfd254a1b3",
+    "__guid": "c1120ca1-8f3e-4dc8-8dc3-36b7fc8a3afb",
     "__version": 1,
     "Flags": 0,
     "Name": "ejectionportgas",
@@ -16,7 +16,7 @@
     "Components": [
       {
         "__type": "TemporaryEffect",
-        "__guid": "d9575835-ef2c-40e5-8225-8a57c6d22de4",
+        "__guid": "9aba4be2-2dab-4dc3-b71f-c2e09ae2b2c0",
         "__enabled": true,
         "BecomeOrphan": false,
         "DestroyAfterSeconds": 1,
@@ -31,7 +31,7 @@
     ],
     "Children": [
       {
-        "__guid": "feaf8da1-0480-4536-b695-32edb366917c",
+        "__guid": "4e74e54f-3c5a-4ea6-99ab-b8f58f22bbed",
         "__version": 1,
         "Flags": 0,
         "Name": "EjectedGas",
@@ -47,7 +47,7 @@
         "Components": [
           {
             "__type": "Sandbox.ParticleEffect",
-            "__guid": "3ca9f7e9-c502-40bb-a817-f82d4d979a7e",
+            "__guid": "863feb3c-a081-4eb8-86a3-e6fa4977f97f",
             "__enabled": true,
             "__version": 3,
             "Alpha": {
@@ -245,7 +245,7 @@
           },
           {
             "__type": "Sandbox.ParticleSpriteRenderer",
-            "__guid": "0b4d4e00-dc8b-42a5-97cd-5d67a943cb59",
+            "__guid": "8e811425-d7de-4a25-a17f-aa4f0244c424",
             "__enabled": true,
             "__version": 2,
             "Additive": true,
@@ -302,7 +302,7 @@
           },
           {
             "__type": "Sandbox.ParticleBoxEmitter",
-            "__guid": "6f05c4ad-2a26-4dab-b945-34a12be9958e",
+            "__guid": "af8c1267-9134-4318-a69a-c1dd31cdca89",
             "__enabled": true,
             "Burst": 4,
             "Delay": 0,

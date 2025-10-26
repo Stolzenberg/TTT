@@ -25,18 +25,6 @@ public partial class EquipmentResource : GameResource
     public EquipmentSlot Slot { get; set; } = EquipmentSlot.Undefined;
 
     [Category("Information")]
-    public Model WorldModel { get; set; }
-
-    [Category("Information")]
-    public Model ViewModel { get; set; }
-
-    [Category("Information")]
-    public string MuzzleBoneName { get; set; } = "muzzle";
-
-    [Category("Information")]
-    public string EjectionPortBoneName { get; set; } = "ejection_port";
-
-    [Category("Information")]
     public AmmoType AmmoType { get; set; } = AmmoType.None;
 
     [Hide]

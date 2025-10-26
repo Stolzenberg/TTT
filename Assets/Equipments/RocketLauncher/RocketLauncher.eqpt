@@ -5,23 +5,16 @@
   },
   "WorldModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/worldmodel.prefab"
+    "prefab": "equipments/rocketlauncher/worldmodel.prefab"
   },
   "ViewModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/viewmodel.prefab"
+    "prefab": "equipments/rocketlauncher/viewmodel.prefab"
   },
   "Slot": "Primary",
-  "WorldModel": "models/weapons/sbox_rpg_recoillessrifle/w_recoillessrifle.vmdl",
-  "ViewModel": "models/weapons/sbox_rpg_recoillessrifle/v_recoillessrifle.vmdl",
-  "MuzzleBoneName": "weapon_root_children",
-  "EjectionPortBoneName": "ejection_port",
   "AmmoType": "Rocket",
   "NameKey": "ROCKETLAUNCHER_NAME",
   "DescriptionKey": "ROCKETLAUNCHER_DESCRIPTION",
-  "__references": [
-    "facepunch.v_recoillessrifle#122034",
-    "facepunch.wrecoillessrifle#113432"
-  ],
+  "__references": [],
   "__version": 0
 }

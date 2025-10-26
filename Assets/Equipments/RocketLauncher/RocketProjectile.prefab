@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "__guid": "ca67351e-e849-4fd0-837b-ef93e0a47632",
+    "__guid": "2aa4dcab-da79-41ec-bb9d-7f5ac012a436",
     "__version": 1,
     "Flags": 0,
     "Name": "rocketprojectile",
@@ -16,7 +16,7 @@
     "Components": [
       {
         "__type": "Mountain.Projectile",
-        "__guid": "eab5121b-24bd-49d0-b607-8d69dc5adfa9",
+        "__guid": "dde18bd9-4550-4936-a684-8cae4d14dcc7",
         "__enabled": true,
         "BaseDamage": 500,
         "EnableDebug": false,
@@ -40,7 +40,7 @@
       },
       {
         "__type": "Sandbox.Rigidbody",
-        "__guid": "e11f9273-da4e-4d29-8164-41c5dfafe32c",
+        "__guid": "feaaec8e-d6e7-49db-a4af-b29cd5284dd8",
         "__enabled": true,
         "AngularDamping": 0,
         "Gravity": true,
@@ -68,7 +68,7 @@
       },
       {
         "__type": "Sandbox.SphereCollider",
-        "__guid": "a4c00886-64f8-4289-83be-d17947414806",
+        "__guid": "4544075d-4f56-4a05-a1fb-41d63551f7c1",
         "__enabled": true,
         "Center": "0,0,0",
         "Elasticity": null,
@@ -93,7 +93,7 @@
     ],
     "Children": [
       {
-        "__guid": "7b26fbda-2c38-47ab-a381-43522cc7db9d",
+        "__guid": "669b35bf-0614-4df0-845c-1208ddc096fd",
         "__version": 1,
         "Flags": 0,
         "Name": "84mm_missile",
@@ -109,7 +109,7 @@
         "Components": [
           {
             "__type": "Sandbox.ModelRenderer",
-            "__guid": "ef527895-9f08-4c0f-9164-511e82e9c53b",
+            "__guid": "b1849988-c905-486c-8cc8-98b86f2fe719",
             "__enabled": true,
             "BodyGroups": 1,
             "CreateAttachments": false,

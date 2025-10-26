@@ -5,23 +5,16 @@
   },
   "WorldModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/worldmodel.prefab"
+    "prefab": "equipments/pistol/worldmodel.prefab"
   },
   "ViewModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/viewmodel.prefab"
+    "prefab": "equipments/pistol/viewmodel.prefab"
   },
   "Slot": "Secondary",
-  "WorldModel": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
-  "ViewModel": "models/weapons/sbox_pistol_usp/v_usp.vmdl",
-  "MuzzleBoneName": "silencer",
-  "EjectionPortBoneName": "slide",
   "AmmoType": "Pistol",
   "NameKey": "PISTOL_NAME",
   "DescriptionKey": "PISTOL_DESCRIPTION",
-  "__references": [
-    "facepunch.v_usp#122031",
-    "facepunch.w_usp#77979"
-  ],
+  "__references": [],
   "__version": 0
 }

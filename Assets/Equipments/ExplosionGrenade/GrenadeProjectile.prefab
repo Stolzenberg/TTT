@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "__guid": "893e52fb-9d5b-49b6-be72-97367e7c3fd0",
+    "__guid": "29eaf237-48fe-4573-b1ca-f709b1bbd4cb",
     "__version": 1,
     "Flags": 0,
     "Name": "grenadeprojectile",
@@ -16,10 +16,10 @@
     "Components": [
       {
         "__type": "Mountain.Projectile",
-        "__guid": "5b4816f2-b50b-41ee-be1a-687f180955f1",
+        "__guid": "3f26faab-ba9c-4c19-a051-a99aabb1c7c9",
         "__enabled": true,
         "BaseDamage": 150,
-        "EnableDebug": true,
+        "EnableDebug": false,
         "ExplosionDelay": 2,
         "ExplosionMode": "OnTime",
         "ExplosionRadius": 128,
@@ -40,7 +40,7 @@
       },
       {
         "__type": "Sandbox.Rigidbody",
-        "__guid": "21f895be-23e6-4462-a905-ffd0e72a9207",
+        "__guid": "e0e32e1d-75b0-4f44-855f-b610ca063ed0",
         "__enabled": true,
         "AngularDamping": 0,
         "Gravity": true,
@@ -68,7 +68,7 @@
       },
       {
         "__type": "Sandbox.SphereCollider",
-        "__guid": "5daf6640-ae34-4abb-8e44-51ba6edcdc0f",
+        "__guid": "c40c2853-8d4c-4537-83ae-0ecd26579296",
         "__enabled": true,
         "Center": "0,0,0",
         "Elasticity": null,
@@ -93,7 +93,7 @@
     ],
     "Children": [
       {
-        "__guid": "2892e59f-98e3-4d6e-a4d1-a49db5386ae9",
+        "__guid": "c505e95a-a364-4299-9e1d-d990227c26de",
         "__version": 1,
         "Flags": 0,
         "Name": "w_he_grenade",
@@ -109,7 +109,7 @@
         "Components": [
           {
             "__type": "Sandbox.ModelRenderer",
-            "__guid": "1baab01e-3add-4833-9cdb-8ad98e49db3a",
+            "__guid": "355147e2-2add-47bc-b5d6-350c92a9da5d",
             "__enabled": true,
             "BodyGroups": 3,
             "CreateAttachments": false,

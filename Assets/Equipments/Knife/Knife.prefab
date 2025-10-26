@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "__guid": "2a0c4ce3-c0df-46e0-a769-fbf052ed6ee5",
+    "__guid": "f04bd928-f138-4c8e-a527-6aeb0ce826fa",
     "__version": 1,
     "Flags": 0,
     "Name": "knife",
@@ -16,7 +16,7 @@
     "Components": [
       {
         "__type": "Mountain.Equipment",
-        "__guid": "cf138b11-d410-43e0-829e-41747957c7fc",
+        "__guid": "42ba7110-40a7-43d5-9812-a169d8705e43",
         "__enabled": true,
         "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
         "Handedness": "Right",
@@ -31,7 +31,7 @@
       },
       {
         "__type": "Mountain.TagBinder",
-        "__guid": "a9e8b525-dea7-4c3a-9b60-aa24a6fd54db",
+        "__guid": "64e181c2-b339-4d8d-9aca-0644738e5540",
         "__enabled": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -42,7 +42,7 @@
       },
       {
         "__type": "Mountain.MeleeAttack",
-        "__guid": "8f365e55-992d-4e20-af02-afdbcfb06cf2",
+        "__guid": "cc2d81fe-410c-4780-b1ed-8101a51e1527",
         "__enabled": true,
         "AllowMultipleHitsPerTarget": false,
         "AttackDuration": 0.3,
@@ -70,7 +70,7 @@
       },
       {
         "__type": "Mountain.ScreenShakeOnAttack",
-        "__guid": "43515115-ed58-4d44-a11b-fce6acdb0c72",
+        "__guid": "2eb6f92e-79d9-4458-80dc-6aa47b5bc09d",
         "__enabled": true,
         "Length": 0.1,
         "OnComponentDestroy": null,

@@ -5,23 +5,16 @@
   },
   "WorldModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/worldmodel.prefab"
+    "prefab": "equipments/sniper/worldmodel.prefab"
   },
   "ViewModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/viewmodel.prefab"
+    "prefab": "equipments/sniper/viewmodel.prefab"
   },
   "Slot": "Primary",
-  "WorldModel": "models/weapons/sbox_sniper_m700/w_m700.vmdl",
-  "ViewModel": "models/weapons/sbox_sniper_m700/v_m700.vmdl",
-  "MuzzleBoneName": "bolt",
-  "EjectionPortBoneName": "bolt",
   "AmmoType": "Sniper",
   "NameKey": "SNIPER_NAME",
   "DescriptionKey": "SNIPER_DESCRIPTION",
-  "__references": [
-    "facepunch.v_m700#122037",
-    "facepunch.w_m700#71263"
-  ],
+  "__references": [],
   "__version": 0
 }

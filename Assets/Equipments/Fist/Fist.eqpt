@@ -6,17 +6,12 @@
   "WorldModelPrefab": null,
   "ViewModelPrefab": {
     "_type": "gameobject",
-    "prefab": "equipments/viewmodel.prefab"
+    "prefab": "equipments/fist/viewmodel.prefab"
   },
   "Slot": "Fists",
-  "WorldModel": null,
-  "ViewModel": "models/first_person/v_first_person_arms_human.vmdl",
-  "MuzzleBoneName": "camera",
-  "EjectionPortBoneName": "",
+  "AmmoType": "None",
   "NameKey": "FIST_NAME",
   "DescriptionKey": "FIST_DESCRIPTION",
-  "__references": [
-    "facepunch.v_first_person_arms_human#122024"
-  ],
+  "__references": [],
   "__version": 0
 }

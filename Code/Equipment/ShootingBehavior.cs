@@ -74,7 +74,7 @@ public abstract class ShootingBehavior : EquipmentInputAction
     {
         get
         {
-            if (Equipment.ViewModel.IsValid())
+            if (Equipment.ViewModel.IsValid() && Equipment.ViewModel.Muzzle.IsValid())
             {
                 return new(Equipment.ViewModel.Muzzle.WorldPosition + Equipment.ViewModel.Muzzle.WorldRotation.Forward,
                     Equipment.ViewModel.Muzzle.WorldRotation.Forward);
@@ -84,11 +84,11 @@ public abstract class ShootingBehavior : EquipmentInputAction
         }
     }
 
-    protected EquipmentModel Visual
+    private EquipmentModel Visual
     {
         get
         {
-            if (IsProxy || !Equipment.ViewModel.IsValid())
+            if (IsProxy && Equipment.WorldModel.IsValid())
             {
                 return Equipment.WorldModel;
             }
@@ -220,24 +220,28 @@ public abstract class ShootingBehavior : EquipmentInputAction
     {
         if (MuzzleFlashPrefab.IsValid() && Visual.Muzzle.IsValid())
         {
-            MuzzleFlashPrefab.Clone(new CloneConfig
+            var gameObject = MuzzleFlashPrefab.Clone(new CloneConfig
             {
                 Parent = Visual.Muzzle,
                 Transform = new(),
                 StartEnabled = true,
                 Name = $"Muzzle flash: {Equipment.GameObject}",
             });
+
+            gameObject.AddComponent<DestroyBetweenRounds>();
         }
 
         if (EjectionPrefab.IsValid() && Visual.EjectionPort.IsValid())
         {
-            EjectionPrefab.Clone(new CloneConfig
+            var gameObject = EjectionPrefab.Clone(new CloneConfig
             {
                 Parent = Visual.EjectionPort,
                 Transform = new(),
                 StartEnabled = true,
-                Name = $"Bullet ejection: {Visual.GameObject}",
+                Name = $"Bullet ejection: {Equipment.GameObject}",
             });
+
+            gameObject.AddComponent<DestroyBetweenRounds>();
         }
 
         if (ShootSound is not null && Sound.Play(ShootSound, Equipment.WorldPosition) is { } snd)

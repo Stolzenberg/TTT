@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "__guid": "a4339880-82d8-419e-a4d1-3425ad0bc050",
+    "__guid": "c7dc30f5-401e-4af0-9c49-6d3536279087",
     "__version": 1,
     "Flags": 0,
     "Name": "9mmcasing",
@@ -16,7 +16,7 @@
     "Components": [
       {
         "__type": "TemporaryEffect",
-        "__guid": "02e1e8b0-bfed-46cd-8ee7-0b8d5cfc5586",
+        "__guid": "f9fbb203-560f-4b48-87dd-c05d9b92f4ce",
         "__enabled": true,
         "BecomeOrphan": false,
         "DestroyAfterSeconds": 1,
@@ -31,7 +31,7 @@
     ],
     "Children": [
       {
-        "__guid": "f435e28b-7886-42f9-aa4a-84b8f881aed4",
+        "__guid": "20f631c3-62df-4d52-8947-9f02d14544bf",
         "__version": 1,
         "Flags": 0,
         "Name": "9mm_ejectbrass",
@@ -47,7 +47,7 @@
         "Components": [
           {
             "__type": "Sandbox.LegacyParticleSystem",
-            "__guid": "80a6856e-cb98-42b1-a583-034b53986d57",
+            "__guid": "577ba203-af9b-4c19-8937-0b2f6dead1e5",
             "__enabled": true,
             "ControlPoints": [
               {
@@ -76,7 +76,7 @@
         "Children": []
       },
       {
-        "__guid": "27092ccb-647f-41d3-9280-674898e8f243",
+        "__guid": "6235face-31ea-402e-8f7d-927a2a0f496f",
         "__version": 1,
         "__Prefab": "prefabs/weapon_effects/ejectionport_gas.prefab",
         "__PrefabInstancePatch": {

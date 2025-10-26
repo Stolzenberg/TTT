@@ -35,42 +35,6 @@
       "Children": []
     },
     {
-      "__guid": "478413ec-1382-49c0-b343-b7ddf8ee99ab",
-      "__version": 1,
-      "Flags": 0,
-      "Name": "Scene Information",
-      "Position": "0,0,0",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
-      "NetworkOrphaned": 0,
-      "OwnerTransfer": 1,
-      "Components": [
-        {
-          "__type": "Sandbox.SceneInformation",
-          "__guid": "d3607e97-ef5d-4049-bd4c-ba24e14adf0d",
-          "__enabled": true,
-          "Author": null,
-          "Changes": "",
-          "Description": "",
-          "Group": null,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "SceneTags": "debugging",
-          "Title": "Testing Grounds",
-          "Version": null
-        }
-      ],
-      "Children": []
-    },
-    {
       "__guid": "e94ae1e7-8db9-44dc-a9ac-260602687978",
       "__version": 1,
       "Flags": 0,
@@ -314,7 +278,7 @@
               "__enabled": true,
               "BoundsShrinkAmount": 1024,
               "DefaultLootSpawnChance": 0.7,
-              "DefaultLootSpawnForce": 10000,
+              "DefaultLootSpawnForce": 1000,
               "DefaultUseSpawnForce": true,
               "FreeSpaceRadius": 0.6,
               "LootCollisionHeight": 2,
@@ -1243,10 +1207,7 @@
     "NetworkInterpolation": true,
     "TimeScale": 1,
     "WantsSystemScene": true,
-    "Metadata": {
-      "Title": "Testing Grounds",
-      "Tags": "debugging"
-    },
+    "Metadata": {},
     "NavMesh": {
       "Enabled": false,
       "IncludeStaticBodies": true,
@@ -1261,7 +1222,7 @@
     }
   },
   "ResourceVersion": 3,
-  "Title": "Testing Grounds",
+  "Title": null,
   "Description": null,
   "__references": [
     "facepunch.84mmmissile#116809",

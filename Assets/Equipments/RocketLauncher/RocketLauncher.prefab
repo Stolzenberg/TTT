@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "__guid": "57f0e113-a304-4329-9d00-ff32aed82237",
+    "__guid": "9f182850-bebe-41f9-b47d-64a30125a5f5",
     "__version": 1,
     "Flags": 0,
     "Name": "rocketlauncher",
@@ -16,7 +16,7 @@
     "Components": [
       {
         "__type": "Mountain.Equipment",
-        "__guid": "cf138b11-d410-43e0-829e-41747957c7fc",
+        "__guid": "22f055d0-4da2-4308-8b76-b78e8e4c9c11",
         "__enabled": true,
         "DeploySound": "equipments/sounds/switchweapon/weaponswitch.sound",
         "Handedness": "Both",
@@ -31,7 +31,7 @@
       },
       {
         "__type": "Mountain.TagBinder",
-        "__guid": "a9e8b525-dea7-4c3a-9b60-aa24a6fd54db",
+        "__guid": "cc299a00-ea80-4a1d-9abb-d8ddbee1e07a",
         "__enabled": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -42,12 +42,12 @@
       },
       {
         "__type": "Mountain.ProjectileShooting",
-        "__guid": "b995a1c3-2853-4235-a152-ed6a3214a5ef",
+        "__guid": "86636944-b51e-49b9-88f0-0471ed720103",
         "__enabled": true,
         "Ammo": {
           "_type": "component",
-          "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "57f0e113-a304-4329-9d00-ff32aed82237",
+          "component_id": "0c62bcd7-891b-4848-bf04-2880f1b71c1b",
+          "go": "9f182850-bebe-41f9-b47d-64a30125a5f5",
           "component_type": "EquipmentAmmo"
         },
         "BurstAmount": 3,
@@ -84,7 +84,7 @@
       },
       {
         "__type": "Mountain.Aimable",
-        "__guid": "3e9aa8c3-c306-4411-8dfd-0e56d48946ce",
+        "__guid": "71aefe09-7db7-4012-971d-5e776ddb124e",
         "__enabled": true,
         "AimFieldOfView": 10,
         "AimSpeed": 15,
@@ -101,12 +101,12 @@
       },
       {
         "__type": "Mountain.Reloadable",
-        "__guid": "1cacf3d9-3fb4-44a4-b9ef-84ad8654850c",
+        "__guid": "467ab9e5-d872-4a17-b24b-b801c0d49263",
         "__enabled": true,
         "AmmoComponent": {
           "_type": "component",
-          "component_id": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
-          "go": "57f0e113-a304-4329-9d00-ff32aed82237",
+          "component_id": "0c62bcd7-891b-4848-bf04-2880f1b71c1b",
+          "go": "9f182850-bebe-41f9-b47d-64a30125a5f5",
           "component_type": "EquipmentAmmo"
         },
         "EmptyReloadSounds": {
@@ -114,7 +114,7 @@
           "0.5": "equipments/sounds/reload/pistolreloadfow.sound",
           "1": "equipments/sounds/reload/pistolreloadload.sound"
         },
-        "EmptyReloadTime": 2,
+        "EmptyReloadTime": 10,
         "InputActions": [
           "Reload"
         ],
@@ -124,7 +124,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "ReloadTime": 1.5,
+        "ReloadTime": 10,
         "RequiresAllInputActions": false,
         "SingleReload": false,
         "TimedReloadSounds": {
@@ -134,7 +134,7 @@
       },
       {
         "__type": "Mountain.Recoil",
-        "__guid": "39326447-5734-4156-84e8-a686c7d81245",
+        "__guid": "9ccdea0c-1f65-44ed-af61-3b6da082f057",
         "__enabled": true,
         "HorizontalSpread": "-0.9 0.9",
         "OnComponentDestroy": null,
@@ -156,7 +156,7 @@
       },
       {
         "__type": "Mountain.EquipmentAmmo",
-        "__guid": "dffb13a8-2e8a-43b7-93ca-5675f6cef94c",
+        "__guid": "0c62bcd7-891b-4848-bf04-2880f1b71c1b",
         "__enabled": true,
         "Ammo": 1,
         "HasAmmo": true,
@@ -170,7 +170,7 @@
       },
       {
         "__type": "Mountain.ScreenShakeOnAttack",
-        "__guid": "fefc1b61-3a3d-4e8f-a10f-3d611353f1a9",
+        "__guid": "a464aa8b-182a-466e-a93a-2da2c94e7cf1",
         "__enabled": true,
         "Length": 0.25,
         "OnComponentDestroy": null,
