@@ -13,7 +13,6 @@ public sealed partial class Player : Component
         ChooseBestMovementState();
         ApplyClothing();
         SetHeadPosition(clothing.Height);
-        InitializeKarma();
     }
 
     protected override void OnUpdate()

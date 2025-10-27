@@ -20,7 +20,7 @@
                                 @client.Team.ToString()
                             </div>
                             <div class="player-karma">
-                                Karma: @Math.Round(client.Player!.Karma)
+                                Karma: @Math.Round(client.Karma)
                             </div>
                         </div>
                         <div class="player-status @(IsPlayerAlive(client) ? "status-alive" : "status-dead")">
@@ -34,11 +34,11 @@
         @if (GetRemainingTime() > 0)
         {
             <div class="next-round-timer">
-                @if(GetRemainingTime() > 1) 
+                @if (GetRemainingTime() > 1)
                 {
                     <p>@LocalizationHelper.Resolve("#NEXT_ROUND_IN_SECONDS", GetRemainingTime().ToString("F0"))</p>
                 }
-                else 
+                else
                 {
                     <p>#NEXT_ROUND_STARTS_NOW</p>
                 }
@@ -50,7 +50,7 @@
 @code{
     [Property]
     public GameState InnocentWinState { get; set; }
-    
+
     [Property]
     public GameState TraitorWinState { get; set; }
 
@@ -91,6 +91,7 @@
     private static bool IsPlayerAlive(Client client)
     {
         var player = client.Player;
+
         if (!player.IsValid()) return false;
 
         return player.Components.TryGet<Health>(out var health) && health.State == LifeState.Alive;
@@ -110,4 +111,5 @@
 
         return $"#NEXT_ROUND_IN {seconds} #SECONDS";
     }
+
 }

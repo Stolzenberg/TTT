@@ -1,5 +1,4 @@
 ﻿using System;
-using Sandbox.Events;
 
 namespace Mountain;
 
@@ -24,7 +23,7 @@ public partial class Client : Component
     public string DisplayName => $"{Name}{(!IsConnected ? " (Disconnected)" : "")}";
 
     public bool IsLocalClient => !IsProxy && !IsBot && Connection == Connection.Local;
-    
+
     /// <summary>
     /// The main PlayerPawn of this player if one exists, will not change when the player possesses gadgets etc. (synced)
     /// </summary>
@@ -33,14 +32,14 @@ public partial class Client : Component
 
     [Sync]
     public bool IsReady { get; private set; }
-    private string Name => IsBot ? $"{BotManager.Instance.GetName(BotId)}" : SteamName;
 
     /// <summary>
     ///     The player's name, which might have to persist if they leave
     /// </summary>
     [Sync(SyncFlags.FromHost)]
     public string SteamName { get; set; }
-    
+    private string Name => IsBot ? $"{BotManager.Instance.GetName(BotId)}" : SteamName;
+
     public void HostInit()
     {
         if (Connection is null)
@@ -50,6 +49,8 @@ public partial class Client : Component
 
         SteamId = Connection.SteamId;
         SteamName = Connection.DisplayName;
+
+        InitializeKarma();
     }
 
     [Rpc.Owner]
@@ -59,10 +60,10 @@ public partial class Client : Component
         {
             return;
         }
-        
+
         Local = this;
         IsReady = true;
-        
+
         SetupCamera();
     }
 

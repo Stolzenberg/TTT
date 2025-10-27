@@ -15,13 +15,9 @@ public sealed class RestoreKarma : Component, IGameEventHandler<EnterStateEvent>
         }
 
         // Restore karma for all living players
-        foreach (var player in Scene.GetAllComponents<Player>())
+        foreach (var client in Game.ActiveScene.AllClients().Where(c => c.Player.IsValid()))
         {
-            if (player.IsValid())
-            {
-                player.RestoreKarma();
-            }
+            client.RestoreKarma();
         }
     }
 }
-

@@ -3,7 +3,7 @@ using Sandbox.Events;
 
 namespace Mountain;
 
-public sealed partial class Player : IGameEventHandler<KilledEvent>
+public sealed partial class Client : IGameEventHandler<KilledEvent>
 {
     /// <summary>
     ///     The player's current karma value. Lower karma means less damage dealt to other players.
@@ -94,7 +94,7 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
 
         Karma = Math.Clamp(Karma + KarmaRestoration, KarmaMin, KarmaMax);
 
-        Log.Info($"{Client.DisplayName} restored {KarmaRestoration:F1} karma. New karma: {Karma:F1}");
+        Log.Info($"{DisplayName} restored {KarmaRestoration:F1} karma. New karma: {Karma:F1}");
     }
 
     /// <summary>
@@ -102,10 +102,12 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
     /// </summary>
     private void InitializeKarma()
     {
-        if (Networking.IsHost)
+        if (!Networking.IsHost)
         {
-            Karma = KarmaStarting;
+            throw new InvalidOperationException("Karma can only be initialized on the host.");
         }
+
+        Karma = KarmaStarting;
     }
 
     /// <summary>
@@ -173,9 +175,9 @@ public sealed partial class Player : IGameEventHandler<KilledEvent>
         var damageRatio = Math.Min(damageInfo.Damage / victim.Health.MaxHealth, 1f);
         var scaledPenalty = penalty * damageRatio;
 
-        attacker.Karma = Math.Clamp(attacker.Karma - scaledPenalty, KarmaMin, KarmaMax);
+        attacker.Client.Karma = Math.Clamp(attacker.Client.Karma - scaledPenalty, KarmaMin, KarmaMax);
 
         Log.Info(
-            $"{attacker.Client.DisplayName} lost {scaledPenalty:F1} karma for team damage. New karma: {attacker.Karma:F1}");
+            $"{attacker.Client.DisplayName} lost {scaledPenalty:F1} karma for team damage. New karma: {attacker.Client:F1}");
     }
 }
