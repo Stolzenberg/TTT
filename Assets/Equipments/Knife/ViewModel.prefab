@@ -155,7 +155,7 @@
             "MaterialGroup": null,
             "MaterialOverride": null,
             "Materials": null,
-            "Model": "models/weapons/sbox_melee_trenchknife/v_trenchknife.vmdl",
+            "Model": "models/weapons/sbox_melee_m9bayonet/v_m9bayonet.vmdl",
             "Morphs": {},
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -1424,7 +1424,7 @@
   "DontBreakAsTemplate": false,
   "__references": [
     "facepunch.v_first_person_arms_human#122024",
-    "facepunch.v_trenchknife#125403"
+    "facepunch.v_m9bayonet#122036"
   ],
   "__version": 2
 }

@@ -899,7 +899,7 @@
               "__enabled": true,
               "__version": 1,
               "EnableCollision": true,
-              "MapName": "facepunch.construct23",
+              "MapName": "throwupproducs.westerncity_expanded",
               "NoOrigin": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,

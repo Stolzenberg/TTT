@@ -58,7 +58,7 @@ public sealed partial class Player
         var to = WorldPosition + Vector3.Down * 8;
 
         var radiusScale = 1f;
-        var tr = TraceBody(from, to, radiusScale, 0.5f);
+        var tr = TraceBody(from, to, radiusScale, 0.5f).WithCollisionRules(Tags).Run();
 
         while (tr.StartedSolid || tr.Hit && !Mode.IsStandableSurface(tr))
         {
@@ -70,7 +70,7 @@ public sealed partial class Player
                 return;
             }
 
-            tr = TraceBody(from, to, radiusScale, 0.5f);
+            tr = TraceBody(from, to, radiusScale, 0.5f).WithCollisionRules(Tags).Run();
         }
 
         if (tr is { StartedSolid: false, Hit: true } && Mode.IsStandableSurface(tr))

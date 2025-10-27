@@ -63,7 +63,7 @@
             "MaterialGroup": null,
             "MaterialOverride": null,
             "Materials": null,
-            "Model": "models/weapons/sbox_melee_trenchknife/w_trenchknife.vmdl",
+            "Model": "models/weapons/sbox_melee_m9bayonet/w_m9bayonet.vmdl",
             "Morphs": {},
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -95,42 +95,7 @@
             "UseAnimGraph": false
           }
         ],
-        "Children": [
-          {
-            "__guid": "5844de36-c437-4d06-9d0c-9393ec94fc07",
-            "__version": 1,
-            "Flags": 0,
-            "Name": "Muzzle",
-            "Position": "4.320035,0,4.755252",
-            "Rotation": "0,0,0,1",
-            "Scale": "1,1,1",
-            "Tags": "",
-            "Enabled": true,
-            "NetworkMode": 2,
-            "NetworkInterpolation": true,
-            "NetworkOrphaned": 0,
-            "OwnerTransfer": 1,
-            "Components": [],
-            "Children": []
-          },
-          {
-            "__guid": "95eb6908-b654-46b7-b700-e32b5bb56e1e",
-            "__version": 1,
-            "Flags": 0,
-            "Name": "EjectionPort",
-            "Position": "0.2360865,0,4.951741",
-            "Rotation": "0,0,0,1",
-            "Scale": "1,1,1",
-            "Tags": "particles",
-            "Enabled": true,
-            "NetworkMode": 2,
-            "NetworkInterpolation": true,
-            "NetworkOrphaned": 0,
-            "OwnerTransfer": 1,
-            "Components": [],
-            "Children": []
-          }
-        ]
+        "Children": []
       }
     ],
     "__properties": {
@@ -159,7 +124,7 @@
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
   "__references": [
-    "facepunch.w_trenchknife#38336"
+    "facepunch.w_m9bayonet#59685"
   ],
   "__version": 2
 }

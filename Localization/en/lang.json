@@ -8,6 +8,7 @@
     "DEATH_SINCE": "Death since: {0} seconds",
     "NEXT_ROUND_IN_SECONDS": "Next round starts in {0} seconds",
     "NEXT_ROUND_STARTS_NOW": "Next round starts now",
+    "WAITING": "Waiting for players...",
     "PREPARING": "Preparing",
     "ROUNDENDING": "Ending",
     "PLAYING": "Playing",

@@ -1,41 +1,39 @@
 ﻿@namespace Mountain
 @inherits PanelComponent
 
-@if (!Client.Viewer.IsValid())
-{
-    return;
-}
 
-@if (!Client.Viewer.Player.IsValid())
-{
-    return;
-}
 
 <root>
-    <div class="upper-right-box">
-        <div class="card blur">
-            <div class="player-currency-text">$ @Client.Viewer.Currency</div>
+    @if (Client.Viewer.IsValid())
+    {
+        <div class="upper-right-box">
+            <div class="card blur">
+                <div class="player-currency-text">$ @Client.Viewer.Currency</div>
+            </div>
         </div>
-    </div>
+    }
 
     <div class="lower-left-box">
-        @if (Client.Viewer.IsLocalClient)
+        @if (Client.Viewer.IsValid())
         {
-            <div class="card blur" style="background-color: @Client.Local.TeamColor.WithAlpha(0.2f).ToString();">
-                <div class="text">#@Client.Local.Team.ToString().ToUpper()</div>
-            </div>
-        }
-        else
-        {
-            <div class="card blur">
-                <div class="text">@Client.Viewer.DisplayName</div>
-            </div>
-        }
+            @if (Client.Viewer.IsLocalClient)
+            {
+                <div class="card blur" style="background-color: @Client.Local.TeamColor.WithAlpha(0.2f).ToString();">
+                    <div class="text">#@Client.Local.Team.ToString().ToUpper()</div>
+                </div>
+            }
+            else
+            {
+                <div class="card blur">
+                    <div class="text">@Client.Viewer.DisplayName</div>
+                </div>
+            }
 
-        <div class="health-bar rounded blur">
-            <div class="health-fill" style="width: @(GetHealthPercentage())%;"></div>
-            <div class="health-text">#HEALTH @GetHealthDisplay()%</div>
-        </div>
+            <div class="health-bar rounded blur">
+                <div class="health-fill" style="width: @(GetHealthPercentage())%;"></div>
+                <div class="health-text">#HEALTH @GetHealthDisplay()%</div>
+            </div>
+        }
     </div>
 
     <div class="lower-center-box">

@@ -11,8 +11,6 @@ public sealed partial class Player : Component
         ApplyClothing();
         SetHeadPosition(clothing.Height);
         InitializeKarma();
-
-        SetAmmo(AmmoType.Rocket, 50);
     }
 
     protected override void OnUpdate()

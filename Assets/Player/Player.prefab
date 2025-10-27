@@ -104,7 +104,7 @@
         },
         "DefaultEquipments": [
           "equipments/fist/fist.eqpt",
-          "equipments/explosiongrenade/explosiongrenade.eqpt"
+          "equipments/knife/knife.eqpt"
         ],
         "defaultFovChangeSpeed": 25,
         "FallDamageScale": 0.08,
@@ -299,7 +299,7 @@
         "maxAngle": 75,
         "maxSpeed": 400,
         "minAngleForDuckSlide": 15,
-        "minSlideAngle": 30,
+        "minSlideAngle": 45,
         "minSpeed": 300,
         "minSpeedForDuckSlide": 200,
         "movementControl": 0.8,

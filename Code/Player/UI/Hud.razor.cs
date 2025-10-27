@@ -80,6 +80,12 @@ public partial class Hud : PanelComponent
 
     private string GetFormattedTime()
     {
+        if (GameMode.Instance.StateMachine.CurrentState != null &&
+            !GameMode.Instance.StateMachine.CurrentState.GameObject.Name.Contains("Playing"))
+        {
+            return "";
+        }
+
         var remainingDuration = GameMode.Instance.StateMachine.CurrentState?.RemainingDuration;
 
         if (remainingDuration == null)

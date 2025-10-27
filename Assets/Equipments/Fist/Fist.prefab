@@ -47,7 +47,7 @@
         "AllowMultipleHitsPerTarget": false,
         "AttackDuration": 0.3,
         "AttackRadius": 30,
-        "AttackRange": 100,
+        "AttackRange": 25,
         "AttackRate": 1,
         "AttackSound": null,
         "BaseDamage": 5,
