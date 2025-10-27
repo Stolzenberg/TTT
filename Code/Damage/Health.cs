@@ -87,7 +87,7 @@ public class Health : Component
 
             if (attackerPlayer.IsValid() && victimPlayer.IsValid() && attackerPlayer != victimPlayer)
             {
-                var karmaMultiplier = attackerPlayer.GetKarmaDamageMultiplier();
+                var karmaMultiplier = attackerPlayer.Client.GetKarmaDamageMultiplier();
                 actualDamage = damageInfo.Damage * karmaMultiplier;
             }
         }

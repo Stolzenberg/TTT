@@ -4,7 +4,7 @@ namespace Mountain;
 
 public partial class Client : Component
 {
-    public static Client Local { get; private set; }
+    public static Client Local { get; private set; } = null!;
 
     [Sync(SyncFlags.FromHost)]
     public ulong SteamId { get; set; }
@@ -37,7 +37,7 @@ public partial class Client : Component
     ///     The player's name, which might have to persist if they leave
     /// </summary>
     [Sync(SyncFlags.FromHost)]
-    public string SteamName { get; set; }
+    public string SteamName { get; set; } = null!;
     private string Name => IsBot ? $"{BotManager.Instance.GetName(BotId)}" : SteamName;
 
     public void HostInit()
