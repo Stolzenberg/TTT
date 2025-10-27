@@ -164,10 +164,7 @@
             "OnComponentStart": null,
             "OnComponentUpdate": null,
             "Parameters": {
-              "bools": {
-                "b_attack": true,
-                "b_twohanded": true
-              },
+              "bools": {},
               "ints": {},
               "floats": {},
               "vectors": {},

@@ -2,8 +2,6 @@ using Sandbox.Events;
 
 namespace Mountain;
 
-public record PlayerBeginConnectEvent(Client Client) : IGameEvent;
-
 public record PlayerConnectedEvent(Client Client) : IGameEvent;
 
 public sealed class NetworkManager : SingletonComponent<NetworkManager>, Component.INetworkListener
@@ -13,7 +11,7 @@ public sealed class NetworkManager : SingletonComponent<NetworkManager>, Compone
     /// </summary>
     [Property]
     public GameObject ClientPrefab { get; init; }
-    
+
     /// <summary>
     ///     Called when a network connection becomes active
     /// </summary>
@@ -31,18 +29,8 @@ public sealed class NetworkManager : SingletonComponent<NetworkManager>, Compone
         OnPlayerJoined(client, channel);
     }
 
-    protected override void OnStart()
-    {
-        if (!Networking.IsActive)
-        {
-            Networking.CreateLobby(new());
-        }
-    }
-
     public void OnPlayerJoined(Client client, Connection channel)
     {
-        Scene.Dispatch(new PlayerBeginConnectEvent(client));
-
         // Either spawn over network, or claim ownership
         if (!client.Network.Active)
         {
@@ -52,11 +40,19 @@ public sealed class NetworkManager : SingletonComponent<NetworkManager>, Compone
         {
             client.Network.AssignOwnership(channel);
         }
-        
+
         client.HostInit();
         client.ClientInit();
 
         Scene.Dispatch(new PlayerConnectedEvent(client));
+    }
+
+    protected override void OnStart()
+    {
+        if (!Networking.IsActive)
+        {
+            Networking.CreateLobby(new());
+        }
     }
 
     /// <summary>

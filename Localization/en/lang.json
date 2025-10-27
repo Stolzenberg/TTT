@@ -31,6 +31,5 @@
     "INNOCENT_TASKS_NOTIFICATION": "You are an Innocent your task is to survive and identify the traitors.",
     "DETECTIVE_TASKS_NOTIFICATION": "You are a Detective your task is to protect the innocents and find the traitors.",
     "WAITING_FOR_PLAYERS_NOTIFICATION": "Waiting for more players to join before starting the round.",
-    "PLAYER_CONNECTING_NOTIFICATION": "{0} is connecting...",
     "PLAYER_CONNECTED_NOTIFICATION": "{0} has connected."
 }

@@ -5,6 +5,9 @@ public sealed partial class Player : Component
     [Sync(SyncFlags.FromHost)]
     public Client Client { get; set; }
 
+    [Property, Group("Debug"), Description("Enable debug visualization and logging.")]
+    public bool EnableDebug { get; set; } = false;
+
     protected override void OnStart()
     {
         ChooseBestMovementState();

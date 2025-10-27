@@ -45,61 +45,10 @@ public sealed class MeleeAttack : EquipmentInputAction
     [Property]
     public GameObject? HitEffectPrefab { get; init; }
 
-    [Sync]
+    [Sync(SyncFlags.FromHost)]
     public TimeSince TimeSinceAttack { get; private set; }
 
-    [Sync]
-    public bool IsAttacking { get; private set; }
-
-    [Sync]
-    public TimeUntil AttackEnds { get; private set; }
-
     private float AttackCooldown => 1f / AttackRate;
-    private HashSet<GameObject> hitTargetsThisSwing = new();
-
-    public bool CanAttack()
-    {
-        if (!Equipment.IsValid() || !Equipment.Owner.IsValid())
-            return false;
-
-        if (Equipment.Tags.Has("no_attacking") || Equipment.Tags.Has("reloading"))
-            return false;
-
-        if (IsAttacking)
-            return false;
-
-        if (TimeSinceAttack < AttackCooldown)
-            return false;
-
-        return true;
-    }
-
-    public void Attack()
-    {
-        TimeSinceAttack = 0;
-        IsAttacking = true;
-        AttackEnds = AttackDuration;
-        hitTargetsThisSwing.Clear();
-
-        AttackEffects();
-        Scene.Dispatch(new EquipmentMeleeAttackEvent());
-
-        if (Equipment.Owner.IsValid() && Equipment.Owner.BodyRenderer.IsValid())
-        {
-            Equipment.Owner.BodyRenderer.Set("b_attack", true);
-        }
-
-        if (Equipment.ViewModel.IsValid())
-        {
-            Equipment.ViewModel.ModelRenderer.Set("b_attack", true);
-        }
-
-        var recoil = Equipment.GetComponentInChildren<Recoil>();
-        if (recoil.IsValid())
-        {
-            recoil.Shoot();
-        }
-    }
 
     protected override void OnInputDown()
     {
@@ -109,50 +58,64 @@ public sealed class MeleeAttack : EquipmentInputAction
         }
     }
 
-    protected override void OnFixedUpdate()
+    private bool CanAttack()
     {
-        base.OnFixedUpdate();
-
-        if (IsAttacking)
+        if (!Equipment.IsValid() || !Equipment.Owner.IsValid())
         {
-            PerformHitDetection();
-
-            if (AttackEnds)
-            {
-                IsAttacking = false;
-            }
+            return false;
         }
+
+        if (Equipment.Tags.Has("no_attacking") || Equipment.Tags.Has("reloading"))
+        {
+            return false;
+        }
+
+        if (TimeSinceAttack < AttackCooldown)
+        {
+            return false;
+        }
+
+        return true;
     }
 
-    private void PerformHitDetection()
+    private void Attack()
     {
-        if (!Networking.IsHost)
-            return;
+        // Process hits on server
+        ServerAttack();
 
-        var start = Equipment.Owner.EyePosition;
-        var forward = Equipment.Owner.EyeAngles.Forward;
+        // Play effects on all clients
+        AttackEffects();
 
-        var hits = Scene.Trace.Ray(start, start + forward * AttackRange).UseHitboxes()
-            .IgnoreGameObjectHierarchy(Equipment.Owner.GameObject).WithoutTags("trigger").Size(AttackRadius).RunAll();
-
-        ProcessHits(hits);
+        // Dispatch event
+        Scene.Dispatch(new EquipmentMeleeAttackEvent());
     }
 
-    private void ProcessHits(IEnumerable<SceneTraceResult> hits)
+    [Rpc.Host]
+    private void ServerAttack()
     {
+        TimeSinceAttack = 0;
+        var hits = PerformHitDetection();
+
         var hitCount = 0;
         var anyHit = false;
+        var hitTargetsThisSwing = new HashSet<GameObject>();
 
         foreach (var hit in hits)
         {
             if (!hit.Hit || !hit.GameObject.IsValid())
+            {
                 continue;
+            }
 
             if (!AllowMultipleHitsPerTarget && hitTargetsThisSwing.Contains(hit.GameObject.Root))
+            {
                 continue;
+            }
 
             if (hitCount >= MaxTargetsPerSwing)
+            {
                 break;
+            }
 
             var health = hit.GameObject.Root.GetComponentInChildren<Health>();
             if (health.IsValid())
@@ -174,6 +137,15 @@ public sealed class MeleeAttack : EquipmentInputAction
         {
             PlayMissSound();
         }
+    }
+
+    private IEnumerable<SceneTraceResult> PerformHitDetection()
+    {
+        var start = Equipment.Owner.EyePosition;
+        var forward = Equipment.Owner.EyeAngles.Forward;
+
+        return Scene.Trace.Ray(start, start + forward * AttackRange).UseHitboxes()
+            .IgnoreGameObjectHierarchy(Equipment.Owner.GameObject).WithoutTags("trigger").Size(AttackRadius).RunAll();
     }
 
     private void ApplyDamage(SceneTraceResult hit, Health health)
@@ -203,6 +175,17 @@ public sealed class MeleeAttack : EquipmentInputAction
             {
                 snd.SpacialBlend = Equipment.Owner.IsProxy ? snd.SpacialBlend : 0;
             }
+        }
+
+        // Update animations
+        if (Equipment.Owner.IsValid() && Equipment.Owner.BodyRenderer.IsValid())
+        {
+            Equipment.Owner.BodyRenderer.Set("b_attack", true);
+        }
+
+        if (Equipment.ViewModel.IsValid())
+        {
+            Equipment.ViewModel.ModelRenderer.Set("b_attack", true);
         }
     }
 
@@ -242,10 +225,10 @@ public sealed class MeleeAttack : EquipmentInputAction
     [Rpc.Broadcast]
     private void BroadcastHitSound()
     {
-        if (HitSound is not null)
+        if (HitSound.IsValid())
         {
             var snd = Sound.Play(HitSound, Equipment.WorldPosition);
-            if (snd is not null)
+            if (snd.IsValid())
             {
                 snd.SpacialBlend = Equipment.Owner.IsProxy ? snd.SpacialBlend : 0;
             }
@@ -260,10 +243,10 @@ public sealed class MeleeAttack : EquipmentInputAction
     [Rpc.Broadcast]
     private void BroadcastMissSound()
     {
-        if (MissSound is not null)
+        if (MissSound.IsValid())
         {
             var snd = Sound.Play(MissSound, Equipment.WorldPosition);
-            if (snd is not null)
+            if (snd.IsValid())
             {
                 snd.SpacialBlend = Equipment.Owner.IsProxy ? snd.SpacialBlend : 0;
             }

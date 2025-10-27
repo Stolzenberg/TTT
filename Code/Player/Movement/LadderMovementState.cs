@@ -150,7 +150,7 @@ public sealed class LadderMovementState : MovementState
     {
         return BaseClimbSpeed;
     }
-    
+
     /// <summary>
     /// Scans the player's touching colliders for climbable objects.
     /// </summary>
@@ -160,9 +160,10 @@ public sealed class LadderMovementState : MovementState
         if (!bestCandidate.IsValid())
         {
             ClimbingCollider = null;
+
             return;
         }
-        
+
         // Check if we need to update the climbing rotation
         // (either new collider or the hit normal was updated for current collider)
         var needsRotationUpdate = bestCandidate != ClimbingCollider;
@@ -201,11 +202,14 @@ public sealed class LadderMovementState : MovementState
             var traceStart = playerPosition + Vector3.Up * checkHeight;
             var traceEnd = traceStart + forwardDirection;
 
-            var trace = Scene.Trace.Sphere(ClimbableCheckDistance, traceStart, traceEnd).WithAnyTags(ClimbableTags).HitTriggers()
-                .IgnoreGameObjectHierarchy(Player.GameObject).Run();
+            var trace = Scene.Trace.Sphere(ClimbableCheckDistance, traceStart, traceEnd).WithAnyTags(ClimbableTags)
+                .HitTriggers().IgnoreGameObjectHierarchy(Player.GameObject).Run();
 
-            // Debug visualization (optional)
-            // DebugOverlay.Sphere(new Sphere(Player.WorldPosition, ClimbableCheckDistance), trace.Hit ? Color.Green : Color.Red);
+            if (Player.EnableDebug)
+            {
+                DebugOverlay.Sphere(new(Player.WorldPosition, ClimbableCheckDistance),
+                    trace.Hit ? Color.Green : Color.Red);
+            }
 
             if (!trace.Hit)
             {

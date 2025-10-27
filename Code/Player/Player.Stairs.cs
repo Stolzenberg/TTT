@@ -38,8 +38,10 @@ public sealed partial class Player
 
         var lowerTrace = TraceBody(lowerCheckStart, lowerCheckEnd, 2f, heightPercentage).WithTag("World").Run();
 
-        // Debug visualization
-        DebugOverlay.Line(lowerCheckStart, lowerCheckEnd, lowerTrace.Hit ? Color.Yellow : Color.Green);
+        if (EnableDebug)
+        {
+            DebugOverlay.Line(lowerCheckStart, lowerCheckEnd, lowerTrace.Hit ? Color.Yellow : Color.Green);
+        }
 
         // If no collision in lower area, nothing to step over
         if (!lowerTrace.Hit)
@@ -55,7 +57,10 @@ public sealed partial class Player
 
         var stepTrace = TraceBody(forwardCheckStart, forwardCheckEnd, 2f).WithTag("World").Run();
 
-        // DebugOverlay.Line(forwardCheckStart, forwardCheckEnd, stepTrace.Hit ? Color.Cyan : Color.Red);
+        if (EnableDebug)
+        {
+            DebugOverlay.Line(forwardCheckStart, forwardCheckEnd, stepTrace.Hit ? Color.Cyan : Color.Red);
+        }
 
         if (!stepTrace.Hit)
         {
@@ -85,15 +90,20 @@ public sealed partial class Player
 
         var bodySpaceTrace = TraceBody(bodySpaceCheckStart, bodySpaceCheckEnd).WithTag("World").Run();
 
-        // DebugOverlay.Line(bodySpaceCheckStart, bodySpaceCheckEnd, bodySpaceTrace.Hit ? Color.Red : Color.Blue);
+        if (EnableDebug)
+        {
+            DebugOverlay.Line(bodySpaceCheckStart, bodySpaceCheckEnd, bodySpaceTrace.Hit ? Color.Red : Color.Blue);
+        }
 
         if (bodySpaceTrace.Hit)
         {
             return; // Not enough vertical space for the player's body
         }
 
-        // Debug visualization of the step
-        // DebugOverlay.Sphere(new (stepTrace.EndPosition, 2f), Color.Green, 3f);
+        if (EnableDebug)
+        {
+            DebugOverlay.Sphere(new(stepTrace.EndPosition, 2f), Color.Green, 3f);
+        }
 
         // Smoothly step up
         targetStepHeight = stepHeight;
