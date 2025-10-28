@@ -24,10 +24,10 @@ public static class TeamExtensions
 {
     private static readonly Dictionary<Team, Color> TeamColors = new()
     {
-        { Team.Innocent, new Color32(39, 174, 96) },
-        { Team.Traitor, new Color32(192, 57, 43) },
-        { Team.Detective, new Color32(41, 128, 185) },
-        { Team.Unassigned, new Color32(255, 255, 255) },
+        { Team.Innocent, new(39, 174, 96) },
+        { Team.Traitor, new(192, 57, 43) },
+        { Team.Detective, new(41, 128, 185) },
+        { Team.Unassigned, new(255, 255, 255) },
     };
 
     public static Color GetColor(this Team team)
@@ -45,15 +45,13 @@ public static class TeamExtensions
             _ => Team.Unassigned,
         };
     }
-    
-    
+
     /// <summary>
     ///     Check if two teams are allies (should not attack each other).
     /// </summary>
     public static bool AreTeamsAllied(this Team team1, Team team2)
     {
         // Innocents and Detectives are allies
-        return team1 is Team.Innocent or Team.Detective && 
-               team2 is Team.Innocent or Team.Detective;
+        return team1 is Team.Innocent or Team.Detective && team2 is Team.Innocent or Team.Detective;
     }
 }

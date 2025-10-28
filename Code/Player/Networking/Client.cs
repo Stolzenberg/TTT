@@ -92,7 +92,7 @@ public partial class Client : Component
 
     protected override void OnUpdate()
     {
-        HandleCleanup();
         UpdateSpectator();
+        HandleCleanup();
     }
 }

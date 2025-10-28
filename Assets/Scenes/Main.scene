@@ -53,8 +53,8 @@
           "__type": "Mountain.GameMode",
           "__guid": "eaae459f-616f-4c61-9c11-d9f68129468c",
           "__enabled": true,
-          "BotCount": 2,
-          "DebuggingEnabled": false,
+          "BotCount": 4,
+          "DebuggingEnabled": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -203,7 +203,9 @@
               "OnComponentEnabled": null,
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
-              "OnComponentUpdate": null
+              "OnComponentUpdate": null,
+              "Radius": 300,
+              "TimeModifier": 0.01
             }
           ],
           "Children": []

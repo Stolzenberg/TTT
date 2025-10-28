@@ -42,7 +42,8 @@ public sealed class DroppedEquipment : DroppedLoot
             Name = resource.ResourceName,
         };
 
-        var droppedWeapon = gameObject.Components.Create<DroppedEquipment>();
+        gameObject.AddComponent<DestroyBetweenRounds>();
+        var droppedWeapon = gameObject.AddComponent<DroppedEquipment>();
         droppedWeapon.Resource = resource;
 
         if (!resource.WorldModelPrefab.IsValid())

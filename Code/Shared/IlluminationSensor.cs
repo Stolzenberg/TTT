@@ -113,7 +113,7 @@ public class IlluminationSensor : Component
         upwardCameraObject.LocalPosition = new(0, 0, 16);
         upwardCameraObject.LocalRotation = Rotation.From(new(-90, 0, 0)); // Looking up
 
-        upwardCamera = upwardCameraObject.Components.Create<CameraComponent>();
+        upwardCamera = upwardCameraObject.AddComponent<CameraComponent>();
         upwardCamera.FieldOfView = CameraFov;
         upwardCamera.Priority = -100; // Low priority so it doesn't interfere with main camera
         upwardCamera.Enabled = true;
@@ -125,7 +125,7 @@ public class IlluminationSensor : Component
         downwardCameraObject.LocalPosition = new(0, 0, 16);
         downwardCameraObject.LocalRotation = Rotation.From(new(90, 0, 0)); // Looking down
 
-        downwardCamera = downwardCameraObject.Components.Create<CameraComponent>();
+        downwardCamera = downwardCameraObject.AddComponent<CameraComponent>();
         downwardCamera.FieldOfView = CameraFov;
         downwardCamera.Priority = -100;
         downwardCamera.Enabled = true;

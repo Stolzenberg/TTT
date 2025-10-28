@@ -18,7 +18,7 @@
         "__type": "Mountain.Client",
         "__guid": "6a98621e-3b1e-4c27-97cb-7f9d92ef7580",
         "__enabled": true,
-        "disconnectCleanupTime": 3,
+        "disconnectCleanupTime": 60,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,

@@ -63,14 +63,14 @@ public abstract class DroppedLoot : Component, Component.ITriggerListener, IPick
     /// </summary>
     protected virtual void CreateColliders(GameObject gameObject, BBox bounds)
     {
-        var trigger = gameObject.Components.Create<SphereCollider>();
+        var trigger = gameObject.AddComponent<SphereCollider>();
         trigger.IsTrigger = true;
         trigger.Radius = 32f;
 
         var min = bounds.Mins;
         var max = bounds.Maxs;
 
-        var collider = gameObject.Components.Create<BoxCollider>();
+        var collider = gameObject.AddComponent<BoxCollider>();
         collider.Scale = new(max.x - min.x, max.y - min.y, max.z - min.z);
         collider.Center = new(0, 0, (max.z - min.z) / 2);
     }
@@ -80,7 +80,7 @@ public abstract class DroppedLoot : Component, Component.ITriggerListener, IPick
     /// </summary>
     protected virtual void CreateRigidbody(GameObject gameObject)
     {
-        Rigidbody = gameObject.Components.Create<Rigidbody>();
+        Rigidbody = gameObject.AddComponent<Rigidbody>();
         Rigidbody.MassOverride = 15f;
     }
 
@@ -95,7 +95,7 @@ public abstract class DroppedLoot : Component, Component.ITriggerListener, IPick
         CreateColliders(gameObject, bounds);
         CreateRigidbody(gameObject);
 
-        gameObject.Components.Create<DestroyBetweenRounds>();
+        gameObject.AddComponent<DestroyBetweenRounds>();
         gameObject.Tags.Add("pickup");
     }
 

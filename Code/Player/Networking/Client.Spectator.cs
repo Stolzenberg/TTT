@@ -68,12 +68,6 @@ public sealed partial class Client
 
         if (!Player.IsValid() || Player.Health.State != LifeState.Dead)
         {
-            if (SpectatorTarget.IsValid())
-            {
-                SpectatorTarget.DePossess();
-                SpectatorTarget = null;
-            }
-
             return;
         }
 

@@ -10,9 +10,8 @@ public sealed class TeamNotifications : Component, IGameEventHandler<TeamAssigne
         {
             return;
         }
-        
+
         NotificationService.Info("#PLAYING_STATE_STARTED_NOTIFICATION");
         NotificationService.Info($"#{eventArgs.Team.ToString().ToUpper()}_TASKS_NOTIFICATION");
-        
     }
 }

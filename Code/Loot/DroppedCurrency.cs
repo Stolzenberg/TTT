@@ -56,7 +56,7 @@ public sealed class DroppedCurrency : DroppedLoot
             Name = $"Currency_Amount_${actualAmount}",
         };
 
-        var currency = gameObject.Components.Create<DroppedCurrency>();
+        var currency = gameObject.AddComponent<DroppedCurrency>();
         currency.Amount = actualAmount;
         currency.CurrencyModel = customModel ?? GetDefaultModel();
 
@@ -76,7 +76,7 @@ public sealed class DroppedCurrency : DroppedLoot
             return;
         }
 
-        var renderer = gameObject.Components.Create<ModelRenderer>();
+        var renderer = gameObject.AddComponent<ModelRenderer>();
         renderer.Model = CurrencyModel;
     }
 }

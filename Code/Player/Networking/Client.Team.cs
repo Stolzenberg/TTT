@@ -1,5 +1,4 @@
-﻿using System;
-using Sandbox.Events;
+﻿using Sandbox.Events;
 
 namespace Mountain;
 
@@ -9,8 +8,8 @@ public partial class Client : ITeam
     ///     The team this player is on.
     /// </summary>
     [Property, Group("Setup"), Sync(SyncFlags.FromHost), Change(nameof(OnTeamPropertyChanged))]
-
     public Team Team { get; set; }
+
     public Color TeamColor => Team.GetColor();
 
     public void AssignTeam(Team team)
@@ -25,7 +24,7 @@ public partial class Client : ITeam
         BroadcastTeam(team);
     }
 
-    [Rpc.Broadcast]
+    [Rpc.Owner]
     private void BroadcastTeam(Team team)
     {
         Scene.Dispatch(new TeamAssignedEvent(this, team));

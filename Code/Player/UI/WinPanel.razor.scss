@@ -58,7 +58,6 @@ WinPanel {
   }
 
   .player-info {
-    display: flex;
     align-items: center;
     gap: 12px;
   }
@@ -66,6 +65,8 @@ WinPanel {
   .player-name {
     font-weight: bold;
     color: white;
+    min-width: 200px;
+    overflow: hidden;
   }
 
   .player-team {

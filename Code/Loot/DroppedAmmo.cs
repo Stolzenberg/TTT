@@ -73,7 +73,7 @@ public sealed class DroppedAmmo : DroppedLoot
             Name = $"{ammoType}_Ammo_{amount}",
         };
 
-        var droppedAmmo = gameObject.Components.Create<DroppedAmmo>();
+        var droppedAmmo = gameObject.AddComponent<DroppedAmmo>();
         droppedAmmo.AmmoType = ammoType;
         droppedAmmo.Amount = amount;
         droppedAmmo.AmmoModel = customModel ?? GetDefaultModel();
@@ -91,7 +91,7 @@ public sealed class DroppedAmmo : DroppedLoot
     {
         if (AmmoModel.IsValid())
         {
-            var renderer = gameObject.Components.Create<ModelRenderer>();
+            var renderer = gameObject.AddComponent<ModelRenderer>();
             renderer.Model = AmmoModel;
         }
     }
