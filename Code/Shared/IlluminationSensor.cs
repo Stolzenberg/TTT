@@ -78,8 +78,6 @@ public class IlluminationSensor : Component
 
     protected override void OnUpdate()
     {
-        base.OnUpdate();
-
         if (upwardCamera == null || downwardCamera == null)
         {
             return;

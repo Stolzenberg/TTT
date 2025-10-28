@@ -30,8 +30,6 @@ public partial class Hud : PanelComponent
 
     protected override void OnUpdate()
     {
-        base.OnUpdate();
-
         // Remove old notifications
         Notifications.RemoveAll(n => n.CreatedAt > NotificationLifetime);
 

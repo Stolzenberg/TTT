@@ -50,8 +50,6 @@ public sealed class NoClipMovementState : MovementState
 
     protected override void OnUpdate()
     {
-        base.OnUpdate();
-
         if (!Player.IsLocallyControlled)
         {
             return;

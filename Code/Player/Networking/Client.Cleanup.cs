@@ -4,7 +4,7 @@ public partial class Client : Component.INetworkListener
 {
     [Property]
     private readonly float disconnectCleanupTime = 120f;
-    
+
     private RealTimeSince timeSinceDisconnected;
 
     void INetworkListener.OnDisconnected(Connection channel)
@@ -22,7 +22,7 @@ public partial class Client : Component.INetworkListener
             return;
         }
 
-        if (!IsLocalClient)
+        if (!Networking.IsHost)
         {
             return;
         }
