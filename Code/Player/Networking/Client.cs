@@ -40,7 +40,7 @@ public partial class Client : Component
     public string SteamName { get; set; } = null!;
     private string Name => IsBot ? $"{BotManager.Instance.GetName(BotId)}" : SteamName;
 
-    public void HostInit()
+    public void ServerInit()
     {
         if (Connection is null)
         {
@@ -49,6 +49,11 @@ public partial class Client : Component
 
         SteamId = Connection.SteamId;
         SteamName = Connection.DisplayName;
+
+        if (Player.IsValid())
+        {
+            Player.Network.AssignOwnership(Network.Owner);
+        }
 
         InitializeKarma();
     }
@@ -65,6 +70,11 @@ public partial class Client : Component
         IsReady = true;
 
         SetupCamera();
+
+        if (Player.IsValid())
+        {
+            Player.Possess();
+        }
     }
 
     public void ServerKick(string reason = "No reason")

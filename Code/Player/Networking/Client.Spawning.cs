@@ -12,10 +12,10 @@ public enum RespawnState
 
 public partial class Client
 {
-	/// <summary>
-	///     The prefab to spawn when we want to make a player pawn for the player.
-	/// </summary>
-	[Property]
+    /// <summary>
+    ///     The prefab to spawn when we want to make a player pawn for the player.
+    /// </summary>
+    [Property]
     public GameObject PlayerPrefab { get; set; }
 
     public TimeSince TimeSinceRespawnStateChanged { get; private set; }
@@ -26,15 +26,13 @@ public partial class Client
     [Sync(SyncFlags.FromHost), Change(nameof(OnRespawnStateChanged))]
     public RespawnState RespawnState { get; set; }
 
-    public bool IsRespawning => RespawnState is RespawnState.Delayed;
-
     public void Respawn(bool forceNew = true)
     {
         if (!Networking.IsHost)
         {
             throw new InvalidOperationException("Respawn can only be called on the host.");
         }
-        
+
         var spawnPoint = GameMode.Instance.Get<TeamSpawnAssigner>().GetSpawnPoint(this);
         Log.Info(
             $"Spawning ({DisplayName}, {Team}), {spawnPoint.WorldPosition}, [{string.Join(", ", spawnPoint.Tags)}]");
@@ -62,11 +60,11 @@ public partial class Client
     {
         var gameObject = PlayerPrefab.Clone(spawnPoint.WorldTransform);
         gameObject.Name = $"Player ({DisplayName})";
-       
+
         var player = gameObject.GetComponent<Player>();
         Player = player;
         Player.Client = this;
-        
+
         Player.SetSpawnPoint(spawnPoint);
         gameObject.NetworkSpawn(Network.Owner);
         RespawnState = RespawnState.Not;

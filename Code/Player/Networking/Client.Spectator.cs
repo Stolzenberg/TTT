@@ -14,40 +14,6 @@ public sealed partial class Client
     private int spectatorTargetIndex = 0;
 
     /// <summary>
-    /// Update spectator input and camera logic
-    /// </summary>
-    private void UpdateSpectator()
-    {
-        if (!IsLocalClient)
-        {
-            return;
-        }
-
-        if (!Player.IsValid() || Player.Health.State != LifeState.Dead)
-        {
-            SpectatorTarget = null;
-
-            return;
-        }
-
-        // Handle spectator cycling input
-        if (Input.Pressed("Right"))
-        {
-            CycleSpectatorTarget(1);
-        }
-        else if (Input.Pressed("Left"))
-        {
-            CycleSpectatorTarget(-1);
-        }
-
-        if (SpectatorTarget.IsValid() && SpectatorTarget.Health.State == LifeState.Dead)
-        {
-            // Spectated player died, switch to next target
-            CycleSpectatorTarget(1);
-        }
-    }
-
-    /// <summary>
     /// Cycle to the next or previous spectator target
     /// </summary>
     /// <param name="direction">1 for next, -1 for previous</param>
@@ -85,6 +51,46 @@ public sealed partial class Client
         }
 
         SpectatorTarget = livingPlayers[spectatorTargetIndex];
+        Log.Info("Spectating player: " + SpectatorTarget.Client.DisplayName);
+
         SpectatorTarget.Possess();
+    }
+
+    /// <summary>
+    /// Update spectator input and camera logic
+    /// </summary>
+    private void UpdateSpectator()
+    {
+        if (!IsLocalClient)
+        {
+            return;
+        }
+
+        if (!Player.IsValid() || Player.Health.State != LifeState.Dead)
+        {
+            if (SpectatorTarget.IsValid())
+            {
+                SpectatorTarget.DePossess();
+                SpectatorTarget = null;
+            }
+
+            return;
+        }
+
+        // Handle spectator cycling input
+        if (Input.Pressed("Right"))
+        {
+            CycleSpectatorTarget(1);
+        }
+        else if (Input.Pressed("Left"))
+        {
+            CycleSpectatorTarget(-1);
+        }
+
+        if (SpectatorTarget.IsValid() && SpectatorTarget.Health.State == LifeState.Dead)
+        {
+            // Spectated player died, switch to next target
+            CycleSpectatorTarget(1);
+        }
     }
 }

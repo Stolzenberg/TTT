@@ -1,11 +1,7 @@
-using System;
-
 namespace Mountain;
 
 public sealed partial class Player
 {
-    private static Player? Current { get; set; }
-
     /// <summary>
     /// Are we possessing this pawn right now? (Clientside)
     /// </summary>
@@ -15,10 +11,16 @@ public sealed partial class Player
     /// Is this pawn locally controlled by us?
     /// </summary>
     public bool IsLocallyControlled => IsPossessed && !IsProxy && !Client.IsBot;
+    private static Player? Current { get; set; }
 
     public void Possess()
     {
         Possess(this);
+    }
+
+    public void DePossess()
+    {
+        DePossess(this);
     }
 
     private static void Possess(Player player)
@@ -32,7 +34,7 @@ public sealed partial class Player
 
         if (Current.IsValid())
         {
-            Log.Info($"Current: {Current}");
+            Log.Info($"Player.Posses: Current: {Current.ToString()}");
             DePossess(Current);
         }
 
@@ -41,13 +43,9 @@ public sealed partial class Player
 
         Current.ApplyClothing();
         Current.ActiveEquipment?.CreateViewModel(false);
+        Current.SetHeadPosition();
 
-        Log.Info($"Possessing {player}");
-    }
-
-    public void DePossess()
-    {
-        DePossess(this);
+        Log.Info($"Player.Posses: Possessing {player.ToString()}");
     }
 
     private static void DePossess(Player player)

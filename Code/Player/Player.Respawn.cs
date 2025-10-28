@@ -40,7 +40,10 @@ public sealed partial class Player
 
         TimeSinceLastRespawn = 0f;
 
-        OwnerRespawn(SpawnPosition, SpawnRotation);
+        if (Client.IsConnected)
+        {
+            OwnerRespawn(SpawnPosition, SpawnRotation);
+        }
 
         GiveDefaultEquipment();
 
@@ -74,6 +77,7 @@ public sealed partial class Player
 
         if (!Client.IsBot)
         {
+            Log.Info("Player respawned, possessing...");
             Possess();
         }
     }

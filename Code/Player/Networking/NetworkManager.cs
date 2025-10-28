@@ -41,7 +41,7 @@ public sealed class NetworkManager : SingletonComponent<NetworkManager>, Compone
             client.Network.AssignOwnership(channel);
         }
 
-        client.HostInit();
+        client.ServerInit();
         client.ClientInit();
 
         Scene.Dispatch(new PlayerConnectedEvent(client));
