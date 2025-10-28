@@ -16,7 +16,7 @@
                     <div class="player-row">
                             <div class="player-name">@client.DisplayName</div>
                         <div class="player-team"
-                             style="background-color: @client.Team.GetColor().ToString(); color: white;">
+                             style="background-color: @client.Team.GetColor().WithAlpha(0.25f).ToString(); color: white;">
                                 @client.Team.ToString()
                             </div>
                             <div class="player-karma">
