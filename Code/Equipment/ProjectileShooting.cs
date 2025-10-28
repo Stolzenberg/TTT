@@ -20,9 +20,14 @@ public sealed class ProjectileShooting : ShootingBehavior
 
     protected override void PerformShoot()
     {
+        if (!Ray.HasValue)
+        {
+            return;
+        }
+
         for (var i = 0; i < ProjectileCount; i++)
         {
-            SpawnProjectile(Ray.Position, Ray.Forward);
+            SpawnProjectile(Ray.Value.Position, Ray.Value.Forward);
         }
     }
 
@@ -47,7 +52,7 @@ public sealed class ProjectileShooting : ShootingBehavior
         // Spawn the projectile
         var gameObject = ProjectilePrefab.Clone(new CloneConfig
         {
-            Transform = new Transform(worldPosition, Rotation.LookAt(direction)),
+            Transform = new(worldPosition, Rotation.LookAt(direction)),
             StartEnabled = true,
             Name = $"Projectile from {Equipment.GameObject.Name}",
         });

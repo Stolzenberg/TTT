@@ -14,17 +14,21 @@
                 @foreach (var client in GetAllClients().OrderBy(c => c.Team).ThenBy(c => c.DisplayName))
                 {
                     <div class="player-row">
-                            <div class="player-name">@client.DisplayName</div>
+                        <div class="player-name">@client.DisplayName</div>
                         <div class="player-team"
                              style="background-color: @client.Team.GetColor().WithAlpha(0.25f).ToString(); color: white;">
-                                @client.Team.ToString()
-                            </div>
-                            <div class="player-karma">
-                                Karma: @Math.Round(client.Karma)
-                            </div>
-                        <div class="player-status @(IsPlayerAlive(client) ? "status-alive" : "status-dead")">
-                            @(IsPlayerAlive(client) ? "ALIVE" : "DEAD")
+                            @client.Team.ToString()
                         </div>
+                        <div class="player-karma">
+                            Karma: @Math.Round(client.Karma)
+                        </div>
+
+                        @if (client.IsConnected)
+                        {
+                            <div class="player-status @(IsPlayerAlive(client) ? "status-alive" : "status-dead")">
+                                @(IsPlayerAlive(client) ? "ALIVE" : "DEAD")
+                            </div>
+                        }
                     </div>
                 }
             </div>

@@ -32,9 +32,14 @@ public sealed class RaycastShooting : ShootingBehavior
 
     protected override void PerformShoot()
     {
+        if (!Ray.HasValue)
+        {
+            return;
+        }
+
         for (var i = 0; i < BulletCount; i++)
         {
-            ServerShoot(Ray.Position, Ray.Forward);
+            ServerShoot(Ray.Value.Position, Ray.Value.Forward);
         }
     }
 

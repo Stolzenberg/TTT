@@ -104,9 +104,10 @@
         },
         "DefaultEquipments": [
           "equipments/fist/fist.eqpt",
-          "equipments/knife/knife.eqpt"
+          "equipments/mp/mp.eqpt"
         ],
         "defaultFovChangeSpeed": 25,
+        "EnableDebug": false,
         "FallDamageScale": 0.08,
         "head": {
           "_type": "gameobject",

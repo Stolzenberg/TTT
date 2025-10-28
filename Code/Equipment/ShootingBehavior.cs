@@ -1,5 +1,4 @@
-﻿using System;
-using Sandbox.Events;
+﻿using Sandbox.Events;
 
 namespace Mountain;
 
@@ -70,7 +69,7 @@ public abstract class ShootingBehavior : EquipmentInputAction
     [Property, Feature("Effects")]
     public SoundEvent? DryFireSound { get; init; }
 
-    protected Ray Ray
+    protected Ray? Ray
     {
         get
         {
@@ -80,7 +79,7 @@ public abstract class ShootingBehavior : EquipmentInputAction
                     Equipment.ViewModel.Muzzle.WorldRotation.Forward);
             }
 
-            throw new InvalidOperationException("ViewModel is not valid, cannot get AimRay.");
+            return null;
         }
     }
 

@@ -54,7 +54,7 @@
           "__guid": "eaae459f-616f-4c61-9c11-d9f68129468c",
           "__enabled": true,
           "BotCount": 4,
-          "DebuggingEnabled": true,
+          "DebuggingEnabled": false,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -923,7 +923,7 @@
               "__enabled": true,
               "__version": 1,
               "EnableCollision": true,
-              "MapName": "throwupproducs.westerncity_expanded",
+              "MapName": "facepunch.construct23",
               "NoOrigin": true,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -934,6 +934,45 @@
               "OnMapLoaded": null,
               "OnMapUnloaded": null,
               "UseMapFromLaunch": true
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "4ebe4f10-8b2c-485e-b885-1863864ddb04",
+          "__version": 1,
+          "Flags": 0,
+          "Name": "Object",
+          "Position": "384,96,96.00002",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkInterpolation": true,
+          "NetworkOrphaned": 0,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Mountain.LootSpawnPoint",
+              "__guid": "c0fa423a-29c0-417f-a678-deec4d9e8427",
+              "__enabled": true,
+              "AmmoModel": "models/citizen_mannequin/mannequin.vmdl",
+              "AmmoType": "SMG",
+              "Amount": 90,
+              "ChancePercentage": 0.7,
+              "CurrencyModel": null,
+              "Equipment": null,
+              "LootType": "Ammo",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnForce": 1000,
+              "UseSpawnChance": false,
+              "UseSpawnForce": false
             }
           ],
           "Children": []

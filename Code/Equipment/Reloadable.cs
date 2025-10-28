@@ -159,12 +159,8 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
             // Try to take 1 ammo from player inventory
             if (ammoType != AmmoType.None)
             {
-                var ammoTaken = Player.TakeAmmo(ammoType, 1);
-                if (ammoTaken > 0)
-                {
-                    AmmoComponent.Ammo++;
-                    AmmoComponent.Ammo = AmmoComponent.Ammo.Clamp(0, AmmoComponent.MaxAmmo);
-                }
+                // Request server to transfer ammo from player to weapon
+                ServerRequestAmmoTransfer(ammoType, 1);
             }
             else
             {
@@ -194,9 +190,8 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
 
             if (ammoType != AmmoType.None)
             {
-                // Take ammo from player inventory
-                var ammoTaken = Player.TakeAmmo(ammoType, ammoNeeded);
-                AmmoComponent.Ammo += ammoTaken;
+                // Request server to transfer ammo from player to weapon
+                ServerRequestAmmoTransfer(ammoType, ammoNeeded);
             }
             else
             {
@@ -207,6 +202,34 @@ public class Reloadable : EquipmentInputAction, IGameEventHandler<EquipmentHolst
 
         // Tags will be better so we can just react to stimuli.
         Equipment.ViewModel.ModelRenderer.Set("b_reload", false);
+    }
+
+    [Rpc.Host]
+    private void ServerRequestAmmoTransfer(AmmoType ammoType, int amountRequested)
+    {
+        if (!Player.IsValid())
+        {
+            return;
+        }
+
+        // Server authoritatively takes ammo from player
+        var ammoTaken = Player.TakeAmmo(ammoType, amountRequested);
+        if (ammoTaken > 0)
+        {
+            SetClientAmmo(ammoTaken);
+
+            // Add to weapon's magazine
+            AmmoComponent.Ammo += ammoTaken;
+            AmmoComponent.Ammo = AmmoComponent.Ammo.Clamp(0, AmmoComponent.MaxAmmo);
+        }
+    }
+
+    [Rpc.Owner]
+    private void SetClientAmmo(int ammo)
+    {
+        // Add to weapon's magazine
+        AmmoComponent.Ammo += ammo;
+        AmmoComponent.Ammo = AmmoComponent.Ammo.Clamp(0, AmmoComponent.MaxAmmo);
     }
 
     private async void PlayAsyncSound(float delay, SoundEvent snd, Func<bool> playCondition = null)
