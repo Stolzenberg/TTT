@@ -23,12 +23,9 @@
                             Karma: @Math.Round(client.Karma)
                         </div>
 
-                        @if (client.IsConnected)
-                        {
-                            <div class="player-status @(IsPlayerAlive(client) ? "status-alive" : "status-dead")">
-                                @(IsPlayerAlive(client) ? "ALIVE" : "DEAD")
-                            </div>
-                        }
+                        <div class="player-status @(IsPlayerAlive(client) ? "status-alive" : "status-dead")">
+                            @(IsPlayerAlive(client) ? "ALIVE" : "DEAD")
+                        </div>
                     </div>
                 }
             </div>
